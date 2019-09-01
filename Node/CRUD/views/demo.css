@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css?family=Thasadith:700&display=swap");
+
+body {
+  font-family: "Thasadith", sans-serif;
+}
+
+.searchBox{
+    display: flex;
+    width: 60%;
+    margin: auto;
+    padding: 20px 0;    
+}
+.searchBox .searchbar{
+    width: 80%;
+}
+.searchBox .searchbar input{
+    width: 99%;
+    padding: 10px 0 10px 10px;
+}
+
+.searchBtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.allPost {
+  width: 80%;
+  margin: 0 auto;
+  border: 2px solid gray;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px gray;
+  font-size: 20px;
+  letter-spacing: 2px;
+
+  background: linear-gradient(
+    to right,
+    #ffefba,
+    #ffffff,
+    #ffefba
+  ); 
+}
+
+.eachPost {
+  padding: 10px;
+  border-bottom: 1px solid black;
+  padding-bottom: 30px;
+}
+
+.eachPost:last-child {
+    padding: 10px;
+    border-bottom: 0px solid black;
+    padding-bottom: 30px;
+}
+
+.firstRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.firstRow .title {
+  font-size: 35px;
+}
+
+.firstRow .title p {
+}
+
+.firstRow .twoButton {
+  display: flex;
+  align-content: center;
+}
+
+.firstRow .twoButton .update button ,
+.firstRow .twoButton .delete button ,
+.searchBtn button{
+  padding: 10px 40px;
+  margin-right: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  background: rgb(23, 165, 190);
+  color: white;
+  font-size: 18px;
+  border: 1px solid transparent;
+  transition: background 0.4s, color 0.4s, border 0.4s;
+}
+
+.searchBtn button{
+    background: rgba(31, 28, 28, 1);
+    border-radius: 0px;
+    padding: 8.5px 40px;
+}
+
+.firstRow .twoButton .update {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  animation: fromLeftToRight 3s;
+}
+
+.firstRow .twoButton .delete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  animation: fromRightToLeft 3s;
+}
+
+.firstRow .twoButton .update button:hover ,
+.firstRow .twoButton .delete button:hover {
+  background: white;
+  color: rgb(23, 165, 190);
+  border: 1px solid rgb(23, 165, 190);
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  outline: none;
+
+  background: rgb(52, 200, 84);
+  padding: 6px 15px;
+  font-size: 15px;
+  color: white;
+  border-radius: 5px;
+}
+
+@keyframes fromLeftToRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) rotate(105deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fromRightToLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(100px) rotate(135deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* 
+
+::placeholder {
+    padding-left: 10px;
+    color: gray;
+} */
+
+
+@media (max-width: 800px) {
+    .searchBox{
+        width: 90%;
+    }
+
+    .allPost {
+        width: 95%;
+    }
+}
+
+/* `<li class="list-group-item" id="${ids.listItemID}">
+            <div class="row">
+                <div class="col-md-4" id="${ids.todoID}"> <b>${todo.title}</b> <br>${displayedContent} <br>  <a href="#" data-toggle="modal" data-target="#exampleModal-Center" id='read-more-${ids.todoID}' class="readMore"><div  class="read-more">Read More</div></a> </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4 text-right">
+                    <button type="button" class="btn btn-secondary" id="${ids.editID}">Edit</button>
+                    <button type="button" class="btn btn-danger" id="${ids.deleteID}">Delete</button>
+        </li>`; */

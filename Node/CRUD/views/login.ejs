@@ -1,0 +1,24 @@
+<form id="form-reg" action="/users/login" method="POST">
+    
+    <div class="form-group">
+      <p id="labelEmail" >Email address</label>
+      <input type="email" name="emailN" value="<%= typeof email != 'undefined' ? email : '' %>"
+      class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <p id="labelPassword">Password</label>
+      <input type="password" name="passwordN" value="<%= typeof password != 'undefined' ? password : '' %>"
+      class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+<style>
+#form-reg{
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 15%;
+  
+}
+</style>
+
