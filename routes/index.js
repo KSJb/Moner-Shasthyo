@@ -5,6 +5,7 @@ const Post = require('../models/post');
 // router.get('/',  (req, res) => {res.render('index')});
 router.get('/', function(req, res){
 	Post.find({}, function(err, posts){
+		console.log(posts);
 		if(err) res.json(err);
 		else    res.render('index', {posts: posts});
 	});

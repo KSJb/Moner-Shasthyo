@@ -26,6 +26,7 @@
 
                 <div class="form-area">
                     <form id="comment-form" action="/users/postcomment" method="POST">
+                      <input type="hidden" name="postID" value="<%=posts._id%>">
                       <div class="comment-field">
                         <div class="commentbox" id="comment-box">
                            <input type="text" name="commentBody">
