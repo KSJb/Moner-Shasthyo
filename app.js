@@ -135,6 +135,4 @@ app.use(
   app.use('/', require('./routes/index.js'));
   app.use('/users', require('./routes/users.js'));
 
-app.listen(3005, () => {
-    console.log('Server running');
- });
+app.listen(3005, () => console.log('Server running'));
