@@ -10,6 +10,15 @@ var PostSchema = mongoose.Schema({
   },
   date: {
     type: String
+  },
+  view: {
+    type: Number
+  },
+  upvote: {
+    type: Number
+  },
+  comment: {
+    type: Number
   }
 });
 

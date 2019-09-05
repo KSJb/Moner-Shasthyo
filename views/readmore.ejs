@@ -1,344 +1,484 @@
 <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+<div class="entire-page">
+  <div class="left">
+    <img class="user-img" src="https://robohash.org/<%=posts._id%>" alt="">
+    <div class="name">
+      <h2>Hussain Safwan</h2>
+    </div>
+    <div class="username">
+      <p>safwan_0997</p>
+    </div>
+    <hr>
+    <button type="button" id="savepost" class="btn btn-outline-info">Save Post</button>
+    <hr>
+    <div class="view-show">
+      <i class="fas fa-eye"></i> Views <%= posts.view %>
+    </div>
+    <hr>
+    <div class="upvote-show">
+      <i class="far fa-thumbs-up"></i> Upvotes <%= posts.upvote %>
+    </div>
+    <hr>
+    <div class="comment-show">
+      <i class="far fa-comment"></i> Comments <%= posts.comment %>
+    </div>
+    <div class="contents">
+      <p>Contents</p>
+    </div>
+    <div class="iconRow">
+      <i title="Contains multilayered texts" class="fas fa-align-left"></i>
+      <i title="Contains code segments" id="code" class="fas fa-code"></i>
+      <i class="fas fa-file-contract"></i>
+    </div>
+    <div class="contents">
+      <p>Tags</p>
+    </div>
+    <div class="tag-area">
 
-  <section class="allPost">
-          <div class="eachPost">
-            <div class="firstRow">
-              <div class="title">
-                <p> <%= posts.title %> </p>
-              </div>
-              <div class="twoButton">
-              </div>
-            </div>
-            <div class="dateRow"> <p><%= posts.date %></p> </div>
-            <div class="secondRow">
-              <p><%= posts.body %></p>
-            </div>
-            <hr>
-            <div class="thirdRow">
-              <div class="upvotes">
-                <button type="button" class="btn btn-info" id="upvote-btn"><i class="far fa-thumbs-up"></i> Upvote</button>
-              </div>
-              <div class="comments">
-                  <button type="button" class="btn btn-info" id="add-comment-btn"><i class="far fa-comment"></i> Add Comment</button>
-              </div>
+    </div>
+  </div>
 
-              <div class="comment-area">
+  <div class="right">
+    <section class="allPost">
+      <div class="eachPost">
+        <div class="firstRow">
+          <div class="title">
+            <h1><b> <%= posts.title %></b> </h1>
+          </div>
+          <div class="twoButton">
+          </div>
+        </div>
+        <div class="dateRow">
+          <p><%= posts.date %></p>
+        </div>
+        <div class="secondRow">
+          <p><%= posts.body %></p>
+        </div>
+        <hr>
+        <div class="thirdRow">
+          <div class="upvotes">
+            <% console.log("Hi",posts._id)%>
+            <a href="/users/upvote/<%= posts._id %>" name="upvote-btn" id="<%= posts._id %>" ><button type="button" class="btn btn-info" id="upvote-btn"><i class="far fa-thumbs-up"></i> Upvote</button></a>
+          </div>
+          <div class="comments">
+            <button type="button" class="btn btn-info" id="add-comment-btn"><i class="far fa-comment"></i> Add
+              Comment</button>
+          </div>
 
-                <div class="form-area">
-                    <form id="comment-form" action="/users/postcomment" method="POST">
-                      <input type="hidden" name="postID" value="<%=posts._id%>">
-                      <div class="comment-field">
-                        <div class="commentbox" id="comment-box">
-                           <input type="text" name="commentBody">
-                        </div>
-                        <div class="post-comment" id="post-btn">
-                          <button type="submit" id="post-btn-submit" class="btn btn-info">Add</button>
-                        </div>
-                      </div>
-                    </form>
-                </div>
-                
-                  <div class="cancel-btn" id="cancel-btn">
-                    <button class="btn btn-secondary" id="cancel-btn-submit">Cancel</button>
+          <div class="comment-area">
+
+            <div class="form-area">
+              <form id="comment-form" action="/users/postcomment" method="POST">
+                <input type="hidden" name="postID" value="<%=posts._id%>">
+                <div class="comment-field">
+                  <div class="commentbox" id="comment-box">
+                    <input type="text" name="commentBody">
+                  </div>
+                  <div class="post-comment" id="post-btn">
+                    <button type="submit" id="post-btn-submit" class="btn btn-info">Add</button>
                   </div>
                 </div>
+              </form>
+            </div>
 
+            <div class="cancel-btn" id="cancel-btn">
+              <button class="btn btn-secondary" id="cancel-btn-submit">Cancel</button>
             </div>
           </div>
-        </section>
 
-        <% comments.forEach(function(comments){ %>
-          <section class="all-comments">
-                  <div class="each-comment">
-                    <div class="comment-firstRow">
-                      <div class="comment-author">
-                        <p> Safwan </p>
-                      </div>
-                      <hr>
-                    <div class="comment-secondRow">
-                      <p><%= comments.body %></p>
-                    </div>
-                  </div>
-                </section>
-        <% }) %>
+        </div>
+      </div>
+    </section>
+    <div class="comment-heading">
+      <h4>Comments</h4>
+      <hr>
+    </div>
+
+
+    <% comments.forEach(function(comments){ %>
+    <section class="all-comments">
+      <div class="each-comment">
+        <div class="comment-firstRow">
+          <div class="comment-author">
+            <div class="auth-img">
+              <img class="img" src="/images/the_duck.png">
+            </div>
+            <p> Safwan </p>
+          </div>
+          <div class="comment-secondRow">
+            <p><%= comments.body %></p>
+          </div>
+        </div>
+        <hr>
+    </section>
+    <% }) %>
+  </div>
+</div>
+
+
 
 <style>
+  @import url("https://fonts.googleapis.com/css?family=Thasadith:700&display=swap");
+  @import url('https://fonts.googleapis.com/css?family=Abel|Oswald|Roboto+Mono&display=swap');
 
-@import url("https://fonts.googleapis.com/css?family=Thasadith:700&display=swap");
+  body {
+    font-family: "Thasadith", sans-serif;
+    /* background-color: rgb(243, 241, 241);  */
+  }
 
-body {
-font-family: "Thasadith", sans-serif;
-background-color: rgb(243, 241, 241); 
-}
-
-.searchBox{
+  .searchBox {
     display: flex;
     width: 60%;
     margin: auto;
-    padding: 20px 0;    
-}
-.searchBox .searchbar{
+    padding: 20px 0;
+  }
+
+  .searchBox .searchbar {
     width: 80%;
-}
-.searchBox .searchbar input{
+  }
+
+  .searchBox .searchbar input {
     width: 99%;
     padding: 10px 0 10px 10px;
-}
+  }
 
-.searchBtn {
+  .searchBtn {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+  }
 
-.allPost {
-width: 100%;
-margin: 0 auto;
-background-color: white;
-}
+  .entire-page {
+    display: flex;
+  }
 
-.eachPost {
-margin-top: 10px;
-padding: 10px;
-border-bottom: 1px solid black;
-padding-bottom: 30px;
-}
+  /* ++++++++++++ Left ++++++++++++ */
+  .left {
+    position: sticky;
+    top: 0;
+    width: 20%;
+    border-right: 1px solid rgb(230, 229, 229);
+    ;
+    float: left;
+  }
 
-.eachPost:last-child {
+  .user-img {
+    height: 200px;
+    margin-left: 22%;
+    margin-top: 10%;
+  }
+
+  .name {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .username {
+    color: rgb(151, 151, 151);
+    text-align: center;
+  }
+
+  #savepost{
+    margin-left: 38%;
+  }
+
+  .left hr {
+    width: 90%;
+  }
+
+  .left i {
+    font-size: 30px;
+    color: rgb(23, 165, 190);
+    margin-left: 35%;
+  }
+
+  .view-show:hover,
+  .upvote-show:hover,
+  .comment-show:hover {
+    background-color: rgb(245, 241, 241);
+  }
+
+  .contents {
+    margin-top: 25px;
+    margin-left: 18px;
+    font-size: 18px;
+    width: 90%;
+    background-color: rgb(245, 241, 241);
+    text-align: center;
+  }
+
+  .iconRow {
+    display: flex;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    font-size: 12px;
+    color: gray;
+  }
+
+  .iconRow i {
+    font-size: 15px;
+    color: gray;
+  }
+
+  .iconRow #code {
+    margin-left: 20px;
+  }
+
+  .iconRow #file {
+    margin-left: 20px;
+  }
+
+  .tag-area{
+    width: 90%;
+    height: 70px;
+    margin-left: 18px;
+    background-color: rgb(236, 236, 223);
+  }
+
+  /* +++++++++++++++++++++++++++++++ */
+
+  .right {
+    width: 55%;
+    margin-left: 50px;
+  }
+
+  .allPost {
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+  }
+
+  .eachPost {
+    margin-top: 10px;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    padding-bottom: 30px;
+  }
+
+  .eachPost:last-child {
     padding: 10px;
     border-bottom: 0px solid black;
     padding-bottom: 30px;
-}
+  }
 
-.firstRow {
-display: flex;
-justify-content: space-between;
-}
-
-.firstRow .leftSide{
+  .firstRow {
     display: flex;
-}
+    justify-content: space-between;
+  }
 
-.footer{
+  .firstRow .leftSide {
     display: flex;
-}
+  }
 
-.footer p{
+  .footer {
+    display: flex;
+  }
+
+  .footer p {
     font-size: 15px;
     color: gray;
-}
+  }
 
-.footer .date{
+  .footer .date {
     margin-left: 10px;
-}
+  }
 
-.firstRow .title {
-font-size: 35px;
-margin-left: 10px;
-}
+  .firstRow .title {
+    font-size: 35px;
+    margin-left: 10px;
+    font-family: 'Abel', sans-serif;
+  }
 
-.firstRow .title p {
+  .firstRow .title p {
     padding-top: 15px;
-}
+  }
 
-.firstRow .author-img img{
+  .firstRow .author-img img {
     border-radius: 50%;
-}
+  }
 
-.firstRow .twoButton {
-display: flex;
-align-content: center;
-}
+  .firstRow .twoButton {
+    display: flex;
+    align-content: center;
+  }
 
-.firstRow .twoButton .update button ,
-.firstRow .twoButton .delete button ,
-.searchBtn button{
-padding: 10px 40px;
-margin-right: 10px;
-border-radius: 10px;
-outline: none;
-border: none;
-background: rgb(23, 165, 190);
-color: white;
-font-size: 18px;
-border: 1px solid transparent;
-transition: background 0.4s, color 0.4s, border 0.4s;
-}
+  .firstRow .twoButton .update button,
+  .firstRow .twoButton .delete button,
+  .searchBtn button {
+    padding: 10px 40px;
+    margin-right: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background: rgb(23, 165, 190);
+    color: white;
+    font-size: 18px;
+    border: 1px solid transparent;
+    transition: background 0.4s, color 0.4s, border 0.4s;
+  }
 
-.searchBtn button{
+  .searchBtn button {
     background: rgba(31, 28, 28, 1);
     border-radius: 0px;
     padding: 8.5px 40px;
-}
+  }
 
-.firstRow .twoButton .update {
-display: flex;
-flex-direction: column;
-justify-content: center;
-}
+  .firstRow .twoButton .update {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-a[name=view-post]{
+  a[name=view-post] {
     height: 25px;
     font-size: 15px;
-}
+  }
 
-.firstRow .twoButton .delete {
-display: flex;
-flex-direction: column;
-justify-content: center;
-width: 40%;
-}
+  .firstRow .twoButton .delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+  }
 
-.firstRow .twoButton .update button:hover ,
-.firstRow .twoButton .delete button:hover {
-background: white;
-color: rgb(23, 165, 190);
-border: 1px solid rgb(23, 165, 190);
-}
+  .firstRow .twoButton .update button:hover,
+  .firstRow .twoButton .delete button:hover {
+    background: white;
+    color: rgb(23, 165, 190);
+    border: 1px solid rgb(23, 165, 190);
+  }
 
-.dateRow p{
+  .dateRow p {
     font-size: 12px;
     color: gray;
     margin-left: 10px;
-}
+  }
 
-.thirdRow{
+  .secondRow p {
+    font-size: 20px;
+  }
+
+  .thirdRow {
     margin-top: 10px;
     display: flex;
-}
+  }
 
-.thirdRow p{
+  .thirdRow p {
     font-size: 15px;
     color: gray;
-}
+  }
 
-.thirdRow .comments{
+  .thirdRow .comments {
     margin-left: 10px;
-}
+  }
 
-.commentbox{
-  display: none;
-  width: 80%;
-}
-.commentbox input{
-  padding-top: 2px;
-  width: 98%;
-}
-.post-comment{
-  display: none;
-}
-.cancel-btn{
-  display: none;
-  margin-left: 10px;
-}
-.comment-area{
-  display: flex;
-  width: 60%;
-  transition: 1s;
-}
-.comment-field{
-  display: flex;
-  width: 98%;
-}
-.form-area{
-  display: flex;
-  width: 98%;
-}
-.comment-form{
-  width: 98%;
-}
+  .commentbox {
+    display: none;
+    width: 80%;
+  }
 
-a {
-color: black;
-text-decoration: none;
-outline: none;
+  .commentbox input {
+    padding-top: 2px;
+    width: 98%;
+  }
 
-background: rgb(52, 200, 84);
-padding: 6px 15px;
-font-size: 15px;
-color: white;
-border-radius: 5px;
-}
+  .post-comment {
+    display: none;
+  }
 
-@keyframes fromLeftToRight {
-0% {
-    opacity: 0;
-    transform: translateX(-100px) rotate(105deg);
-}
+  .cancel-btn {
+    display: none;
+    margin-left: 10px;
+  }
 
-100% {
-    opacity: 1;
-    transform: none;
-}
-}
+  .comment-area {
+    display: flex;
+    width: 60%;
+    transition: 1s;
+  }
 
-@keyframes fromRightToLeft {
-0% {
-    opacity: 0;
-    transform: translateX(100px) rotate(135deg);
-}
+  .comment-field {
+    display: flex;
+    width: 98%;
+  }
 
-100% {
-    opacity: 1;
-    transform: none;
-}
-}
+  .form-area {
+    display: flex;
+    width: 98%;
+  }
 
-/* ********* Comment ********* */
-.all-comments {
-width: 80%;
-margin: 0 auto;
-background-color: white;
-}
+  .comment-form {
+    width: 98%;
+  }
 
-.each-comment {
-margin-top: 10px;
-padding: 10px;
-border-bottom: 1px solid black;
-padding-bottom: 30px;
-display: flex;
-flex-direction: column;
-justify-content: left;
-}
+  /* ********* Comment ********* */
+  .all-comments {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+  }
 
-.each-comment:last-child {
+  .each-comment {
+    width: 100%;
+    border: 1px solid rgb(230, 229, 229);
+    border-radius: 10px;
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+  }
+
+  .each-comment:last-child {
     padding: 10px;
     border-bottom: 0px solid black;
-    padding-bottom: 30px;
-}
-.comment-author p{
-  font-size: 20px;
-  font-style: bold;
-}
-/* *************************** */
+  }
+
+  .comment-author {
+    display: flex;
+  }
+
+  .img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .comment-author p {
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 20px;
+    font-style: bold;
+  }
+
+  .comment-secondRow p {
+    margin-left: 7%;
+  }
+
+  /* *************************** */
 </style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-crossorigin="anonymous"></script>
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-crossorigin="anonymous"></script>
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-crossorigin="anonymous"></script>
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script>
 
-    $(document).ready(() => {
-        $('#add-comment-btn').click(() => {
-          console.log('clicked');
-          document.getElementById('add-comment-btn').style.display = 'none';
-          document.getElementById('comment-box').style.display = 'block';
-          document.getElementById('post-btn').style.display = 'block';
-          document.getElementById('cancel-btn').style.display = 'block';          
-        })
+  $(document).ready(() => {
+    $('#add-comment-btn').click(() => {
+      console.log('clicked');
+      document.getElementById('add-comment-btn').style.display = 'none';
+      document.getElementById('comment-box').style.display = 'block';
+      document.getElementById('post-btn').style.display = 'block';
+      document.getElementById('cancel-btn').style.display = 'block';
+    })
 
-        $('#cancel-btn-submit').click(() => {
-          document.getElementById('add-comment-btn').style.display = 'block';
-          document.getElementById('comment-box').style.display = 'none';
-          document.getElementById('post-btn').style.display = 'none';
-          document.getElementById('cancel-btn').style.display = 'none';
-        })
-});
+    $('#cancel-btn-submit').click(() => {
+      document.getElementById('add-comment-btn').style.display = 'block';
+      document.getElementById('comment-box').style.display = 'none';
+      document.getElementById('post-btn').style.display = 'none';
+      document.getElementById('cancel-btn').style.display = 'none';
+    })
+  });
 </script>

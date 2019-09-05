@@ -113,6 +113,9 @@ router.post('/post', (req, res) => {
   const title = req.body.title_name;
   const body = req.body.body_name;
   const date = getDate();
+  const view = 0;
+  const upvote = 0;
+  const comment = 0;
   let errors = [];
   console.log("title, body, date: " + title + ", " + body + ", " + date);
   if (!title || !body) {
@@ -124,7 +127,10 @@ router.post('/post', (req, res) => {
       errors,
       title,
       body,
-      date
+      date,
+      view,
+      upvote,
+      comment
     });
   }
   else {
@@ -132,7 +138,10 @@ router.post('/post', (req, res) => {
     const newPost = new Post({
       title,
       body,
-      date
+      date,
+      view,
+      upvote,
+      comment
     });
 
     newPost.save().then((err, dbPost) => {
@@ -143,23 +152,33 @@ router.post('/post', (req, res) => {
   }
 });
 
-let readmode_id = 0;
 router.get('/:id', function (req, res) {
   const id = req.params.id;
   console.log("in");
-  Post.findOne({ _id: id }, function (err, foundPost) {
-    console.log(foundPost);
 
+  Post.findOne({ _id: id }, function (err, foundPost) {
+    console.log("clicked post : ", foundPost);
+    console.log("Views : " + foundPost.view);
     if (err) res.json(err);
     else {
-      Comment.find({ myPostID: id }, function (err,foundComments) {
-        console.log("ok afia");
+      Comment.find({ myPostID: id }, function (err, foundComments) {
         console.log(err, foundComments);
         if (err) res.json(err);
-        else res.render('readmore', {
-          posts: foundPost,
-          comments: foundComments
-        });
+        else {
+          Post.findOneAndUpdate({ _id: id }, { $inc: { view: 1 } }, function (err, data) {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              res.render('readmore', {
+                posts: foundPost,
+                views: foundPost.view,
+                comments: foundComments
+              });
+            }
+          })
+        }
+
       });
     }
   });
@@ -202,7 +221,19 @@ router.post('/postcomment', (req, res) => {
   }
 });
 
-
+router.get('/upvote/:id', (req, res) => {
+  console.log("params are here: ", req.params);
+  const id = req.params.id;
+  Post.findOneAndUpdate({ _id: id }, { $inc: { upvote: 1 } }, function (err, data) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log('upvoted');
+      res.redirect('back');
+    }
+  })
+})
 
 module.exports = router;
 
