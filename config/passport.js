@@ -5,16 +5,18 @@ const bcrypt = require('bcryptjs');
 // Load User model
 const User = require('../models/user');
 
-module.exports = function(passport) {
-  passport.use('local',
-    new LocalStrategy({ usernameField: 'emailN' }, (email, password, done) => {
+module.exports = function (passport) {
+  passport.use(
+    new LocalStrategy({
+      usernameField: 'emailN',
+      passwordField: 'passwordN',
+      passReqToCallback: true
+    }, (req, email, password, done) => {
       // Match user
-      console.log("HEEEELLLLOOO");
-      console.log("Email : "+email);
-      console.log("password", password);
+      console.log(req.body);
 
       User.findOne({
-        email: email
+        email: req.body.emailN
       }).then(user => {
         if (!user) {
           console.log("Email not registered");
@@ -22,7 +24,7 @@ module.exports = function(passport) {
         }
         console.log(user);
         // Match password
-        bcrypt.compare(password, user.password, (err, isMatch) => {
+        bcrypt.compare(req.body.passwordN, user.password, (err, isMatch) => {
           if (err) throw err;
           if (isMatch) {
             return done(null, user);
@@ -35,12 +37,12 @@ module.exports = function(passport) {
     })
   );
 
-  passport.serializeUser(function(user, done) {
+  passport.serializeUser(function (user, done) {
     done(null, user.id);
   });
 
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
+  passport.deserializeUser(function (id, done) {
+    User.findById(id, function (err, user) {
       done(err, user);
     });
   });

@@ -1,381 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<% posts.forEach(function(posts){ %>
-<section class="allPost">
-  <div class="eachPost">
-    <div class="firstRow-group">
-      <div class="author-img">
-        <% let today = Date.now()%>
-        <img class="img" src="https://robohash.org/<%=posts._id%>">
-      </div>
-      <div class="other-than-img" style="width: 100%">
-        <div class="firstRow">
-          <div class="right-side">
-            <div class="title">
-              <p> <%= posts.title %> </p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+
+
+  <% posts.forEach(function(posts){ %>
+  <section class="allPost">
+    <div class="eachPost">
+      <div class="firstRow-group">
+        <div class="author-img">
+          <% let today = Date.now()%>
+          <img class="img" src="https://robohash.org/<%=posts._id%>">
+        </div>
+        <div class="other-than-img" style="width: 100%">
+          <div class="firstRow">
+            <div class="right-side">
+              <div class="title">
+                <p> <%= posts.title %> </p>
+              </div>
+            </div>
+            <div class="twoButton">
+              <a href="/users/<%= posts._id %>" name="view-post" id="<%= posts._id %>" class="badge badge-info">View
+                Post</a>
             </div>
           </div>
-          <div class="twoButton">
-            <a href="/users/<%= posts._id %>" name="view-post" id="<%= posts._id %>" class="badge badge-info">View Post</a>
+          <div class="dateRow">
+            <p><%= posts.date %></p>
+          </div>
+          <div class="iconRow">
+            <i title="Contains multilayered texts" class="fas fa-align-left"></i>
+            <i title="Contains code segments" id="code" class="fas fa-code"></i>
+            <i class="fas fa-file-contract"></i>
           </div>
         </div>
-        <div class="dateRow">
-          <p><%= posts.date %></p>
+      </div>
+      <div class="secondRow">
+        <p><%= posts.body %></p>
+      </div>
+      <hr>
+      <div class="thirdRow">
+        <div class="views">
+          <p>Views <%= posts.view %></p>
         </div>
-        <div class="iconRow">
-          <i title="Contains multilayered texts" class="fas fa-align-left"></i>
-          <i title="Contains code segments" id="code" class="fas fa-code"></i>
-          <i class="fas fa-file-contract"></i>
+        <div class="upvotes">
+          <p>· Upvotes <%= posts.upvote %></p>
+        </div>
+        <div class="comments">
+          <p>· Comments <%= posts.comment %></p>
         </div>
       </div>
     </div>
-    <div class="secondRow">
-      <p><%= posts.body %></p>
-    </div>
-    <hr>
-    <div class="thirdRow">
-      <div class="views">
-        <p>Views <%= posts.view %></p>
-      </div>
-      <div class="upvotes">
-        <p>· Upvotes <%= posts.upvote %></p>
-      </div>
-      <div class="comments">
-        <p>· Comments <%= posts.comment %></p>
+  </section>
+  <% }) %>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" id="modal-fade">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Create Blog</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="form-submit" action="/users/post" method="POST">
+          <input type="text" name="title_name" id="title" placeholder="Title"><br><br>
+          <textarea rows="4" class="area1" name="body_name" cols="50" id="text-body"
+            placeholder="It's a fine day!"></textarea>
+          <script>
+            CKEDITOR.replace('text-body');
+            console.log('replaced');
+          </script>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info">More Options</button>
+            <a href="#"> <button type="submit" class="btn btn-info">Post</button></a>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-</section>
-<% }) %>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true" id="modal-fade">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Create Blog</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form id="form-submit" action="/users/post" method="POST">
-        <input type="text" name="title_name" id="title" placeholder="Title"><br><br>
-        <textarea rows="4" class="area1" name="body_name" cols="50" id="text-body"
-          placeholder="It's a fine day!"></textarea>
-        <script>
-          CKEDITOR.replace('text-body');
-          console.log('replaced');
-        </script>
+  <!-- Read more window -->
+  <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal-Center" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info">More Options</button>
-          <a href="#"> <button type="submit" class="btn btn-info">Post</button></a>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+          <button type="button" class="btn btn-secondary" id="close-btn" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="add-comment-btn">Add comment</button> <br>
 
-<!-- Read more window -->
-<!-- Button trigger modal -->
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal-Center" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="close-btn" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="add-comment-btn">Add comment</button> <br>
-
-        <div id="comment-area">
-          <form id="comment-form" method="POST" action="/comment">
-            <input name="myComment" type="text" id="comment-box">
-            <button type="submit" class="btn btn-primary" id="post-comment-btn">Post</button>
-          </form>
+          <div id="comment-area">
+            <form id="comment-form" method="POST" action="/comment">
+              <input name="myComment" type="text" id="comment-box">
+              <button type="submit" class="btn btn-primary" id="post-comment-btn">Post</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="allPost" id="display"> </div>
+  <div class="allPost" id="display"> </div>
 
-<style>
-  .read-more {
-    background-color: red;
-    color: white;
-    font-size: 12px;
-    margin-left: 2px;
-    text-decoration: none;
-    /* display: none; */
-  }
 
-  #comment-area {
-    display: none;
-  }
-
-  @import url("https://fonts.googleapis.com/css?family=Thasadith:700&display=swap");
-
-  body {
-    font-family: "Thasadith", sans-serif;
-    /* background-color: rgb(243, 241, 241);  */
-  }
-
-  .searchBox {
-    display: flex;
-    width: 60%;
-    margin: auto;
-    padding: 20px 0;
-  }
-
-  .searchBox .searchbar {
-    width: 80%;
-  }
-
-  .searchBox .searchbar input {
-    width: 99%;
-    padding: 10px 0 10px 10px;
-  }
-
-  .searchBtn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .allPost {
-    width: 50%;
-    margin: 0 auto;
-    background-color: white;
-    /*padding: 10px;
-        border-radius: 10px;
-        box-shadow: 5px 5px 20px gray;
-        font-size: 20px;
-        letter-spacing: 2px; */
-
-  }
-
-  .eachPost {
-    border: 1px solid rgb(230, 229, 229);
-    border-radius: 10px;
-    margin-top: 20px;
-  }
-
-  .eachPost:hover {
-    box-shadow: 2px 0px 2px 0px rgb(200, 200, 200);
-  }
-
-  .eachPost:last-child {
-    padding: 10px;
-    border-bottom: 0px solid black;
-    padding-bottom: 30px;
-  }
-
-  .firstRow-group {
-    display: flex;
-  }
-
-  .firstRow {
-    display: flex;
-    justify-content: space-between;
-    height: 70px;
-    width: 100%;
-  }
-
-  .firstRow .leftSide {
-    display: flex;
-  }
-
-  .author-img {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .img {
-    /* margin: auto; */
-    display: block;
-    width: 50px;
-    height: 50%;
-    border-radius: 50%;
-  }
-
-  .firstRow .right-side {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-
-  .footer {
-    display: flex;
-  }
-
-  .footer p {
-    font-size: 15px;
-    color: gray;
-  }
-
-  .footer .date {
-    margin-left: 10px;
-  }
-
-  .firstRow .title {
-    font-size: 35px;
-    margin-left: 10px;
-    margin-bottom: 20px;
-  }
-
-  .firstRow .title p {
-    padding-top: 15px;
-  }
-
-  .firstRow .author-img img {
-    border-radius: 50%;
-  }
-
-  .firstRow .twoButton {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    /* align-content: center; */
-  }
-
-  .firstRow .twoButton .update button,
-  .firstRow .twoButton .delete button,
-  .searchBtn button {
-    padding: 10px 40px;
-    margin-right: 10px;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    background: rgb(23, 165, 190);
-    color: white;
-    font-size: 18px;
-    border: 1px solid transparent;
-    transition: background 0.4s, color 0.4s, border 0.4s;
-  }
-
-  .searchBtn button {
-    background: rgba(31, 28, 28, 1);
-    border-radius: 0px;
-    padding: 8.5px 40px;
-  }
-
-  .firstRow .twoButton .update {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  a[name=view-post] {
-    height: 25px;
-    font-size: 15px;
-  }
-
-  .firstRow .twoButton .delete {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 40%;
-  }
-
-  .firstRow .twoButton .update button:hover,
-  .firstRow .twoButton .delete button:hover {
-    background: white;
-    color: rgb(23, 165, 190);
-    border: 1px solid rgb(23, 165, 190);
-  }
-
-  .dateRow {
-    height: 20px;
-  }
-
-  .dateRow p {
-    font-size: 12px;
-    color: gray;
-    margin-left: 5%;
-  }
-
-  .iconRow {
-    display: flex;
-    margin-bottom: 20px;
-    margin-left: 5%;
-    font-size: 12px;
-    color: gray;
-  }
-
-  .iconRow #code {
-    margin-left: 20px;
-  }
-
-  .iconRow #file {
-    margin-left: 20px;
-  }
-
-  .secondRow pre {
-    line-height: 0.8;
-  }
-
-  .thirdRow {
-    margin-top: 10px;
-    display: flex;
-  }
-
-  .thirdRow p {
-    font-size: 15px;
-    color: gray;
-  }
-
-  .thirdRow .upvotes {
-    margin-left: 10px;
-  }
-
-  .thirdRow .comments {
-    margin-left: 10px;
-  }
-
-  a {
-    color: black;
-    text-decoration: none;
-    outline: none;
-
-    padding: 6px 15px;
-    font-size: 15px;
-    border-radius: 5px;
-  }
-
-  /* Post Modal */
-  .modal-footer {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  #title {
-    margin-left: 3%;
-    margin-top: 2%;
-  }
-
-  #text-body {
-    margin-left: 3%;
-  }
-
-  @media (max-width: 1200px) {
-    .allPost {
-      width: 95%;
-    }
-  }
-
-  /* ********** */
-</style>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -385,9 +134,14 @@
   integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
   <script src="../ckeditor/ckeditor.js"></script>
-<script>
+  <script>
     $(document).ready(() => {
 
-  });
-</script>
+    });
+  </script>
+
+</body>
+
+</html>

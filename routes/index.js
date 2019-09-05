@@ -3,20 +3,20 @@ const router = express.Router();
 const Post = require('../models/post');
 
 // router.get('/',  (req, res) => {res.render('index')});
-router.get('/', function(req, res){
-	let posts = [];
-	Post.find().sort({date:-1}) .then(posts => {
-			return res.render("index", {
-					posts: posts
-				});
-	})
-	.catch(err => returnError({ msg: "Getting Error In Getting Data" }))
-})
 
-router.get('/index',  (req, res) =>
-  res.render('index', {
-    user: req.user
-  })
+router.get('/', function (req, res) {
+	if (!req.isAuthenticated()) res.redirect('/users/login');
+	Post.find({}, function (err, posts) {
+		console.log(posts);
+		if (err) res.json(err);
+		else res.render('index', { posts: posts });
+	});
+});
+
+router.get('/index', (req, res) =>
+	res.render('index', {
+		user: req.user
+	})
 );
 
 module.exports = router;
