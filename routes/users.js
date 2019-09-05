@@ -222,7 +222,6 @@ router.post('/postcomment', (req, res) => {
 });
 
 router.get('/upvote/:id', (req, res) => {
-  console.log("params are here: ", req.params);
   const id = req.params.id;
   Post.findOneAndUpdate({ _id: id }, { $inc: { upvote: 1 } }, function (err, data) {
     if (err) {
@@ -235,6 +234,19 @@ router.get('/upvote/:id', (req, res) => {
   })
 })
 
+router.get('/comment/:id', (req, res) => {
+  console.log("comment inc");
+  const id = req.params.id;
+  Post.findOneAndUpdate({ _id: id }, { $inc: { comment: 1 } }, function (err, data) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log('upvoted');
+      res.redirect('back');
+    }
+  })
+})
 module.exports = router;
 
 

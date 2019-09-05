@@ -69,13 +69,13 @@
 
             <div class="form-area">
               <form id="comment-form" action="/users/postcomment" method="POST">
-                <input type="hidden" name="postID" value="<%=posts._id%>">
+                <input type="hidden" name="postID" value="<%=posts._id%>" id="UserPostID">
                 <div class="comment-field">
                   <div class="commentbox" id="comment-box">
                     <input type="text" name="commentBody">
                   </div>
                   <div class="post-comment" id="post-btn">
-                    <button type="submit" id="post-btn-submit" class="btn btn-info">Add</button>
+                   <button type="submit" id="post-btn-submit" class="btn btn-info">Add</button>
                   </div>
                 </div>
               </form>
@@ -480,5 +480,10 @@
       document.getElementById('post-btn').style.display = 'none';
       document.getElementById('cancel-btn').style.display = 'none';
     })
+  });
+
+  document.querySelector("#post-btn-submit").addEventListener('click', (e)=> {
+    const userID = document.querySelector("#UserPostID").value;
+    window.location = "/users/comment/"+userID;
   });
 </script>
