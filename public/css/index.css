@@ -45,11 +45,10 @@ body {
   margin: 0 auto;
   background-color: white;
   /*padding: 10px;
-      border-radius: 10px;
-      box-shadow: 5px 5px 20px gray;
-      font-size: 20px;
-      letter-spacing: 2px; */
-
+        border-radius: 10px;
+        box-shadow: 5px 5px 20px gray;
+        font-size: 20px;
+        letter-spacing: 2px; */
 }
 
 .eachPost {
@@ -164,7 +163,7 @@ body {
   justify-content: center;
 }
 
-a[name=view-post] {
+a[name="view-post"] {
   height: 25px;
   font-size: 15px;
 }
@@ -238,7 +237,6 @@ a {
 
   padding: 6px 15px;
   font-size: 15px;
-  color: white;
   border-radius: 5px;
 }
 

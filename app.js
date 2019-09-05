@@ -1,4 +1,4 @@
-const express = require ('express');
+const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -13,17 +13,16 @@ const app = express();
 const routes = require('./routes/index');
 const users = require('./routes/users');
 
-require('./config/passport')(passport);
-
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
+// mongodb://localhost/my_database
 
-mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true}, (err)=>{
-    console.log("db connected");
+mongoose.connect('mongodb+srv://agriplus12345:agriplusxxx@cluster0-jn5sz.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }, (err) => {
+  console.log("db connected");
 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,10 +30,15 @@ app.use(cookieParser());
 
 // Express Session
 app.use(session({
-  secret: 'secret',
+  secret: 'secret_KEY',
   saveUninitialized: true,
   resave: true
 }));
+
+// Connect flash
+app.use(flash());
+
+require('./config/passport')(passport);
 
 // Passport init
 app.use(passport.initialize());
@@ -43,32 +47,17 @@ app.use(passport.session());
 app.get('/users', require('./routes/users.js'));
 app.get('/', require('./routes/index.js'));
 
-// Express session
-app.use(
-    session({
-      secret: 'secret',
-      resave: true,
-      saveUninitialized: true
-    })
-  );
-  
-  // Passport middleware
-  app.use(passport.initialize());
-  app.use(passport.session());
-  
-  // Connect flash
-  app.use(flash());
-  
-  // Global variables
-  app.use(function(req, res, next) {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    next();
-  });
-  
-  // Routes
-  app.use('/', require('./routes/index.js'));
-  app.use('/users', require('./routes/users.js'));
+
+// Global variables
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
+
+// Routes
+app.use('/', require('./routes/index.js'));
+app.use('/users', require('./routes/users.js'));
 const PORT = 3005;
 app.listen(PORT, () => console.log(`Server running at - ${PORT}`));
