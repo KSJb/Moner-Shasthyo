@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const randomString = require('randomstring');
-const mailer = require('../misc/mailer');
+const nodemailer = require('nodemailer');
 // Load User model
 const User = require('../models/user');
 const Post = require('../models/post');
@@ -20,10 +20,6 @@ const Schema = mongoose.Schema;
 router.get('/login', (req, res) => res.render('login'));
 
 // Register Page
-
-
-//Read more page
-// router.get('/readmore', (req, res) => { res.render('readmore')});
 
 // Register
 router.route('/register')
@@ -83,9 +79,33 @@ router.route('/register')
               );
               console.log("Registered");
 
-              const html = `<p>Your verification code is <strong> ${secretToken} </strong> </p>`;
-              console.log(mailer);
-              await mailer.sendEmail('admin@badblogger.com', email, 'Email Verification Request', html);
+              var Transport = nodemailer.createTransport({
+                service: "Gmail",
+                auth: {
+                  user: "safwan.du16@gmail.com",
+                  pass: "home761049"
+                }
+              });
+              var rand, mailOptions, host, link;
+              let sender = 'admin@badblogger.com';
+              let port = 4003;
+              mailOptions = {
+                from: sender,
+                to: email,
+                subject: "Email confirmation request",
+                html: `Hey <strong>${name}</strong>, <br>Click on the link to verify your email.<br><a href="http://localhost:${port}/users/verify/${secretToken}"><b>Verify</b></a> <br> Nice day!`
+              }
+              console.log(mailOptions);
+
+              Transport.sendMail(mailOptions, function (error, response) {
+                if (error) {
+                  console.log(error);
+                  res.end("error");
+                } else {
+                  console.log("Message sent: " + response.message);
+                  res.end("sent");
+                }
+              });
 
               res.redirect('/users/login');
             })
@@ -128,6 +148,9 @@ router.post('/post', (req, res) => {
   console.log(req.body);
   const title = req.body.title_name;
   const body = req.body.body_name;
+  const author = req.user.name;
+  const author_id = req.user._id;
+  const author_username = req.user.username;
   const date = getDate();
   const view = 0;
   const upvote = 0;
@@ -143,6 +166,9 @@ router.post('/post', (req, res) => {
       errors,
       title,
       body,
+      author,
+      author_id,
+      author_username,
       date,
       view,
       upvote,
@@ -154,6 +180,9 @@ router.post('/post', (req, res) => {
     const newPost = new Post({
       title,
       body,
+      author,
+      author_id,
+      author_username,
       date,
       view,
       upvote,
@@ -169,13 +198,8 @@ router.post('/post', (req, res) => {
 });
 
 //Verify page
-router.get('/verify', (req, res) => {
-  res.render('verify');
-})
-
-router.post('/verify_post', (req, res) => {
-  const token = req.body.token;
-  const userToken = req.user.secretToken;
+router.get('/verify/:token', (req, res) => {
+  const token = req.params.token;
   console.log(' given : ', token);
   User.findOne({ secretToken: token }, (err, foundUser) => {
     if (err) { res.json(err); }
@@ -190,6 +214,10 @@ router.post('/verify_post', (req, res) => {
     }
 
   })
+})
+
+router.post('/verify_post', (req, res) => {
+  //nothin' - as of yet :-)
 })
 
 router.get('/:id', function (req, res) {
@@ -227,6 +255,8 @@ router.get('/:id', function (req, res) {
 router.post('/postcomment', (req, res) => {
   const body = req.body.commentBody;
   const myPostID = req.body.postID;
+  const commentedBy = req.user._id;
+  const commentedBy_Username = req.user.username;
   console.log(body, myPostID);
 
   const date = getDate();
@@ -239,6 +269,8 @@ router.post('/postcomment', (req, res) => {
   if (errors.length > 0) {
     res.render('index', {
       errors,
+      commentedBy,
+      commentedBy_Username,
       body,
       date
     });
@@ -248,6 +280,8 @@ router.post('/postcomment', (req, res) => {
     const newComment = new Comment({
       myPostID,
       body,
+      commentedBy,
+      commentedBy_Username,
       date
     });
     console.log("new comment", newComment);

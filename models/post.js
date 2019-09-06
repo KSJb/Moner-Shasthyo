@@ -8,6 +8,15 @@ var PostSchema = mongoose.Schema({
   body: {
     type: String
   },
+  author: {
+    type: String
+  },
+  author_id: {
+    type: String
+  },
+  author_username: {
+    type: String
+  },
   date: {
     type: String
   },

@@ -14,7 +14,7 @@
 
   <% if(!user.emailVerified){ %>
     <div class="alert alert-warning" role="alert">
-     <%=user.email %> Verify your email<a href="/users/verify">here</a>
+     <%=user.email %> Verify your emai
     </div>
     <%} %>
   <% posts.forEach(function(posts){ %>
@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="dateRow">
-            <p><i class="fas fa-user"></i><strong>safwan_997</strong></p>
+            <p><i class="fas fa-user"></i><strong><%= posts.author_username %></strong></p>
             <p>· <%= posts.date %></p>
           </div>
           <div class="iconRow">

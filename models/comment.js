@@ -5,6 +5,12 @@ var CommentSchema = mongoose.Schema({
   myPostID: {
     type: String
   },
+  commentedBy: {
+    type: String
+  },
+  commentedBy_Username: {
+    type: String
+  },
   body: {
     type: String
   },

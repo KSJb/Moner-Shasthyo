@@ -3,10 +3,10 @@
   <div class="left">
     <img class="user-img" src="https://robohash.org/<%=posts._id%>" alt="">
     <div class="name">
-      <h2>Hussain Safwan</h2>
+      <h2><%= posts.author %></h2>
     </div>
     <div class="username">
-      <p>safwan_0997</p>
+      <p><%= posts.author_username %></p>
     </div>
     <hr>
     <button type="button" id="savepost" class="btn btn-outline-info">Save Post</button>
@@ -57,7 +57,6 @@
         <hr>
         <div class="thirdRow">
           <div class="upvotes">
-            <% console.log("Hi",posts._id)%>
             <a href="/users/upvote/<%= posts._id %>" name="upvote-btn" id="<%= posts._id %>" ><button type="button" class="btn btn-info" id="upvote-btn"><i class="far fa-thumbs-up"></i> Upvote</button></a>
           </div>
           <div class="comments">
@@ -103,7 +102,7 @@
             <div class="auth-img">
               <img class="img" src="/images/the_duck.png">
             </div>
-            <p> Safwan </p>
+            <p> <%= comments.commentedBy_Username %> </p>
           </div>
           <div class="comment-secondRow">
             <p><%= comments.body %></p>
