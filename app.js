@@ -21,7 +21,7 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs');
 // 
 
-mongoose.connect('mongodb://localhost/my_database', { useNewUrlParser: true }, (err) => {
+mongoose.connect('mongodb+srv://agriplus12345:agriplusxxx@cluster0-jn5sz.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }, (err) => {
   console.log("db connected");
 });
 app.use(bodyParser.json());
