@@ -14,6 +14,12 @@ var UserSchema = mongoose.Schema({
   },
   password: {
     type: String
+  },
+  emailVerified: {
+    type: Boolean
+  },
+  secretToken: {
+    type: String
   }
 });
 

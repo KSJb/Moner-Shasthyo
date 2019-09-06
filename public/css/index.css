@@ -183,13 +183,16 @@ a[name="view-post"] {
 }
 
 .dateRow {
+  display: flex;
   height: 20px;
 }
-
+.dateRow strong{
+  margin-left: 5px;
+}
 .dateRow p {
   font-size: 12px;
   color: gray;
-  margin-left: 5%;
+  margin-left: 3px;
 }
 
 .iconRow {

@@ -6,11 +6,15 @@ const Post = require('../models/post');
 
 router.get('/', function (req, res) {
 	if (!req.isAuthenticated()) res.redirect('/users/login');
-	Post.find({}, function (err, posts) {
-		console.log(posts);
-		if (err) res.json(err);
-		else res.render('index', { posts: posts });
-	});
+	const currentuser = req.user;
+	let posts = [];
+	Post.find().sort({_id:-1}) .then(posts => {
+			return res.render("index", {
+					posts: posts,
+					user: currentuser
+			});
+	})
+	.catch(err => returnError({ msg: "Getting Error In Getting Data" }))
 });
 
 router.get('/index', (req, res) =>

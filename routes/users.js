@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const randomString = require('randomstring');
+const mailer = ('../misc/mailer');
 // Load User model
 const User = require('../models/user');
 const Post = require('../models/post');
@@ -18,13 +20,15 @@ const Schema = mongoose.Schema;
 router.get('/login', (req, res) => res.render('login'));
 
 // Register Page
-router.get('/register', (req, res) => { res.render('register') });
+
 
 //Read more page
 // router.get('/readmore', (req, res) => { res.render('readmore')});
 
 // Register
-router.post('/register', (req, res) => {
+router.route('/register')
+.get((req, res) => { res.render('register') })
+.post(async (req, res, next) => {
   const email = req.body.emailN;
   const password = req.body.passwordN;
   const name = req.body.nameN;
@@ -39,13 +43,19 @@ router.post('/register', (req, res) => {
     errors.push({ msg: 'Password must be at least 6 characters' });
   }
 
+  const secretToken = randomString.generate();
+  console.log('token : ', secretToken);
+  const emailVerified = false;
+
   if (errors.length > 0) {
     res.render('register', {
       errors,
       email,
       password,
       name,
-      username
+      username,
+      emailVerified,
+      secretToken
     });
   }
   else {
@@ -54,13 +64,16 @@ router.post('/register', (req, res) => {
       email,
       password,
       username,
-      name
+      name,
+      emailVerified,
+      secretToken
     });
 
-    bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.genSalt(10,  (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
         if (err) throw err;
-        newUser.password = hash;
+        newUser.password = hash;        
+
         newUser
           .save()
           .then(user => {
@@ -69,6 +82,10 @@ router.post('/register', (req, res) => {
               'You are now registered and can log in'
             );
             console.log("Registered");
+
+            const html = `<p>Your verification code is <strong> ${secretToken} </strong> </p>`;
+            await mailer.sendEmail('admin@badblogger.com', email, 'Email Verification Request', html);
+
             res.redirect('/users/login');
           })
           .catch(err => console.log(err));
@@ -149,6 +166,28 @@ router.post('/post', (req, res) => {
 
   }
 });
+
+//Verify page
+router.get('/verify', (req, res) => {
+  res.render('verify');
+})
+
+router.post('/verify_post', (req, res) => {
+  const token = req.body.token;
+  const userToken = req.user.secretToken;
+  console.log(' given : ', token);
+  User.findOne({secretToken : token}, (err, foundUser) => {
+    if(err){res.json(err);}  
+    else{console.log(foundUser);
+      foundUser.emailVerified = true,
+      // foundUser.secretToken = ''
+      foundUser.save().then((err, dbPost) => {
+      console.log("verified : " + dbPost);
+      res.redirect('/');
+      })}
+
+  })
+})
 
 router.get('/:id', function (req, res) {
   const id = req.params.id;
@@ -244,6 +283,10 @@ router.get('/comment/:id', (req, res) => {
       res.redirect('back');
     }
   })
+})
+
+router.get('logout', (res, req) => {
+  res.render('login');
 })
 module.exports = router;
 
