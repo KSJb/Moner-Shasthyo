@@ -6,12 +6,7 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
 const flash = require('connect-flash');
-var Post = require('./models/post')
 const app = express();
-
-//Routes
-const routes = require('./routes/index');
-const users = require('./routes/users');
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -51,9 +46,6 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/users', require('./routes/users.js'));
-app.get('/', require('./routes/index.js'));
-
 
 // Global variables
 app.use(function (req, res, next) {
@@ -64,7 +56,14 @@ app.use(function (req, res, next) {
 });
 
 // Routes
-app.use('/', require('./routes/index.js'));
-app.use('/users', require('./routes/users.js'));
+
+const adminRoutes = require("./routes/admin.js");
+app.use("/admin", adminRoutes); // Login Register
+
+const usersRoutes = require("./routes/users.js");
+app.use("/users", usersRoutes); // Inside Homepage
+app.use("/", usersRoutes); // Get the start page
+
 const PORT = 4003;
 app.listen(PORT, () => console.log(`Server running at - ${PORT}`));
+// Already in use solution : https://stackoverflow.com/questions/4075287/node-express-eaddrinuse-address-already-in-use-kill-server

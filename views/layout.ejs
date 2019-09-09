@@ -15,6 +15,7 @@
 <body>
 
   <!-- NavBar -->
+  <div class="complete-bar">
   <div class="topnav">
     <div class="navlinks">
       <a href="/">
@@ -53,6 +54,8 @@
       </div>
     </div>
   </div>
+
+</div>
   <!-- ------ -->
   <div class=""><%- body %></div>
 
@@ -76,10 +79,13 @@
       width: 100%;
     }
 
-    .topnav {
+    .complete-bar{
       top: 0;
-      background-color: white;
       position: sticky;
+      background-color: white; 
+    }
+
+    .topnav {
       border-bottom: 1px solid rgb(230, 229, 229);
     }
 
@@ -156,7 +162,7 @@
     $(document).ready(() => {
 
       document.querySelector("#log-btn").addEventListener('click', (e) => {
-        window.location = "/users/logout/";
+        window.location = "/admin/logout";
       });
 
       var vis = false;

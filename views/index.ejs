@@ -12,11 +12,7 @@
 
 <body>
 
-  <% if(!user.emailVerified){ %>
-    <div class="alert alert-warning" role="alert">
-     <%=user.email %> Verify your emai
-    </div>
-    <%} %>
+
   <% posts.forEach(function(posts){ %>
   <section class="allPost">
     <div class="eachPost">
