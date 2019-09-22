@@ -20,7 +20,10 @@ var UserSchema = mongoose.Schema({
   },
   secretToken: {
     type: String
-  }
+  },
+  savePosts: [{
+    type: String
+  }]
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);

@@ -11,39 +11,87 @@
 
 <body>
 
-  <form id="form-reg" action="/admin/login" method="POST">
+  <div class="form-area">
+    <div class="logo">
+      <img class="logo_img" src="/images/black_cat_logo.jpg" alt="">
+    </div>
+    <form id="form-reg" action="/admin/login" method="POST">
 
-    <div class="form-group">
-      <p id="labelEmail">Email address</label>
-        <input type="email" name="emailN" id="emailN" value="<%= typeof email != 'undefined' ? email : '' %>"
-          class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <p id="labelEmail">Email address</p>
+      <input type="email" name="emailN" id="emailN" value="<%= typeof email != 'undefined' ? email : '' %>"
+        class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> <br>
+      <p id="labelPassword">Password</p>
+      <input type="password" name="passwordN" id="passwordN"
+        value="<%= typeof password != 'undefined' ? password : '' %>" class="form-control" id="exampleInputPassword1"
+        placeholder="Password">
+      <br>
+      <button type="submit" id="submit-btn" class="btn btn-outline-info">Submit</button>
+    </form>
+    <br>
+    <div class="links">
+      <p><a href="/admin/register">Forgot Password?</a></p>
+      <p>Dont have an account? <a href="/admin/register">Create One!</a></p>
     </div>
-    <div class="form-group">
-      <p id="labelPassword">Password</label>
-        <input type="password" name="passwordN" id="passwordN"
-          value="<%= typeof password != 'undefined' ? password : '' %>" class="form-control" id="exampleInputPassword1"
-          placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  <div class="reg-link">
-    <p>Dont have an account? <a href="/admin/register">Create One!</a></p>
   </div>
 
   <style>
     #form-reg {
-      width: 50%;
+      width: 100%;
       margin: 0 auto;
-      margin-top: 15%;
-
+      /* margin-top: 15%; */
     }
 
-    .reg-link{
+    .logo_img {
+      margin-left: 40%;
+    }
+
+    .links {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
-    .reg-link a{
+
+    .reg-link a {
       text-decoration: none;
+    }
+
+    .form-area {
+      margin: auto;
+      margin-top: 8%;
+      top: 0;
+      width: 30%;
+      border: 2px solid rgb(235, 234, 234);
+      border-radius: 10px 10px 10px 10px;
+    }
+
+    #emailN {
+      margin: auto;
+      width: 80%;
+      border-radius: 15px 15px 15px 15px;
+    }
+
+    #labelEmail {
+      margin-left: 10%;
+    }
+
+    #passwordN {
+      margin: auto;
+      width: 80%;
+      border-radius: 15px 15px 15px 15px;
+    }
+
+    #labelPassword {
+      margin-left: 10%;
+    }
+
+    #submit-btn {
+      margin-left: 10%;
+      width: 80%;
+      border-radius: 15px 15px 15px 15px;
+    }
+
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
     }
   </style>
 

@@ -36,7 +36,7 @@ module.exports.post_register = async (req, res, next) => {
     const name = req.body.nameN;
     const username = req.body.usernameN;
     let errors = [];
-    console.log("Email, password, name, username : " + email + ", " + password + name + username);
+    console.log("Email, password, name, username : " + email + ", " + password + ", " + name + ", " + username);
     if (!email || !password || !name || !username) {
       errors.push({ msg: 'Please enter all fields' });
     }

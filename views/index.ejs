@@ -12,7 +12,6 @@
 
 <body>
 
-
   <% posts.forEach(function(posts){ %>
   <section class="allPost">
     <div class="eachPost">
@@ -28,7 +27,8 @@
               </div>
             </div>
             <div class="twoButton">
-              <a href="/users/<%= posts._id %>" name="view-post" id="<%= posts._id %>" class="badge badge-info">View
+              <a href="/users/view/<%= posts._id %>" name="view-post" id="<%= posts._id %>"
+                class="badge badge-info">View
                 Post</a>
             </div>
           </div>
@@ -37,28 +37,52 @@
             <p>· <%= posts.date %></p>
           </div>
           <div class="iconRow">
+            <% if (posts.type == 'complex') {%>
             <i title="Contains multilayered texts" class="fas fa-align-left"></i>
+            <%}%>
+              <% if (posts.code != 'none') {%>
             <i title="Contains code segments" id="code" class="fas fa-code"></i>
+            <%}%>
             <i class="fas fa-file-contract"></i>
           </div>
         </div>
       </div>
       <div class="secondRow">
-        <p><%= posts.body %></p>
-      </div>
-      <hr>
-      <div class="thirdRow">
-        <div class="views">
-          <p>Views <%= posts.view %></p>
+        <% if (posts.type == 'simple'){ %>
+            <p><%= posts.body %></p>
+            <% } %>
+            <% if (posts.type == 'complex'){ %>
+            <p><%- posts.body %></p>
+            <% } %>
+            <% if (posts.type == null){ %>
+            <p><%= posts.body %></p>
+            <% } %>
+          </div>
+
+          <div class="tags">
+            <%
+          for(var i=0; i<posts.tags.length; i++){ %>
+            <% if (posts.tags[i] != 'none'){ %>
+            <div class="tag-word">
+              <p><a href="#"><%= posts.tags[i] %></a></p>
+            </div>
+            <% } %>
+            <%}
+        %>
+          </div>
+
+          <div class="thirdRow">
+            <div class="views">
+              <p>Views <%= posts.view %></p>
+            </div>
+            <div class="upvotes">
+              <p>· Upvotes <%= posts.upvote %></p>
+            </div>
+            <div class="comments">
+              <p>· Comments <%= posts.comment %></p>
+            </div>
+          </div>
         </div>
-        <div class="upvotes">
-          <p>· Upvotes <%= posts.upvote %></p>
-        </div>
-        <div class="comments">
-          <p>· Comments <%= posts.comment %></p>
-        </div>
-      </div>
-    </div>
   </section>
   <% }) %>
 
@@ -77,12 +101,8 @@
           <input type="text" name="title_name" id="title" placeholder="Title"><br><br>
           <textarea rows="4" class="area1" name="body_name" cols="50" id="text-body"
             placeholder="It's a fine day!"></textarea>
-          <script>
-            CKEDITOR.replace('text-body');
-            console.log('replaced');
-          </script>
           <div class="modal-footer">
-            <button type="button" class="btn btn-info">More Options</button>
+            <button type="button" id="more-options" class="btn btn-info">More Options</button>
             <a href="#"> <button type="submit" class="btn btn-info">Post</button></a>
           </div>
         </form>
@@ -138,11 +158,13 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-  <script src="../ckeditor/ckeditor.js"></script>
   <script>
     $(document).ready(() => {
-
-    });
+      document.querySelector("#more-options").addEventListener('click', (e) => {
+        console.log('delivered');
+        window.location = "/users/create_blog";
+      });
+    })
   </script>
 
 </body>

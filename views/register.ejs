@@ -1,45 +1,125 @@
-  <form id="form-reg" action="/admin/register" method="POST">
-    <div class="form-group">
-      <p id="labelNamel" >Full Name</label>
-      <input type="text" name="nameN" value="<%= typeof text != 'undefined' ? email : '' %>"
-      class="form-control" id="exampleInputName1" aria-describedby="NamelHelp" placeholder="Enter full name">
-    </div>
-    <div class="form-group">
-      <p id="labelUsername" >Username</label>
-      <input type="text" name="usernameN" value="<%= typeof text != 'undefined' ? email : '' %>"
-      class="form-control" id="exampleInputUsername1" aria-describedby="UsernameHelp" placeholder="Enter username">
-    </div>
-    <div class="form-group">
-      <p id="labelEmail" >Email address</label>
-      <input type="email" name="emailN" value="<%= typeof email != 'undefined' ? email : '' %>"
-      class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-      <p id="labelPassword">Password</label>
-      <input type="password" name="passwordN" value="<%= typeof password != 'undefined' ? password : '' %>"
-      class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+<!DOCTYPE html>
+<html lang="en">
 
-  <div class="login-link">
-    <p>Have an account? <a href="/admin/login">Login</a></p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+
+<body>
+
+  <div class="form-area">
+    <div class="logo">
+      <img class="logo_img" src="/images/black_cat_logo.jpg" alt="">
+    </div>
+    <form id="form-reg" action="/admin/register" method="POST">
+
+      <p id="labelName">Name</p>
+      <input type="text" name="nameN" id="nameN" value="<%= typeof name != 'undefined' ? name : '' %>"
+        class="form-control" id="exampleInputname1" aria-describedby="nameHelp" placeholder="Enter name"> <br>
+
+      <p id="labelUsername">Username</p>
+      <input type="text" name="usernameN" id="usernameN" value="<%= typeof username != 'undefined' ? username : '' %>"
+        class="form-control" id="exampleInputusername1" aria-describedby="usernameHelp" placeholder="Enter username"> <br>
+
+      <p id="labelEmail">Email address</p>
+      <input type="email" name="emailN" id="emailN" value="<%= typeof email != 'undefined' ? email : '' %>"
+        class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> <br>
+
+      <p id="labelPassword">Password</p>
+      <input type="password" name="passwordN" id="passwordN"
+        value="<%= typeof password != 'undefined' ? password : '' %>" class="form-control" id="exampleInputPassword1"
+        placeholder="Password">
+      <br>
+
+      <button type="submit" id="submit-btn" class="btn btn-outline-info">Submit</button>
+    </form>
+    <br>
+    <div class="links">
+      <p>Have an account? <a href="/admin/login">Login</a></p>
+    </div>
   </div>
 
-<style>
-#form-reg{
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 15%;
-  
-}
+  <style>
+    #form-reg {
+      width: 100%;
+      margin: 0 auto;
+      /* margin-top: 15%; */
+    }
 
-.login-link{
-  display: flex;
-  justify-content: center;
-}
-.login-link a{
-  text-decoration: none;
-}
-</style>
+    .logo_img {
+      margin-left: 40%;
+    }
 
+    .links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .reg-link a {
+      text-decoration: none;
+    }
+
+    .form-area {
+      margin: auto;
+      margin-top: 8%;
+      top: 0;
+      width: 30%;
+      border: 2px solid rgb(235, 234, 234);
+      border-radius: 10px 10px 10px 10px;
+    }
+
+    #nameN {
+      margin: auto;
+      width: 80%;
+      border-radius: 15px 15px 15px 15px;
+    }
+
+    #labelName {
+      margin-left: 10%;
+    }
+
+    #usernameN {
+      margin: auto;
+      width: 80%;
+      border-radius: 15px 15px 15px 15px;
+    }
+
+    #labelUsername {
+      margin-left: 10%;
+    }
+    #emailN {
+      margin: auto;
+      width: 80%;
+      border-radius: 15px 15px 15px 15px;
+    }
+
+    #labelEmail {
+      margin-left: 10%;
+    }
+
+    #passwordN {
+      margin: auto;
+      width: 80%;
+      border-radius: 15px 15px 15px 15px;
+    }
+
+    #labelPassword {
+      margin-left: 10%;
+    }
+
+    #submit-btn {
+      margin-left: 10%;
+      width: 80%;
+      border-radius: 15px 15px 15px 15px;
+    }
+  </style>
+
+
+</body>
+
+</html>

@@ -8,6 +8,9 @@ var PostSchema = mongoose.Schema({
   body: {
     type: String
   },
+  type: {
+    type: String
+  },
   author: {
     type: String
   },
@@ -28,6 +31,12 @@ var PostSchema = mongoose.Schema({
   },
   comment: {
     type: Number
+  },
+  tags: [{
+    type: String
+  }],
+  code: {
+    type: String
   }
 });
 

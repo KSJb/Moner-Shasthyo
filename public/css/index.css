@@ -234,6 +234,28 @@ a[name="view-post"] {
   margin-left: 10px;
 }
 
+.tags{
+  display: flex;
+  border-top: 1px solid rgb(230, 228, 228);
+  border-bottom: 1px solid rgb(230, 228, 228);
+  align-items: center;
+}
+.tags .tag-word{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.tags a{
+  width: 70%;
+  background-color: rgb(171, 211, 223);
+  color: rgb(6, 134, 173);
+  font-size: 12px;
+  text-decoration: none;
+  margin-left: 5px;
+}
+.tags a:hover{
+  color: rgb(83, 151, 207);
+}
+
 a {
   color: black;
   text-decoration: none;

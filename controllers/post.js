@@ -47,6 +47,7 @@ module.exports.create_post = (req, res) => {
   console.log(req.body);
   const title = req.body.title_name;
   const body = req.body.body_name;
+  const type = 'simple';
   const author = req.user.name;
   const author_id = req.user._id;
   const author_username = req.user.username;
@@ -54,6 +55,8 @@ module.exports.create_post = (req, res) => {
   const view = 0;
   const upvote = 0;
   const comment = 0;
+  const tags = 'none';
+  const code = 'none';
   let errors = [];
   console.log("title, body, date: " + title + ", " + body + ", " + date);
   if (!title || !body) {
@@ -65,13 +68,16 @@ module.exports.create_post = (req, res) => {
       errors,
       title,
       body,
+      type,
       author,
       author_id,
       author_username,
       date,
       view,
       upvote,
-      comment
+      comment,
+      tags,
+      code
     });
   }
   else {
@@ -79,13 +85,16 @@ module.exports.create_post = (req, res) => {
     const newPost = new Post({
       title,
       body,
+      type,
       author,
       author_id,
       author_username,
       date,
       view,
       upvote,
-      comment
+      comment,
+      tags,
+      code
     });
 
     newPost.save().then((err, dbPost) => {
@@ -94,6 +103,75 @@ module.exports.create_post = (req, res) => {
     })
 
   }
+}
+
+module.exports.full_post = (req, res) => {
+  console.log('in full post', req.body);
+  let title = req.body.title;
+  let body = req.body.area;
+  let type = 'complex';
+  let author = req.user.name;
+  let author_id = req.user._id;
+  let author_username = req.user.username;
+  let date = getDate();
+  let view = 0;
+  let comment = 0;
+  let upvote = 0;
+  let tag = req.body.tags;
+  let code = req.body.code;
+  let tags = tag.split(' ');
+  console.log('tags : ', tags);
+  let errors = [];
+  console.log("title, body, date: " + title + ", " + body + ", " + date);
+  if (!title || !body) {
+    errors.push({ msg: 'Please enter all fields' });
+  }
+
+  if (errors.length > 0) {
+    res.render('index', {
+      errors,
+      title,
+      body,
+      type,
+      author,
+      author_id,
+      author_username,
+      date,
+      view,
+      upvote,
+      comment,
+      tags,
+      code
+    });
+  }
+  else {
+    console.log('new post');
+    const newPost = new Post({
+      title,
+      body,
+      type,
+      author,
+      author_id,
+      author_username,
+      date,
+      view,
+      upvote,
+      comment,
+      tags,
+      code
+    });
+
+    newPost.save().then((err, dbPost) => {
+      console.log("Post created : " + dbPost);
+      res.redirect('back');
+    })
+
+  }
+}
+
+module.exports.create_blog = (req, res) => {
+  console.log('create blog');
+  return res.render('create_blog');
 }
 
 //Verify page
@@ -144,6 +222,14 @@ module.exports.view_post = (req, res) => {
       });
     }
   });
+}
+
+module.exports.save_post = async (req, res) => {
+  const post_id = req.params.id;
+  console.log('post ID : ', post_id);
+      const update = await User.findOneAndUpdate({ _id: req.user.id }, { $push: { savePosts: post_id } });
+  console.log('end!', update);
+  res.redirect('back');
 }
 
 module.exports.post_comment = async (req, res) => {
