@@ -38,13 +38,13 @@ app.use(session({
 }));
 
 // Connect flash
-app.use(flash());
 
 require('./config/passport')(passport);
 
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 
 // Global variables
@@ -64,6 +64,6 @@ const usersRoutes = require("./routes/users.js");
 app.use("/users", usersRoutes); // Inside Homepage
 app.use("/", usersRoutes); // Get the start page
 
-const PORT = 3005;
+const PORT = 4003;
 app.listen(PORT, () => console.log(`Server running at - ${PORT}`));
 // Already in use solution : https://stackoverflow.com/questions/4075287/node-express-eaddrinuse-address-already-in-use-kill-server

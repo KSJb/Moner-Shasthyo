@@ -1,9 +1,12 @@
 <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
 <link href="/css/prism_light.css" rel="stylesheet" />
+<link href="/css/readmore.css" rel="stylesheet" />
 <div class="entire-page">
   <div class="left">
-    <img class="user-img" src="https://robohash.org/<%=posts._id%>" alt="">
+    <img class="user-img" src="https://robohash.org/<%=posts.author_id%>" alt="">
     <div class="name">
+      <input type="hidden" id="user" value="<%= users %>">
+
       <h2><%= posts.author %></h2>
     </div>
     <div class="username">
@@ -95,6 +98,7 @@
                 <div class="comment-field">
                   <div class="commentbox" id="comment-box">
                     <input type="text" name="commentBody">
+                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter" title="Mention user"> <i class="fas fa-user-plus"></i> </a>
                   </div>
                   <div class="post-comment" id="post-btn">
                     <button type="submit" id="post-btn-submit" class="btn btn-info">Add</button>
@@ -136,348 +140,33 @@
     <% }) %>
   </div>
 </div>
+<!-- -------------------------------------------------Search user modal --------------------------------------- -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true" id="modal-fade">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">Search User</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">Search</button>
+        </div>
+      </div>    <div class="modal-footer">
+        <button type="button" id="tag-add-btn" data-dismiss="modal" onclick="addTag()"
+          class="btn btn-info">Mention</button>
+      </div>
+  </div>
+</div>
+</div>
+<!-- -------------------------------------------------Search user modal --------------------------------------- -->
 
 <script src="/js/prism_dark.js"></script>
 
-<style>
-  @import url("https://fonts.googleapis.com/css?family=Thasadith:700&display=swap");
-  @import url('https://fonts.googleapis.com/css?family=Abel|Oswald|Roboto+Mono&display=swap');
-
-  body {
-    font-family: "Thasadith", sans-serif;
-    /* background-color: rgb(243, 241, 241);  */
-  }
-
-  .searchBox {
-    display: flex;
-    width: 60%;
-    margin: auto;
-    padding: 20px 0;
-  }
-
-  .searchBox .searchbar {
-    width: 80%;
-  }
-
-  .searchBox .searchbar input {
-    width: 99%;
-    padding: 10px 0 10px 10px;
-  }
-
-  .searchBtn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .entire-page {
-    display: flex;
-  }
-
-  /* ++++++++++++ Left ++++++++++++ */
-  .left {
-    position: sticky;
-    top: 0;
-    width: 20%;
-    border-right: 1px solid rgb(230, 229, 229);
-    ;
-    float: left;
-  }
-
-  .user-img {
-    height: 200px;
-    margin-left: 22%;
-    margin-top: 10%;
-  }
-
-  .name {
-    text-align: center;
-    margin-top: 20px;
-  }
-
-  .username {
-    color: rgb(151, 151, 151);
-    text-align: center;
-  }
-
-  #savepost {
-    margin-left: 38%;
-  }
-
-  .left hr {
-    width: 90%;
-  }
-
-  .left i {
-    font-size: 30px;
-    color: rgb(23, 165, 190);
-    margin-left: 35%;
-  }
-
-  .view-show:hover,
-  .upvote-show:hover,
-  .comment-show:hover {
-    background-color: rgb(245, 241, 241);
-  }
-
-  .contents {
-    margin-top: 25px;
-    margin-left: 18px;
-    font-size: 18px;
-    width: 90%;
-    background-color: rgb(245, 241, 241);
-    text-align: center;
-  }
-
-  .iconRow {
-    display: flex;
-    margin-bottom: 20px;
-    margin-left: 5%;
-    font-size: 12px;
-    color: gray;
-  }
-
-  .iconRow i {
-    font-size: 15px;
-    color: gray;
-  }
-
-  .iconRow #code {
-    margin-left: 20px;
-  }
-
-  .iconRow #file {
-    margin-left: 20px;
-  }
-
-  .tag-area {
-    width: 90%;
-    height: 70px;
-    margin-left: 18px;
-    background-color: rgb(236, 236, 223);
-  }
-
-  /* +++++++++++++++++++++++++++++++ */
-
-  .right {
-    width: 55%;
-    margin-left: 50px;
-  }
-
-  .allPost {
-    width: 100%;
-    margin: 0 auto;
-    background-color: white;
-  }
-
-  .eachPost {
-    margin-top: 10px;
-    padding: 10px;
-    border-bottom: 1px solid black;
-    padding-bottom: 30px;
-  }
-
-  .eachPost:last-child {
-    padding: 10px;
-    border-bottom: 0px solid black;
-    padding-bottom: 30px;
-  }
-
-  .firstRow {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .firstRow .leftSide {
-    display: flex;
-  }
-
-  .footer {
-    display: flex;
-  }
-
-  .footer p {
-    font-size: 15px;
-    color: gray;
-  }
-
-  .footer .date {
-    margin-left: 10px;
-  }
-
-  .firstRow .title {
-    font-size: 35px;
-    margin-left: 10px;
-    font-family: 'Abel', sans-serif;
-  }
-
-  .firstRow .title p {
-    padding-top: 15px;
-  }
-
-  .firstRow .author-img img {
-    border-radius: 50%;
-  }
-
-  .firstRow .twoButton {
-    display: flex;
-    align-content: center;
-  }
-
-  .firstRow .twoButton .update button,
-  .firstRow .twoButton .delete button,
-  .searchBtn button {
-    padding: 10px 40px;
-    margin-right: 10px;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    background: rgb(23, 165, 190);
-    color: white;
-    font-size: 18px;
-    border: 1px solid transparent;
-    transition: background 0.4s, color 0.4s, border 0.4s;
-  }
-
-  .searchBtn button {
-    background: rgba(31, 28, 28, 1);
-    border-radius: 0px;
-    padding: 8.5px 40px;
-  }
-
-  .firstRow .twoButton .update {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  a[name=view-post] {
-    height: 25px;
-    font-size: 15px;
-  }
-
-  .firstRow .twoButton .delete {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 40%;
-  }
-
-  .firstRow .twoButton .update button:hover,
-  .firstRow .twoButton .delete button:hover {
-    background: white;
-    color: rgb(23, 165, 190);
-    border: 1px solid rgb(23, 165, 190);
-  }
-
-  .dateRow p {
-    font-size: 12px;
-    color: gray;
-    margin-left: 10px;
-  }
-
-  .secondRow p {
-    font-size: 20px;
-  }
-
-  .thirdRow {
-    margin-top: 10px;
-    display: flex;
-  }
-
-  .thirdRow p {
-    font-size: 15px;
-    color: gray;
-  }
-
-  .thirdRow .comments {
-    margin-left: 10px;
-  }
-
-  .commentbox {
-    display: none;
-    width: 80%;
-  }
-
-  .commentbox input {
-    padding-top: 2px;
-    width: 98%;
-  }
-
-  .post-comment {
-    display: none;
-  }
-
-  .cancel-btn {
-    display: none;
-    margin-left: 10px;
-  }
-
-  .comment-area {
-    display: flex;
-    width: 60%;
-    transition: 1s;
-  }
-
-  .comment-field {
-    display: flex;
-    width: 98%;
-  }
-
-  .form-area {
-    display: flex;
-    width: 98%;
-  }
-
-  .comment-form {
-    width: 98%;
-  }
-
-  /* ********* Comment ********* */
-  .all-comments {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    background-color: white;
-  }
-
-  .each-comment {
-    width: 100%;
-    border: 1px solid rgb(230, 229, 229);
-    border-radius: 10px;
-    border-bottom: 1px solid black;
-    display: flex;
-    justify-content: center;
-  }
-
-  .each-comment:last-child {
-    padding: 10px;
-    border-bottom: 0px solid black;
-  }
-
-  .comment-author {
-    display: flex;
-  }
-
-  .img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-
-  .comment-author p {
-    margin-top: 10px;
-    margin-left: 15px;
-    font-size: 20px;
-    font-style: bold;
-  }
-
-  .comment-secondRow p {
-    margin-left: 7%;
-  }
-
-  /* *************************** */
-</style>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -487,6 +176,9 @@
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script>
+
+  let user_array = document.getElementById('user').value;
+  console.log(user_array[0]);
 
   $(document).ready(() => {
     $('#add-comment-btn').click(() => {

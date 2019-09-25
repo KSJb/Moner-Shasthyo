@@ -1,0 +1,179 @@
+<link rel="stylesheet" href="/css/profile.css">
+<div class="entire-page">
+  <div class="left">
+    <div class="left-contents">
+      <div class="id-row">
+        <div class="image">
+          <img class="user_img" src="https://robohash.org/<%= currentuser._id %>" alt="">
+        </div>
+        <div class="non-image">
+          <div class="info">
+            <div class="name"><%= currentuser.name %></div>
+            <div class="username"><%= currentuser.username %></div>
+            <div class="intro">Always greener on the other side</div>
+            <input type="hidden" id="owner-id" value="<%= owner %>">
+          </div>
+          <a href="#">
+            <div class="edit-btn"><i data-toggle="modal" data-target="#exampleModalCenter" class="fas fa-edit"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="nav-bar">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" id="my" href="/users/profile">My Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="saved" href="/users/get_saved_posts">Saved</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Drafts</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ------------------------ My posts ---------------------------------- -->
+    <div class="my-posts" id="my-posts">
+      <% posts.forEach(function(posts){ %>
+      <% if (posts.author_id == currentuser._id && owner == 'self') {%>
+      <a class="title-link" href="/users/view/<%= posts._id %>" target="_blank">
+        <div class="post-palette" title="Open post in new tab">
+          <p class="title"><%= posts.title %></p>
+          <p class="date"><%= posts.date %></p>
+          <hr>
+
+          <div class="thirdRow">
+            <div class="views">
+              <p>Views <%= posts.view %></p>
+            </div>
+            <div class="upvotes">
+              <p>· Upvotes <%= posts.upvote %></p>
+            </div>
+            <div class="comments">
+              <p>· Comments <%= posts.comment %></p>
+            </div>
+          </div>
+        </div>
+      </a>
+      <% } %>
+      <% }) %>
+    </div>
+
+    <!-- ------------------------ My posts ---------------------------------- -->
+
+    <!-- ------------------------ Saved posts ---------------------------------- -->
+    <div class="saved-posts" id="saved-posts">
+      <% posts.forEach(function(posts){ %>
+      <% if (posts.author_id != currentuser._id && owner == 'others') {%>
+      <a class="title-link" href="/users/view/<%= posts._id %>" target="_blank">
+        <div class="post-palette" title="Open post in new tab">
+          <p class="title"><%= posts.title %></p>
+          <p class="date"><%= posts.date %></p>
+          <hr>
+
+          <div class="thirdRow">
+            <div class="views">
+              <p>Views <%= posts.view %></p>
+            </div>
+            <div class="upvotes">
+              <p>· Upvotes <%= posts.upvote %></p>
+            </div>
+            <div class="comments">
+              <p>· Comments <%= posts.comment %></p>
+            </div>
+          </div>
+        </div>
+      </a>
+      <% } %>
+      <% }) %>
+    </div>
+    <!-- ------------------------ Saved posts ---------------------------------- -->
+
+  </div>
+</div>
+<div class="right">
+  <div class="about-section">
+    <h3 class="about">About</h3>
+    <div class="about-items">
+      <p class="mail"><i class="fas fa-envelope"></i> <%= currentuser.email %></p>
+      <p class="edu"><i class="fas fa-graduation-cap"></i> Dept. of CSE, University of Dhaka</p>
+      <p class="job"><i class="fas fa-briefcase"></i> Kaaj thakle ki gorib hotam??</p>
+      <p class="location"><i class="fas fa-map-marker-alt"></i> Lives in 'Gorib er abar thakar jayga!'</p>
+      <p class="knows" title="What the user usually writes about"><i class="fas fa-pen-square"></i> HTML, CSS,
+        Javascript</p>
+    </div>
+  </div>
+
+  <div class="activity-section">
+    <h3 class="activities">Activities</h3>
+    <div class="about-items">
+      <p class="posts"><i class="fab fa-blogger-b"></i> 788 Posts</p>
+      <p class="views"><i class="fas fa-eye"></i> 4k Views</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form id="edit-form" class="edit-form">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" id="name-edit" placeholder="Name">
+            </div>
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" id="username-edit" placeholder="Username">
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="edu-edit" placeholder="Where do/did you study?">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="job-edit" placeholder="Where do/did you work?">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="job-edit"
+              placeholder="What do you know or are gonna write about?">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="addr-edit" placeholder="Where do you live?">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" class="form-control" id="intro-edit" placeholder="Intro">
+            </div>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-info">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let owner = document.getElementById('owner-id').value;
+  console.log('JS entered ', owner);
+  if (owner == 'others') {
+    document.getElementById('my').className = 'nav-link';
+    document.getElementById('saved').className = 'nav-link active';
+  }
+</script>

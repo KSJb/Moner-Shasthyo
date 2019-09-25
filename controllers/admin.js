@@ -17,7 +17,7 @@ db.once('open', function (callback) {
 const Schema = mongoose.Schema;
 
 // Get login page
-module.exports.get_login = (req, res) => res.render('login');
+module.exports.get_login = (req, res) =>{ req.flash('success', 's'); res.render('login')};
 // Post login page
 module.exports.post_login = (req, res, next) => {
   passport.authenticate('local', {
@@ -112,7 +112,7 @@ module.exports.post_register = async (req, res, next) => {
                   res.end("sent");
                 }
               });
-
+              req.flash('success', 'An email has been sent to the email provided. Login to continue');
               res.redirect('/admin/login');
             })
             .catch(err => console.log(err));

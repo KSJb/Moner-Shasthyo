@@ -16,48 +16,58 @@
 
   <!-- NavBar -->
   <div class="complete-bar">
-  <div class="topnav">
-    <div class="navlinks">
-      <a href="/">
-        <div class="home">
-          <p>Home</p>
+    <div class="topnav">
+      <div class="navlinks">
+        <a href="/">
+          <div class="home">
+            <p>Home</p>
+          </div>
+        </a>
+        <div class="create-post">
+          <p id="create-btn" data-toggle="modal" data-target="#exampleModalCenter">Create Post</p>
         </div>
-      </a>
-      <div class="create-post">
-        <p id="create-btn" data-toggle="modal" data-target="#exampleModalCenter">Create Post</p>
-      </div>
-      <div class="notifs">
-        <p>Notifications</p>
-      </div>
-      <div class="notifs">
-        <p>Profile</p>
-      </div>
-      <div class="search" id="id-search">
-        <p>Search</p>
-      </div>
-      <div class="log-out">
-        <button id="log-btn" class="btn btn-outline-info">Log Out</button>
+        <div class="notifs" onclick="show_notifs()">
+          <p>Notifications</p>
+        </div>
+        <div class="notifs">
+          <a href="/users/profile">
+            <div class="profile">
+              <p>Profile</p>
+            </div>
+          </a>
+        </div>
+        <div class="search" id="id-search">
+          <p>Search</p>
+        </div>
+        <div class="log-out">
+          <button id="log-btn" class="btn btn-outline-info">Log Out</button>
+        </div>
+
       </div>
 
     </div>
 
-  </div>
-
-
-
-  <div class="search-bar myCustomSearch" id="id-search-bar">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="badBlogger.." aria-label="Recipient's username"
-        aria-describedby="basic-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button">Search</button>
+    <div class="search-bar myCustomSearch" id="id-search-bar">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="badBlogger.." aria-label="Recipient's username"
+          aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">Search</button>
+        </div>
       </div>
     </div>
+
   </div>
 
-</div>
+  <!-- <div class="notif-frame" id="notif-frame">
+    <a href="#">
+      <div class="each-notif">
+
+      </div>
+    </a>  
+  </div> -->
   <!-- ------ -->
- 
+
   <div class=""><%- body %></div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -80,10 +90,10 @@
       width: 100%;
     }
 
-    .complete-bar{
+    .complete-bar {
       top: 0;
       position: sticky;
-      background-color: white; 
+      background-color: white;
     }
 
     .topnav {
@@ -152,11 +162,23 @@
       color: rgb(20, 157, 161);
     }
 
-    /* .myCustomSearch {
+    .notif-frame {
+      display: none;
       position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-    } */
+      width: 35%;
+      background-color: white;
+      border: 1px solid rgb(236, 236, 236);
+      border-radius: 0px 0px 10px 10px;
+      margin-left: 30%;
+      overflow-y: scroll;
+      height: 400px;
+    }
+
+    .notif-frame .each-notif {
+      width: 99%;
+      height: 60px;
+      border-bottom: 1px solid rgb(204, 203, 203);
+    }
   </style>
 
   <script>
@@ -180,6 +202,10 @@
         }
       })
     });
+
+    function show_notifs() {
+      document.getElementById('notif-frame').style.display = 'block';
+    }
   </script>
 
 </body>

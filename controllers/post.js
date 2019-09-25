@@ -29,6 +29,35 @@ const getDate = () => {
   // console.log("Date: "+thisDate);
 }
 
+module.exports.profile = (req, res) => {
+  const currentuser = req.user;
+  let posts = [];
+	Post.find().then(posts => {
+			return res.render("profile", {
+					posts: posts,
+          currentuser: currentuser,
+          owner: 'self'
+			});
+	})
+	.catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+
+}
+
+module.exports.get_saved_posts = (req, res) => {
+  const savedPostsArray = req.user.savePosts;
+  const currentuser = req.user;
+  console.log('get_saved_posts()');
+  // Song.find({ "_id": { "$in": list } })
+  Post.find({"_id": {"$in": savedPostsArray} }).then(posts => {
+    console.log('Posts: ', posts);
+    res.render('profile', {
+      posts: posts,
+      currentuser: currentuser,
+      owner: 'others'
+    })
+  }).catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+}
+
 module.exports.get_all_posts = (req, res) => {
   if (!req.isAuthenticated()) res.redirect('/admin/login');
   console.log('/ entered');
@@ -210,11 +239,16 @@ module.exports.view_post = (req, res) => {
               console.log(err);
             }
             else {
-              res.render('readmore', {
-                posts: foundPost,
-                views: foundPost.view,
-                comments: foundComments
-              });
+              User.find().then(users => {
+                console.log('Users: ', users.email);
+                res.render('readmore', {
+                  users: users,
+                  posts: foundPost,
+                  views: foundPost.view,
+                  comments: foundComments
+                });
+              })
+              
             }
           })
         }
