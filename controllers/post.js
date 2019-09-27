@@ -60,12 +60,28 @@ module.exports.get_saved_posts = (req, res) => {
 
 module.exports.get_all_posts = (req, res) => {
   if (!req.isAuthenticated()) res.redirect('/admin/login');
-  console.log('/ entered');
+  console.log('home page entered');
 	const currentuser = req.user;
-	let posts = [];
 	Post.find().sort({_id:-1}) .then(posts => {
 			return res.render("index", {
+          notifs: false,
 					posts: posts,
+					user: currentuser
+			});
+	})
+	.catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+}
+
+module.exports.get_notifs = (req, res) => {
+  // if (!req.isAuthenticated()) res.redirect('/admin/login');
+  console.log('homepage + notifs entered');
+  const currentuser = req.user;
+  let notifs_array = ['upvote', 'comment', 'mention', 'upvote', 'mention', 'upvote'];
+	Post.find().sort({_id:-1}) .then(posts => {
+			return res.render("index", {
+          notifs: true,
+          notifs_array: notifs_array,
+          posts: posts,
 					user: currentuser
 			});
 	})
@@ -241,8 +257,9 @@ module.exports.view_post = (req, res) => {
             else {
               User.find().then(users => {
                 console.log('Users: ', users.email);
+                let User = JSON.stringify(users);
                 res.render('readmore', {
-                  users: users,
+                  users: JSON.stringify(users),
                   posts: foundPost,
                   views: foundPost.view,
                   comments: foundComments
@@ -264,6 +281,10 @@ module.exports.save_post = async (req, res) => {
       const update = await User.findOneAndUpdate({ _id: req.user.id }, { $push: { savePosts: post_id } });
   console.log('end!', update);
   res.redirect('back');
+}
+
+module.exports.getAllusers = async (req, res) => {
+  return res.json(await User.find());
 }
 
 module.exports.post_comment = async (req, res) => {

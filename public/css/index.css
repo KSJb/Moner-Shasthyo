@@ -278,6 +278,65 @@ a {
   margin-left: 3%;
 }
 
+.notifframe {
+  position: fixed;
+  width: 30%;
+  border: 1px solid rgb(233, 233, 233);
+  border-radius: 0px 0px 10px 10px;
+  height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: white;
+  margin-left: 34%;
+}
+.notifframe a{
+  text-decoration: none;
+}
+.notifframe a:hover{
+  
+}
+.notif-acton .footer{
+  border-top: 2px solid rgb(179, 177, 177);
+  height: 50px;
+  background-color: red;
+}
+
+.notifframe .each-notif {
+  display: flex;
+  width: 99%;
+  height: 60px;
+  border-bottom: 1px solid rgb(204, 203, 203);
+  padding-bottom: 5px;
+}
+.each-notif .logo{
+  width: 60px;
+  border-radius: 50%;
+  background-color: rgb(23, 165, 190);
+}
+.logo i{
+  margin-left: 25%;
+  margin-top: 25%;
+  font-size: 25px;
+  color: white;
+}
+.text{
+  margin-left: 10px;
+}
+.text strong, b{
+  font-size: 12px;
+}
+.text .date{
+  font-size: 10px;
+  color: gray;
+}
+
+.darkener{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+}
 @media (max-width: 1200px) {
   .allPost {
     width: 95%;

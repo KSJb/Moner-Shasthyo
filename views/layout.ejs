@@ -9,6 +9,7 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
   <link rel="icon" href="/images/black_cat_logo.jpg">
+  <link rel="stylesheet" href="/css/layout.css">
   <title>badBlogger</title>
 </head>
 
@@ -26,8 +27,8 @@
         <div class="create-post">
           <p id="create-btn" data-toggle="modal" data-target="#exampleModalCenter">Create Post</p>
         </div>
-        <div class="notifs" onclick="show_notifs()">
-          <p>Notifications</p>
+        <div class="notifs">
+         <a href="/users/get_notifs"> <p>Notifications</p> </a>
         </div>
         <div class="notifs">
           <a href="/users/profile">
@@ -70,116 +71,17 @@
 
   <div class=""><%- body %></div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script src="../ckeditor/ckeditor.js"></script>
-
-
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow&display=swap');
-    @import url('https://fonts.googleapis.com/css?family=ABeeZee&display=swap');
-
-    .container {
-      width: 100%;
-    }
-
-    .complete-bar {
-      top: 0;
-      position: sticky;
-      background-color: white;
-    }
-
-    .topnav {
-      border-bottom: 1px solid rgb(230, 229, 229);
-    }
-
-    .tapnav a {
-      text-decoration: none;
-      color: black;
-    }
-
-    .navlinks {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .navlinks .home {
-      border-bottom: 3px solid rgb(20, 157, 161);
-    }
-
-    .navlinks .create-post {
-      height: 100%;
-      margin-left: 60px;
-    }
-
-    .navlinks .notifs {
-      margin-left: 60px;
-      text-align: center;
-    }
-
-    .navlinks .search {
-      margin-left: 60px;
-      text-align: center;
-      display: flex;
-    }
-
-    .navlinks input {
-      width: 100%;
-    }
-
-    .navlinks .log-out {
-      margin-left: 60px;
-      text-align: center;
-    }
-
-    .search-bar {
-      display: none;
-      width: 30%;
-      margin: auto;
-      margin-top: 10px;
-    }
-
-    .navlinks p {
-      padding-top: 20px;
-      font-size: 18px;
-      font-family: 'ABeeZee', sans-serif;
-    }
-
-    .navlinks .create-post:hover,
-    .notifs:hover,
-    .home:hover,
-    #id-search:hover {
-      border-bottom: 3px solid rgb(20, 157, 161);
-      color: rgb(20, 157, 161);
-    }
-
-    .notif-frame {
-      display: none;
-      position: fixed;
-      width: 35%;
-      background-color: white;
-      border: 1px solid rgb(236, 236, 236);
-      border-radius: 0px 0px 10px 10px;
-      margin-left: 30%;
-      overflow-y: scroll;
-      height: 400px;
-    }
-
-    .notif-frame .each-notif {
-      width: 99%;
-      height: 60px;
-      border-bottom: 1px solid rgb(204, 203, 203);
-    }
-  </style>
 
   <script>
     $(document).ready(() => {
@@ -203,9 +105,7 @@
       })
     });
 
-    function show_notifs() {
-      document.getElementById('notif-frame').style.display = 'block';
-    }
+   
   </script>
 
 </body>

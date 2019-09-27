@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=ABeeZee&display=swap');
+
+    .container {
+      width: 100%;
+    }
+
+    .complete-bar {
+      top: 0;
+      position: sticky;
+      background-color: white;
+    }
+
+    .topnav {
+      border-bottom: 1px solid rgb(230, 229, 229);
+    }
+
+    .tapnav a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .navlinks .home {
+      border-bottom: 3px solid rgb(20, 157, 161);
+    }
+
+    .navlinks .create-post {
+      height: 100%;
+      margin-left: 60px;
+    }
+
+    .navlinks .notifs {
+      margin-left: 60px;
+      text-align: center;
+    }
+
+    .navlinks .search {
+      margin-left: 60px;
+      text-align: center;
+      display: flex;
+    }
+
+    .navlinks input {
+      width: 100%;
+    }
+
+    .navlinks .log-out {
+      margin-left: 60px;
+      text-align: center;
+    }
+
+    .search-bar {
+      display: none;
+      width: 30%;
+      margin: auto;
+      margin-top: 10px;
+    }
+
+    .navlinks p {
+      padding-top: 20px;
+      font-size: 18px;
+      font-family: 'ABeeZee', sans-serif;
+    }
+
+    .navlinks .create-post:hover,
+    .notifs:hover,
+    .home:hover,
+    #id-search:hover {
+      border-bottom: 3px solid rgb(20, 157, 161);
+      color: rgb(20, 157, 161);
+    }
+
+    .notif-frame {
+      display: none;
+      position: fixed;
+      width: 35%;
+      background-color: white;
+      border: 1px solid rgb(236, 236, 236);
+      border-radius: 0px 0px 10px 10px;
+      margin-left: 30%;
+      overflow-y: scroll;
+      height: 400px;
+    }
+
+    .notif-frame .each-notif {
+      width: 99%;
+      height: 60px;
+      border-bottom: 1px solid rgb(204, 203, 203);
+    }

@@ -11,6 +11,59 @@
 </head>
 
 <body>
+  <% if (notifs == true) { %>
+  <% console.log('entered notifs') %>
+  <div class="notif_action" id="notif-action">
+    <div class="darkener">
+      .
+    </div>
+    <div class="notifframe" id="notif-frame">
+      <% notifs_array.forEach(function(notifs_array){%>
+      <% if (notifs_array == 'upvote'){%>
+      <a href="#">
+        <div class="each-notif">
+          <div class="logo">
+            <i class="far fa-heart"></i>
+          </div>
+          <div class="text">
+            <p><strong>_catastrophe</strong> likes your post entitled <br>
+              <b>5 Toughest Programming Languages</b></p>
+          </div>
+        </div>
+      </a>
+      <% } %>
+
+      <% if (notifs_array == 'comment'){%>
+      <a href="#">
+        <div class="each-notif">
+          <div class="logo">
+              <i class="far fa-comment"></i>
+          </div>
+          <div class="text">
+            <p><strong>_catastrophe</strong> has commented on your post entitled <br>
+              <b>5 Toughest Programming Languages</b></p>
+          </div>
+        </div>
+      </a>
+      <% } %>
+
+      <% if (notifs_array == 'mention'){%>
+      <a href="#">
+        <div class="each-notif">
+          <div class="logo">
+              <i class="fas fa-user-plus"></i>
+          </div>
+          <div class="text">
+            <p><strong>_catastrophe</strong> has mentioned you on a post entitled <br>
+              <b>5 Toughest Programming Languages</b></p>
+          </div>
+        </div>
+      </a>
+      <% } %>
+      <% }) %>
+    </div>
+  </div>
+  <% } %>
 
   <% posts.forEach(function(posts){ %>
   <section class="allPost">
@@ -159,7 +212,17 @@
     crossorigin="anonymous"></script>
 
   <script>
+    document.getElementById('notif-action').onclick = function (e) {
+      if (e.target != document.getElementById('notif-action')) {
+        document.getElementById('notif-action').style.display = 'none';
+      }
+      else {
+        console.log('You clicked inside');
+      }
+    }
     $(document).ready(() => {
+
+
       document.querySelector("#more-options").addEventListener('click', (e) => {
         console.log('delivered');
         window.location = "/users/create_blog";

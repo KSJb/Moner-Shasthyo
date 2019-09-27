@@ -14,5 +14,7 @@ router.get('/create_blog', controller.create_blog);
 router.post('/full_post', controller.full_post);
 router.get('/save_post/:id', controller.save_post);
 router.get('/get_saved_posts', controller.get_saved_posts);
+router.get('/getAllusers', controller.getAllusers);
+router.get('/get_notifs', controller.get_notifs);
 
 module.exports = router;
