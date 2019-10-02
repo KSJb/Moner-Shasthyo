@@ -1,141 +1,187 @@
-<link rel="stylesheet" href="/css/create_blog.css">
-<div class="entire">
-  <div class="left">
-    <div class="upper">
-      <div class="logo">
-        <a href="/"> <img src="/images/black_cat_logo.jpg" alt=""> </a>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Create new post - badBlogger</title>
+</head>
+
+<body>
+
+  <link rel="stylesheet" href="/css/create_blog.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>
+
+  <div class="entire">
+    <div class="left">
+      <div class="upper">
+        <div class="logo">
+          <a href="/"> <img src="/images/black_cat_logo.jpg" alt=""> </a>
+        </div>
+        <div class="header">
+          <p>Create Blog</p>
+        </div>
       </div>
-      <div class="header">
-        <p>Create Blog</p>
+
+      <form id="main-form" class="main-form" action="/users/full_post" method="POST">
+        <div class="title-area">
+          <input type="text" name="title" id="title" class="title" placeholder="Title">
+          <input type="hidden" name="tags" id="tags" value="none">
+          <input type="hidden" name="code" id="code" value="none">
+        </div>
+        <br>
+        <div class="textArea">
+          <textarea class="area" id="body-area" name="area"> </textarea>
+        </div>
+        <div class="post-div">
+          <button type="submit" id="create-btn" class="btn btn-info btn-lg">Publish</button>
+        </div>
+      </form>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script>
+
+        var config = {
+          extraPlugins: 'codesnippet',
+          codeSnippet_theme: 'magula',
+          height: 356,
+          width: 1400
+        };
+        CKEDITOR.replace('area', config);
+
+        function addTag() {
+          console.log('addTag()');
+          let tag = document.getElementById('tag-field').value;
+          if (tag != null) {
+            document.getElementById('tags').value = tag;
+          }
+          console.log("hidden tag : " + document.getElementById('tags').value);
+        }
+
+        function addCode() {
+          console.log('addCode()');
+          let code = document.getElementById('code-field').value;
+          if (code != null) {
+            document.getElementById('code').value = code;
+          }
+          console.log("hidden code : " + document.getElementById('code').value);
+        }
+
+      </script>
+
+      <!-- Tag field -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="modal-fade">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add Tags</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form id="form-submit" action="">
+              <input type="text" name="title_name" id="tag-field" placeholder="Tags"><br>
+              <div class="modal-footer">
+                <button type="button" id="tag-add-btn" data-dismiss="modal" onclick="addTag()"
+                  class="btn btn-info">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
+    <!------------------------------------------Tag----------------------------------------------------------------------------------->
 
-    <form id="main-form" class="main-form" action="/users/full_post" method="POST">
-      <div class="title-area">
-        <input type="text" name="title" class="title" placeholder="Title">
-        <input type="hidden" name="tags" id="tags" value="none">
-        <input type="hidden" name="code" id="code" value="none">
-      </div>
-      <br>
-      <div class="textArea">
-        <textarea class="area" name="area"> </textarea>
-      </div>
-
-      <div class="post-btn">
-        <button type="submit" id="create-btn" class="btn btn-info btn-lg">Create Blog</button>
-      </div>
-
-    </form>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-    <script>
-      CKEDITOR.replace('area');
-
-      function addTag() {
-        console.log('addTag()');
-        let tag = document.getElementById('tag-field').value;
-        if (tag != null) {
-          document.getElementById('tags').value = tag;
-        }
-        console.log("hidden tag : " + document.getElementById('tags').value);
-      }
-
-      function addCode() {
-        console.log('addCode()');
-        let code = document.getElementById('code-field').value;
-        if (code != null) {
-          document.getElementById('code').value = code;
-        }
-        console.log("hidden code : " + document.getElementById('code').value);
-      }
-
-    </script>
-
-    <!-- Tag field -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-      aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="modal-fade">
-      <div class="modal-dialog modal-dialog-centered" role="document">
+    <!----------------------------------------------------- Code field----------------------------------------------------------------->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Add Tags</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Add Code Segments</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form id="form-submit" action="">
-            <input type="text" name="title_name" id="tag-field" placeholder="Tags"><br>
-            <div class="modal-footer">
-              <button type="button" id="tag-add-btn" data-dismiss="modal" onclick="addTag()"
-                class="btn btn-info">Add</button>
-            </div>
-          </form>
+          <div class="modal-body">
+            <p>Language <select id="lang">
+                <option>C</option>
+                <option>C++</option>
+                <option>Java</option>
+                <option>JavaScript</option>
+                <option>Python</option>
+                <option>HTML</option>
+                <option>CSS</option>
+              </select> </p>
+            <textarea name="code-area" id="code-field" class="code-area" cols="30" rows="10"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" onclick="addCode()">Add</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!------------------------------------------Tag----------------------------------------------------------------------------------->
+    <!------------------------------------------Code----------------------------------------------------------------------------------->
 
-  <!----------------------------------------------------- Code field----------------------------------------------------------------->
-  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Add Code Segments</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Language <select id="lang">
-              <option>C</option>
-              <option>C++</option>
-              <option>Java</option>
-              <option>JavaScript</option>
-              <option>Python</option>
-              <option>HTML</option>
-              <option>CSS</option>
-            </select> </p>
-          <textarea name="code-area" id="code-field" class="code-area" cols="30" rows="10"></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-info" onclick="addCode()">Add</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!------------------------------------------Code----------------------------------------------------------------------------------->
-
-  <div class="right">
-    <div class="options">Options</div>
-    <div class="opt-btns">
-      <p id="add-tag-btn" data-toggle="modal" data-target="#exampleModalCenter"><a href="#"><i class="fas fa-tag"></i>
-          Add Tags</a></p>
-      <hr>
+    <div class="right">
+      <div class="options">Options</div>
+      <div class="opt-btns">
+        <p id="add-tag-btn" data-toggle="modal" data-target="#exampleModalCenter"><a href="#"><i class="fas fa-tag"></i>
+            Add Tags</a></p>
+        <!-- <hr>
       <p id="add-code-btn" data-toggle="modal" data-target="#exampleModalLong"><a href="#"><i class="fas fa-code"></i>
-          Add Code Segments</a></p>
-      <hr>
-      <p><a href="#"><i class="far fa-file-alt"></i></i> Add File</a></p>
-      <hr>
-      <p><a href="#"><i class="fas fa-download"></i> Save to Drafts</a></p>
-      <hr>
-      <p><a href="#"><i class="far fa-trash-alt"></i></i> Discard post</a></p>
-      <hr>
-      <select>
-        <option value="public">Public</option>
-        <option value="anonymous">Anonymous</option>
-      </select>
-      <hr>
+          Add Code Segments</a></p> -->
+        <hr>
+        <p><a href="#"><i class="far fa-file-alt"></i></i> Add File</a></p>
+        <hr>
+        <p><a href="#"><i class="fas fa-user-plus"></i></i> Add Courtesy</a></p>
+        <hr>
+        <p><a href="#"><i class="fas fa-download"></i> Save to drafts</a></p>
+        <hr>
+        <p><a href="#" id="discard" onclick="discard()"><i class="far fa-trash-alt"></i></i> Discard post</a></p>
+        <hr>
+        <select>
+          <option value="public">Public</option>
+          <option value="anonymous">Anonymous</option>
+        </select>
+        <hr>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <script>
+    function discard() {
+      Swal.fire({
+        title: 'Discard?',
+        text: "Progress so far will be lost",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Discard'
+      }).then((result) => {
+        if (result.value) {
+          window.location = '/';
+        }
+      })
+    }
+  </script>
+
+</body>
+
+</html>

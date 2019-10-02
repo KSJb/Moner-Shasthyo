@@ -72,12 +72,29 @@
 
 .post-palette {
   width: 55%;
-  margin-top: 15px;
+  margin-top: 25px;
   margin-left: 20%;
   border-radius: 10px 10px 10px 10px;
   border: 1px solid rgb(228, 227, 227);
 }
-
+.post-palette:hover .two-btns{
+  display: block;
+}
+.row-one{
+  display: flex;
+  justify-content: space-between;
+}
+.two-btns{
+  display: none;
+  /* margin-left: 20px; */
+  float: right;
+}
+.two-btns #delete-post{
+  margin-left: 10px;
+}
+.delete-btn{
+  color: red;
+}
 .post-palette .title {
   margin-top: 10px;
   margin-left: 2%;

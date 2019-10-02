@@ -1,347 +1,371 @@
 @import url("https://fonts.googleapis.com/css?family=Thasadith:700&display=swap");
-  @import url('https://fonts.googleapis.com/css?family=Abel|Oswald|Roboto+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Abel|Oswald|Roboto+Mono&display=swap");
 
-  body {
-    font-family: "Thasadith", sans-serif;
-    /* background-color: rgb(243, 241, 241);  */
-  }
+body {
+  font-family: "Thasadith", sans-serif;
+  /* background-color: rgb(243, 241, 241);  */
+}
 
-  .searchBox {
-    display: flex;
-    width: 60%;
-    margin: auto;
-    padding: 20px 0;
-  }
+.searchBox {
+  display: flex;
+  width: 60%;
+  margin: auto;
+  padding: 20px 0;
+}
 
-  .searchBox .searchbar {
-    width: 80%;
-  }
+.searchBox .searchbar {
+  width: 80%;
+}
 
-  .searchBox .searchbar input {
-    width: 99%;
-    padding: 10px 0 10px 10px;
-  }
+.searchBox .searchbar input {
+  width: 99%;
+  padding: 10px 0 10px 10px;
+}
 
-  .searchBtn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+.searchBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  .entire-page {
-    display: flex;
-  }
+.entire-page {
+  display: flex;
+}
 
-  /* ++++++++++++ Left ++++++++++++ */
-  .left {
-    position: sticky;
-    top: 0;
-    width: 20%;
-    border-right: 1px solid rgb(230, 229, 229);
-    ;
-    float: left;
-  }
+/* ++++++++++++ Left ++++++++++++ */
+.left {
+  position: sticky;
+  left: 0;
+  width: 20%;
+  border-right: 1px solid rgb(230, 229, 229);
+  float: left;
+}
 
-  .user-img {
-    height: 200px;
-    margin-left: 22%;
-    margin-top: 10%;
-  }
+.user-img {
+  height: 200px;
+  margin-left: 22%;
+  margin-top: 10%;
+}
 
-  .name {
-    text-align: center;
-    margin-top: 20px;
-  }
+.name {
+  text-align: center;
+  margin-top: 20px;
+}
 
-  .username {
-    color: rgb(151, 151, 151);
-    text-align: center;
-  }
+.username {
+  color: rgb(151, 151, 151);
+  text-align: center;
+}
 
-  #savepost {
-    margin-left: 38%;
-  }
+#savepost {
+  margin-left: 38%;
+}
 
-  .left hr {
-    width: 90%;
-  }
+.left hr {
+  width: 90%;
+}
 
-  .left i {
-    font-size: 30px;
-    color: rgb(23, 165, 190);
-    margin-left: 35%;
-  }
+.left i {
+  font-size: 30px;
+  color: rgb(23, 165, 190);
+  margin-left: 35%;
+}
 
-  .view-show:hover,
-  .upvote-show:hover,
-  .comment-show:hover {
-    background-color: rgb(245, 241, 241);
-  }
+.view-show:hover,
+.upvote-show:hover,
+.comment-show:hover {
+  background-color: rgb(245, 241, 241);
+}
 
-  .contents {
-    margin-top: 25px;
-    margin-left: 18px;
-    font-size: 18px;
-    width: 90%;
-    background-color: rgb(245, 241, 241);
-    text-align: center;
-  }
+.contents {
+  margin-top: 25px;
+  margin-left: 18px;
+  font-size: 18px;
+  width: 90%;
+  background-color: rgb(245, 241, 241);
+  text-align: center;
+}
 
-  .iconRow {
-    display: flex;
-    margin-bottom: 20px;
-    margin-left: 5%;
-    font-size: 12px;
-    color: gray;
-  }
+.iconRow {
+  display: flex;
+  margin-bottom: 20px;
+  margin-left: 5%;
+  font-size: 12px;
+  color: gray;
+}
 
-  .iconRow i {
-    font-size: 15px;
-    color: gray;
-  }
+.iconRow i {
+  font-size: 15px;
+  color: gray;
+}
 
-  .iconRow #code {
-    margin-left: 20px;
-  }
+.iconRow #code {
+  margin-left: 20px;
+}
 
-  .iconRow #file {
-    margin-left: 20px;
-  }
+.iconRow #file {
+  margin-left: 20px;
+}
 
-  .tag-area {
-    width: 90%;
-    height: 70px;
-    margin-left: 18px;
-    background-color: rgb(236, 236, 223);
-  }
+.tag-area {
+  width: 90%;
+  height: 70px;
+  margin-left: 18px;
+  background-color: rgb(236, 236, 223);
+}
 
-  /* +++++++++++++++++++++++++++++++ */
+/* +++++++++++++++++++++++++++++++ */
 
-  .right {
-    width: 55%;
-    margin-left: 50px;
-  }
+.mid {
+  width: 55%;
+  margin-left: 50px;
+}
 
-  .allPost {
-    width: 100%;
-    margin: 0 auto;
-    background-color: white;
-  }
+.allPost {
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+}
 
-  .eachPost {
-    margin-top: 10px;
-    padding: 10px;
-    border-bottom: 1px solid black;
-    padding-bottom: 30px;
-  }
+.eachPost {
+  margin-top: 10px;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  padding-bottom: 30px;
+}
 
-  .eachPost:last-child {
-    padding: 10px;
-    border-bottom: 0px solid black;
-    padding-bottom: 30px;
-  }
+.eachPost:last-child {
+  padding: 10px;
+  border-bottom: 0px solid black;
+  padding-bottom: 30px;
+}
 
-  .firstRow {
-    display: flex;
-    justify-content: space-between;
-  }
+.firstRow {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .firstRow .leftSide {
-    display: flex;
-  }
+.firstRow .leftSide {
+  display: flex;
+}
 
-  .footer {
-    display: flex;
-  }
+.footer {
+  display: flex;
+}
 
-  .footer p {
-    font-size: 15px;
-    color: gray;
-  }
+.footer p {
+  font-size: 15px;
+  color: gray;
+}
 
-  .footer .date {
-    margin-left: 10px;
-  }
+.footer .date {
+  margin-left: 10px;
+}
 
-  .firstRow .title {
-    font-size: 35px;
-    margin-left: 10px;
-    font-family: 'Abel', sans-serif;
-  }
+.firstRow .title {
+  font-size: 35px;
+  margin-left: 10px;
+  font-family: "Abel", sans-serif;
+}
 
-  .firstRow .title p {
-    padding-top: 15px;
-  }
+.firstRow .title p {
+  padding-top: 15px;
+}
 
-  .firstRow .author-img img {
-    border-radius: 50%;
-  }
+.firstRow .author-img img {
+  border-radius: 50%;
+}
 
-  .firstRow .twoButton {
-    display: flex;
-    align-content: center;
-  }
+.firstRow .twoButton {
+  display: flex;
+  align-content: center;
+}
 
-  .firstRow .twoButton .update button,
-  .firstRow .twoButton .delete button,
-  .searchBtn button {
-    padding: 10px 40px;
-    margin-right: 10px;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    background: rgb(23, 165, 190);
-    color: white;
-    font-size: 18px;
-    border: 1px solid transparent;
-    transition: background 0.4s, color 0.4s, border 0.4s;
-  }
+.firstRow .twoButton .update button,
+.firstRow .twoButton .delete button,
+.searchBtn button {
+  padding: 10px 40px;
+  margin-right: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  background: rgb(23, 165, 190);
+  color: white;
+  font-size: 18px;
+  border: 1px solid transparent;
+  transition: background 0.4s, color 0.4s, border 0.4s;
+}
 
-  .searchBtn button {
-    background: rgba(31, 28, 28, 1);
-    border-radius: 0px;
-    padding: 8.5px 40px;
-  }
+.searchBtn button {
+  background: rgba(31, 28, 28, 1);
+  border-radius: 0px;
+  padding: 8.5px 40px;
+}
 
-  .firstRow .twoButton .update {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+.firstRow .twoButton .update {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  a[name=view-post] {
-    height: 25px;
-    font-size: 15px;
-  }
+a[name="view-post"] {
+  height: 25px;
+  font-size: 15px;
+}
 
-  .firstRow .twoButton .delete {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 40%;
-  }
+.firstRow .twoButton .delete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
 
-  .firstRow .twoButton .update button:hover,
-  .firstRow .twoButton .delete button:hover {
-    background: white;
-    color: rgb(23, 165, 190);
-    border: 1px solid rgb(23, 165, 190);
-  }
+.firstRow .twoButton .update button:hover,
+.firstRow .twoButton .delete button:hover {
+  background: white;
+  color: rgb(23, 165, 190);
+  border: 1px solid rgb(23, 165, 190);
+}
 
-  .dateRow p {
-    font-size: 12px;
-    color: gray;
-    margin-left: 10px;
-  }
+.dateRow p {
+  font-size: 12px;
+  color: gray;
+  margin-left: 10px;
+}
 
-  .secondRow p {
-    font-size: 20px;
-  }
+.secondRow p {
+  font-size: 20px;
+}
 
-  .thirdRow {
-    margin-top: 10px;
-    display: flex;
-  }
+.thirdRow {
+  margin-top: 10px;
+  display: flex;
+}
 
-  .thirdRow p {
-    font-size: 15px;
-    color: gray;
-  }
+.thirdRow p {
+  font-size: 15px;
+  color: gray;
+}
 
-  .thirdRow .comments {
-    margin-left: 10px;
-  }
+.thirdRow .comments {
+  margin-left: 10px;
+}
 
-  #comment-box {
-    display: none;
-    width: 80%;
-  }
+#comment-box {
+  display: none;
+  width: 80%;
+}
 
-  #comment-box input {
-    padding-top: 2px;
-    width: 85%;
-  }
-  #comment-box i{
-    width: 30px;
-    border-radius: 5px 5px 5px 5px;
-    color: rgb(23, 165, 190);
-  }
+#comment-box input {
+  padding-top: 2px;
+  width: 85%;
+}
+#comment-box i {
+  width: 30px;
+  border-radius: 5px 5px 5px 5px;
+  color: rgb(23, 165, 190);
+}
 
-  .post-comment {
-    display: none;
-  }
+.post-comment {
+  display: none;
+}
 
-  .cancel-btn {
-    display: none;
-    margin-left: 10px;
-  }
+.cancel-btn {
+  display: none;
+  margin-left: 10px;
+}
 
-  .comment-area {
-    display: flex;
-    width: 60%;
-    transition: 1s;
-  }
+.comment-area {
+  display: flex;
+  width: 60%;
+  transition: 1s;
+}
 
-  .comment-field {
-    display: flex;
-    width: 98%;
-  }
+.comment-field {
+  display: flex;
+  width: 98%;
+}
 
-  .form-area {
-    display: flex;
-    width: 98%;
-  }
+.form-area {
+  display: flex;
+  width: 98%;
+}
 
-  .comment-form {
-    width: 98%;
-  }
+.comment-form {
+  width: 98%;
+}
 
-  .modal-content input{
-    width: 90%;
-    margin: auto;
-    border: none;
-    border-bottom: 1px solid rgb(23, 165, 190);
-  }
+.modal-content input {
+  width: 90%;
+  margin: auto;
+  border: none;
+  border-bottom: 1px solid rgb(23, 165, 190);
+}
 
-  /* ********* Comment ********* */
-  .all-comments {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    background-color: white;
-  }
+/* ********* Comment ********* */
+.all-comments {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
 
-  .each-comment {
-    width: 100%;
-    border: 1px solid rgb(230, 229, 229);
-    border-radius: 10px;
-    border-bottom: 1px solid black;
-    display: flex;
-    justify-content: center;
-  }
+.each-comment {
+  width: 100%;
+  border: 1px solid rgb(230, 229, 229);
+  border-radius: 10px;
+  border-bottom: 1px solid black;
+  /* display: flex; */
+  justify-content: center;
+}
 
-  .each-comment:last-child {
-    padding: 10px;
-    border-bottom: 0px solid black;
-  }
+.each-comment:last-child {
+  padding: 10px;
+  border-bottom: 0px solid black;
+}
 
-  .comment-author {
-    display: flex;
-  }
+.comment-author {
+  display: flex;
+}
+.author-date .date {
+  color: gray;
+  font-size: 12px;
+}
 
-  .img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
+.img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 
-  .comment-author p {
-    margin-top: 10px;
-    margin-left: 15px;
-    font-size: 20px;
-    font-style: bold;
-  }
+.comment-author p {
+  margin-top: 10px;
+  margin-left: 15px;
+  font-size: 20px;
+  font-style: bold;
+}
 
-  .comment-secondRow p {
-    margin-left: 7%;
-  }
+.comment-secondRow p {
+  margin-left: 7%;
+}
+
+.right {
+  width: 25%;
+}
+
+.right .related-posts {
+  margin-top: 50px;
+  margin-left: 20px;
+}
+.right .header {
+  width: 40%;
+  border-bottom: 1px solid rgb(224, 223, 223);
+  padding-bottom: 5px;
+}
+.right .topic a {
+  font-size: 13px;
+  text-decoration: none;
+}
+.right .topic a:hover {
+  color: rgb(131, 162, 221);
+}

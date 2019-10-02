@@ -1,244 +1,283 @@
-<link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
-<link href="/css/prism_light.css" rel="stylesheet" />
-<link href="/css/readmore.css" rel="stylesheet" />
-<link href="/css/autocomplete.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= posts.title %> - badBlogger</title>
+</head>
+
+<body>
 
 
-<div class="entire-page">
-  <div class="left">
-    <img class="user-img" src="https://robohash.org/<%=posts.author_id%>" alt="">
-    <div class="name">
+  <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+  <link href="/css/prism_light.css" rel="stylesheet" />
+  <link href="/css/readmore.css" rel="stylesheet" />
+  <link href="/css/autocomplete.css" rel="stylesheet" />
 
-      <h2><%= posts.author %></h2>
-    </div>
-    <div class="username">
-      <input type="hidden" id="post_id" value="<%= posts._id %>">
-      <p><%= posts.author_username %></p>
-    </div>
-    <hr>
-    <button type="button" id="savepost" class="btn btn-outline-info">Save Post</button>
-    <hr>
-    <div class="view-show">
-      <i class="fas fa-eye"></i> Views <%= posts.view %>
-    </div>
-    <hr>
-    <div class="upvote-show">
-      <i class="far fa-thumbs-up"></i> Upvotes <%= posts.upvote %>
-    </div>
-    <hr>
-    <div class="comment-show">
-      <i class="far fa-comment"></i> Comments <%= posts.comment %>
-    </div>
-    <div class="contents">
-      <p>Contents</p>
-    </div>
-    <div class="iconRow">
-      <i title="Contains multilayered texts" class="fas fa-align-left"></i>
-      <i title="Contains code segments" id="code" class="fas fa-code"></i>
-      <i class="fas fa-file-contract"></i>
-    </div>
-    <div class="contents">
-      <p>Tags</p>
-    </div>
-    <div class="tag-area">
 
-    </div>
-  </div>
+  <div class="entire-page">
+    <div class="left">
+      <a href="#"> <img class="user-img" src="https://robohash.org/<%=posts.author_id%>" alt=""> </a>
+      <div class="name">
 
-  <div class="right">
-    <section class="allPost">
-      <div class="eachPost">
-        <div class="firstRow">
-          <div class="title">
-            <h1><b> <%= posts.title %></b> </h1>
+        <h2><%= posts.author %></h2>
+      </div>
+      <div class="username">
+        <input type="hidden" id="post_id" value="<%= posts._id %>">
+        <p><%= posts.author_username %></p>
+      </div>
+      <hr>
+      <button type="button" id="savepost" class="btn btn-outline-info">Save Post</button>
+      <hr>
+      <div class="view-show">
+        <i class="fas fa-eye"></i> Views <%= posts.view %>
+      </div>
+      <hr>
+      <div class="upvote-show">
+        <i class="far fa-thumbs-up"></i> Upvotes <%= posts.upvote %>
+      </div>
+      <hr>
+      <div class="comment-show">
+        <i class="far fa-comment"></i> Comments <%= posts.comment %>
+      </div>
+      <div class="contents">
+        <p>Contents</p>
+      </div>
+      <div class="iconRow">
+        <i title="Contains multilayered texts" class="fas fa-align-left"></i>
+        <i title="Contains code segments" id="code" class="fas fa-code"></i>
+        <i class="fas fa-file-contract"></i>
+      </div>
+      <div class="contents">
+        <p>Tags</p>
+      </div>
+      <div class="tag-area">
+
+      </div>
+    </div>
+
+    <div class="mid">
+      <section class="allPost">
+        <div class="eachPost">
+          <div class="firstRow">
+            <div class="title">
+              <h1><b> <%= posts.title %></b> </h1>
+            </div>
+            <div class="twoButton">
+            </div>
           </div>
-          <div class="twoButton">
+          <div class="dateRow">
+            <p><%= posts.date %></p>
           </div>
-        </div>
-        <div class="dateRow">
-          <p><%= posts.date %></p>
-        </div>
-        <div class="secondRow">
-          <% if (posts.type == 'simple'){ %>
-          <p><%= posts.body %></p>
-          <% } %>
-          <% if (posts.type == 'complex'){ %>
-          <p><%- posts.body %></p>
-          <% } %>
-          <% if (posts.type == null){ %>
-          <p><%= posts.body %></p>
-          <% } %> </div>
+          <div class="secondRow">
+            <% if (posts.type == 'simple'){ %>
+            <p><%= posts.body %></p>
+            <% } %>
+            <% if (posts.type == 'complex'){ %>
+            <p><%- posts.body %></p>
+            <% } %>
+            <% if (posts.type == null){ %>
+            <p><%= posts.body %></p>
+            <% } %> </div>
 
-        <div class="code-row">
-          <% if(posts.code != 'none'){ %>
-          <div class="code-show">
-            <pre>
+          <div class="code-row">
+            <% if(posts.code != 'none'){ %>
+            <div class="code-show">
+              <pre>
                   <code class="language-js"><%= posts.code %></code>
                 </pre>
-          </div>
-          <%}
+            </div>
+            <%}
           %>
-        </div>
+          </div>
 
+          <hr>
+
+          <div class="thirdRow">
+            <div class="upvotes">
+              <a href="/users/upvote/<%= posts._id %>/<%= posts.title %>/<%= posts.author_id %>/<%= posts.author_username %>"
+                name="upvote-btn" id="<%= posts._id %>"><button type="button" class="btn btn-info" id="upvote-btn"><i
+                    class="far fa-thumbs-up"></i> Upvote</button></a>
+            </div>
+            <div class="comments">
+              <button type="button" class="btn btn-info" id="add-comment-btn"><i class="far fa-comment"></i> Add
+                Comment</button>
+            </div>
+
+            <div class="comment-area">
+
+              <div class="form-area">
+                <form id="comment-form" action="/users/postcomment" method="POST">
+                  <input type="hidden" name="postID" value="<%=posts._id%>" id="UserPostID">
+                  <input type="hidden" name="postTitle" value="<%=posts.title%>" id="UserPostID">
+                  <input type="hidden" name="receiver_id" value="<%=posts.author_id%>" id="UserPostID">
+                  <div class="comment-field">
+                    <div class="commentbox" id="comment-box">
+                      <input type="text" name="commentBody" id="commentBody">
+                      <!-- <a href="#" id="mention-icon" data-toggle="modal" data-target="#exampleModalCenter">
+                      title="Mention user"> <i class="fas fa-user-plus"></i> </a> -->
+                    </div>
+                    <div class="post-comment" id="post-btn">
+                      <button type="submit" id="post-btn-submit" class="btn btn-info">Add</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="cancel-btn" id="cancel-btn">
+                <button class="btn btn-secondary" id="cancel-btn-submit">Cancel</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <div class="comment-heading">
+        <h4>Comments</h4>
         <hr>
-
-        <div class="thirdRow">
-          <div class="upvotes">
-            <a href="/users/upvote/<%= posts._id %>" name="upvote-btn" id="<%= posts._id %>"><button type="button"
-                class="btn btn-info" id="upvote-btn"><i class="far fa-thumbs-up"></i> Upvote</button></a>
-          </div>
-          <div class="comments">
-            <button type="button" class="btn btn-info" id="add-comment-btn"><i class="far fa-comment"></i> Add
-              Comment</button>
-          </div>
-
-          <div class="comment-area">
-
-            <div class="form-area">
-              <form id="comment-form" action="/users/postcomment" method="POST">
-                <input type="hidden" name="postID" value="<%=posts._id%>" id="UserPostID">
-                <div class="comment-field">
-                  <div class="commentbox" id="comment-box">
-                    <input type="text" id="comment-box" name="commentBody">
-                    <a href="#" id="mention-icon" data-toggle="modal" data-target="#exampleModalCenter"
-                      title="Mention user"> <i class="fas fa-user-plus"></i> </a>
-                  </div>
-                  <div class="post-comment" id="post-btn">
-                    <button type="submit" id="post-btn-submit" class="btn btn-info">Add</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-
-            <div class="cancel-btn" id="cancel-btn">
-              <button class="btn btn-secondary" id="cancel-btn-submit">Cancel</button>
-            </div>
-          </div>
-
-        </div>
       </div>
-    </section>
-    <div class="comment-heading">
-      <h4>Comments</h4>
-      <hr>
-    </div>
 
 
-    <% comments.forEach(function(comments){ %>
-    <section class="all-comments">
-      <div class="each-comment">
-        <div class="comment-firstRow">
-          <div class="comment-author">
-            <div class="auth-img">
-              <img class="img" src="https://robohash.org/<%=posts._id%>">
+      <% comments.forEach(function(comments){ %>
+      <section class="all-comments">
+        <div class="each-comment">
+          <div class="comment-firstRow">
+            <div class="comment-author">
+              <div class="auth-img">
+                <a href="#"> <img class="img" src="https://robohash.org/<%=comments.commentedBy%>"> </a>
+              </div>
+              <div class="author-date">
+                <p><strong> <%= comments.commentedBy_Username %> </strong></p>
+                <p class="date"><%= comments.date %></p>
+              </div>
+              <hr>
             </div>
-            <p> <%= comments.commentedBy_Username %> </p>
           </div>
           <div class="comment-secondRow">
             <p><%= comments.body %></p>
           </div>
-        </div>
-        <hr>
-    </section>
-    <% }) %>
-  </div>
-</div>
-<!-- -------------------------------------------------Search user modal --------------------------------------- -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true" id="modal-fade">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Search User</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="input-group mb-3">
-        <div class="autocomplete">
-          <input type="text" class="form-control" id="auto" placeholder="Recipient's username"
-            aria-label="Enter the name" aria-describedby="basic-addon2">
-        </div>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalLong"
-            data-dismiss="modal" type="button">Search</button>
-        </div>
-      </div>
-      <div class="modal-footer">
+          <hr>
+      </section>
+      <% }) %>
+    </div>
 
+    <div class="right">
+      <div class="related-posts">
+        <p class="header">Related Topics</p>
+        <p class="topic"> <a href="#"> <span class="badge badge-pill badge-info">377</span> I'm gonna destroy this guy's
+            entire carrier today!</a></p>
+        <p class="topic"> <a href="#"> <span class="badge badge-pill badge-info">303</span> Do hell, nigga!</a></p>
+        <p class="topic"> <a href="#"> <span class="badge badge-pill badge-info">211</span> Yo homieZ! LetZ have a
+            ride..</a></p>
+        <p class="topic"> <a href="#"> <span class="badge badge-pill badge-info">189</span> See ma flex bro!</a></p>
+        <p class="topic"> <a href="#"> <span class="badge badge-pill badge-info">155</span> Gonna be dancin' off some
+            cops too night!</a></p>
       </div>
     </div>
   </div>
-</div>
+  <!-- -------------------------------------------------Search user modal --------------------------------------- -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" id="modal-fade">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Search User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="input-group mb-3">
+          <div class="autocomplete">
+            <input type="text" class="form-control" id="auto" placeholder="Recipient's username"
+              aria-label="Enter the name" aria-describedby="basic-addon2">
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalLong"
+              data-dismiss="modal" type="button">Search</button>
+          </div>
+        </div>
+        <div class="modal-footer">
 
-<!-- ------------------------------ Auto complete search box ------------------------------------------------ -->
-<!-- -------------------------------------------------Search user modal --------------------------------------- -->
+        </div>
+      </div>
+    </div>
+  </div>
 
-<script src="/js/prism_dark.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script
-  src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.2.2/dist/latest/bootstrap-autocomplete.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- ------------------------------ Auto complete search box ------------------------------------------------ -->
+  <!-- -------------------------------------------------Search user modal --------------------------------------- -->
 
-<script type="text/javascript">
-  document.querySelector('#mention-icon').addEventListener('click', (e) => {
-    $.ajax({
-      url: `/users/getAllusers`,
-      method: 'GET',
-    }).done((user) => {
-      const names = user.map(r => r.name);
-      const emails = user.map(r => r.email);
-      console.log(names);
-      console.log(emails);
-      // https://jqueryui.com/autocomplete/
-      //map, reduce, filter
+  <script src="/js/prism_dark.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.2.2/dist/latest/bootstrap-autocomplete.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    // document.querySelector('#mention-icon').addEventListener('click', (e) => {
+    //   $.ajax({
+    //     url: `/users/getAllusers`,
+    //     method: 'GET',
+    //   }).done((user) => {
+    //     const names = user.map(r => r.name);
+    //     const emails = user.map(r => r.email);
+    //     console.log(names);
+    //     console.log(emails);
+    //     // https://jqueryui.com/autocomplete/
+    //     //map, reduce, filter
+    //   });
+
+    //   $( function() {
+    //   var availableTags = [
+    //     "ActionScript",
+    //     "Asp",
+    //     "BASIC",
+    //     "C",
+    //     "C++",
+    //     "COBOL",
+    //   ];
+    //   $( "#auto" ).autocomplete({
+    //     source: availableTags
+    //   });
+    // } );
+    // })
+
+    $(document).ready(() => {
+      $('#add-comment-btn').click(() => {
+        console.log('add-comment-btn');
+        document.getElementById('add-comment-btn').style.display = 'none';
+        document.getElementById('comment-box').style.display = 'block';
+        document.getElementById('post-btn').style.display = 'block';
+        document.getElementById('cancel-btn').style.display = 'block';
+      })
+
+      $('#cancel-btn-submit').click(() => {
+        document.getElementById('add-comment-btn').style.display = 'block';
+        document.getElementById('comment-box').style.display = 'none';
+        document.getElementById('post-btn').style.display = 'none';
+        document.getElementById('cancel-btn').style.display = 'none';
+      })
     });
 
-    $( function() {
-    var availableTags = [
-      "ActionScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "COBOL",
-    ];
-    $( "#auto" ).autocomplete({
-      source: availableTags
+    document.querySelector("#savepost").addEventListener('click', (e) => {
+      const post_id = document.getElementById('post_id').value;
+      window.location = "/users/save_post/" + post_id;
+      console.log('save_post() : ', post_id);
     });
-  } );
-  })
 
-  $(document).ready(() => {
-    $('#add-comment-btn').click(() => {
-      console.log('clicked');
-      document.getElementById('add-comment-btn').style.display = 'none';
-      document.getElementById('comment-box').style.display = 'block';
-      document.getElementById('post-btn').style.display = 'block';
-      document.getElementById('cancel-btn').style.display = 'block';
-    })
+    document.querySelector("#post-btn-submit").addEventListener('click', (e) => {
+      const userID = document.querySelector("#UserPostID").value;
+      window.location = "/users/comment/" + userID;
+    });
+  </script>
+</body>
 
-    $('#cancel-btn-submit').click(() => {
-      document.getElementById('add-comment-btn').style.display = 'block';
-      document.getElementById('comment-box').style.display = 'none';
-      document.getElementById('post-btn').style.display = 'none';
-      document.getElementById('cancel-btn').style.display = 'none';
-    })
-  });
-
-  document.querySelector("#savepost").addEventListener('click', (e) => {
-    const post_id = document.getElementById('post_id').value;
-    window.location = "/users/save_post/" + post_id;
-    console.log('save_post() : ', post_id);
-  });
-
-  document.querySelector("#post-btn-submit").addEventListener('click', (e) => {
-    const userID = document.querySelector("#UserPostID").value;
-    window.location = "/users/comment/" + userID;
-  });
-</script>
+</html>

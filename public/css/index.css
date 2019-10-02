@@ -120,8 +120,15 @@ body {
 }
 
 .firstRow .title {
-  font-size: 35px;
   margin-bottom: 20px;
+}
+.title a{
+  font-size: 30px;
+  color: rgb(23, 165, 190);
+  text-decoration: none;
+}
+.title a:hover{
+  color: rgb(11, 120, 139);
 }
 
 .firstRow .title p {
@@ -295,12 +302,18 @@ a {
 .notifframe a:hover{
   
 }
-.notif-acton .footer{
+.footer{
+  width: 30%;
+  margin-left: 34%;
   border-top: 2px solid rgb(179, 177, 177);
-  height: 50px;
+  height: 30px;
   background-color: red;
 }
-
+.notif-end{
+  text-align: center;
+  font-size: 12px;
+  color: rgb(172, 172, 172);
+}
 .notifframe .each-notif {
   display: flex;
   width: 99%;

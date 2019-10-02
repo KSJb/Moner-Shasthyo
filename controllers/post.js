@@ -8,6 +8,7 @@ const nodemailer = require('nodemailer');
 const User = require('../models/user');
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const Notif = require('../models/notifs');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error: '));
@@ -32,14 +33,14 @@ const getDate = () => {
 module.exports.profile = (req, res) => {
   const currentuser = req.user;
   let posts = [];
-	Post.find().then(posts => {
-			return res.render("profile", {
-					posts: posts,
-          currentuser: currentuser,
-          owner: 'self'
-			});
-	})
-	.catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+  Post.find().then(posts => {
+    return res.render("profile", {
+      posts: posts,
+      currentuser: currentuser,
+      owner: 'self'
+    });
+  })
+    .catch(err => returnError({ msg: "Getting Error In Getting Data" }))
 
 }
 
@@ -48,7 +49,7 @@ module.exports.get_saved_posts = (req, res) => {
   const currentuser = req.user;
   console.log('get_saved_posts()');
   // Song.find({ "_id": { "$in": list } })
-  Post.find({"_id": {"$in": savedPostsArray} }).then(posts => {
+  Post.find({ "_id": { "$in": savedPostsArray } }).then(posts => {
     console.log('Posts: ', posts);
     res.render('profile', {
       posts: posts,
@@ -61,31 +62,34 @@ module.exports.get_saved_posts = (req, res) => {
 module.exports.get_all_posts = (req, res) => {
   if (!req.isAuthenticated()) res.redirect('/admin/login');
   console.log('home page entered');
-	const currentuser = req.user;
-	Post.find().sort({_id:-1}) .then(posts => {
-			return res.render("index", {
-          notifs: false,
-					posts: posts,
-					user: currentuser
-			});
-	})
-	.catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+  const currentuser = req.user;
+  Post.find().sort({ _id: -1 }).then(posts => {
+    return res.render("index", {
+      notifs: false,
+      posts: posts,
+      user: currentuser
+    });
+  })
+    .catch(err => returnError({ msg: "Getting Error In Getting Data" }))
 }
 
 module.exports.get_notifs = (req, res) => {
   // if (!req.isAuthenticated()) res.redirect('/admin/login');
   console.log('homepage + notifs entered');
   const currentuser = req.user;
-  let notifs_array = ['upvote', 'comment', 'mention', 'upvote', 'mention', 'upvote'];
-	Post.find().sort({_id:-1}) .then(posts => {
-			return res.render("index", {
-          notifs: true,
-          notifs_array: notifs_array,
-          posts: posts,
-					user: currentuser
-			});
-	})
-	.catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+  // let notifs_array = ['upvote', 'comment', 'mention', 'upvote', 'mention', 'upvote'];
+  Post.find().sort({ _id: -1 }).then(posts => {
+    Notif.find({ receiver_id: req.user._id }).then(notifs_array => {
+      console.log('notif_array: ', notifs_array);
+      return res.render("index", {
+        notifs: true,
+        notifs_array: notifs_array,
+        posts: posts,
+        user: currentuser
+      })
+    });
+  })
+    .catch(err => returnError({ msg: "Getting Error In Getting Data" }))
 }
 
 module.exports.create_post = (req, res) => {
@@ -219,6 +223,11 @@ module.exports.create_blog = (req, res) => {
   return res.render('create_blog');
 }
 
+module.exports.edit_post = (req, res) => {
+  const post_id = req.params.id;
+  console.log('edit-post : ', post_id);
+}
+
 //Verify page
 module.exports.verify = (req, res) => {
   const token = req.params.token;
@@ -265,7 +274,7 @@ module.exports.view_post = (req, res) => {
                   comments: foundComments
                 });
               })
-              
+
             }
           })
         }
@@ -278,7 +287,7 @@ module.exports.view_post = (req, res) => {
 module.exports.save_post = async (req, res) => {
   const post_id = req.params.id;
   console.log('post ID : ', post_id);
-      const update = await User.findOneAndUpdate({ _id: req.user.id }, { $push: { savePosts: post_id } });
+  const update = await User.findOneAndUpdate({ _id: req.user.id }, { $push: { savePosts: post_id } });
   console.log('end!', update);
   res.redirect('back');
 }
@@ -288,28 +297,24 @@ module.exports.getAllusers = async (req, res) => {
 }
 
 module.exports.post_comment = async (req, res) => {
-  const body = req.body.commentBody;
+  let body = req.body.commentBody;
   const myPostID = req.body.postID;
+  const myPostTitle = req.body.postTitle;
   const commentedBy = req.user._id;
   const commentedBy_Username = req.user.username;
+  const receiver_id = req.body.receiver_id
   console.log(body, myPostID);
 
-  const date = getDate();
-  let errors = [];
-  console.log("body : " + body);
-  if (!body) {
-    errors.push({ msg: 'Please enter all fields' });
+  if (commentedBy != receiver_id) {
+    send_notif(myPostID, myPostTitle, commentedBy, commentedBy_Username, receiver_id, 'comment');
   }
 
-  if (errors.length > 0) {
-    return res.render('index', {
-      errors,
-      commentedBy,
-      commentedBy_Username,
-      body,
-      date
-    });
+  const date = getDate();
+  console.log("body : " + body);
+  if (!body) {
+    body = "body";
   }
+
   console.log('new comment');
   const newComment = new Comment({
     myPostID,
@@ -327,8 +332,35 @@ module.exports.post_comment = async (req, res) => {
 
 }
 
+async function send_notif(post_id, post_title, sender_id, sender_username, receiver_id, type) {
+  console.log('send_notif()');
+  const date = getDate();
+
+  console.log('new notif');
+  const newNotif = new Notif({
+    post_id,
+    post_title,
+    sender_id,
+    sender_username,
+    receiver_id,
+    type,
+    date
+  });
+  console.log("new notif", newNotif);
+  const dbSavedNotif = await newNotif.save();
+  console.log("inside the db function");
+  console.log(dbSavedNotif);
+}
+
 module.exports.inc_upvote = async (req, res) => {
   const id = req.params.id;
+  const title = req.params.title;
+  const author_id = req.params.author_id;
+  const author_username = req.params.author_username;
+  console.log('from ', req.user.username, ' to ', author_username);
+  if (req.user._id != author_id) {
+    send_notif(id, title, req.user._id, req.user.username, author_id, 'upvote');
+  }
   const data = await Post.findOneAndUpdate({ _id: id }, { $inc: { upvote: 1 } });
   res.redirect('back');
 }
@@ -337,5 +369,12 @@ module.exports.inc_comment = async (req, res) => {
   console.log("comment inc");
   const id = req.params.id;
   const data = await Post.findOneAndUpdate({ _id: id }, { $inc: { comment: 1 } });
+  res.redirect('back');
+}
+
+module.exports.delete_post = async (req, res) => {
+  const id = req.params.id;
+  console.log('id : ', id);
+  Post.findOneAndRemove({_id: id}, function(err){console.log(err)});
   res.redirect('back');
 }

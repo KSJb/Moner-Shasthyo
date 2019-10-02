@@ -1,4 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= currentuser.name %>'s Profile - badBlogger</title>
+</head>
+<body>
+  
+
 <link rel="stylesheet" href="/css/profile.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 <div class="entire-page">
   <div class="left">
     <div class="left-contents">
@@ -40,9 +53,13 @@
     <div class="my-posts" id="my-posts">
       <% posts.forEach(function(posts){ %>
       <% if (posts.author_id == currentuser._id && owner == 'self') {%>
-      <a class="title-link" href="/users/view/<%= posts._id %>" target="_blank">
-        <div class="post-palette" title="Open post in new tab">
-          <p class="title"><%= posts.title %></p>
+      <div class="post-palette" title="Open post in new tab">
+        <a class="title-link" href="/users/view/<%= posts._id %>" target="_blank">
+          <div class="row-one">
+            <input type="hidden" id="<%= posts._id %>" value="<%= posts._id %>">
+            <p class="title"><%= posts.title %></p>
+
+          </div>
           <p class="date"><%= posts.date %></p>
           <hr>
 
@@ -57,8 +74,13 @@
               <p>· Comments <%= posts.comment %></p>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
+        <div class="two-btns">
+          <a href="#"><i class="fas fa-edit" data-toggle="modal" data-target="#exampleModalCenter" title="Edit post"
+              id="edit-post"></i></a>
+          <a href="#" class="delete-btn"> <i class="far fa-trash-alt" title="Delete post" id="<%= posts._id %>"></i>
+          </a></div>
+      </div>
       <% } %>
       <% }) %>
     </div>
@@ -71,7 +93,12 @@
       <% if (posts.author_id != currentuser._id && owner == 'others') {%>
       <a class="title-link" href="/users/view/<%= posts._id %>" target="_blank">
         <div class="post-palette" title="Open post in new tab">
-          <p class="title"><%= posts.title %></p>
+          <div class="row-one">
+            <p class="title"><%= posts.title %></p>
+            <div class="two-btns">
+              <i class="far fa-trash-alt" title="Unsave post" id="delete-post"></i>
+            </div>
+          </div>
           <p class="date"><%= posts.date %></p>
           <hr>
 
@@ -118,6 +145,29 @@
 </div>
 </div>
 
+<!-- Edit post modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true" id="modal-fade">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Create Blog</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="form-submit" action="/users/post" method="POST">
+        <input type="text" name="title_name" id="title" placeholder="Title"><br><br>
+        <textarea rows="4" class="area1" name="body_name" cols="50" id="text-body"
+          placeholder="It's a fine day!"></textarea>
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-secondary">Cancel</button>
+          <a href="#"> <button type="submit" class="btn btn-info">Save Changes</button></a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 <!-- Edit Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true">
@@ -176,4 +226,40 @@
     document.getElementById('my').className = 'nav-link';
     document.getElementById('saved').className = 'nav-link active';
   }
+
+  document.querySelector('.far').addEventListener('click', function (e) {
+    let post_id = e.target.id;
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Delete?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        window.location = '/users/delete_post/' + post_id;
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+      }
+    })
+  }, false);
+
 </script>
+
+</body>
+</html>

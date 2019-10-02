@@ -5,84 +5,92 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Home - badBlogger</title>
 
   <link rel="stylesheet" href="/css/index.css">
 </head>
 
 <body>
-  <% if (notifs == true) { %>
-  <% console.log('entered notifs') %>
-  <div class="notif_action" id="notif-action">
-    <div class="darkener">
-      .
-    </div>
-    <div class="notifframe" id="notif-frame">
-      <% notifs_array.forEach(function(notifs_array){%>
-      <% if (notifs_array == 'upvote'){%>
-      <a href="#">
-        <div class="each-notif">
-          <div class="logo">
-            <i class="far fa-heart"></i>
+  <div class="notif-contents" id="notif-contents">
+    <% if (notifs == true) { %>
+    <% console.log('entered notifs') %>
+    <div class="notif_action" id="notif-action">
+      <div class="darkener">
+        .
+      </div>
+      
+      <div class="notifframe" id="notif-frame">
+        <% notifs_array.forEach(function(notifs_array){%>
+        <% if (notifs_array.type == 'upvote'){%>
+        <a href="/users/view/<%= notifs_array.post_id %>" onclick="unmarkNotif()" target="_blank">
+          <div class="each-notif">
+            <div class="logo">
+              <i class="far fa-heart"></i>
+            </div>
+            <div class="text">
+              <p><strong><%= notifs_array.sender_username %></strong> likes your post entitled
+                <b><%= notifs_array.post_title %></b></p>
+            </div>
           </div>
-          <div class="text">
-            <p><strong>_catastrophe</strong> likes your post entitled <br>
-              <b>5 Toughest Programming Languages</b></p>
-          </div>
-        </div>
-      </a>
-      <% } %>
+        </a>
+        <% } %>
 
-      <% if (notifs_array == 'comment'){%>
-      <a href="#">
-        <div class="each-notif">
-          <div class="logo">
+        <% if (notifs_array.type == 'comment'){%>
+        <a href="/users/view/<%= notifs_array.post_id %>" target="_blank">
+          <div class="each-notif">
+            <div class="logo">
               <i class="far fa-comment"></i>
+            </div>
+            <div class="text">
+              <p><strong><%= notifs_array.sender_username %></strong> has commented on your post entitled
+                <b><%= notifs_array.post_title %></b></p>
+            </div>
           </div>
-          <div class="text">
-            <p><strong>_catastrophe</strong> has commented on your post entitled <br>
-              <b>5 Toughest Programming Languages</b></p>
-          </div>
-        </div>
-      </a>
-      <% } %>
+        </a>
+        <% } %>
 
-      <% if (notifs_array == 'mention'){%>
-      <a href="#">
-        <div class="each-notif">
-          <div class="logo">
+        <% if (notifs_array == 'mention'){%>
+        <a href="#">
+          <div class="each-notif">
+            <div class="logo">
               <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="text">
+              <p><strong>_catastrophe</strong> has mentioned you on a post entitled <br>
+                <b>5 Toughest Programming Languages</b></p>
+            </div>
           </div>
-          <div class="text">
-            <p><strong>_catastrophe</strong> has mentioned you on a post entitled <br>
-              <b>5 Toughest Programming Languages</b></p>
-          </div>
-        </div>
-      </a>
-      <% } %>
-      <% }) %>
+        </a>
+        <% } %>
+        <% }) %> 
+        <p class="notif-end">Notifications</p>
+        <!-- <div class="footer">
+          .
+        </div> -->
+      </div>
+      
     </div>
+    <% } %>
   </div>
-  <% } %>
 
   <% posts.forEach(function(posts){ %>
   <section class="allPost">
     <div class="eachPost">
       <div class="firstRow-group">
-        <div class="author-img">
-          <img class="img" src="https://robohash.org/<%=posts.author_id%>">
+       <div class="author-img">
+         <img class="img" src="https://robohash.org/<%=posts.author_id%>"> 
         </div>
         <div class="other-than-img" style="width: 100%">
           <div class="firstRow">
             <div class="right-side">
               <div class="title">
-                <p> <%= posts.title %></p>
+                <p> <a href="/users/view/<%= posts._id %>"> <%= posts.title %></a></p>
               </div>
             </div>
             <div class="twoButton">
-              <a href="/users/view/<%= posts._id %>" name="view-post" id="<%= posts._id %>"
+              <!-- <a href="/users/view/<%= posts._id %>" name="view-post" id="<%= posts._id %>"
                 class="badge badge-info">View
-                Post</a>
+                Post</a> -->
             </div>
           </div>
           <div class="dateRow">
@@ -212,14 +220,15 @@
     crossorigin="anonymous"></script>
 
   <script>
-    document.getElementById('notif-action').onclick = function (e) {
-      if (e.target != document.getElementById('notif-action')) {
-        document.getElementById('notif-action').style.display = 'none';
+    document.getElementById('notif-contents').onclick = function (e) {
+      if (e.target != document.getElementById('notif-contents')) {
+        document.getElementById('notif-contents').style.display = 'none';
       }
       else {
         console.log('You clicked inside');
       }
     }
+
     $(document).ready(() => {
 
 
@@ -228,6 +237,10 @@
         window.location = "/users/create_blog";
       });
     })
+
+    function unmarkNotif(){
+      
+    }
   </script>
 
 </body>
