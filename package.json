@@ -6,7 +6,10 @@
   "scripts": {
     "start": "nodemon app"
   },
-  "keywords": [],
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "author": "Saf",
   "license": "ISC",
   "dependencies": {
