@@ -48,17 +48,15 @@ body {
   width: 50%;
   margin: 0 auto;
   background-color: white;
-  /*padding: 10px;
-        border-radius: 10px;
-        box-shadow: 5px 5px 20px gray;
-        font-size: 20px;
-        letter-spacing: 2px; */
 }
 
 .eachPost {
   border: 1px solid rgb(230, 229, 229);
   border-radius: 10px;
   margin-top: 20px;
+}
+.allPost hr{
+  width: 100%;
 }
 
 .eachPost:hover {
@@ -67,7 +65,7 @@ body {
 
 .eachPost:last-child {
   padding: 10px;
-  border-bottom: 0px solid black;
+  /* border-bottom: 0px solid black; */
   padding-bottom: 30px;
 }
 
@@ -219,9 +217,15 @@ a[name="view-post"] {
   margin-left: 20px;
 }
 
+.secondRow{
+  height: 100px;
+  overflow: hidden;
+}
+
 .thirdRow {
   margin-top: 10px;
   display: flex;
+  height: 15px;
 }
 
 .thirdRow p {

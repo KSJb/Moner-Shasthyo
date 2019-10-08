@@ -212,7 +212,7 @@ module.exports.full_post = (req, res) => {
 
     newPost.save().then((err, dbPost) => {
       console.log("Post created : " + dbPost);
-      res.redirect('back');
+      res.redirect('/');
     })
 
   }

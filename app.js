@@ -20,12 +20,15 @@ app.set('view engine', 'ejs');
 In case edited..
 mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true}, (err)=>{
     console.log("db connected");
+
+    mongodb+srv://safwan:<password>@cluster0-gvu5h.mongodb.net/admin
 });
 */
 
-mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true}, (err)=>{
-    console.log("db connected");
+mongoose.connect('mongodb+srv://safwan:home761049@cluster0-bfa2a.mongodb.net/badblogger', {useNewUrlParser: true}, (err)=>{
+    console.log("atlas db connected");
 });
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
