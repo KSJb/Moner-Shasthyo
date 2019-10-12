@@ -76,8 +76,8 @@
           </div>
         </a>
         <div class="two-btns">
-          <a href="#"><i class="fas fa-edit" data-toggle="modal" data-target="#exampleModalCenter" title="Edit post"
-              id="edit-post"></i></a>
+          <a href="/users/edit_post/<%= posts._id %>" id="<%= posts._id %>"><i class="fas fa-edit" title="Edit post"
+            ></i></a>
           <a href="#" class="delete-btn"> <i class="far fa-trash-alt" title="Delete post" id="<%= posts._id %>"></i>
           </a></div>
       </div>
@@ -226,6 +226,8 @@
     document.getElementById('my').className = 'nav-link';
     document.getElementById('saved').className = 'nav-link active';
   }
+
+
 
   document.querySelector('.far').addEventListener('click', function (e) {
     let post_id = e.target.id;

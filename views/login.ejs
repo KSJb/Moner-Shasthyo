@@ -18,10 +18,10 @@
     <form id="form-reg" action="/admin/login" method="POST">
 
       <p id="labelEmail">Email address</p>
-      <input type="email" name="emailN" id="emailN" value="<%= typeof email != 'undefined' ? email : '' %>"
+      <input type="email" name="emailN" class="emailInput" id="emailN" value="<%= typeof email != 'undefined' ? email : '' %>"
         class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> <br>
       <p id="labelPassword">Password</p>
-      <input type="password" name="passwordN" id="passwordN"
+      <input type="password" class="passwordInput" name="passwordN" id="passwordN"
         value="<%= typeof password != 'undefined' ? password : '' %>" class="form-control" id="exampleInputPassword1"
         placeholder="Password">
       <br>
@@ -65,9 +65,11 @@
     }
 
     #emailN {
-      margin: auto;
+      margin-left: 10%;
       width: 80%;
+      height: 35px;
       border-radius: 15px 15px 15px 15px;
+      border: 1px solid rgb(218, 216, 216);
     }
 
     #labelEmail {
@@ -75,7 +77,9 @@
     }
 
     #passwordN {
-      margin: auto;
+      margin-left: 10%;
+      height: 35px;
+      border: 1px solid rgb(218, 216, 216);
       width: 80%;
       border-radius: 15px 15px 15px 15px;
     }
@@ -85,6 +89,7 @@
     }
 
     #submit-btn {
+      margin-top: 20px;
       margin-left: 10%;
       width: 80%;
       border-radius: 15px 15px 15px 15px;
@@ -93,6 +98,27 @@
     input:-webkit-autofill {
       -webkit-box-shadow: 0 0 0px 1000px white inset;
     }
+
+    /* @media only screen and (max-width: 768px) {
+      .form-area{
+        width: 100%; 
+        border: none; 
+      }
+
+      .logo_img{
+        width: 20%;
+      }
+
+      #emailN {
+        width: 45%;
+        height: 20px;
+        margin: auto;
+        border: 1px solid rgb(218, 216, 216);
+      }
+      body{
+        overflow-x: hidden; 
+      }
+    } */
   </style>
 
 

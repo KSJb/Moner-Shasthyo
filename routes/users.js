@@ -15,8 +15,9 @@ router.get('/save_post/:id', controller.save_post);
 router.get('/get_saved_posts', controller.get_saved_posts);
 router.get('/getAllusers', controller.getAllusers);
 router.get('/get_notifs', controller.get_notifs);
-router.get('/edit_posts/:id', controller.edit_post);
 router.get('/profile', controller.profile);
+router.get('/edit_post/:id', controller.edit_post);
 router.get('/delete_post/:id', controller.delete_post);
+router.post('/save_changes', controller.save_changes);
 
 module.exports = router;

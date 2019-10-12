@@ -94,3 +94,25 @@
       height: 60px;
       border-bottom: 1px solid rgb(204, 203, 203);
     }
+
+
+    @media only screen and (max-width: 768px) {
+      .navlinks{
+        height: 50px;
+      }
+      .navlinks p{
+        font-size: 10px;
+      }
+      .navlinks .create-post {
+        margin-left: 30px;
+      }
+  
+      .navlinks .notifs {
+        margin-left: 30px;
+      }
+  
+      .navlinks .search {
+        margin-left: 30px;
+      }
+  
+    }

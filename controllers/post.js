@@ -220,12 +220,11 @@ module.exports.full_post = (req, res) => {
 
 module.exports.create_blog = (req, res) => {
   console.log('create blog');
-  return res.render('create_blog');
-}
-
-module.exports.edit_post = (req, res) => {
-  const post_id = req.params.id;
-  console.log('edit-post : ', post_id);
+  const actionRoute = '/users/full_post';
+  return res.render('create_blog', {
+    edit: false,
+    route: actionRoute
+  });
 }
 
 //Verify page
@@ -372,9 +371,46 @@ module.exports.inc_comment = async (req, res) => {
   res.redirect('back');
 }
 
+module.exports.edit_post = async (req, res) => {
+  const id = req.params.id;
+  const actionRoute = '/users/save_changes';
+  console.log('edit post:', id);
+  Post.findOne({_id: id}).then(foundPost => {
+    console.log('data: ', foundPost);
+    res.render('create_blog', {
+      edit: true,
+      route: actionRoute,
+      post_id: id,
+      post: foundPost
+    });
+  })
+}
+
+module.exports.save_changes = async (req, res) => {
+  let id = req.body.post_id;
+  let Title = req.body.title;
+  let Body = req.body.area;
+  let type = 'complex';
+  let author = req.user.name;
+  let author_id = req.user._id;
+  let author_username = req.user.username;
+  let date = getDate();
+  let view = 0;
+  let comment = 0;
+  let upvote = 0;
+  let tag = req.body.tags;
+  let code = req.body.code;
+  let tags = tag.split(' ');
+  Post.updateOne({_id: id}, { $set: { title: Title, body: Body }}, function(err, docs){
+    console.log(docs);
+    res.redirect('/');
+  })
+}
+
 module.exports.delete_post = async (req, res) => {
   const id = req.params.id;
   console.log('id : ', id);
   Post.findOneAndRemove({_id: id}, function(err){console.log(err)});
   res.redirect('back');
 }
+

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Create new post - badBlogger</title>
+  <title>Create Post - badBlogger</title>
 </head>
 
 <body>
@@ -21,22 +21,53 @@
           <a href="/"> <img src="/images/black_cat_logo.jpg" alt=""> </a>
         </div>
         <div class="header">
-          <p>Create Blog</p>
+          <% if (!edit) {%>
+            <p>Create Post</p>
+          <% } %>
+
+          <% if (edit) {%>
+            <p>Edit Post</p>
+          <% } %>
+
         </div>
       </div>
-
-      <form id="main-form" class="main-form" action="/users/full_post" method="POST">
+        <form id="main-form" class="main-form" action="<%= route %>" method="POST">
+          <% console.log(route) %>
         <div class="title-area">
-          <input type="text" name="title" id="title" class="title" placeholder="Title">
+          <% if (!edit) {%>
+            <input type="text" name="title" id="title" class="title" placeholder="Title">
+            <input type="hidden" name="post_id" id="post_id">
+          <% } %>
+
+          <% if (edit) {%>
+            <%console.log("title : ", post.title);%>
+            <input type="hidden" name="post_id" id="post_id" value="<%= post._id %>">
+            <input type="text" name="title" id="title" class="title" value="<%= post.title %>">
+          <% } %>
+          
           <input type="hidden" name="tags" id="tags" value="none">
           <input type="hidden" name="code" id="code" value="none">
         </div>
         <br>
         <div class="textArea">
-          <textarea class="area" id="body-area" name="area"> </textarea>
+          <% if (!edit) {%>
+            <textarea class="area" id="body-area" name="area"> </textarea>
+          <% } %>
+
+          <% if (edit) {%>
+            <textarea class="area" id="body-area" name="area" val> <%= post.body %> </textarea>
+          <% } %>
         </div>
+        
         <div class="post-div">
-          <button type="submit" id="create-btn" class="btn btn-info btn-lg">Publish</button>
+            <% if (!edit) {%>
+              <button type="submit" id="create-btn" class="btn btn-info btn-lg">Publish</button>
+            <% } %>
+  
+            <% if (edit) {%>
+              <button type="button" id="create-btn" class="btn btn-secondary">Cancel</button>
+              <button type="submit" id="create-btn" onclick="func()" class="btn btn-info">Save Changes</button>
+            <% } %>
         </div>
       </form>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -49,7 +80,8 @@
           width: 1400
         };
         CKEDITOR.replace('area', config);
-
+        function func(){ let x=1;}
+      
         function addTag() {
           console.log('addTag()');
           let tag = document.getElementById('tag-field').value;
@@ -82,7 +114,7 @@
               </button>
             </div>
             <form id="form-submit" action="">
-              <input type="text" name="title_name" id="tag-field" placeholder="Tags"><br>
+              <input type="text" name="title_name" class="tag-field" id="tag-field" placeholder="Tags"><br>
               <div class="modal-footer">
                 <button type="button" id="tag-add-btn" data-dismiss="modal" onclick="addTag()"
                   class="btn btn-info">Add</button>
@@ -165,6 +197,7 @@
     crossorigin="anonymous"></script>
 
   <script>
+
     function discard() {
       Swal.fire({
         title: 'Discard?',

@@ -68,7 +68,7 @@ app.use("/users", usersRoutes); // Inside Homepage
 app.use("/", usersRoutes); // Get the start page
 
 const PORT = 4003;
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 4003, function(){
   console.log('Listening to ', PORT);
 });
 // Already in use solution : https://stackoverflow.com/questions/4075287/node-express-eaddrinuse-address-already-in-use-kill-server

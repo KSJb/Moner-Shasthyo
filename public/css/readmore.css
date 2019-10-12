@@ -6,6 +6,16 @@ body {
   /* background-color: rgb(243, 241, 241);  */
 }
 
+.badge{
+  /* height: 30px;  
+  margin-top: 10px; */
+  display: none;
+  float: right;
+}
+code:hover .badge{
+  display: block;
+}
+
 .searchBox {
   display: flex;
   width: 60%;

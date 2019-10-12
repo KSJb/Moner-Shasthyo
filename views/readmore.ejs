@@ -95,7 +95,7 @@
 
           <hr>
 
-          <div class="thirdRow">
+          <div class="thirdRow" onload="onloadFunc()">
             <div class="upvotes">
               <a href="/users/upvote/<%= posts._id %>/<%= posts.title %>/<%= posts.author_id %>/<%= posts.author_username %>"
                 name="upvote-btn" id="<%= posts._id %>"><button type="button" class="btn btn-info" id="upvote-btn"><i
@@ -138,6 +138,7 @@
         <h4>Comments</h4>
         <hr>
       </div>
+      <button class="btn btn-primary" onclick="myFunction()"></button>
 
 
       <% comments.forEach(function(comments){ %>
@@ -173,7 +174,7 @@
             ride..</a></p>
         <p class="topic"> <a href="#"> <span class="badge badge-pill badge-info">189</span> See ma flex bro!</a></p>
         <p class="topic"> <a href="#"> <span class="badge badge-pill badge-info">155</span> Gonna be dancin' off some
-            cops too night!</a></p>
+            cops to night!</a></p>
       </div>
     </div>
   </div>
@@ -222,35 +223,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <script type="text/javascript">
-    // document.querySelector('#mention-icon').addEventListener('click', (e) => {
-    //   $.ajax({
-    //     url: `/users/getAllusers`,
-    //     method: 'GET',
-    //   }).done((user) => {
-    //     const names = user.map(r => r.name);
-    //     const emails = user.map(r => r.email);
-    //     console.log(names);
-    //     console.log(emails);
-    //     // https://jqueryui.com/autocomplete/
-    //     //map, reduce, filter
-    //   });
-
-    //   $( function() {
-    //   var availableTags = [
-    //     "ActionScript",
-    //     "Asp",
-    //     "BASIC",
-    //     "C",
-    //     "C++",
-    //     "COBOL",
-    //   ];
-    //   $( "#auto" ).autocomplete({
-    //     source: availableTags
-    //   });
-    // } );
-    // })
 
     $(document).ready(() => {
+      $("code").append("<a href='#' class='badge badge-secondary'>Copy</a>");
+
       $('#add-comment-btn').click(() => {
         console.log('add-comment-btn');
         document.getElementById('add-comment-btn').style.display = 'none';
