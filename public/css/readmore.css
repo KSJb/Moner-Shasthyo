@@ -337,9 +337,14 @@ a[name="view-post"] {
 .comment-author {
   display: flex;
 }
+
+.author-date{
+  display: flex;
+}
 .author-date .date {
   color: gray;
   font-size: 12px;
+  align-items: center;
 }
 
 .img {
