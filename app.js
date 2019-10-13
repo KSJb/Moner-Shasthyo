@@ -25,7 +25,7 @@ mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true}, (er
 });
 */
 
-mongoose.connect('mongodb+srv://safwan:home761049@cluster0-bfa2a.mongodb.net/badblogger', {useNewUrlParser: true}, (err)=>{
+mongoose.connect('mongodb+srv://safwan:home761049@cluster0-bfa2a.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true}, (err)=>{
     console.log("atlas db connected");
 });
 
