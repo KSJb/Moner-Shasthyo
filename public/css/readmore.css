@@ -347,6 +347,51 @@ a[name="view-post"] {
   align-items: center;
 }
 
+.upper-body{
+  display: flex;
+}
+.modal-body i{
+  color: rgb(23, 165, 190);
+}
+
+#lower-body{
+  display: flex;
+  margin-top: 20px;
+}
+
+.user-space a{
+  text-decoration: none;
+  color: black;
+  border-radius: 20px 20px 20px 20px;
+  padding: 5px;
+  font-size: 12px;
+  margin-left: 10px;
+  background-color: rgb(156, 208, 218);
+}
+
+.tags{
+  display: flex;
+  align-items: center;
+}
+.tags .tag-word{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.tags a{
+  display: inline-block;
+  width: max-content;
+  background-color: rgb(171, 211, 223);
+  color: rgb(6, 134, 173);
+  font-size: 14px;
+  text-decoration: none;
+  margin-left: 5px;
+  padding: 5px;
+  border-radius: 20px 20px 20px 20px;
+}
+.tags a:hover{
+  color: rgb(83, 151, 207);
+}
+
 .img {
   width: 50px;
   height: 50px;
@@ -360,6 +405,9 @@ a[name="view-post"] {
   font-style: bold;
 }
 
+.comment-secondRow{
+  display: flex;
+}
 .comment-secondRow p {
   margin-left: 7%;
 }

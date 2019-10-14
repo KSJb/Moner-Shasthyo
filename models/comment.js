@@ -16,7 +16,10 @@ var CommentSchema = mongoose.Schema({
   },
   date: {
     type: String
-  }
+  },
+  mentionedUsers: [{
+    type: String
+  }]
 });
 
 var Comment = module.exports = mongoose.model('Comment', CommentSchema);

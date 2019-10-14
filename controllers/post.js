@@ -301,8 +301,13 @@ module.exports.post_comment = async (req, res) => {
   const myPostTitle = req.body.postTitle;
   const commentedBy = req.user._id;
   const commentedBy_Username = req.user.username;
-  const receiver_id = req.body.receiver_id
-  console.log(body, myPostID);
+  const receiver_id = req.body.receiver_id;
+  const mentionedUsersString = req.body.mentioned;  
+
+  let mentionedUsers;
+  mentionedUsers = mentionedUsersString.split('#');
+  
+  console.log('mentioned emails : ', mentionedUsers);
 
   if (commentedBy != receiver_id) {
     send_notif(myPostID, myPostTitle, commentedBy, commentedBy_Username, receiver_id, 'comment');
@@ -320,7 +325,8 @@ module.exports.post_comment = async (req, res) => {
     body,
     commentedBy,
     commentedBy_Username,
-    date
+    date,
+    mentionedUsers
   });
   console.log("new comment", newComment);
   const dbSavedComment = await newComment.save();

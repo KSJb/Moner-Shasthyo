@@ -132,6 +132,19 @@
           </div>
           <div class="comment-secondRow">
             <p><%= comments.body %></p>
+
+            <div class="tags">
+              <%
+            for(var i=0; i<comments.mentionedUsers.length; i++){ %>
+              <% if (comments.mentionedUsers[i] != 'none'){ %>
+              <div class="tag-word">
+                <p><a href="#"><%= comments.mentionedUsers[i] %></a></p>
+              </div>
+              <% } %>
+              <%}
+          %>
+            </div>
+
           </div>
           <hr>
       </section>
@@ -196,17 +209,28 @@
           <input type="hidden" name="postID" value="<%=posts._id%>" id="UserPostID">
           <input type="hidden" name="postTitle" value="<%=posts.title%>" id="UserPostID">
           <input type="hidden" name="receiver_id" value="<%=posts.author_id%>" id="UserPostID">
+          <input type="hidden" name="mentioned" id="mentioned" value="none">
           <div class="modal-body">
-            <input type="text" name="commentBody" id="comment-input">
+            <div class="upper-body">
+              <input type="text" name="commentBody" id="comment-input" value="">
+            </div>
+            <div class="lower-body" id="lower-body">
+              <input type="text" name="" placeholder="Mention user.." id="mention-input">
+              <a href="#" onclick="mentionUser()" id="add-user-btn"> <i class="fas fa-user-plus"></i> </a>
+            </div>
+          </div>
+          <div class="user-space">
+            <p id="mentioned-users"> </p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-secondary" onclick="cancel()" data-dismiss="modal">Cancel</button>
             <button type="submit" class="btn btn-info">Add</button>
           </div>
         </form>
       </div>
     </div>
   </div>
+
   <!-- -------------------------------------------------Search user modal --------------------------------------- -->
 
   <script src="/js/prism_dark.js"></script>
@@ -224,35 +248,47 @@
 
   <script type="text/javascript">
 
+    document.getElementById('mentioned').value = 'none';
+    function mentionUser() {
+      console.log('add btn');
+      let username = document.getElementById('mention-input').value;
+      let userNode = document.createElement('a');
+      userNode.innerHTML = username;
+      userNode.href = "#";
+      userNode.title = username+"@mail.com";
+      document.getElementById('mentioned-users').appendChild(userNode);
+
+      if(document.getElementById('mentioned').value == 'none'){
+        document.getElementById('mentioned').value = username;
+        console.log('1st : ', document.getElementById('mentioned').value);
+      }
+
+      else{
+        document.getElementById('mentioned').value = document.getElementById('mentioned').value + "#" + username;
+        console.log('apppended : ', document.getElementById('mentioned').value);
+      }
+    }
+
+    function cancel(){
+      document.getElementById('mentioned-users').innerHTML = '';
+      document.getElementById('mentioned').value = 'none';
+    }
+
     $(document).ready(() => {
       $("code").append("<a href='#' class='badge badge-secondary'>Copy</a>");
 
-      $('#add-comment-btn').click(() => {
-        console.log('add-comment-btn');
-        // document.getElementById('add-comment-btn').style.display = 'none';
-        // document.getElementById('comment-box').style.display = 'block';
-        // document.getElementById('post-btn').style.display = 'block';
-        // document.getElementById('cancel-btn').style.display = 'block';
-      })
+      document.querySelector("#savepost").addEventListener('click', (e) => {
+        const post_id = document.getElementById('post_id').value;
+        window.location = "/users/save_post/" + post_id;
+        console.log('save_post() : ', post_id);
+      });
 
-      $('#cancel-btn-submit').click(() => {
-        document.getElementById('add-comment-btn').style.display = 'block';
-        document.getElementById('comment-box').style.display = 'none';
-        document.getElementById('post-btn').style.display = 'none';
-        document.getElementById('cancel-btn').style.display = 'none';
-      })
-    });
-
-    document.querySelector("#savepost").addEventListener('click', (e) => {
-      const post_id = document.getElementById('post_id').value;
-      window.location = "/users/save_post/" + post_id;
-      console.log('save_post() : ', post_id);
-    });
-
-    document.querySelector("#post-btn-submit").addEventListener('click', (e) => {
-      const userID = document.querySelector("#UserPostID").value;
-      window.location = "/users/comment/" + userID;
-    });
+      document.querySelector("#post-btn-submit").addEventListener('click', (e) => {
+        document.getElementById('mentioned').value = 'none';
+        const userID = document.querySelector("#UserPostID").value;
+        window.location = "/users/comment/" + userID;
+      });
+    })
   </script>
 </body>
 
