@@ -116,10 +116,11 @@ module.exports.post_register = async (req, res, next) => {
               } else {
                 console.log("Message sent: " + response.message);
                 res.end("sent");
+              
+                req.flash('success', 'An email has been sent to the email provided. Login to continue');
+                res.redirect('/admin/login');
               }
             });
-            req.flash('success', 'An email has been sent to the email provided. Login to continue');
-            res.redirect('/admin/login');
           })
           .catch(err => console.log(err));
       });
