@@ -15,6 +15,7 @@
   <link href="/css/prism_light.css" rel="stylesheet" />
   <link href="/css/readmore.css" rel="stylesheet" />
   <link href="/css/autocomplete.css" rel="stylesheet" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
   <div class="entire-page">
@@ -77,16 +78,16 @@
           </div>
 
           <div class="tags">
-              <%
+            <%
             for(var i=0; i<posts.tags.length; i++){ %>
-              <% if (posts.tags[i] != 'none'){ %>
-              <div class="tag-word">
-                <p><a href="#"><%= posts.tags[i] %></a></p>
-              </div>
-              <% } %>
-              <%}
-          %>
+            <% if (posts.tags[i] != 'none'){ %>
+            <div class="tag-word">
+              <p><a href="#"><%= posts.tags[i] %></a></p>
             </div>
+            <% } %>
+            <%}
+          %>
+          </div>
 
           <div class="secondRow">
             <% if (posts.type == 'simple'){ %>
@@ -99,6 +100,13 @@
             <p><%= posts.body %></p>
             <% } %> </div>
 
+            <% if (posts.fileLink != 'none') {%>
+          <div class="file-section">
+            <p> Attached files </p>
+            <a href="<%= posts.fileLink %>" target="_blank"> <div class="file-display"> <i class="far fa-file-alt"></i> <%= posts.fileName %> </div> </a>
+            <a href=""> <div class="file-display"> <i class="far fa-file-alt"></i> File2.zip </div> </a>
+          </div>
+          <% } %>
           <hr>
 
           <a href="#">
@@ -171,6 +179,7 @@
       <% }) %>
     </div>
 
+
     <div class="right">
       <div class="related-posts">
         <p class="header">Related Topics</p>
@@ -225,12 +234,14 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/users/postcomment" method="POST">
-          <input type="hidden" name="postID" value="<%=posts._id%>" id="UserPostID">
-          <input type="hidden" name="postTitle" value="<%=posts.title%>" id="UserPostID">
-          <input type="hidden" name="receiver_id" value="<%=posts.author_id%>" id="UserPostID">
-          <input type="hidden" name="mentioned" id="mentioned" value="none">
-          <div class="modal-body">
+
+        <div class="modal-body" style="height: 100px;">
+          <form action="/users/postcomment" method="POST">
+            <input type="hidden" name="postID" value="<%=posts._id%>" id="UserPostID">
+            <input type="hidden" name="postTitle" value="<%=posts.title%>" id="UserPostID">
+            <input type="hidden" name="receiver_id" value="<%=posts.author_id%>" id="UserPostID">
+            <input type="hidden" name="mentioned" id="mentioned" value="none">
+
             <div class="upper-body">
               <input type="text" name="commentBody" id="comment-input" value="">
             </div>
@@ -238,14 +249,15 @@
               <input type="text" name="" placeholder="Mention user.." id="mention-input">
               <a href="#" onclick="mentionUser()" id="add-user-btn"> <i class="fas fa-user-plus"></i> </a>
             </div>
-          </div>
-          <div class="user-space">
-            <p id="mentioned-users"> </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" onclick="cancel()" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-info">Add</button>
-          </div>
+
+            <div class="user-space">
+              <p id="mentioned-users"> </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="cancel()" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-info">Add</button>
+        </div>
         </form>
       </div>
     </div>
@@ -262,13 +274,17 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-  <script
-    src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.2.2/dist/latest/bootstrap-autocomplete.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-  <!-- Clipboard.js -->
+  <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
   <script type="text/javascript">
+
+    $.ajax({
+      url: '/users/get_all_users',
+      method: 'get'
+    }).done(res => {
+      console.log(res);
+    })
 
     function toast() {
       var x = document.getElementById("snackbar");

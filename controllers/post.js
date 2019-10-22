@@ -435,3 +435,12 @@ module.exports.uploadfile = async (req, res) => {
   console.log('upload file');
   res. redirect('back');
 }
+
+module.exports.get_all_users = async (req, res) => {
+  console.log('get all users');
+  User.find().then((users) => {
+    return res.status(200).json({
+      Users : users
+    });
+  })  
+}
