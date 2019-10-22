@@ -19,7 +19,7 @@
 
   <div class="entire-page">
     <div class="left">
-      <a href="#"> <img class="user-img" src="https://robohash.org/<%=posts.author_id%>" alt=""> </a>
+      <!-- <a href="#"> <img class="user-img" src="https://robohash.org/<%=posts.author_id%>" alt=""> </a>
       <div class="name">
 
         <h2><%= posts.author %></h2>
@@ -55,22 +55,39 @@
       </div>
       <div class="tag-area">
 
-      </div>
+      </div> -->
     </div>
 
     <div class="mid">
+
+      <div id="snackbar">Copied to clipboard</div>
+
+
       <section class="allPost">
         <div class="eachPost">
           <div class="firstRow">
             <div class="title">
               <h1><b> <%= posts.title %></b> </h1>
             </div>
-            <div class="twoButton">
-            </div>
+            <button type="button" id="savepost" class="btn btn-outline-info">Save Post</button>
           </div>
           <div class="dateRow">
             <p><%= posts.date %></p>
+            <p> <strong> · Views <%= posts.view %></strong> </p>
           </div>
+
+          <div class="tags">
+              <%
+            for(var i=0; i<posts.tags.length; i++){ %>
+              <% if (posts.tags[i] != 'none'){ %>
+              <div class="tag-word">
+                <p><a href="#"><%= posts.tags[i] %></a></p>
+              </div>
+              <% } %>
+              <%}
+          %>
+            </div>
+
           <div class="secondRow">
             <% if (posts.type == 'simple'){ %>
             <p><%= posts.body %></p>
@@ -82,16 +99,19 @@
             <p><%= posts.body %></p>
             <% } %> </div>
 
-          <div class="code-row">
-            <% if(posts.code != 'none'){ %>
-            <div class="code-show">
-              <pre>
-                  <code class="language-js"><%= posts.code %></code>
-                </pre>
+          <hr>
+
+          <a href="#">
+            <div class="user-section">
+              <div class="img">
+                <img src="https://robohash.org/<%=posts.author_id%>" id="user_img" alt="">
+              </div>
+              <div class="non_img">
+                <p class="name"><strong><%= posts.author %> </strong> </p>
+                <p class="username"><%= posts.author_username %></p>
+              </div>
             </div>
-            <%}
-          %>
-          </div>
+          </a>
 
           <hr>
 
@@ -99,12 +119,12 @@
             <div class="upvotes">
               <a href="/users/upvote/<%= posts._id %>/<%= posts.title %>/<%= posts.author_id %>/<%= posts.author_username %>"
                 name="upvote-btn" id="<%= posts._id %>"><button type="button" class="btn btn-info" id="upvote-btn"><i
-                    class="far fa-thumbs-up"></i> Upvote</button></a>
+                    class="far fa-thumbs-up"></i> Upvote <strong> <%= posts.upvote %> </strong></button></a>
             </div>
             <div class="comments">
               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalComment"
                 id="add-comment-btn"><i class="far fa-comment"></i> Add
-                Comment</button>
+                Comment <strong> <%= posts.comment %></strong></button>
             </div>
 
           </div>
@@ -246,7 +266,33 @@
     src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.2.2/dist/latest/bootstrap-autocomplete.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+  <!-- Clipboard.js -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
   <script type="text/javascript">
+
+    function toast() {
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    }
+
+    var pre = document.getElementsByTagName('pre');
+    for (var i = 0; i < pre.length; i++) {
+      var isLanguage = pre[i].children[0].className.indexOf('language-');
+      if (isLanguage === 0) {
+        var button = document.createElement('button');
+        button.className = 'copy-button';
+        button.textContent = 'Copy';
+
+        pre[i].appendChild(button);
+      }
+    }
+    var copyCode = new Clipboard('.copy-button', {
+      target: function (trigger) {
+        toast();
+        return trigger.previousElementSibling;
+      }
+    });
 
     document.getElementById('mentioned').value = 'none';
     function mentionUser() {
@@ -255,40 +301,38 @@
       let userNode = document.createElement('a');
       userNode.innerHTML = username;
       userNode.href = "#";
-      userNode.title = username+"@mail.com";
+      userNode.title = username + "@mail.com";
       document.getElementById('mentioned-users').appendChild(userNode);
 
-      if(document.getElementById('mentioned').value == 'none'){
+      if (document.getElementById('mentioned').value == 'none') {
         document.getElementById('mentioned').value = username;
         console.log('1st : ', document.getElementById('mentioned').value);
       }
 
-      else{
+      else {
         document.getElementById('mentioned').value = document.getElementById('mentioned').value + "#" + username;
         console.log('apppended : ', document.getElementById('mentioned').value);
       }
+      document.getElementById('mention-input').value = '';
     }
 
-    function cancel(){
+    function cancel() {
       document.getElementById('mentioned-users').innerHTML = '';
       document.getElementById('mentioned').value = 'none';
     }
 
-    $(document).ready(() => {
-      $("code").append("<a href='#' class='badge badge-secondary'>Copy</a>");
+    // document.querySelector("#post-btn-submit").addEventListener('click', (e) => {
+    //     document.getElementById('mentioned').value = 'none';
+    //     const userID = document.querySelector("#UserPostID").value;
+    //     window.location = "/users/comment/" + userID;
+    //   });
 
-      document.querySelector("#savepost").addEventListener('click', (e) => {
-        const post_id = document.getElementById('post_id').value;
-        window.location = "/users/save_post/" + post_id;
-        console.log('save_post() : ', post_id);
-      });
+    document.querySelector("#savepost").addEventListener('click', (e) => {
+      const post_id = document.getElementById('post_id').value;
+      window.location = "/users/save_post/" + post_id;
+      console.log('save_post() : ', post_id);
+    });
 
-      document.querySelector("#post-btn-submit").addEventListener('click', (e) => {
-        document.getElementById('mentioned').value = 'none';
-        const userID = document.querySelector("#UserPostID").value;
-        window.location = "/users/comment/" + userID;
-      });
-    })
   </script>
 </body>
 

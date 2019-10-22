@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
-const flash = require('connect-flash');
+const flash = require('express-flash');
 const app = express();
 
 app.use(express.static('public'));
@@ -25,7 +25,7 @@ mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true}, (er
 });
 */
 
-mongoose.connect('mongodb+srv://safwan:home761049@cluster0-bfa2a.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true}, (err)=>{
+mongoose.connect('mongodb+srv://safwan:home761049@blogger-aahxs.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true}, (err)=>{
     console.log("atlas db connected");
 });
 

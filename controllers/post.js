@@ -10,6 +10,7 @@ const Post = require('../models/post');
 const Comment = require('../models/comment');
 const Notif = require('../models/notifs');
 var mongoose = require('mongoose');
+
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error: '));
 db.once('open', function (callback) {
@@ -106,6 +107,7 @@ module.exports.create_post = (req, res) => {
   const comment = 0;
   const tags = 'none';
   const code = 'none';
+  const code2 = 'none';
   let errors = [];
   console.log("title, body, date: " + title + ", " + body + ", " + date);
   if (!title || !body) {
@@ -126,7 +128,8 @@ module.exports.create_post = (req, res) => {
       upvote,
       comment,
       tags,
-      code
+      code,
+      code2
     });
   }
   else {
@@ -143,11 +146,13 @@ module.exports.create_post = (req, res) => {
       upvote,
       comment,
       tags,
-      code
+      fileName: code,
+      fileLink: code2
     });
 
     newPost.save().then((err, dbPost) => {
       console.log("Post created : " + dbPost);
+      req.flash('quick_post', 'quick post');
       res.redirect('/');
     })
 
@@ -155,7 +160,7 @@ module.exports.create_post = (req, res) => {
 }
 
 module.exports.full_post = (req, res) => {
-  console.log('in full post', req.body);
+  console.log('  post', req.body);
   let title = req.body.title;
   let body = req.body.area;
   let type = 'complex';
@@ -169,7 +174,9 @@ module.exports.full_post = (req, res) => {
   let tag = req.body.tags;
   let code = req.body.code;
   let tags = tag.split(' ');
-  console.log('tags : ', tags);
+  let file_name = req.body.file_name;
+  let file_link = req.body.file_link;
+  console.log('file ', file_name, file_link);
   let errors = [];
   console.log("title, body, date: " + title + ", " + body + ", " + date);
   if (!title || !body) {
@@ -190,7 +197,8 @@ module.exports.full_post = (req, res) => {
       upvote,
       comment,
       tags,
-      code
+      file_name,
+      file_link
     });
   }
   else {
@@ -207,11 +215,14 @@ module.exports.full_post = (req, res) => {
       upvote,
       comment,
       tags,
-      code
+      code,
+      fileName: file_name,
+      fileLink: file_link
     });
 
     newPost.save().then((err, dbPost) => {
       console.log("Post created : " + dbPost);
+      req.flash('full_post', 'full post');
       res.redirect('/');
     })
 
@@ -420,3 +431,7 @@ module.exports.delete_post = async (req, res) => {
   res.redirect('back');
 }
 
+module.exports.uploadfile = async (req, res) => {
+  console.log('upload file');
+  res. redirect('back');
+}

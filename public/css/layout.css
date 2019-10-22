@@ -99,6 +99,13 @@
       border-bottom: 1px solid rgb(204, 203, 203);
     }
 
+    .navlinks a{
+      text-decoration: none;
+      color: black;
+    }
+    .navlinks a:hover{
+      color: rgb(20, 157, 161);
+    }
 
     @media only screen and (max-width: 768px) {
       .navlinks{

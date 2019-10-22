@@ -44,10 +44,11 @@ code:hover .badge{
 
 /* ++++++++++++ Left ++++++++++++ */
 .left {
-  position: sticky;
-  left: 0;
+  /* position: fixed;
+  top: 0;
+  left: 0; */
   width: 20%;
-  border-right: 1px solid rgb(230, 229, 229);
+  /* border-right: 1px solid rgb(230, 229, 229); */
   float: left;
 }
 
@@ -65,10 +66,6 @@ code:hover .badge{
 .username {
   color: rgb(151, 151, 151);
   text-align: center;
-}
-
-#savepost {
-  margin-left: 38%;
 }
 
 .left hr {
@@ -127,7 +124,7 @@ code:hover .badge{
 /* +++++++++++++++++++++++++++++++ */
 
 .mid {
-  width: 55%;
+  width: 45%;
   margin-left: 50px;
 }
 
@@ -172,10 +169,22 @@ code:hover .badge{
   margin-left: 10px;
 }
 
+.firstRow{
+  display: flex;
+  justify-content: space-between;
+}
+
 .firstRow .title {
+  display: flex;
+  justify-content: space-between;
   font-size: 35px;
   margin-left: 10px;
   font-family: "Abel", sans-serif;
+}
+#savepost{
+  margin-top: 5px;
+  height: 40px;
+  float: right;
 }
 
 .firstRow .title p {
@@ -237,6 +246,10 @@ a[name="view-post"] {
   border: 1px solid rgb(23, 165, 190);
 }
 
+.dateRow{
+  display: flex;
+}
+
 .dateRow p {
   font-size: 12px;
   color: gray;
@@ -248,7 +261,7 @@ a[name="view-post"] {
 }
 
 .thirdRow {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   display: flex;
 }
 
@@ -259,6 +272,19 @@ a[name="view-post"] {
 
 .thirdRow .comments {
   margin-left: 10px;
+}
+
+.copy-button{
+  float: right;
+  border-radius: 0px 0px 15px 15px;
+  background-color: rgb(73, 72, 72); 
+  color: white;
+  font-size: 12px;
+  display: none;
+}
+
+pre:hover .copy-button{
+  display: block;
 }
 
 #comment-box {
@@ -312,6 +338,13 @@ a[name="view-post"] {
   border-bottom: 1px solid rgb(23, 165, 190);
 }
 
+.right a{
+  color: rgb(23, 165, 190);
+}
+
+.mid a{
+  color: rgb(23, 165, 190);
+}
 /* ********* Comment ********* */
 .all-comments {
   width: 80%;
@@ -380,8 +413,10 @@ a[name="view-post"] {
 .tags a{
   display: inline-block;
   width: max-content;
-  background-color: rgb(171, 211, 223);
-  color: rgb(6, 134, 173);
+  border: 2px solid gray;
+  padding-left: 2px;
+  padding-right: 2px;
+  color: gray;
   font-size: 14px;
   text-decoration: none;
   margin-left: 5px;
@@ -431,4 +466,77 @@ a[name="view-post"] {
 }
 .right .topic a:hover {
   color: rgb(131, 162, 221);
+}
+
+/* +++++ Toast +++++ */
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+/* +++++++++++ User Info +++++++++++++ */
+a{
+  text-decoration: none;
+  color: black;
+}
+a:hover{
+  color: black;
+  text-decoration: none;
+}
+.user-section{
+  display: flex;
+  margin-left: 20px;
+}
+#user_img{
+  border-radius: 50%;
+  width: 80px;
+  border: 1px solid rgb(236, 236, 236);
+}
+.non_img{
+  margin-left: 45px;
+}
+.username{
+  font-size: 12px;
+  color: gray;
+  float: left;
+}
+.name{
+  font-size: 18px;
 }

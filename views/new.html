@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="new.css"> -->
+  <link rel="stylesheet" href="https://drive.google.com/open?id=1HI7Jcu8_nbl1lO5C0Do8PLx658y0Tm5Y">
+  <title>Document</title>
+</head>
+<body>
+  <form action="/users/uploadfile">
+  <input type="file" name="inputFile" id="inputFile">
+  <br>
+  <button onclick="show()">Show file</button>
+  <button type="submit">Upload</button>
+</form>
+</body>
+<script>
+  function show(){
+    console.log(document.getElementById('inputFile').value);
+  }
+</script>
+</html>

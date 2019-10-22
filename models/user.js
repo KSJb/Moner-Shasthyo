@@ -6,6 +6,9 @@ var UserSchema = mongoose.Schema({
   name: {
     type: String
   },
+  unreadNotifs: {
+    type: String
+  },
   username: {
     type: String
   },
@@ -21,6 +24,7 @@ var UserSchema = mongoose.Schema({
   secretToken: {
     type: String
   },
+  
   savePosts: [{
     type: String
   }]

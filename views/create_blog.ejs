@@ -14,6 +14,8 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>
 
+  <div id="snackbar"></div>
+
   <div class="entire">
     <div class="left">
       <div class="upper">
@@ -46,12 +48,13 @@
           <% } %>
           
           <input type="hidden" name="tags" id="tags" value="none">
-          <input type="hidden" name="code" id="code" value="none">
+          <input type="hidden" name="file_link" id="file_link" value="none">
+          <input type="hidden" name="file_name" id="file_name" value="none">
         </div>
         <br>
         <div class="textArea">
           <% if (!edit) {%>
-            <textarea class="area" id="body-area" name="area"> </textarea>
+              <textarea class="area" id="body-area" name="area"> </textarea>
           <% } %>
 
           <% if (edit) {%>
@@ -89,15 +92,7 @@
             document.getElementById('tags').value = tag;
           }
           console.log("hidden tag : " + document.getElementById('tags').value);
-        }
-
-        function addCode() {
-          console.log('addCode()');
-          let code = document.getElementById('code-field').value;
-          if (code != null) {
-            document.getElementById('code').value = code;
-          }
-          console.log("hidden code : " + document.getElementById('code').value);
+          toast('Tags added');
         }
 
       </script>
@@ -126,36 +121,44 @@
     </div>
     <!------------------------------------------Tag----------------------------------------------------------------------------------->
 
-    <!----------------------------------------------------- Code field----------------------------------------------------------------->
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Add Code Segments</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Language <select id="lang">
-                <option>C</option>
-                <option>C++</option>
-                <option>Java</option>
-                <option>JavaScript</option>
-                <option>Python</option>
-                <option>HTML</option>
-                <option>CSS</option>
-              </select> </p>
-            <textarea name="code-area" id="code-field" class="code-area" cols="30" rows="10"></textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-info" onclick="addCode()">Add</button>
-          </div>
+    <!----------------------------------------------------- Upload file field----------------------------------------------------------------->
+<div class="modal fade" id="file-upload-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">File Upload</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="upper-boy">
+        Select a file from your computer
+        <input type="file" name="inputFile" id="inputFile"> <br>
+        <input type="checkbox" onclick="upperCheck()" name="" id="file">
         </div>
+
+        <hr>
+
+      <div class="lower-body">
+        <div class="contents">
+        Or drop a link 
+        <input type="text" name="fileName" placeholder="File name" id="fileName"> <br> <br>
+        <input type="text" name="fileLink" placeholder="Enter the link here" id="fileLink"> <br> <br>
+      </div>
+      <div class="tick">
+        <input type="checkbox" onclick="lowerCheck()" name="" id="link">
+      </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" onclick="uploadFile()" class="btn btn-info" data-dismiss="modal">Upload</button>
       </div>
     </div>
-    <!------------------------------------------Code----------------------------------------------------------------------------------->
+  </div>
+</div>
+    <!----------------------------------------------------------------------------------------------------------------------------->
 
     <div class="right">
       <div class="options">Options</div>
@@ -166,7 +169,7 @@
       <p id="add-code-btn" data-toggle="modal" data-target="#exampleModalLong"><a href="#"><i class="fas fa-code"></i>
           Add Code Segments</a></p> -->
         <hr>
-        <p><a href="#"><i class="far fa-file-alt"></i></i> Add File</a></p>
+        <p data-toggle="modal" data-target="#file-upload-modal"><a href="#"><i class="far fa-file-alt"></i></i> Add File</a></p>
         <hr>
         <p><a href="#"><i class="fas fa-user-plus"></i></i> Add Courtesy</a></p>
         <hr>
@@ -197,6 +200,45 @@
     crossorigin="anonymous"></script>
 
   <script>
+
+    function upperCheck(){
+      let lower = document.getElementById('link').checked;
+      if (lower){
+        document.getElementById('link').checked = false;
+      }
+    }
+    function lowerCheck(){
+      let lower = document.getElementById('file').checked;
+      if (lower){
+        document.getElementById('file').checked = false;
+      }
+    }
+
+    function uploadFile(){
+      let lower = document.getElementById('link').checked;
+      let upper = document.getElementById('file').checked;
+      if (lower){
+        document.getElementById('file-upload-modal').style.display = 'none';
+        
+        document.getElementById('file_link').value = document.getElementById('fileLink').value; 
+        document.getElementById('file_name').value = document.getElementById('fileName').value; 
+        toast('File link added');
+      }
+      if (upper){
+        console.log('upper selected');
+        toast('File added');
+      }
+      if (!lower && !upper){
+        toast('Mark either one of the checkboxes');
+      }
+    }
+
+    function toast(msg) {
+      var x = document.getElementById("snackbar");
+      x.innerHTML = msg;
+      x.className = "show";
+      setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    }
 
     function discard() {
       Swal.fire({

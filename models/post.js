@@ -35,7 +35,10 @@ var PostSchema = mongoose.Schema({
   tags: [{
     type: String
   }],
-  code: {
+  fileName: {
+    type: String
+  },
+  fileLink: {
     type: String
   }
 });

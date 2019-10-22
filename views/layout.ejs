@@ -23,19 +23,26 @@
             <p>Home</p>
           </div>
         </a>
+        <a href="#">
         <div class="create-post">
-          <p id="create-btn" data-toggle="modal" data-target="#exampleModalCenter">Create Post</p>
+           <p id="create-btn" data-toggle="modal" data-target="#exampleModalCenter">Create Post</p> 
         </div>
+      </a>
+
+      <a href="/users/get_notifs">
         <div class="notifs">
-         <a href="/users/get_notifs"> <p>Notifications</p> </a>
+          <p>Notifications</p> 
         </div>
+      </a>
+
+      <a href="/users/profile">
         <div class="notifs">
-          <a href="/users/profile">
             <div class="profile">
               <p>Profile</p>
             </div>
-          </a>
         </div>
+      </a>
+      
         <div class="search" id="id-search">
           <p>Search</p>
         </div>
@@ -83,11 +90,10 @@
     crossorigin="anonymous"></script>
 
   <script>
-    $(document).ready(() => {
-
-      document.querySelector("#log-btn").addEventListener('click', (e) => {
+    document.querySelector("#log-btn").addEventListener('click', (e) => {
         window.location = "/admin/logout";
       });
+    $(document).ready(() => {
 
       var vis = false;
       $('#id-search').click(() => {

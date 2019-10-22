@@ -11,6 +11,20 @@
 </head>
 
 <body>
+
+  <% if (messages.login) {%>
+    <div class="alert alert-success" role="alert">
+      Login successfull. Logged in as <strong> <%= user.username %> </strong>
+    </div>
+  <% } %>
+
+  <% if (messages.full_post || messages.quick_post) {%>
+    <div class="alert alert-success" role="alert">
+      Your post has been published
+    </div>
+  <% } %>
+ 
+
   <div class="notif-contents" id="notif-contents">
     <% if (notifs == true) { %>
     <div class="notif_action" id="notif-action">
