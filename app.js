@@ -25,9 +25,10 @@ mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true}, (er
 });
 */
 
-mongoose.connect('mongodb+srv://safwan:home761049@blogger-aahxs.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true}, (err)=>{
-    console.log("atlas db connected");
-});
+mongoose.connect('mongodb+srv://safwan:peeppeep@blogger-aahxs.mongodb.net/testing?retryWrites=true&w=majority',
+  { useNewUrlParser: true },
+  () => console.log("atlas db connected")
+);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -68,7 +69,7 @@ app.use("/users", usersRoutes); // Inside Homepage
 app.use("/", usersRoutes); // Get the start page
 
 const PORT = process.env.PORT || 4003;
-app.listen(PORT, function(){
+app.listen(PORT, function () {
   console.log('Listening to ', PORT);
 });
 // Already in use solution : https://stackoverflow.com/questions/4075287/node-express-eaddrinuse-address-already-in-use-kill-server
