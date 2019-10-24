@@ -150,30 +150,17 @@
           <div class="comment-firstRow">
             <div class="comment-author">
               <div class="auth-img">
-                <a href="#"> <img class="img" src="https://robohash.org/<%=comments.commentedBy%>"> </a>
+                <a href="#"> <img class="comment-img" src="https://robohash.org/<%=comments.commentedBy%>"> </a>
               </div>
               <div class="author-date">
-                <p><strong> <%= comments.commentedBy_Username %> </strong></p>
-                <p class="date"><%= comments.date %></p>
+                <strong> <%= comments.commentedBy_Username %> </strong> 
+                <!-- <p class="date"><%= comments.date %></p> -->
+                <p class="comment_body"><%= comments.body %></p>
               </div>
               <hr>
             </div>
           </div>
           <div class="comment-secondRow">
-            <p><%= comments.body %></p>
-
-            <div class="tags">
-              <%
-            for(var i=0; i<comments.mentionedUsers.length; i++){ %>
-              <% if (comments.mentionedUsers[i] != 'none'){ %>
-              <div class="tag-word">
-                <p><a href="#"><%= comments.mentionedUsers[i] %></a></p>
-              </div>
-              <% } %>
-              <%}
-          %>
-            </div>
-
           </div>
           <hr>
       </section>
