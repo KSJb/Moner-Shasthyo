@@ -100,11 +100,12 @@
             <p><%= posts.body %></p>
             <% } %> </div>
 
-            <% if (posts.fileLink != 'none') {%>
+          <% if (posts.fileLink != 'none') {%>
           <div class="file-section">
             <p> Attached files </p>
-            <a href="<%= posts.fileLink %>" target="_blank"> <div class="file-display"> <i class="far fa-file-alt"></i> <%= posts.fileName %> </div> </a>
-            <a href=""> <div class="file-display"> <i class="far fa-file-alt"></i> File2.zip </div> </a>
+            <a href="<%= posts.fileLink %>" target="_blank">
+              <div class="file-display"> <i class="far fa-file-alt"></i> <%= posts.fileName %> </div>
+            </a>
           </div>
           <% } %>
           <hr>
@@ -235,27 +236,18 @@
           </button>
         </div>
 
-        <div class="modal-body" style="height: 100px;">
+        <div class="modal-body">
           <form action="/users/postcomment" method="POST">
             <input type="hidden" name="postID" value="<%=posts._id%>" id="UserPostID">
             <input type="hidden" name="postTitle" value="<%=posts.title%>" id="UserPostID">
             <input type="hidden" name="receiver_id" value="<%=posts.author_id%>" id="UserPostID">
-            <input type="hidden" name="mentioned" id="mentioned" value="none">
 
             <div class="upper-body">
               <input type="text" name="commentBody" id="comment-input" value="">
             </div>
-            <div class="lower-body" id="lower-body">
-              <input type="text" name="" placeholder="Mention user.." id="mention-input">
-              <a href="#" onclick="mentionUser()" id="add-user-btn"> <i class="fas fa-user-plus"></i> </a>
-            </div>
-
-            <div class="user-space">
-              <p id="mentioned-users"> </p>
-            </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" onclick="cancel()" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <button type="submit" class="btn btn-info">Add</button>
         </div>
         </form>
@@ -278,13 +270,6 @@
   <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
   <script type="text/javascript">
-
-    $.ajax({
-      url: '/users/get_all_users',
-      method: 'get'
-    }).done(res => {
-      console.log(res);
-    })
 
     function toast() {
       var x = document.getElementById("snackbar");
@@ -309,39 +294,6 @@
         return trigger.previousElementSibling;
       }
     });
-
-    document.getElementById('mentioned').value = 'none';
-    function mentionUser() {
-      console.log('add btn');
-      let username = document.getElementById('mention-input').value;
-      let userNode = document.createElement('a');
-      userNode.innerHTML = username;
-      userNode.href = "#";
-      userNode.title = username + "@mail.com";
-      document.getElementById('mentioned-users').appendChild(userNode);
-
-      if (document.getElementById('mentioned').value == 'none') {
-        document.getElementById('mentioned').value = username;
-        console.log('1st : ', document.getElementById('mentioned').value);
-      }
-
-      else {
-        document.getElementById('mentioned').value = document.getElementById('mentioned').value + "#" + username;
-        console.log('apppended : ', document.getElementById('mentioned').value);
-      }
-      document.getElementById('mention-input').value = '';
-    }
-
-    function cancel() {
-      document.getElementById('mentioned-users').innerHTML = '';
-      document.getElementById('mentioned').value = 'none';
-    }
-
-    // document.querySelector("#post-btn-submit").addEventListener('click', (e) => {
-    //     document.getElementById('mentioned').value = 'none';
-    //     const userID = document.querySelector("#UserPostID").value;
-    //     window.location = "/users/comment/" + userID;
-    //   });
 
     document.querySelector("#savepost").addEventListener('click', (e) => {
       const post_id = document.getElementById('post_id').value;

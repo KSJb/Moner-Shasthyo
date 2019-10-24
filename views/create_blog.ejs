@@ -199,6 +199,26 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyBD7TCKboi5-kw0ePtLnHDAeJqff3kDM1g",
+    authDomain: "badblogger-d11d8.firebaseapp.com",
+    databaseURL: "https://badblogger-d11d8.firebaseio.com",
+    projectId: "badblogger-d11d8",
+    storageBucket: "badblogger-d11d8.appspot.com",
+    messagingSenderId: "20949061241",
+    appId: "1:20949061241:web:08e6aaea1494db04ab8ea8",
+    measurementId: "G-S1NFJPXJC7"
+  };
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+  <script src="/js/fileUpload.js"></script>
   <script>
 
     function upperCheck(){

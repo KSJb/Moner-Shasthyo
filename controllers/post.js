@@ -313,12 +313,7 @@ module.exports.post_comment = async (req, res) => {
   const commentedBy = req.user._id;
   const commentedBy_Username = req.user.username;
   const receiver_id = req.body.receiver_id;
-  const mentionedUsersString = req.body.mentioned;  
-
-  let mentionedUsers;
-  mentionedUsers = mentionedUsersString.split('#');
-  
-  console.log('mentioned emails : ', mentionedUsers);
+  const mentionedUsers = 'none';
 
   if (commentedBy != receiver_id) {
     send_notif(myPostID, myPostTitle, commentedBy, commentedBy_Username, receiver_id, 'comment');
@@ -439,7 +434,7 @@ module.exports.uploadfile = async (req, res) => {
 module.exports.get_all_users = async (req, res) => {
   console.log('get all users');
   User.find().then((users) => {
-    return res.status(200).json({
+    return res.json({
       Users : users
     });
   })  
