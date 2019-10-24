@@ -259,6 +259,9 @@ a[name="view-post"] {
 .secondRow p {
   font-size: 20px;
 }
+.secondRow img{
+  max-width: 100%;
+}
 
 .thirdRow {
   /* margin-top: 10px; */
