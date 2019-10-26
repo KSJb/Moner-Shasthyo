@@ -173,7 +173,7 @@ module.exports.full_post = (req, res) => {
   let upvote = 0;
   let tag = req.body.tags;
   let code = req.body.code;
-  let tags = tag.split(' ');
+  let tags = tag.split(',');
   let file_name = req.body.file_name;
   let file_link = req.body.file_link;
   console.log('file ', file_name, file_link);
