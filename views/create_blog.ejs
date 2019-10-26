@@ -24,29 +24,29 @@
         </div>
         <div class="header">
           <% if (!edit) {%>
-            <p>Create Post</p>
+          <p>Create Post</p>
           <% } %>
 
           <% if (edit) {%>
-            <p>Edit Post</p>
+          <p>Edit Post</p>
           <% } %>
 
         </div>
       </div>
-        <form id="main-form" class="main-form" action="<%= route %>" method="POST">
-          <% console.log(route) %>
+      <form id="main-form" class="main-form" action="<%= route %>" method="POST">
+        <% console.log(route) %>
         <div class="title-area">
           <% if (!edit) {%>
-            <input type="text" name="title" id="title" class="title" placeholder="Title">
-            <input type="hidden" name="post_id" id="post_id">
+          <input type="text" name="title" id="title" class="title" placeholder="Title">
+          <input type="hidden" name="post_id" id="post_id">
           <% } %>
 
           <% if (edit) {%>
-            <%console.log("title : ", post.title);%>
-            <input type="hidden" name="post_id" id="post_id" value="<%= post._id %>">
-            <input type="text" name="title" id="title" class="title" value="<%= post.title %>">
+          <%console.log("title : ", post.title);%>
+          <input type="hidden" name="post_id" id="post_id" value="<%= post._id %>">
+          <input type="text" name="title" id="title" class="title" value="<%= post.title %>">
           <% } %>
-          
+
           <input type="hidden" name="tags" id="tags" value="none">
           <input type="hidden" name="file_link" id="file_link" value="none">
           <input type="hidden" name="file_name" id="file_name" value="none">
@@ -54,23 +54,23 @@
         <br>
         <div class="textArea">
           <% if (!edit) {%>
-              <textarea class="area" id="body-area" name="area"> </textarea>
+          <textarea class="area" id="body-area" name="area"> </textarea>
           <% } %>
 
           <% if (edit) {%>
-            <textarea class="area" id="body-area" name="area" val> <%= post.body %> </textarea>
+          <textarea class="area" id="body-area" name="area" val> <%= post.body %> </textarea>
           <% } %>
         </div>
-        
+
         <div class="post-div">
-            <% if (!edit) {%>
-              <button type="submit" id="create-btn" class="btn btn-info btn-lg">Publish</button>
-            <% } %>
-  
-            <% if (edit) {%>
-              <button type="button" id="create-btn" class="btn btn-secondary">Cancel</button>
-              <button type="submit" id="create-btn" onclick="func()" class="btn btn-info">Save Changes</button>
-            <% } %>
+          <% if (!edit) {%>
+          <button type="submit" id="create-btn" class="btn btn-info btn-lg">Publish</button>
+          <% } %>
+
+          <% if (edit) {%>
+          <button type="button" id="create-btn" class="btn btn-secondary">Cancel</button>
+          <button type="submit" id="create-btn" onclick="func()" class="btn btn-info">Save Changes</button>
+          <% } %>
         </div>
       </form>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -83,8 +83,8 @@
           width: 1400
         };
         CKEDITOR.replace('area', config);
-        function func(){ let x=1;}
-      
+        function func() { let x = 1; }
+
         function addTag() {
           console.log('addTag()');
           let tag = document.getElementById('tag-field').value;
@@ -122,42 +122,43 @@
     <!------------------------------------------Tag----------------------------------------------------------------------------------->
 
     <!----------------------------------------------------- Upload file field----------------------------------------------------------------->
-<div class="modal fade" id="file-upload-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">File Upload</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="upper-boy">
-        Select a file from your computer
-        <input type="file" name="inputFile" id="inputFile"> <br>
-        <input type="checkbox" onclick="upperCheck()" name="" id="file">
+    <div class="modal fade" id="file-upload-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">File Upload</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="upper-boy">
+              Select a file from your computer
+              <input type="file" name="inputFile" id="inputFile"> <br>
+              <input type="checkbox" onclick="upperCheck()" name="" id="file">
+            </div>
+
+            <hr>
+
+            <div class="lower-body">
+              <div class="contents">
+                Or drop a link
+                <input type="text" name="fileName" placeholder="File name" id="fileName"> <br> <br>
+                <input type="text" name="fileLink" placeholder="Enter the link here" id="fileLink"> <br> <br>
+              </div>
+              <div class="tick">
+                <input type="checkbox" onclick="lowerCheck()" name="" id="link">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" onclick="uploadFile()" class="btn btn-info" data-dismiss="modal">Upload</button>
+          </div>
         </div>
-
-        <hr>
-
-      <div class="lower-body">
-        <div class="contents">
-        Or drop a link 
-        <input type="text" name="fileName" placeholder="File name" id="fileName"> <br> <br>
-        <input type="text" name="fileLink" placeholder="Enter the link here" id="fileLink"> <br> <br>
-      </div>
-      <div class="tick">
-        <input type="checkbox" onclick="lowerCheck()" name="" id="link">
-      </div>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" onclick="uploadFile()" class="btn btn-info" data-dismiss="modal">Upload</button>
       </div>
     </div>
-  </div>
-</div>
     <!----------------------------------------------------------------------------------------------------------------------------->
 
     <div class="right">
@@ -169,11 +170,12 @@
       <p id="add-code-btn" data-toggle="modal" data-target="#exampleModalLong"><a href="#"><i class="fas fa-code"></i>
           Add Code Segments</a></p> -->
         <hr>
-        <p data-toggle="modal" data-target="#file-upload-modal"><a href="#"><i class="far fa-file-alt"></i></i> Add File</a></p>
+        <p data-toggle="modal" data-target="#file-upload-modal"><a href="#"><i class="far fa-file-alt"></i></i> Add
+            File</a></p>
         <hr>
         <p><a href="#"><i class="fas fa-user-plus"></i></i> Add Courtesy</a></p>
         <hr>
-        <p><a href="#"><i class="fas fa-download"></i> Save to drafts</a></p>
+        <p><a href="#" id="save-drafts"> <i class="fas fa-download"></i> Save to drafts</a></p>
         <hr>
         <p><a href="#" id="discard" onclick="discard()"><i class="far fa-trash-alt"></i></i> Discard post</a></p>
         <hr>
@@ -199,56 +201,62 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
 
-<script>
-  var firebaseConfig = {
-    apiKey: "AIzaSyBD7TCKboi5-kw0ePtLnHDAeJqff3kDM1g",
-    authDomain: "badblogger-d11d8.firebaseapp.com",
-    databaseURL: "https://badblogger-d11d8.firebaseio.com",
-    projectId: "badblogger-d11d8",
-    storageBucket: "badblogger-d11d8.appspot.com",
-    messagingSenderId: "20949061241",
-    appId: "1:20949061241:web:08e6aaea1494db04ab8ea8",
-    measurementId: "G-S1NFJPXJC7"
-  };
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBD7TCKboi5-kw0ePtLnHDAeJqff3kDM1g",
+      authDomain: "badblogger-d11d8.firebaseapp.com",
+      databaseURL: "https://badblogger-d11d8.firebaseio.com",
+      projectId: "badblogger-d11d8",
+      storageBucket: "badblogger-d11d8.appspot.com",
+      messagingSenderId: "20949061241",
+      appId: "1:20949061241:web:08e6aaea1494db04ab8ea8",
+      measurementId: "G-S1NFJPXJC7"
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
 
   <script src="/js/fileUpload.js"></script>
   <script>
 
-    function upperCheck(){
+    $(document).ready(function () {
+      $("#save-drafts").click(function () {
+        $("#main-form").submit();
+      });
+    });
+
+    function upperCheck() {
       let lower = document.getElementById('link').checked;
-      if (lower){
+      if (lower) {
         document.getElementById('link').checked = false;
       }
     }
-    function lowerCheck(){
+    function lowerCheck() {
       let lower = document.getElementById('file').checked;
-      if (lower){
+      if (lower) {
         document.getElementById('file').checked = false;
       }
     }
 
-    function uploadFile(){
+    function uploadFile() {
       let lower = document.getElementById('link').checked;
       let upper = document.getElementById('file').checked;
-      if (lower){
+      if (lower) {
         document.getElementById('file-upload-modal').style.display = 'none';
-        
-        document.getElementById('file_link').value = document.getElementById('fileLink').value; 
-        document.getElementById('file_name').value = document.getElementById('fileName').value; 
+
+        document.getElementById('file_link').value = document.getElementById('fileLink').value;
+        document.getElementById('file_name').value = document.getElementById('fileName').value;
         toast('File link added');
       }
-      if (upper){
+      if (upper) {
         console.log('upper selected');
         toast('File added');
       }
-      if (!lower && !upper){
+      if (!lower && !upper) {
         toast('Mark either one of the checkboxes');
       }
     }

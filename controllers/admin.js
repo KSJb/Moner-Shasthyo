@@ -105,7 +105,7 @@ module.exports.post_register = async (req, res, next) => {
               from: sender,
               to: email,
               subject: "Email confirmation request",
-              html: `Hey <strong>${name}</strong>, <br>Click on the link to verify your email.<br><a href="http://localhost:${port}/users/verify/${secretToken}"><b>Verify</b></a> <br> Nice day!`
+              html: `Hey <strong>${name}</strong>, <br>Click on the link to verify your email.<br><a href="http://bad-blogger.herokuapp.com/users/verify/${secretToken}"><b>Verify</b></a> <br> Nice day!`
             }
             console.log(mailOptions);
 
