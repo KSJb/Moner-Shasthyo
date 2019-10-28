@@ -71,6 +71,7 @@
               <h1><b> <%= posts.title %></b> </h1>
             </div>
             <button type="button" id="savepost" class="btn btn-outline-info">Save Post</button>
+            <i class="bookmark far fa-bookmark" id="savepost"></i>
           </div>
           <div class="dateRow">
             <p><%= posts.date %></p>
@@ -102,7 +103,7 @@
 
           <% if (posts.fileLink != 'none') {%>
           <div class="file-section">
-            <p> Attached files </p>
+            <p class="file-header"> Attached files </p>
             <a href="<%= posts.fileLink %>" target="_blank">
               <div class="file-display"> <i class="far fa-file-alt"></i> <%= posts.fileName %> </div>
             </a>
@@ -140,7 +141,7 @@
         </div>
       </section>
       <div class="comment-heading">
-        <h4>Comments</h4>
+        <h4 class="comment-header">Comments</h4>
         <hr>
       </div>
 
@@ -154,7 +155,6 @@
               </div>
               <div class="author-date">
                 <strong> <%= comments.commentedBy_Username %> </strong> 
-                <!-- <p class="date"><%= comments.date %></p> -->
                 <p class="comment_body"><%= comments.body %></p>
               </div>
               <hr>

@@ -47,7 +47,7 @@ code:hover .badge{
   /* position: fixed;
   top: 0;
   left: 0; */
-  width: 20%;
+  width: 25%;
   /* border-right: 1px solid rgb(230, 229, 229); */
   float: left;
 }
@@ -182,6 +182,11 @@ code:hover .badge{
   font-family: "Abel", sans-serif;
 }
 #savepost{
+  margin-top: 5px;
+  height: 40px;
+  float: right;
+}
+.fa-bookmark{
   margin-top: 5px;
   height: 40px;
   float: right;
@@ -369,7 +374,9 @@ pre:hover .copy-button{
   padding: 10px;
   border-bottom: 0px solid black;
 } */
+.comment-header{
 
+}
 .comment-author {
   display: flex;
 }
@@ -510,6 +517,13 @@ pre:hover .copy-button{
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+.file-section p{
+
+}
+.file-section a{
+
+}
+
 @-webkit-keyframes fadein {
   from {bottom: 0; opacity: 0;} 
   to {bottom: 30px; opacity: 1;}
@@ -574,4 +588,92 @@ a:hover{
   background-color: rgb(238, 238, 238);
   border-radius: 15px 15px 15px 15px;
   text-align: center;
+}
+
+@media only screen and (max-width: 500px) {
+  .left{
+    display: none;
+  }
+  .right{
+    display: none;
+  }
+  .mid {
+    width: 95%;
+    margin-left: 3%;
+  }
+  .title b{
+    font-size: 15px;
+  }
+  .dateRow p{
+    font-size: 10px;
+  }
+
+  .tags a{
+    display: inline-block;
+    width: max-content;
+    border: 1px solid gray;
+    padding-left: 2px;
+    padding-right: 2px;
+    color: gray;
+    font-size: 10px;
+    text-decoration: none;
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 20px 20px 20px 20px;
+  }
+
+  #savepost{
+    display: none;;
+  }
+  .fa-bookmark{
+    display: none;
+  }
+
+  .secondRow p {
+    font-size: 12px;
+  }
+  .secondRow code {
+    font-size: 12px;
+  }
+  .secondRow pre {
+    font-size: 12px;
+  }
+
+  .img{
+    width: 50px;
+  }
+  #user_img{
+    border-radius: 50%;
+    width: 100%;
+    border: 1px solid rgb(236, 236, 236);
+  }
+  .name{
+    font-size: 15px;
+  }
+
+  .thirdRow button{
+    font-size: 10px;
+  }
+
+  .file-section p{
+    font-size: 12px;
+  }
+  .file-section a{
+    font-size: 10px;
+  }
+
+  .comment-header{
+    font-size: 15px;  
+  }
+  .comment-author .author-date p{
+    font-size: 10px;
+    padding: 5px;
+    background-color: rgb(236, 234, 234);
+    border-radius: 15px 15px 15px 15px;
+    margin-left: 10px;
+  }
+  .comment_body{
+    font-size: 12px;
+  }
+
 }

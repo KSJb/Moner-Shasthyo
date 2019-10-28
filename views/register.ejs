@@ -23,7 +23,8 @@
 
       <p id="labelUsername">Username</p>
       <input type="text" name="usernameN" id="usernameN" value="<%= typeof username != 'undefined' ? username : '' %>"
-        class="form-control" id="exampleInputusername1" aria-describedby="usernameHelp" placeholder="Enter username"> <br>
+        class="form-control" id="exampleInputusername1" aria-describedby="usernameHelp" placeholder="Enter username">
+      <br>
 
       <p id="labelEmail">Email address</p>
       <input type="email" name="emailN" id="emailN" value="<%= typeof email != 'undefined' ? email : '' %>"
@@ -92,6 +93,7 @@
     #labelUsername {
       margin-left: 10%;
     }
+
     #emailN {
       margin: auto;
       width: 80%;
@@ -116,6 +118,25 @@
       margin-left: 10%;
       width: 80%;
       border-radius: 15px 15px 15px 15px;
+    }
+
+    @media only screen and (max-width: 500px) {
+      .form-area {
+        width: 100%;
+        border: none;
+      }
+
+      .logo {
+        margin-left: 33%;
+      }
+
+      .logo_img {
+        margin-left: 0%;
+      }
+
+      #form-reg {
+        margin-top: 30px;
+      }
     }
   </style>
 

@@ -14,6 +14,27 @@
 
 <body>
 
+  <div class="mobile-bar">
+    <div class="left">
+      <p> <a href="/"> <i class="fas fa-home"></i> </a> </p>
+      <p> <a href="/users/get_notifs"> <i class="fas fa-bell"></i> </a> </p>
+      <p> <i class="fas fa-search" id="id-search"></i> </p>
+      <p> <a href="/users/profile"> <i class="fas fa-user-circle"></i> </a></p>
+    </div>
+
+    <!-- <div class="right">
+    </div> -->
+  </div>
+  <div class="search-bar myCustomSearch" id="id-search-bar">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="badBlogger.." aria-label="Recipient's username"
+        aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">Search</button>
+      </div>
+    </div>
+  </div>
+
   <!-- NavBar -->
   <div class="complete-bar">
     <div class="topnav">
@@ -24,25 +45,25 @@
           </div>
         </a>
         <a href="#">
-        <div class="create-post">
-           <p id="create-btn" data-toggle="modal" data-target="#exampleModalCenter">Create Post</p> 
-        </div>
-      </a>
+          <div class="create-post">
+            <p id="create-btn" data-toggle="modal" data-target="#exampleModalCenter">Create Post</p>
+          </div>
+        </a>
 
-      <a href="/users/get_notifs">
-        <div class="notifs">
-          <p>Notifications</p> 
-        </div>
-      </a>
+        <a href="/users/get_notifs">
+          <div class="notifs">
+            <p>Notifications</p>
+          </div>
+        </a>
 
-      <a href="/users/profile">
-        <div class="notifs">
+        <a href="/users/profile">
+          <div class="notifs">
             <div class="profile">
               <p>Profile</p>
             </div>
-        </div>
-      </a>
-      
+          </div>
+        </a>
+
         <div class="search" id="id-search">
           <p>Search</p>
         </div>
@@ -91,8 +112,8 @@
 
   <script>
     document.querySelector("#log-btn").addEventListener('click', (e) => {
-        window.location = "/admin/logout";
-      });
+      window.location = "/admin/logout";
+    });
     $(document).ready(() => {
 
       var vis = false;
@@ -110,7 +131,7 @@
       })
     });
 
-   
+
   </script>
 
 </body>

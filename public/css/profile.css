@@ -28,6 +28,7 @@
 .id-row {
   background-image: linear-gradient(to right, rgb(105, 230, 220), white);
   display: flex;
+  justify-content: left;
 }
 
 .id-row .image {
@@ -36,7 +37,6 @@
 
 .id-row .image .user_img {
   border-radius: 50%;
-  /* border: 1px solid black; */
   width: 55%;
   margin-left: 50%;
 }
@@ -178,4 +178,73 @@
   border: none;
   border-bottom: 1px solid blue;
   border-radius: 0px;
+}
+
+.logout-btn{
+  display: none;
+}
+
+@media only screen and (max-width: 500px) {
+  .right{
+    display: none;
+  }
+
+  .left{
+    width: 98%;
+  }
+
+  .post-palette{
+    width: 95%;
+    margin-left: 4%;
+  }
+  .post-palette .title{
+    font-size: 15px;
+  }
+  .post-palette .date{
+    font-size: 10px;
+  }
+  .post-palette .thirdRow p{
+    font-size: 12px;
+  }
+
+  .logout-btn{
+    display: block;
+    float: right;
+    font-size: 20px;
+    margin-right: 20px;
+  }
+
+  .nav-bar{
+    width: 95%;
+  }
+
+  .id-row .image {
+    width: 30%;
+  }
+  
+  .id-row .image .user_img {
+    border-radius: 50%;
+    width: 80%;
+    margin-left: 0%;
+  }
+
+  .non-image {
+    margin-top: 5%;
+  }
+  .non-image .name {
+    font-size: 15px;
+    font-weight: 300;
+  }
+  .non-image .username {
+    font-size: 12px;
+    color: rgb(139, 138, 138);
+  }
+  .non-image .intro {
+    margin-top: 12px;
+    font-size: 10px;
+  }
+
+  .edit-btn{
+    display: none;
+  }
 }

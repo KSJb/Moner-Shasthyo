@@ -1,109 +1,138 @@
-@import url('https://fonts.googleapis.com/css?family=Quattrocento+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Quattrocento+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei&display=swap");
 
-.all-posts{
+.all-posts {
   margin-left: 22%;
   margin-top: 20px;
-  width: 45%;
+  width: 55%;
 }
-.all-posts b{
+.all-posts b {
   line-height: 80%;
 }
 
-.first-three{
+.first-three {
   display: flex;
-  width: 100%;
+  width: 70%;
 }
 
-.each-posts{
+.each-posts {
   width: 40%;
   margin-left: 30px;
 }
 
-.thumbnail{
+.thumbnail {
   width: 100%;
 }
-.thumbnail-img{
+.thumbnail-img {
   height: 200px;
   width: 100%;
 }
 
-.texts{
+.texts {
   width: 100%;
 }
-.texts .body{
+.texts .body {
   font-weight: 200;
   font-size: 12px;
   color: gray;
   height: 50px;
   overflow: hidden;
 }
-.texts .user-date{
+.texts .user-date {
   margin-top: 5px;
   font-size: 12px;
-  font-family: 'Quattrocento Sans', sans-serif;
+  font-family: "Quattrocento Sans", sans-serif;
 }
 
-.title{
+.title {
   margin-top: 10px;
-  font-family: 'ZCOOL XiaoWei', serif;  
+  font-family: "ZCOOL XiaoWei", serif;
 }
-.title b{
+.title b {
   font-size: 18px;
 }
 
-.lower{
+.lower {
   display: flex;
 }
 
-.lower-left{
+.lower-left {
   width: 64%;
 }
 
-.lower-right{
+.lower-right {
   margin-left: 5%;
-  width: 29%;
+  width: 35%;
 }
 
-.lower .each-posts{
+.lower .each-posts {
   display: flex;
   width: 90%;
   margin-top: 20px;
 }
-.lower .texts{
+.lower .texts {
   width: 60%;
 }
-.lower .thumbnail{
+.lower .thumbnail {
   margin-left: 5px;
   width: 35%;
 }
-.lower .thumbnail img{
+.lower .thumbnail img {
   height: 100px;
 }
-.lower .user-date{
+.lower .user-date {
   margin-top: 10px;
 }
 
-.lower-right .trending{
+.lower-right .trending {
   margin-top: 20px;
+}
+.trending-contents .title {
+  display: flex;
+}
+.number {
+  display: none;
+  margin-left: 5px;
+  color: rgb(109, 109, 109);
+  font-size: 40px;
+}
+
+.trending-contents .texts:hover .number {
+  display: block;
+}
+
+.texts a{
+  line-height: 50%;
+  color: black;
+}
+.texts a:hover{
+  color: rgb(60, 134, 168);
 }
 
 @media only screen and (max-width: 500px) {
-  html, body{
+  /* html,
+  body {
     max-width: 100%;
     overflow-x: hidden;
-  }
+  } */
 
-  .all-posts{
+  .all-posts {
     width: 98%;
     max-width: 400px;
     margin-left: 0;
   }
-  .all-posts b{
+  .all-posts b {
     font-size: 12px;
     line-height: 50%;
   }
-  .all-posts p{
+  .all-posts p {
     font-size: 10px;
+  }
+
+  .lower-right{
+    display: none;
+  }
+  .lower-left{
+    width: 95%;
   }
 }

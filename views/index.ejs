@@ -167,11 +167,10 @@
       <div class="each-posts">
         <div class="thumbnail">
           <img src="<%= posts[i].thumbnail %>" class="thumbnail-img" alt="">
-          <% console.log( posts[i].thumbnail ) %>
         </div>
 
         <div class="texts">
-          <div class="title"> <b> <%= posts[i].title %> </b>  </div>
+          <div class="title"> <a href="/users/view/<%= posts[i]._id %>"> <b> <%= posts[i].title %> </b> </a> </div>
           <div class="body">
             <p> <%- posts[i].body %> </p>
           </div>
@@ -191,7 +190,7 @@
         <div class="each-posts">
 
           <div class="texts">
-            <div class="title">  <b> <%= posts[i].title %> </b>  </div>
+            <div class="title"> <a href="/users/view/<%= posts[i]._id %>"> <b> <%= posts[i].title %> </b> </a> </div>
             <div class="body">
               <p> <%- posts[i].body %> </p>
             </div>
@@ -201,7 +200,6 @@
           </div>
           <div class="thumbnail">
             <img src="<%= posts[i].thumbnail %>" class="thumbnail-img" alt="">
-            <% console.log( posts[i].thumbnail ) %>
           </div>
 
         </div>
@@ -211,6 +209,19 @@
       <div class="lower-right">
         <h4 class="trending">Trending</h4>
         <hr>
+        <div class="trending-contents">
+          <% for (let i=0; i < 5; i++) {%>
+          <div class="texts">
+            <div class="title"> <a href="/users/view/<%= posts[i]._id %>"> <b> <%= posts[i].title %> </b> </a> <b class="number"> #<%= i+1 %></b> </div>
+            <div class="body">
+              <p> <%- posts[i].body %> </p>
+            </div>
+            <div class="user-date">
+              <i class="fas fa-user"> </i> <b> <%= posts[i].author %> </b> · <%= posts[i].date %>
+            </div>
+          </div>
+          <% } %>
+        </div>
       </div>
     </div>
 
