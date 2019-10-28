@@ -6,13 +6,13 @@ body {
   /* background-color: rgb(243, 241, 241);  */
 }
 
-.badge{
+.badge {
   /* height: 30px;  
   margin-top: 10px; */
   display: none;
   float: right;
 }
-code:hover .badge{
+code:hover .badge {
   display: block;
 }
 
@@ -169,7 +169,7 @@ code:hover .badge{
   margin-left: 10px;
 }
 
-.firstRow{
+.firstRow {
   display: flex;
   justify-content: space-between;
 }
@@ -181,15 +181,13 @@ code:hover .badge{
   margin-left: 10px;
   font-family: "Abel", sans-serif;
 }
-#savepost{
+#savepost {
   margin-top: 5px;
   height: 40px;
   float: right;
 }
-.fa-bookmark{
-  margin-top: 5px;
-  height: 40px;
-  float: right;
+.bookmark {
+  display: none;
 }
 
 .firstRow .title p {
@@ -251,7 +249,7 @@ a[name="view-post"] {
   border: 1px solid rgb(23, 165, 190);
 }
 
-.dateRow{
+.dateRow {
   display: flex;
 }
 
@@ -264,7 +262,7 @@ a[name="view-post"] {
 .secondRow p {
   font-size: 20px;
 }
-.secondRow img{
+.secondRow img {
   max-width: 100%;
 }
 
@@ -282,16 +280,16 @@ a[name="view-post"] {
   margin-left: 10px;
 }
 
-.copy-button{
+.copy-button {
   float: right;
   border-radius: 0px 0px 15px 15px;
-  background-color: rgb(73, 72, 72); 
+  background-color: rgb(73, 72, 72);
   color: white;
   font-size: 12px;
   display: none;
 }
 
-pre:hover .copy-button{
+pre:hover .copy-button {
   display: block;
 }
 
@@ -346,11 +344,11 @@ pre:hover .copy-button{
   border-bottom: 1px solid rgb(23, 165, 190);
 }
 
-.right a{
+.right a {
   color: rgb(23, 165, 190);
 }
 
-.mid a{
+.mid a {
   color: rgb(23, 165, 190);
 }
 /* ********* Comment ********* */
@@ -374,30 +372,29 @@ pre:hover .copy-button{
   padding: 10px;
   border-bottom: 0px solid black;
 } */
-.comment-header{
-
+.comment-header {
 }
 .comment-author {
   display: flex;
 }
 
-.comment-img{
+.comment-img {
   border: 1px solid rgb(223, 221, 221);
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
 
-.author-date{
+.author-date {
   padding: 5px;
   background-color: rgb(236, 234, 234);
   border-radius: 15px 15px 15px 15px;
   margin-left: 10px;
 }
-.author-date strong{
+.author-date strong {
   margin-left: 5px;
 }
-.author-date p{
+.author-date p {
   font-size: 12px;
 }
 .author-date .date {
@@ -406,19 +403,19 @@ pre:hover .copy-button{
   align-items: center;
 }
 
-.upper-body{
+.upper-body {
   display: flex;
 }
-.modal-body i{
+.modal-body i {
   color: rgb(23, 165, 190);
 }
 
-#lower-body{
+#lower-body {
   display: flex;
   margin-top: 20px;
 }
 
-.user-space a{
+.user-space a {
   text-decoration: none;
   color: black;
   border-radius: 20px 20px 20px 20px;
@@ -428,15 +425,15 @@ pre:hover .copy-button{
   background-color: rgb(156, 208, 218);
 }
 
-.tags{
+.tags {
   display: flex;
   align-items: center;
 }
-.tags .tag-word{
+.tags .tag-word {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-.tags a{
+.tags a {
   display: inline-block;
   width: max-content;
   border: 2px solid gray;
@@ -449,7 +446,7 @@ pre:hover .copy-button{
   padding: 5px;
   border-radius: 20px 20px 20px 20px;
 }
-.tags a:hover{
+.tags a:hover {
   color: rgb(83, 151, 207);
 }
 
@@ -466,7 +463,7 @@ pre:hover .copy-button{
   font-style: bold;
 }
 
-.comment-secondRow{
+.comment-secondRow {
   display: flex;
 }
 .comment-secondRow p {
@@ -517,70 +514,92 @@ pre:hover .copy-button{
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
-.file-section p{
-
+.file-section p {
 }
-.file-section a{
-
+.file-section a {
 }
 
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;} 
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 /* +++++++++++ User Info +++++++++++++ */
-a{
+a {
   text-decoration: none;
   color: black;
 }
-a:hover{
+a:hover {
   color: black;
   text-decoration: none;
 }
-.user-section{
+.user-section {
   display: flex;
   margin-left: 20px;
 }
-#user_img{
+#user_img {
   border-radius: 50%;
   width: 80px;
   border: 1px solid rgb(236, 236, 236);
 }
-.non_img{
+.non_img {
   margin-left: 45px;
 }
-.username{
+.username {
   font-size: 12px;
   color: gray;
   float: left;
 }
-.name{
+.name {
   font-size: 18px;
 }
 
 /* ++++++++++ File Section ++++++++++ */
-.file-section{
+.file-section {
   display: flex;
   border-top: 1px solid rgb(238, 238, 238);
   padding-top: 15px;
 }
-.file-display{
+.file-display {
   padding: 10px;
   margin-left: 15px;
   /* width: 100px; */
@@ -591,24 +610,24 @@ a:hover{
 }
 
 @media only screen and (max-width: 500px) {
-  .left{
+  .left {
     display: none;
   }
-  .right{
+  .right {
     display: none;
   }
   .mid {
     width: 95%;
     margin-left: 3%;
   }
-  .title b{
+  .title b {
     font-size: 15px;
   }
-  .dateRow p{
+  .dateRow p {
     font-size: 10px;
   }
 
-  .tags a{
+  .tags a {
     display: inline-block;
     width: max-content;
     border: 1px solid gray;
@@ -622,11 +641,14 @@ a:hover{
     border-radius: 20px 20px 20px 20px;
   }
 
-  #savepost{
-    display: none;;
-  }
-  .fa-bookmark{
+  .btn-outline-info {
     display: none;
+  }
+  .bookmark {
+    display: block;
+    margin-top: 5px;
+    height: 40px;
+    float: right;
   }
 
   .secondRow p {
@@ -639,41 +661,40 @@ a:hover{
     font-size: 12px;
   }
 
-  .img{
+  .img {
     width: 50px;
   }
-  #user_img{
+  #user_img {
     border-radius: 50%;
     width: 100%;
     border: 1px solid rgb(236, 236, 236);
   }
-  .name{
+  .name {
     font-size: 15px;
   }
 
-  .thirdRow button{
+  .thirdRow button {
     font-size: 10px;
   }
 
-  .file-section p{
+  .file-section p {
     font-size: 12px;
   }
-  .file-section a{
+  .file-section a {
     font-size: 10px;
   }
 
-  .comment-header{
-    font-size: 15px;  
+  .comment-header {
+    font-size: 15px;
   }
-  .comment-author .author-date p{
+  .comment-author .author-date p {
     font-size: 10px;
     padding: 5px;
     background-color: rgb(236, 234, 234);
     border-radius: 15px 15px 15px 15px;
     margin-left: 10px;
   }
-  .comment_body{
+  .comment_body {
     font-size: 12px;
   }
-
 }

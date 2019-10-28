@@ -361,10 +361,18 @@ a {
   background-color: black;
   opacity: 0.5;
 }
-@media (max-width: 1200px) {
-  .allPost {
-    width: 95%;
+
+@media only screen and (max-width: 500px) {
+  .notifframe {
+    position: fixed;
+    width: 85%;
+    border: 1px solid rgb(233, 233, 233);
+    border-radius: 0px 0px 10px 10px;
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: white;
+    margin-left: 3%;
   }
 }
-
 /* ********** */

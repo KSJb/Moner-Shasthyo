@@ -212,7 +212,8 @@
         <div class="trending-contents">
           <% for (let i=0; i < 5; i++) {%>
           <div class="texts">
-            <div class="title"> <a href="/users/view/<%= posts[i]._id %>"> <b> <%= posts[i].title %> </b> </a> <b class="number"> #<%= i+1 %></b> </div>
+            <div class="title"> <a href="/users/view/<%= posts[i]._id %>"> <b> <%= posts[i].title %> </b> </a> <b
+                class="number"> #<%= i+1 %></b> </div>
             <div class="body">
               <p> <%- posts[i].body %> </p>
             </div>
@@ -301,6 +302,7 @@
     crossorigin="anonymous"></script>
 
   <script>
+
     document.getElementById('notif-contents').onclick = function (e) {
       if (e.target != document.getElementById('notif-contents')) {
         document.getElementById('notif-contents').style.display = 'none';
@@ -312,6 +314,16 @@
 
     $(document).ready(() => {
 
+      var stickySidebar = $('.lower-right').offset().top;
+
+      $(window).scroll(function () {
+        if ($(window).scrollTop() > stickySidebar) {
+          $('.lower-right').addClass('affix');
+        }
+        else {
+          $('.lower-right').removeClass('affix');
+        }
+      });
 
       document.querySelector("#more-options").addEventListener('click', (e) => {
         console.log('delivered');

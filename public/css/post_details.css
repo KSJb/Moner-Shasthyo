@@ -109,6 +109,12 @@
   color: rgb(60, 134, 168);
 }
 
+.affix{
+  position:fixed;
+  top: 55px;
+  right:55px;
+}
+
 @media only screen and (max-width: 500px) {
   /* html,
   body {
