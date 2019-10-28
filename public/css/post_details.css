@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Quattrocento+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei&display=swap');
+
+.all-posts{
+  margin-left: 22%;
+  margin-top: 20px;
+  width: 45%;
+}
+.all-posts b{
+  line-height: 80%;
+}
+
+.first-three{
+  display: flex;
+  width: 100%;
+}
+
+.each-posts{
+  width: 40%;
+  margin-left: 30px;
+}
+
+.thumbnail{
+  width: 100%;
+}
+.thumbnail-img{
+  height: 200px;
+  width: 100%;
+}
+
+.texts{
+  width: 100%;
+}
+.texts .body{
+  font-weight: 200;
+  font-size: 12px;
+  color: gray;
+  height: 50px;
+  overflow: hidden;
+}
+.texts .user-date{
+  margin-top: 5px;
+  font-size: 12px;
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.title{
+  margin-top: 10px;
+  font-family: 'ZCOOL XiaoWei', serif;  
+}
+.title b{
+  font-size: 18px;
+}
+
+.lower{
+  display: flex;
+}
+
+.lower-left{
+  width: 64%;
+}
+
+.lower-right{
+  margin-left: 5%;
+  width: 29%;
+}
+
+.lower .each-posts{
+  display: flex;
+  width: 90%;
+  margin-top: 20px;
+}
+.lower .texts{
+  width: 60%;
+}
+.lower .thumbnail{
+  margin-left: 5px;
+  width: 35%;
+}
+.lower .thumbnail img{
+  height: 100px;
+}
+.lower .user-date{
+  margin-top: 10px;
+}
+
+.lower-right .trending{
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+  html, body{
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .all-posts{
+    width: 98%;
+    max-width: 400px;
+    margin-left: 0;
+  }
+  .all-posts b{
+    font-size: 12px;
+    line-height: 50%;
+  }
+  .all-posts p{
+    font-size: 10px;
+  }
+}

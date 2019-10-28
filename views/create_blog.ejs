@@ -97,8 +97,8 @@
 
       </script>
 
-      <!-- Tag field -->
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+      <!-- Thumbnail field -->
+      <div class="modal fade" id="thumbnail-modal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="modal-fade">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -119,73 +119,100 @@
         </div>
       </div>
     </div>
-    <!------------------------------------------Tag----------------------------------------------------------------------------------->
+    <!------------------------------------------Thumbnail----------------------------------------------------------------------------------->
 
-    <!----------------------------------------------------- Upload file field----------------------------------------------------------------->
-    <div class="modal fade" id="file-upload-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true">
+
+    <!-- Tag field -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="modal-fade">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">File Upload</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Add Thumbnail</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <div class="upper-boy">
-              Select a file from your computer
-              <input type="file" name="inputFile" id="inputFile"> <br>
-              <input type="checkbox" onclick="upperCheck()" name="" id="file">
+          <form id="form-submit" action="">
+            <input type="text" name="title_name" class="tag-field" id="tag-field" placeholder="Put the link here">
+            <div class="modal-footer">
+              <button type="button" id="tag-add-btn" data-dismiss="modal" onclick="addTag()"
+                class="btn btn-info">Add</button>
             </div>
-
-            <hr>
-
-            <div class="lower-body">
-              <div class="contents">
-                Or drop a link
-                <input type="text" name="fileName" placeholder="File name" id="fileName"> <br> <br>
-                <input type="text" name="fileLink" placeholder="Enter the link here" id="fileLink"> <br> <br>
-              </div>
-              <div class="tick">
-                <input type="checkbox" onclick="lowerCheck()" name="" id="link">
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" onclick="uploadFile()" class="btn btn-info" data-dismiss="modal">Upload</button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
-    <!----------------------------------------------------------------------------------------------------------------------------->
+  </div>
+  <!------------------------------------------Tag----------------------------------------------------------------------------------->
 
-    <div class="right">
-      <div class="options">Options</div>
-      <div class="opt-btns">
-        <p id="add-tag-btn" data-toggle="modal" data-target="#exampleModalCenter"><a href="#"><i class="fas fa-tag"></i>
-            Add Tags</a></p>
-        <!-- <hr>
-      <p id="add-code-btn" data-toggle="modal" data-target="#exampleModalLong"><a href="#"><i class="fas fa-code"></i>
-          Add Code Segments</a></p> -->
-        <hr>
-        <p data-toggle="modal" data-target="#file-upload-modal"><a href="#"><i class="far fa-file-alt"></i></i> Add
-            File</a></p>
-        <hr>
-        <p><a href="#"><i class="fas fa-user-plus"></i></i> Add Courtesy</a></p>
-        <hr>
-        <p><a href="#" id="save-drafts"> <i class="fas fa-download"></i> Save to drafts</a></p>
-        <hr>
-        <p><a href="#" id="discard" onclick="discard()"><i class="far fa-trash-alt"></i></i> Discard post</a></p>
-        <hr>
-        <select>
-          <option value="public">Public</option>
-          <option value="anonymous">Anonymous</option>
-        </select>
-        <hr>
+  <!----------------------------------------------------- Upload file field----------------------------------------------------------------->
+  <div class="modal fade" id="file-upload-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">File Upload</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="upper-boy">
+            Select a file from your computer
+            <input type="file" name="inputFile" id="inputFile"> <br>
+            <input type="checkbox" onclick="upperCheck()" name="" id="file">
+          </div>
+
+          <hr>
+
+          <div class="lower-body">
+            <div class="contents">
+              Or drop a link
+              <input type="text" name="fileName" placeholder="File name" id="fileName"> <br> <br>
+              <input type="text" name="fileLink" placeholder="Enter the link here" id="fileLink"> <br> <br>
+            </div>
+            <div class="tick">
+              <input type="checkbox" onclick="lowerCheck()" name="" id="link">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" onclick="uploadFile()" class="btn btn-info" data-dismiss="modal">Upload</button>
+        </div>
       </div>
     </div>
+  </div>
+  <!----------------------------------------------------------------------------------------------------------------------------->
+
+  <div class="right">
+    <div class="options">Options</div>
+    <div class="opt-btns">
+        <!-- <p id="add-thumbnail" data-toggle="modal" data-target="#thumbnail-modal"> <i class="fas fa-image"></i> Add
+          Thumbnail</p> -->
+      <p id="add-tag-btn" data-toggle="modal" data-target="#exampleModalCenter"><a href="#"><i class="fas fa-tag"></i>
+          Add Tags</a></p>
+      <!-- <hr>
+      <p id="add-code-btn" data-toggle="modal" data-target="#exampleModalLong"><a href="#"><i class="fas fa-code"></i>
+          Add Code Segments</a></p> -->
+      <hr>
+      <p data-toggle="modal" data-target="#file-upload-modal"><a href="#"><i class="far fa-file-alt"></i></i> Add
+          File</a></p>
+      <hr>
+      <p><a href="#"><i class="fas fa-user-plus"></i></i> Add Courtesy</a></p>
+      <hr>
+      <p><a href="#" id="save-drafts"> <i class="fas fa-download"></i> Save to drafts</a></p>
+      <hr>
+      <p><a href="#" id="discard" onclick="discard()"><i class="far fa-trash-alt"></i></i> Discard post</a></p>
+      <hr>
+      <select>
+        <option value="public">Public</option>
+        <option value="anonymous">Anonymous</option>
+      </select>
+      <hr>
+    </div>
+  </div>
   </div>
 
   <!-- Optional JavaScript -->

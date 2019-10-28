@@ -8,22 +8,24 @@
   <title>Home - badBlogger</title>
 
   <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/post_details.css">
+
 </head>
 
 <body>
 
   <% if (messages.login) {%>
-    <div class="alert alert-success" role="alert">
-      Login successfull. Logged in as <strong> <%= user.username %> </strong>
-    </div>
+  <div class="alert alert-success" role="alert">
+    Login successfull. Logged in as <strong> <%= user.username %> </strong>
+  </div>
   <% } %>
 
   <% if (messages.full_post || messages.quick_post) {%>
-    <div class="alert alert-success" role="alert">
-      Your post has been published
-    </div>
+  <div class="alert alert-success" role="alert">
+    Your post has been published
+  </div>
   <% } %>
- 
+
 
   <div class="notif-contents" id="notif-contents">
     <% if (notifs == true) { %>
@@ -31,7 +33,7 @@
       <div class="darkener">
         .
       </div>
-      
+
       <div class="notifframe" id="notif-frame">
         <% notifs_array.forEach(function(notifs_array){%>
         <% if (notifs_array.type == 'upvote'){%>
@@ -75,18 +77,18 @@
           </div>
         </a>
         <% } %>
-        <% }) %> 
+        <% }) %>
         <p class="notif-end">Notifications</p>
         <!-- <div class="footer">
           .
         </div> -->
       </div>
-      
+
     </div>
     <% } %>
   </div>
 
-  <% posts.forEach(function(posts){ %>
+  <!-- <% posts.forEach(function(posts){ %>
   <section class="allPost">
     <div class="eachPost">
       <div class="firstRow-group">
@@ -101,9 +103,6 @@
               </div>
             </div>
             <div class="twoButton">
-              <!-- <a href="/users/view/<%= posts._id %>" name="view-post" id="<%= posts._id %>"
-                class="badge badge-info">View
-                Post</a> -->
             </div>
           </div>
           <div class="dateRow">
@@ -158,8 +157,66 @@
           </div>
         </div>
   </section>
-  <% }) %>
+  <% }) %> -->
 
+  <!-- New contents -->
+
+  <div class="all-posts">
+    <div class="first-three">
+      <% for( let i = 0; i < 3; i++ ){ %>
+      <div class="each-posts">
+        <div class="thumbnail">
+          <img src="<%= posts[i].thumbnail %>" class="thumbnail-img" alt="">
+          <% console.log( posts[i].thumbnail ) %>
+        </div>
+
+        <div class="texts">
+          <div class="title"> <b> <%= posts[i].title %> </b>  </div>
+          <div class="body">
+            <p> <%- posts[i].body %> </p>
+          </div>
+          <div class="user-date">
+            <i class="fas fa-user"> </i> <%= posts[i].author %> · <%= posts[i].date %>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+
+    <hr>
+
+    <div class="lower">
+      <div class="lower-left">
+        <% for( let i = 3; i < posts.length; i++ ){ %>
+        <div class="each-posts">
+
+          <div class="texts">
+            <div class="title">  <b> <%= posts[i].title %> </b>  </div>
+            <div class="body">
+              <p> <%- posts[i].body %> </p>
+            </div>
+            <div class="user-date">
+              <i class="fas fa-user"> </i> <b> <%= posts[i].author %> </b> · <%= posts[i].date %>
+            </div>
+          </div>
+          <div class="thumbnail">
+            <img src="<%= posts[i].thumbnail %>" class="thumbnail-img" alt="">
+            <% console.log( posts[i].thumbnail ) %>
+          </div>
+
+        </div>
+        <% } %>
+      </div>
+
+      <div class="lower-right">
+        <h4 class="trending">Trending</h4>
+        <hr>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- New contents -->
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true" id="modal-fade">
@@ -251,8 +308,8 @@
       });
     })
 
-    function unmarkNotif(){
-      
+    function unmarkNotif() {
+
     }
   </script>
 

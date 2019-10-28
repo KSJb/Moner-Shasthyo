@@ -5,6 +5,9 @@ var PostSchema = mongoose.Schema({
   title: {
     type: String
   },
+  thumbnail: {
+    type: String
+  },
   body: {
     type: String
   },
