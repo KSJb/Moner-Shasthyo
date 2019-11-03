@@ -54,18 +54,17 @@ module.exports.post_register = async (req, res, next) => {
   const unreadNotif = 0;
   console.log('unread notif: ', unreadNotif);
 
-  if (errors.length > 0) {
-    res.render('register', {
-      errors,
-      email,
-      password,
-      name,
-      username,
-      emailVerified,
-      secretToken
-    });
-  }
-  else {
+  // if (errors.length > 0) {
+  //   res.render('register', {
+  //     errors,
+  //     email,
+  //     password,
+  //     name,
+  //     username,
+  //     emailVerified,
+  //     secretToken
+  //   });
+  // }
     console.log('new user');
     const newUser = new User({
       name,
@@ -105,7 +104,7 @@ module.exports.post_register = async (req, res, next) => {
               from: sender,
               to: email,
               subject: "Email confirmation request",
-              html: `Hey <strong>${name}</strong>, <br>Click on the link to verify your email.<br><a href="http://bad-blogger.herokuapp.com/users/verify/${secretToken}"><b>Verify</b></a> <br> Nice day!`
+              html: `Hey <strong>${name}</strong>, <br>Click on the icon to verify your email.<br><a href="http://bad-blogger.herokuapp.com/users/verify/${secretToken}"><b><img src="https://bad-blogger.herokuapp.com/images/black_cat_logo.jpg"></b></a> <br> Nice day!`
             }
             console.log(mailOptions);
 
@@ -114,7 +113,7 @@ module.exports.post_register = async (req, res, next) => {
                 console.log(error);
                 res.end("error");
               } else {
-                console.log("Message sent: " + response.response);
+                console.log("Message sent: " + response);
                 req.flash('success', 'An email has been sent to the email provided. Login to continue');
                 res.redirect('/admin/login');
               }
@@ -123,7 +122,7 @@ module.exports.post_register = async (req, res, next) => {
           .catch(err => console.log(err));
       });
     });
-  }
+  
 }
 
 // Logout

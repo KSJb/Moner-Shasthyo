@@ -13,7 +13,6 @@ module.exports = function (passport) {
       passReqToCallback: true
     }, (req, email, password, done) => {
       // Match user
-      console.log(req.body);
 
       User.findOne({
         email: req.body.emailN
@@ -22,7 +21,6 @@ module.exports = function (passport) {
           console.log("Email not registered");
           return done(null, false, { message: 'That email is not registered' });
         }
-        console.log(user);
         // Match password
         bcrypt.compare(req.body.passwordN, user.password, (err, isMatch) => {
           if (err) throw err;

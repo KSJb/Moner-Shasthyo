@@ -32,24 +32,27 @@ const getDate = () => {
 }
 
 module.exports.profile = (req, res) => {
-  const currentuser = req.user;
-  let posts = [];
-  Post.find().then(posts => {
-    return res.render("profile", {
-      posts: posts,
-      currentuser: currentuser,
-      owner: 'self'
-    });
-  })
-    .catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+  if (!req.isAuthenticated()) {
+    req.flash('login_prompt', 'log in');
+    res.redirect('/');
+  }
 
+  else {
+    const currentuser = req.user;
+    Post.find().then(posts => {
+      return res.render("profile", {
+        posts: posts,
+        currentuser: currentuser,
+        owner: 'self'
+      });
+    })
+  }
 }
 
 module.exports.get_saved_posts = (req, res) => {
   const savedPostsArray = req.user.savePosts;
   const currentuser = req.user;
   console.log('get_saved_posts()');
-  // Song.find({ "_id": { "$in": list } })
   Post.find({ "_id": { "$in": savedPostsArray } }).then(posts => {
     console.log('Posts: ', posts);
     res.render('profile', {
@@ -57,43 +60,45 @@ module.exports.get_saved_posts = (req, res) => {
       currentuser: currentuser,
       owner: 'others'
     })
-  }).catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+  })
 }
 
 module.exports.get_all_posts = (req, res) => {
-  if (!req.isAuthenticated()) res.redirect('/admin/login');
   const currentuser = req.user;
   Post.find().sort({ _id: -1 }).then(posts => {
-    Post.find().sort({ view : 1 }).then(vs_posts => {
-      console.log('vs : ', vs_posts);
+    Post.find().sort({ view: 1 }).then(vs_posts => {
       return res.render("index", {
         notifs: false,
         posts: posts,
-        vsPosts : vs_posts,
+        vsPosts: vs_posts,
         user: currentuser
       });
     })
 
   })
-    // .catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+  // .catch(err => returnError({ msg: "Getting Error In Getting Data" }))
 }
 
 module.exports.get_notifs = (req, res) => {
-  // if (!req.isAuthenticated()) res.redirect('/admin/login');
-  console.log('homepage + notifs entered');
-  const currentuser = req.user;
-  // let notifs_array = ['upvote', 'comment', 'mention', 'upvote', 'mention', 'upvote'];
-  Post.find().sort({ _id: -1 }).then(posts => {
-    Notif.find({ receiver_id: req.user._id }).then(notifs_array => {
-      return res.render("index", {
-        notifs: true,
-        notifs_array: notifs_array,
-        posts: posts,
-        user: currentuser
-      })
-    });
-  })
-    .catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+  if (!req.isAuthenticated()) {
+    req.flash('login_prompt', 'log in');
+    res.redirect('/');
+  }
+  else {
+    console.log('homepage + notifs entered');
+    const currentuser = req.user;
+    Post.find().sort({ _id: -1 }).then(posts => {
+      Notif.find({ receiver_id: req.user._id }).then(notifs_array => {
+        return res.render("index", {
+          notifs: true,
+          notifs_array: notifs_array,
+          posts: posts,
+          user: currentuser
+        })
+      });
+    })
+  }
+
 }
 
 module.exports.create_post = (req, res) => {
@@ -176,6 +181,7 @@ module.exports.full_post = (req, res) => {
   let upvote = 0;
   let tag = req.body.tags;
   let code = req.body.code;
+  let thumbnail = req.body.thumbnail;
   let tags = tag.split(',');
   let file_name = req.body.file_name;
   let file_link = req.body.file_link;
@@ -197,6 +203,7 @@ module.exports.full_post = (req, res) => {
       view,
       upvote,
       comment,
+      thumbnail,
       tags,
       file_name,
       file_link
@@ -205,6 +212,7 @@ module.exports.full_post = (req, res) => {
   else {
     const newPost = new Post({
       title,
+      thumbnail,
       body,
       type,
       author,
@@ -229,11 +237,18 @@ module.exports.full_post = (req, res) => {
 }
 
 module.exports.create_blog = (req, res) => {
-  const actionRoute = '/users/full_post';
-  return res.render('create_blog', {
-    edit: false,
-    route: actionRoute
-  });
+  if (!req.isAuthenticated()) {
+    console.log('not logged in');
+    req.flash('login_prompt', 'log in');
+    res.redirect('/');
+  }
+  else {
+    const actionRoute = '/users/full_post';
+    return res.render('create_blog', {
+      edit: false,
+      route: actionRoute
+    });
+  }
 }
 
 //Verify page
@@ -259,7 +274,6 @@ module.exports.view_post = (req, res) => {
     if (err) res.json(err);
     else {
       Comment.find({ myPostID: id }, function (err, foundComments) {
-        console.log(err, foundComments);
         if (err) res.json(err);
         else {
           Post.findOneAndUpdate({ _id: id }, { $inc: { view: 1 } }, function (err, data) {

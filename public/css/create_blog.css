@@ -118,12 +118,23 @@
   border: none;
   border-bottom: 1px solid rgb(60, 134, 168);
   width: 85%;
-} 
+}   
 
-.advice{
-  font-size: 12px;
-  color: blue;
-  float: left;
+.thumbnail-field{
+  margin-left: 8%;
+}
+
+select{
+  border-radius: 5px 5px 5px 5px;
+  background-color: white;
+  border: 1px solid rgb(226, 225, 225);
+  padding: 5px;
+  width: 150px;
+  outline: none;
+}
+
+select option:hover{
+  background-color: #333;
 }
 
 /* +++++ Toast +++++ */

@@ -39,100 +39,110 @@
   <div class="complete-bar">
     <div class="topnav">
       <div class="navlinks">
-        <a href="/">
-          <div class="home">
+
+        <div class="home">
+          <a href="/" class="home-link">
             <p>Home</p>
-          </div>
-        </a>
-        <a href="#">
-          <div class="create-post">
-            <p id="create-btn" data-toggle="modal" data-target="#exampleModalCenter">Create Post</p>
-          </div>
-        </a>
+          </a>
+        </div>
 
-        <a href="/users/get_notifs">
-          <div class="notifs">
+        <div class="create-post">
+          <a href="/users/create_blog" class="createblog-link">
+            <p id="create-btn">Create Post</p>
+          </a>
+        </div>
+
+        <div class="notifs">
+          <a href="/users/get_notifs" class="notif-link">
             <p>Notifications</p>
-          </div>
-        </a>
+          </a>
+        </div>
 
-        <a href="/users/profile">
+        <!-- <a href="/users/profile">
           <div class="notifs">
             <div class="profile">
               <p>Profile</p>
             </div>
           </div>
-        </a>
+        </a> -->
 
         <div class="search" id="id-search">
           <p>Search</p>
         </div>
-        <div class="log-out">
+
+        <!-- <div class="log-out">
           <button id="log-btn" class="btn btn-outline-info">Log Out</button>
-        </div>
+        </div> -->
 
+      </div>
+
+      <div class="dropdown">
+        <div>
+          <img class="img-round" src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
+        </div>
+        <div class="dropdown-content">
+          <a href="/users/profile">Profile</a>
+          <a href="/admin/login">Log out</a>
+        </div>
+      </div>
+
+      <!-- <div class="dropdown">
+        <div class="user-img" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="img-round" src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
+        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/users/profile">Profile</a>
+          <a class="dropdown-item" href="/admin/login">Log out</a>
+        </div>
+      </div> -->
+
+      <div class="search-bar myCustomSearch" id="id-search-bar">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="badBlogger.." aria-label="Recipient's username"
+            aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Search</button>
+          </div>
+        </div>
       </div>
 
     </div>
 
-    <div class="search-bar myCustomSearch" id="id-search-bar">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="badBlogger.." aria-label="Recipient's username"
-          aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Search</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- <div class="notif-frame" id="notif-frame">
-    <a href="#">
-      <div class="each-notif">
-
-      </div>
-    </a>  
-  </div> -->
-  <!-- ------ -->
-
-  <div class=""><%- body %></div>
+    <div class=""><%- body %></div>
 
 
-  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
 
-  <script>
-    document.querySelector("#log-btn").addEventListener('click', (e) => {
-      window.location = "/admin/logout";
-    });
-    $(document).ready(() => {
+    <script>
 
-      var vis = false;
-      $('#id-search').click(() => {
-        if (vis == false) {
-          console.log('close');
-          document.getElementById('id-search-bar').style.display = 'flex';
-          vis = true;
-        }
-        else {
-          console.log('open');
-          document.getElementById('id-search-bar').style.display = 'none';
-          vis = false;
-        }
-      })
-    });
+      $(document).ready(() => {
+
+        var vis = false;
+        $('#id-search').click(() => {
+          if (vis == false) {
+            console.log('close');
+            document.getElementById('id-search-bar').style.display = 'flex';
+            vis = true;
+          }
+          else {
+            console.log('open');
+            document.getElementById('id-search-bar').style.display = 'none';
+            vis = false;
+          }
+        })
+      });
 
 
-  </script>
+    </script>
 
 </body>
 

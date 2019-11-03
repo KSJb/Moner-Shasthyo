@@ -12,12 +12,16 @@
 
 .first-three {
   display: flex;
-  width: 70%;
+  width: 100%;
 }
 
 .each-posts {
-  width: 40%;
+  width: 33%;
   margin-left: 30px;
+}
+.each-posts:first-child{
+  width: 33%;
+  margin-left: 0%;
 }
 
 .thumbnail {
@@ -134,6 +138,10 @@
   .all-posts p {
     font-size: 10px;
   }
+
+  /* .each-posts{
+    width: 49%;
+  } */
 
   .lower-right{
     display: none;

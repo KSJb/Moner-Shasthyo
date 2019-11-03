@@ -357,21 +357,14 @@ pre:hover .copy-button {
   display: flex;
   justify-content: center;
   background-color: white;
+  padding: 10px;
 }
 
 .each-comment {
   width: 100%;
-  /* border: 1px solid rgb(230, 229, 229);
-  border-radius: 10px;
-  border-bottom: 1px solid black; */
-  /* display: flex; */
   justify-content: center;
 }
 
-/* .each-comment:last-child {
-  padding: 10px;
-  border-bottom: 0px solid black;
-} */
 .comment-header {
 }
 .comment-author {

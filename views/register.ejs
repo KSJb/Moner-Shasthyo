@@ -18,21 +18,21 @@
     <form id="form-reg" action="/admin/register" method="POST">
 
       <p id="labelName">Name</p>
-      <input type="text" name="nameN" id="nameN" value="<%= typeof name != 'undefined' ? name : '' %>"
+      <input type="text" name="nameN" id="nameN" value="<%= typeof name != 'undefined' ? name : '' %>" required
         class="form-control" id="exampleInputname1" aria-describedby="nameHelp" placeholder="Enter name"> <br>
 
       <p id="labelUsername">Username</p>
-      <input type="text" name="usernameN" id="usernameN" value="<%= typeof username != 'undefined' ? username : '' %>"
+      <input type="text" name="usernameN" id="usernameN" value="<%= typeof username != 'undefined' ? username : '' %>" required
         class="form-control" id="exampleInputusername1" aria-describedby="usernameHelp" placeholder="Enter username">
       <br>
 
       <p id="labelEmail">Email address</p>
-      <input type="email" name="emailN" id="emailN" value="<%= typeof email != 'undefined' ? email : '' %>"
+      <input type="email" name="emailN" id="emailN" value="<%= typeof email != 'undefined' ? email : '' %>" required
         class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"> <br>
 
       <p id="labelPassword">Password</p>
       <input type="password" name="passwordN" id="passwordN"
-        value="<%= typeof password != 'undefined' ? password : '' %>" class="form-control" id="exampleInputPassword1"
+        value="<%= typeof password != 'undefined' ? password : '' %>" class="form-control" id="exampleInputPassword1" required
         placeholder="Password">
       <br>
 

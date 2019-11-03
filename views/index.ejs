@@ -26,6 +26,12 @@
   </div>
   <% } %>
 
+  <% if (messages.login_prompt) {%>
+  <div class="alert alert-danger" role="alert">
+    <strong> Howdy Stranger! </strong> Looks like you're not logged in. Log in to continue
+  </div>
+  <% } %>
+
 
   <div class="notif-contents" id="notif-contents">
     <% if (notifs == true) { %>
@@ -88,77 +94,6 @@
     <% } %>
   </div>
 
-  <!-- <% posts.forEach(function(posts){ %>
-  <section class="allPost">
-    <div class="eachPost">
-      <div class="firstRow-group">
-       <div class="author-img">
-         <img class="img" src="https://robohash.org/<%=posts.author_id%>"> 
-        </div>
-        <div class="other-than-img" style="width: 100%">
-          <div class="firstRow">
-            <div class="right-side">
-              <div class="title">
-                <p> <a href="/users/view/<%= posts._id %>"> <%= posts.title %></a></p>
-              </div>
-            </div>
-            <div class="twoButton">
-            </div>
-          </div>
-          <div class="dateRow">
-            <p><i class="fas fa-user"></i><strong><%= posts.author_username %></strong></p>
-            <p>· <%= posts.date %></p>
-          </div>
-          <div class="iconRow">
-            <% if (posts.type == 'complex') {%>
-            <i title="Contains multilayered texts" class="fas fa-align-left"></i>
-            <%}%>
-              <% if (posts.code != 'none') {%>
-            <i title="Contains code segments" id="code" class="fas fa-code"></i>
-            <%}%>
-            <i class="fas fa-file-contract"></i>
-          </div>
-        </div>
-      </div>
-      <div class="secondRow">
-        <% if (posts.type == 'simple'){ %>
-            <p><%= posts.body %></p>
-            <% } %>
-            <% if (posts.type == 'complex'){ %>
-            <p><%- posts.body %></p>
-            <% } %>
-            <% if (posts.type == null){ %>
-            <p><%= posts.body %></p>
-            <% } %>
-          </div>
-
-          <div class="tags">
-            <%
-          for(var i=0; i<posts.tags.length; i++){ %>
-            <% if (posts.tags[i] != 'none'){ %>
-            <div class="tag-word">
-              <p><a href="#"><%= posts.tags[i] %></a></p>
-            </div>
-            <% } %>
-            <%}
-        %>
-          </div>
-
-          <div class="thirdRow">
-            <div class="views">
-              <p>Views <%= posts.view %></p>
-            </div>
-            <div class="upvotes">
-              <p>· Upvotes <%= posts.upvote %></p>
-            </div>
-            <div class="comments">
-              <p>· Comments <%= posts.comment %></p>
-            </div>
-          </div>
-        </div>
-  </section>
-  <% }) %> -->
-
   <!-- New contents -->
 
   <div class="all-posts">
@@ -166,7 +101,9 @@
       <% for( let i = 0; i < 3; i++ ){ %>
       <div class="each-posts">
         <div class="thumbnail">
+          <% if(posts[i].thumbnail != 'none') {%>
           <img src="<%= posts[i].thumbnail %>" class="thumbnail-img" alt="">
+          <% } %>
         </div>
 
         <div class="texts">
@@ -314,16 +251,16 @@
 
     $(document).ready(() => {
 
-      var stickySidebar = $('.lower-right').offset().top;
+      // var stickySidebar = $('.lower-right').offset().top;
 
-      $(window).scroll(function () {
-        if ($(window).scrollTop() > stickySidebar) {
-          $('.lower-right').addClass('affix');
-        }
-        else {
-          $('.lower-right').removeClass('affix');
-        }
-      });
+      // $(window).scroll(function () {
+      //   if ($(window).scrollTop() > stickySidebar) {
+      //     $('.lower-right').addClass('affix');
+      //   }
+      //   else {
+      //     $('.lower-right').removeClass('affix');
+      //   }
+      // });
 
       document.querySelector("#more-options").addEventListener('click', (e) => {
         console.log('delivered');

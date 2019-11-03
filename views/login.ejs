@@ -24,11 +24,11 @@
     <form id="form-reg" action="/admin/login" method="POST">
 
       <p id="labelEmail">Email address</p>
-      <input type="email" name="emailN" class="emailInput" id="emailN"
+      <input type="email" name="emailN" class="emailInput" id="emailN" required
         value="<%= typeof email != 'undefined' ? email : '' %>" class="form-control" id="exampleInputEmail1"
         aria-describedby="emailHelp" placeholder="Enter email"> <br>
       <p id="labelPassword">Password</p>
-      <input type="password" class="passwordInput" name="passwordN" id="passwordN"
+      <input type="password" class="passwordInput" name="passwordN" id="passwordN" required
         value="<%= typeof password != 'undefined' ? password : '' %>" class="form-control" id="exampleInputPassword1"
         placeholder="Password">
       <br>

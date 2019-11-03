@@ -1,0 +1,70 @@
+  <% posts.forEach(function(posts){ %>
+  <section class="allPost">
+    <div class="eachPost">
+      <div class="firstRow-group">
+       <div class="author-img">
+         <img class="img" src="https://robohash.org/<%=posts.author_id%>"> 
+        </div>
+        <div class="other-than-img" style="width: 100%">
+          <div class="firstRow">
+            <div class="right-side">
+              <div class="title">
+                <p> <a href="/users/view/<%= posts._id %>"> <%= posts.title %></a></p>
+              </div>
+            </div>
+            <div class="twoButton">
+            </div>
+          </div>
+          <div class="dateRow">
+            <p><i class="fas fa-user"></i><strong><%= posts.author_username %></strong></p>
+            <p>· <%= posts.date %></p>
+          </div>
+          <div class="iconRow">
+            <% if (posts.type == 'complex') {%>
+            <i title="Contains multilayered texts" class="fas fa-align-left"></i>
+            <%}%>
+              <% if (posts.code != 'none') {%>
+            <i title="Contains code segments" id="code" class="fas fa-code"></i>
+            <%}%>
+            <i class="fas fa-file-contract"></i>
+          </div>
+        </div>
+      </div>
+      <div class="secondRow">
+        <% if (posts.type == 'simple'){ %>
+            <p><%= posts.body %></p>
+            <% } %>
+            <% if (posts.type == 'complex'){ %>
+            <p><%- posts.body %></p>
+            <% } %>
+            <% if (posts.type == null){ %>
+            <p><%= posts.body %></p>
+            <% } %>
+          </div>
+
+          <div class="tags">
+            <%
+          for(var i=0; i<posts.tags.length; i++){ %>
+            <% if (posts.tags[i] != 'none'){ %>
+            <div class="tag-word">
+              <p><a href="#"><%= posts.tags[i] %></a></p>
+            </div>
+            <% } %>
+            <%}
+        %>
+          </div>
+
+          <div class="thirdRow">
+            <div class="views">
+              <p>Views <%= posts.view %></p>
+            </div>
+            <div class="upvotes">
+              <p>· Upvotes <%= posts.upvote %></p>
+            </div>
+            <div class="comments">
+              <p>· Comments <%= posts.comment %></p>
+            </div>
+          </div>
+        </div>
+  </section>
+  <% }) %>

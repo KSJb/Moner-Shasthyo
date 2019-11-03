@@ -62,24 +62,12 @@ app.use(function (req, res, next) {
 // Routes
 
 const adminRoutes = require("./routes/admin.js");
-app.use("/admin", adminRoutes); // Login Register
+app.use("/admin", adminRoutes); // Login/Register
 
 const usersRoutes = require("./routes/users.js");
 app.use("/users", usersRoutes); // Inside Homepage
+
 app.use("/", usersRoutes); // Get the start page
-
-app.post('/habijabi', (req, res) => {
-  return res.status(200).json({
-    success: true
-  });
-})
-
-
-app.get('/habijabi', (req, res) => {
-  return res.status(200).json({
-    success: false
-  });
-})
 
 const PORT = process.env.PORT || 4003;
 app.listen(PORT, function () {
