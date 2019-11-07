@@ -108,6 +108,7 @@
 }
 
 .dropdown {
+  margin-right: 8%;
   position: relative;
   display: inline-block;
 }
@@ -160,26 +161,6 @@
   color: rgb(20, 157, 161);
 }
 
-@media only screen and (max-width: 768px) {
-  .navlinks {
-    height: 50px;
-  }
-  .navlinks p {
-    font-size: 10px;
-  }
-  .navlinks .create-post {
-    margin-left: 30px;
-  }
-
-  .navlinks .notifs {
-    margin-left: 30px;
-  }
-
-  .navlinks .search {
-    margin-left: 30px;
-  }
-}
-
 /* +++++ Mobile Bar +++++ */
 .mobile-bar {
   display: none;
@@ -187,18 +168,49 @@
   border-bottom: 1px solid rgb(230, 230, 230);
   margin-top: 20px;
 }
+.top-mobile-bar{
+  display: none;
+}
 
 @media only screen and (max-width: 500px) {
   .complete-bar {
     display: none;
   }
 
+  .top-mobile-bar{
+    display: block;
+    background-color: black;
+    height: 50px;
+  }
+  .top-logo{
+    display: block;
+    margin: auto;
+    height: 35px;
+    width: 35px;
+    padding-top: 5px;
+    border-radius: 50%;
+  }
+
   .mobile-bar {
+    display: block;
+    position: fixed;
+    justify-content: center;
+    width: 100%;
+    bottom: 0;
+    background-color: rgb(241, 239, 239);
+  }
+  .icons{
+    margin-top: 10px;
     display: flex;
+    width: 95%;
   }
   .mobile-bar p {
     margin-left: 15%;
   }
+  .mobile-bar p.home {
+    margin-left: 0%;
+  }
+
   .mobile-bar input {
     border: 1px solid rgb(212, 212, 212);
   }
@@ -207,10 +219,6 @@
     width: 90%;
     margin: auto;
     margin-top: 10px;
-  }
-  .mobile-bar .left {
-    display: flex;
-    width: 90%;
   }
   .mobile-bar i {
     font-size: 30px;
