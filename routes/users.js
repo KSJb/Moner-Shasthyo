@@ -20,6 +20,6 @@ router.get('/edit_post/:id', controller.edit_post);
 router.get('/delete_post/:id', controller.delete_post);
 router.post('/save_changes', controller.save_changes);
 router.post('/uploadfile', controller.uploadfile);
-router.get('/get_all_users', controller.get_all_users);
+router.get('/get_user', controller.get_user);
 
 module.exports = router;

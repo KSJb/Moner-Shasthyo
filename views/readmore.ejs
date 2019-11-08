@@ -70,7 +70,7 @@
             <div class="title">
               <h1><b> <%= posts.title %></b> </h1>
             </div>
-            <button type="button" id="savepost" class="btn btn-outline-info" >Save Post</button>
+            <button type="button" id="savepost" class="btn btn-outline-info">Save Post</button>
             <p class="bookmark "> <i class="far fa-bookmark" id="savepost"></i> </p>
           </div>
           <div class="dateRow">
@@ -154,7 +154,7 @@
                 <a href="#"> <img class="comment-img" src="https://robohash.org/<%=comments.commentedBy%>"> </a>
               </div>
               <div class="author-date">
-                <strong> <%= comments.commentedBy_Username %> </strong> 
+                <strong> <%= comments.commentedBy_Username %> </strong>
                 <p class="comment_body"><%= comments.body %></p>
               </div>
               <hr>
@@ -257,6 +257,22 @@
   <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
   <script type="text/javascript">
+
+    $.ajax({
+      url: '/get_user',
+      method: 'get'
+    }).done(res => {
+      if (res.user == false){
+        console.log('not logged in');
+        document.getElementById('savepost').disabled = true;
+        document.getElementById('upvote-btn').disabled = true;
+        document.getElementById('add-comment-btn').disabled = true;
+        document.getElementById('savepost').title = 'Log in to bookmark posts';
+        document.getElementById('upvote-btn').title = 'Log in to upvote';
+        document.getElementById('add-comment-btn').title = 'Log in to add comments';
+
+      }
+    })
 
     function toast() {
       var x = document.getElementById("snackbar");

@@ -419,10 +419,16 @@ module.exports.uploadfile = async (req, res) => {
   res.redirect('back');
 }
 
-module.exports.get_all_users = async (req, res) => {
-  User.find().then((users) => {
+module.exports.get_user = async (req, res) => {
+  if (!req.isAuthenticated()) {
     return res.json({
-      Users: users
-    });
-  })
+      user: false
+    })
+  }
+
+  else {
+    return res.json({
+      user: true
+    })
+  }
 }
