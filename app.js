@@ -25,9 +25,8 @@ mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true}, (er
 });
 */
 
-mongoose.connect('mongodb+srv://safwan:peeppeep@blogger-aahxs.mongodb.net/testing?retryWrites=true&w=majority',
-  { useNewUrlParser: true },
-  () => console.log("atlas db connected")
+mongoose.connect('mongodb+srv://safwan:peeppeep@blogger-aahxs.mongodb.net/testing?retryWrites=true&w=majority', { useNewUrlParser: true },
+    () => console.log("atlas db connected")
 );
 
 app.use(bodyParser.json());
@@ -36,9 +35,9 @@ app.use(cookieParser());
 
 // Express Session
 app.use(session({
-  secret: 'secret_KEY',
-  saveUninitialized: true,
-  resave: true
+    secret: 'secret_KEY',
+    saveUninitialized: true,
+    resave: true
 }));
 
 // Connect flash
@@ -52,11 +51,11 @@ app.use(flash());
 
 
 // Global variables
-app.use(function (req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
+app.use(function(req, res, next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
 });
 
 // Routes
@@ -69,8 +68,8 @@ app.use("/users", usersRoutes); // Inside Homepage
 
 app.use("/", usersRoutes); // Get the start page
 
-const PORT = process.env.PORT || 4003;
-app.listen(PORT, function () {
-  console.log('Listening to ', PORT);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, function() {
+    console.log('Listening to ', PORT);
 });
 // Already in use solution : https://stackoverflow.com/questions/4075287/node-express-eaddrinuse-address-already-in-use-kill-server

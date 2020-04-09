@@ -39,7 +39,7 @@ module.exports.profile = (req, res) => {
 
   else {
     const currentuser = req.user;
-    Post.find().then(posts => {
+    Post.find().sort({ _id: -1 }).then(posts => {
       return res.render("profile", {
         posts: posts,
         currentuser: currentuser,
@@ -302,7 +302,7 @@ module.exports.view_post = (req, res) => {
 
 module.exports.save_post = async (req, res) => {
   const post_id = req.params.id;
-  const update = await User.findOneAndUpdate({ _id: req.user.id }, { $push: { savePosts: post_id } });
+  const update = await User.findOneAndUpdate({ _id: req.user._id }, { $push: { savePosts: post_id } });
   res.redirect('back');
 }
 
