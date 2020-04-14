@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css?family=Thasadith:700&display=swap");
+body {
+    font-family: "Thasadith", sans-serif;
+}
+
+.nav-body {
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.content-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0px;
+    margin: auto;
+    width: 40%;
+}
+
+.logo img {
+    width: 20%;
+}
+
+.right-contents {
+    display: flex;
+}
+
+.right-contents .search {
+    border: 1px solid #ddd;
+    background-color: #eee;
+    padding: 5px 15px;
+    border-radius: 15px;
+    width: 60%;
+}
+
+.right-contents .search input {
+    background-color: #eee;
+    border: none;
+}
+
+.right-contents .search input:focus {
+    outline: none;
+}
+
+.item {
+    font-size: 16px;
+    padding: 0px 10px;
+    color: gray;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 5px;
+    transition: 0.5s;
+    padding-top: 7px;
+}
+
+.item:hover {
+    color: #000;
+    background-color: #eee;
+    text-decoration: none;
+}
+
+.far-right {
+    padding-top: 20px;
+    width: 5%;
+}
+
+.far-right a {
+    text-decoration: none;
+    color: gray;
+}
+
+.far-right a:hover {
+    color: black;
+}

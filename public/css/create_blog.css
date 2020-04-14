@@ -1,162 +1,191 @@
 .entire {
-  display: flex;
+    display: flex;
 }
 
 .right {
-  /* background-color: rgb(44, 44, 43); */
-  border-left: 1px solid rgb(219, 217, 217);
-  width: 14%;
+    /* background-color: rgb(44, 44, 43); */
+    border-left: 1px solid rgb(219, 217, 217);
+    width: 14%;
 }
 
 .options {
-  background-color: rgb(60, 134, 168);
-  color: white;
-  text-align: center;
-  font-size: 25px;
+    background-color: rgb(60, 134, 168);
+    color: white;
+    text-align: center;
+    font-size: 25px;
 }
 
 .opt-btns {
-  margin-top: 30px;
-  color: white;
-  font-size: 18px;
-  text-align: center;
+    margin-top: 30px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
 }
 
 .opt-btns a {
-  color: black;
-  text-decoration: none;
+    color: black;
+    text-decoration: none;
 }
 
 .opt-btns hr {
-  border-top: 1px solid rgb(216, 216, 216);
-  width: 90%;
+    border-top: 1px solid rgb(216, 216, 216);
+    width: 90%;
 }
 
-.opt-btns button:hover{
-  color: rgb(60, 134, 168);
+.opt-btns button:hover {
+    color: rgb(60, 134, 168);
 }
 
 .opt-btns a:hover {
-  color: rgb(60, 134, 168);
+    color: rgb(60, 134, 168);
 }
 
 .left {
-  width: 85%;
+    width: 85%;
 }
 
 .logo {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .header {
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    margin-top: 20px;
 }
-#title{
-  height: 50px;
-  width: 60%;
+
+.header p {
+    font-size: 20px;
+    color: gray;
+    ;
 }
+
+.upper .image {
+    width: 25%;
+    margin: auto;
+}
+
+.upper .image img {
+    margin-top: 50px;
+    width: 100%;
+}
+
+#title {
+    height: 50px;
+    width: 60%;
+}
+
 .title-area {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    width: 50%;
+    margin: auto;
 }
 
 .title-area input {
-  width: 30%;
+    border: none;
+    border-radius: 20px;
+    width: 100%;
 }
 
 .textArea {
-  display: flex;
-  justify-content: center;
-  /* margin-top: 5%; */
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    /* margin-top: 5%; */
 }
 
-.tag-field{
-  width: 80%;
-  height: 40px;
-  margin-left: 10%;
-  border: none;
-  border-bottom: 1px solid rgb(60, 134, 168);
+.tag-field {
+    width: 80%;
+    height: 40px;
+    margin-left: 10%;
+    border: none;
+    border-bottom: 1px solid rgb(60, 134, 168);
 }
-.tag-add-btn{
-  margin-bottom: 10px;
+
+.tag-add-btn {
+    margin-bottom: 10px;
 }
 
 .code-area {
-  width: 100%;
-  height: 400px;
+    width: 100%;
+    height: 400px;
 }
 
 .buttons {
-  color: rgb(73, 157, 160);
-  margin-left: 34.5%;
-  margin-top: 20px;
+    color: rgb(73, 157, 160);
+    margin-left: 34.5%;
+    margin-top: 20px;
 }
 
 .post-div {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-#create-btn{
-  float: right;
-  margin-right: 5%;
-  margin-top: 15px;
-  border-radius: 20px 20px 20px 20px;
-  color: white;
-  width: 10%;
+#create-btn {
+    float: right;
+    margin-right: 5%;
+    margin-top: 15px;
+    border-radius: 20px 20px 20px 20px;
+    color: white;
+    width: 10%;
 }
 
-.btn{
-  float: right;
+.btn {
+    float: right;
 }
 
-.modal input[type = text]{
-  border: none;
-  border-bottom: 1px solid rgb(60, 134, 168);
-  width: 85%;
-}   
-
-.thumbnail-field{
-  margin-left: 8%;
+.modal input[type=text] {
+    border: none;
+    border-bottom: 1px solid rgb(60, 134, 168);
+    width: 85%;
 }
 
-select{
-  border-radius: 5px 5px 5px 5px;
-  background-color: white;
-  border: 1px solid rgb(226, 225, 225);
-  padding: 5px;
-  width: 150px;
-  outline: none;
+.thumbnail-field {
+    margin-left: 8%;
 }
 
-select option:hover{
-  background-color: #333;
+select {
+    border-radius: 5px 5px 5px 5px;
+    background-color: white;
+    border: 1px solid rgb(226, 225, 225);
+    padding: 5px;
+    width: 150px;
+    outline: none;
 }
+
+select option:hover {
+    background-color: #333;
+}
+
 
 /* +++++ Toast +++++ */
+
 #snackbar {
-  visibility: hidden;
-  min-width: 250px;
-  margin-left: -125px;
-  background-color: #333;
-  opacity: 0.8;
-  color: #fff;
-  text-align: center;
-  border-radius: 2px;
-  padding: 16px;
-  position: fixed;
-  z-index: 1;
-  left: 50%;
-  top: 100px;
-  font-size: 17px;
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    opacity: 0.8;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 100px;
+    font-size: 17px;
 }
 
 #snackbar.show {
-  visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }

@@ -1,0 +1,38 @@
+<div class="nav-body">
+    <div class="content-area">
+        <div class="logo">
+            <a class="logo-img" href="/">
+                <img src="/images/black_cat_logo.jpg" alt="">
+            </a>
+        </div>
+        <div class="right-contents">
+            <div class="search item">
+                <input type="text" class="searh-input" id="search-input">
+                <a href="#"><i class="fa fa-search"></i></a>
+            </div>
+            <a href="/create_blog" class="item">
+                <div class="create-post">Create</div>
+            </a>
+            <a href="/profile" class="item">
+                <div class="saved">Saved</div>
+            </a>
+            <a href="#" class="item">
+                <div class="ntoifications"><i class="fa fa-bell"></i></div>
+            </a>
+        </div>
+    </div>
+    <div class="far-right">
+        <a href="/admin/login" id="logger" class="log">Sign in</a>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script>
+    $.get('/admin/getUser', (data) => {
+        if (data) {
+            const fname = data.name.split(' ')[0]
+            $('#logger').html(fname)
+            $('#logger').attr('href', '/admin/logout')
+            $('#logger').attr('title', 'Signed in. Click to sign out')
+        }
+    })
+</script>

@@ -9,6 +9,7 @@
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <link rel="icon" href="/images/black_cat_logo.jpg">
     <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/navbar.css">
 </head>
 
 <body>
@@ -16,130 +17,48 @@
     <div class="top-mobile-bar">
         <a href="/admin/login"> <img class="top-logo" src="https://bad-blogger.herokuapp.com/images/black_cat_logo.jpg" alt=""> </a>
     </div>
+    <%- include('./partials/navbar.ejs') %>
 
-    </div>
-    <div class="search-bar myCustomSearch" id="id-search-bar">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="badBlogger.." aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Search</button>
+        <div class="">
+            <%- body %>
+        </div>
+        <div class="mobile-bar">
+            <div class="icons">
+                <p class="home">
+                    <a href="/"> <i class="fas fa-home"></i> </a>
+                </p>
+                <p>
+                    <a href="/users/get_notifs"> <i class="fas fa-bell"></i> </a>
+                </p>
+                <p> <i class="fas fa-search" id="id-search"></i> </p>
+                <p>
+                    <a href="/users/profile"> <i class="fas fa-user-circle"></i> </a>
+                </p>
             </div>
         </div>
-    </div>
-
-    <!-- NavBar -->
-    <div class="complete-bar">
-        <div class="topnav">
-            <div class="navlinks">
-
-                <div class="home">
-                    <a href="/" class="home-link">
-                        <p>Home</p>
-                    </a>
-                </div>
-
-                <div class="create-post">
-                    <a href="/users/create_blog" class="createblog-link">
-                        <p id="create-btn">Create Post</p>
-                    </a>
-                </div>
-
-                <div class="notifs">
-                    <a href="/users/get_notifs" class="notif-link">
-                        <p>Notifications</p>
-                    </a>
-                </div>
-
-                <!-- <a href="/users/profile">
-          <div class="notifs">
-            <div class="profile">
-              <p>Profile</p>
-            </div>
-          </div>
-        </a> -->
-
-                <div class="search" id="id-search">
-                    <p>Search</p>
-                </div>
-
-                <!-- <div class="log-out">
-          <button id="log-btn" class="btn btn-outline-info">Log Out</button>
-        </div> -->
-
-            </div>
-
-            <div class="dropdown">
-                <div>
-                    <img class="img-round" src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
-                </div>
-                <div class="dropdown-content">
-                    <a href="/users/profile">Profile</a>
-                    <a href="/admin/login">Log out</a>
-                </div>
-            </div>
-
-            <!-- <div class="dropdown">
-        <div class="user-img" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img class="img-round" src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
-        </div>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/users/profile">Profile</a>
-          <a class="dropdown-item" href="/admin/login">Log out</a>
-        </div>
-      </div> -->
-
-            <div class="search-bar myCustomSearch" id="id-search-bar">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="badBlogger.." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Search</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="">
-        <%- body %>
-    </div>
-
-    <div class="mobile-bar">
-        <div class="icons">
-            <p class="home">
-                <a href="/"> <i class="fas fa-home"></i> </a>
-            </p>
-            <p>
-                <a href="/users/get_notifs"> <i class="fas fa-bell"></i> </a>
-            </p>
-            <p> <i class="fas fa-search" id="id-search"></i> </p>
-            <p>
-                <a href="/users/profile"> <i class="fas fa-user-circle"></i> </a>
-            </p>
-        </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <script>
-        $(document).ready(() => {
+        <script>
+            $(document).ready(() => {
 
-            var vis = false;
-            $('#id-search').click(() => {
-                if (vis == false) {
-                    console.log('close');
-                    document.getElementById('id-search-bar').style.display = 'flex';
-                    vis = true;
-                } else {
-                    console.log('open');
-                    document.getElementById('id-search-bar').style.display = 'none';
-                    vis = false;
-                }
-            })
-        });
-    </script>
+                var vis = false;
+                $('#id-search').click(() => {
+                    if (vis == false) {
+                        console.log('close');
+                        document.getElementById('id-search-bar').style.display = 'flex';
+                        vis = true;
+                    } else {
+                        console.log('open');
+                        document.getElementById('id-search-bar').style.display = 'none';
+                        vis = false;
+                    }
+                })
+            });
+        </script>
 
 </body>
 
