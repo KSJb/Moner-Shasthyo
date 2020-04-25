@@ -1,3 +1,4 @@
+</div>
 <div class="nav-body">
     <div class="content-area">
         <div class="logo">
@@ -22,11 +23,56 @@
         </div>
     </div>
     <div class="far-right">
-        <a href="/admin/login" id="logger" class="log">Sign in</a>
+        <a href="/admin/login" id="logger" class="log">Login</a>
     </div>
 </div>
+
+<div class="mobile-nav">
+    <div class="mobile-contents">
+        <div id="spans" class="spans"><i class="fa fa-align-justify"></i></div>
+        <div class="logo">
+            <a class="logo-img" href="/">
+                <img src="/images/black_cat_logo.jpg" alt="">
+            </a>
+        </div>
+        <div class="search-icon"><a href="#"><i class="fa fa-search"></i></a></div>
+    </div>
+</div>
+<div id="options-pane" class="options-pane">
+    <div class="body">
+        <div class="options">
+            <a href="#">
+                <div class="option">Create</div>
+            </a>
+            <a href="#">
+                <div class="option">Mental Assessment</div>
+            </a>
+            <a href="#">
+                <div class="option">Profile</div>
+            </a>
+            <a href="#">
+                <div class="option">Login</div>
+            </a>
+        </div>
+    </div>
+    <hr>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script>
+    let open = false
+    $('#spans').click((e) => {
+        if (!open) {
+            open = true
+            $('#options-pane').css('visibility', 'visible')
+            $('#options-pane').width('65%');
+            $("#options-pane").height($(document).height())
+        } else {
+            open = false
+            $('#options-pane').css('visibility', 'hidden')
+            document.getElementById('options-pane').style.width = '0px'
+        }
+    })
     $.get('/admin/getUser', (data) => {
         if (data) {
             const fname = data.name.split(' ')[0]

@@ -139,7 +139,7 @@ code:hover .badge {
 /* +++++++++++++++++++++++++++++++ */
 
 .mid {
-    width: 45%;
+    width: 55%;
     /* margin-left: 50px; */
 }
 
@@ -729,3 +729,6 @@ a:hover {
         font-size: 12px;
     }
 }
+
+
+/* Cards */

@@ -1,0 +1,106 @@
+html,
+body {
+  height: 100%;
+}
+
+.logo_img {
+  margin-left: 40%;
+}
+
+.links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.reg-link a {
+  text-decoration: none;
+}
+
+.form-reg {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.form-reg .label {
+  margin-top: 20px;
+}
+
+.form-reg .input {
+  margin-top: 10px;
+}
+
+.form-reg input {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.form-reg button {
+  width: 100%;
+  padding: 10px 0px;
+  border: 1px solid #3c86a8;
+  color: #3c86a8;
+  background-color: #fff;
+  border-radius: 20px;
+  margin-top: 25px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.form-reg button:hover {
+  background-color: #3c86a8;
+  color: #fff;
+}
+
+.form-area {
+  margin: auto;
+  margin-top: 100px;
+  top: 0;
+  width: 30%;
+  border: 2px solid #ebeaea;
+  border-radius: 10px 10px 10px 10px;
+}
+
+@media (max-width: 1510px) {
+  .form-area {
+    width: 40%;
+    margin: auto;
+    margin-top: 100px;
+  }
+}
+
+@media (max-width: 1510px) {
+  .form-area {
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .form-area {
+    width: 100%;
+    border: none;
+  }
+  .logo {
+    margin-left: 33%;
+  }
+  .logo_img {
+    margin-left: 0%;
+  }
+  #form-reg {
+    margin-top: 30px;
+  }
+}
+/*# sourceMappingURL=auth.css.map */

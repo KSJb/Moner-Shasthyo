@@ -2,125 +2,47 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login - badBLogger</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/auth.css">
+    <title>Login - badBLogger</title>
 
 </head>
 
 <body>
 
-  <% if (messages.reset_success) {%>
-  <div class="alert alert-success" role="alert">
-    Password reset successfully. Log in with the new password
-  </div>
-  <% } %>
+    <% if (messages.reset_success) {%>
+        <div class="alert alert-success" role="alert">
+            Password reset successfully. Log in with the new password
+        </div>
+        <% } %>
 
-  <div class="form-area">
-    <div class="logo">
-      <img class="logo_img" src="/images/black_cat_logo.jpg" alt="">
-    </div>
-    <form id="form-reg" action="/admin/login" method="POST">
-
-      <p id="labelEmail">Email address</p>
-      <input type="email" name="emailN" class="emailInput" id="emailN" required
-        value="<%= typeof email != 'undefined' ? email : '' %>" class="form-control" id="exampleInputEmail1"
-        aria-describedby="emailHelp" placeholder="Enter email"> <br>
-      <p id="labelPassword">Password</p>
-      <input type="password" class="passwordInput" name="passwordN" id="passwordN" required
-        value="<%= typeof password != 'undefined' ? password : '' %>" class="form-control" id="exampleInputPassword1"
-        placeholder="Password">
-      <br>
-      <button type="submit" id="submit-btn" class="btn btn-outline-info">Submit</button>
-    </form>
-    <br>
-    <div class="links">
-      <p><a href="/admin/forgot_password">Forgot Password?</a></p>
-      <p>Dont have an account? <a href="/admin/register">Create One!</a></p>
-    </div>
-  </div>
-
-  <style>
-    #form-reg {
-      width: 100%;
-      margin: 0 auto;
-      /* margin-top: 15%; */
-    }
-
-    .logo_img {
-      margin-left: 40%;
-    }
-
-    .links {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .reg-link a {
-      text-decoration: none;
-    }
-
-    .form-area {
-      margin: auto;
-      margin-top: 8%;
-      top: 0;
-      width: 30%;
-      border: 2px solid rgb(235, 234, 234);
-      border-radius: 10px 10px 10px 10px;
-    }
-
-    #emailN {
-      margin-left: 10%;
-      width: 80%;
-      height: 35px;
-      border-radius: 15px 15px 15px 15px;
-      border: 1px solid rgb(218, 216, 216);
-    }
-
-    #labelEmail {
-      margin-left: 10%;
-    }
-
-    #passwordN {
-      margin-left: 10%;
-      height: 35px;
-      border: 1px solid rgb(218, 216, 216);
-      width: 80%;
-      border-radius: 15px 15px 15px 15px;
-    }
-
-    #labelPassword {
-      margin-left: 10%;
-    }
-
-    #submit-btn {
-      margin-top: 20px;
-      margin-left: 10%;
-      width: 80%;
-      border-radius: 15px 15px 15px 15px;
-    }
-
-    @media only screen and (max-width: 500px) {
-      .form-area {
-        width: 100%;
-        border: none;
-      }
-
-      .logo{
-        margin-left: 33%;
-      }
-      .logo_img{
-        margin-left: 0%;
-      }
-
-      #form-reg{
-        margin-top: 30px;
-      }
-    }
-  </style>
-
+            <div class="form-area">
+                <div class="logo">
+                    <img class="logo_img" src="/images/black_cat_logo.jpg" alt="">
+                </div>
+                <form action="/admin/login" method="POST">
+                    <div class="form-reg">
+                        <div class="label">Email</div>
+                        <div class="email input">
+                            <input type="email" name="emailN" id="">
+                        </div>
+                        <div class="label">Password</div>
+                        <div class="password input">
+                            <input type="password" name="passwordN" id="">
+                        </div>
+                        <div class="submit">
+                            <button class="submit-btn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <div class="links">
+                    <p><a href="/admin/forgot_password">Forgot Password?</a></p>
+                    <p>Dont have an account? <a href="/admin/register">Create One!</a></p>
+                </div>
+            </div>
 
 </body>
 

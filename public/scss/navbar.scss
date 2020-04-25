@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css?family=Thasadith:700&display=swap");
+body {
+    font-family: "Thasadith", sans-serif;
+}
+
+.nav-body {
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    @media (max-width: 1000px) {
+        display: none;
+    }
+}
+
+.content-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0px;
+    margin: auto;
+    width: 40%;
+    @media (max-width: 1465px) {
+        width: 55%;
+    }
+}
+
+.logo img {
+    width: 20%;
+}
+
+.right-contents {
+    display: flex;
+}
+
+.right-contents .search {
+    border: 1px solid #ddd;
+    background-color: #eee;
+    padding: 5px 15px;
+    border-radius: 15px;
+    width: 60%;
+}
+
+.right-contents .search input {
+    background-color: #eee;
+    border: none;
+}
+
+.right-contents .search input:focus {
+    outline: none;
+}
+
+.item {
+    font-size: 16px;
+    padding: 0px 10px;
+    color: gray;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 5px;
+    transition: 0.5s;
+    padding-top: 7px;
+}
+
+.item:hover {
+    color: #000;
+    background-color: #eee;
+    text-decoration: none;
+}
+
+.far-right {
+    padding-top: 20px;
+    width: 5%;
+}
+
+.far-right a {
+    text-decoration: none;
+    color: gray;
+}
+
+.far-right a:hover {
+    color: black;
+}
+
+.mobile-nav {
+    position: sticky;
+    top: 0;
+    display: none;
+    @media (max-width: 1000px) {
+        display: block;
+    }
+    block width: 100%;
+    border-bottom: 1px solid #ddd;
+    height: 50px;
+    background-color: #fff;
+    .mobile-contents {
+        display: flex;
+        justify-content: space-between;
+        width: 95%;
+        margin: auto;
+        i {
+            font-size: 20px;
+            margin-top: 15px;
+        }
+    }
+}
+
+.options-pane {
+    visibility: hidden;
+    height: 100%;
+    width: 0%;
+    background-color: rgb(29, 33, 36);
+    transition: 0.2s;
+    position: fixed;
+    .option {
+        padding: 15px 30px;
+        font-size: 18px;
+        color: #fff;
+    }
+    .option:hover {
+        background-color: rgb(90, 89, 89);
+        text-decoration: none;
+    }
+    hr {
+        width: 80%;
+        margin: auto;
+        color: #aaa;
+    }
+}

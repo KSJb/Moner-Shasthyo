@@ -1,0 +1,267 @@
+.entire-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.left {
+  width: 68%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.left-contents {
+  width: 99%;
+}
+
+.left a {
+  text-decoration: none;
+  color: black;
+}
+
+.left a:hover {
+  color: #3c86a8;
+}
+
+.left hr {
+  width: 60%;
+  height: 2px;
+}
+
+.id-row {
+  background-image: -webkit-gradient(linear, left top, right top, from(#69e6dc), to(white));
+  background-image: linear-gradient(to right, #69e6dc, white);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+}
+
+.id-row .image {
+  margin-left: 15%;
+}
+
+.id-row .image .user_img {
+  border-radius: 50%;
+  width: 55%;
+  margin-left: 50%;
+}
+
+.non-image {
+  margin-top: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.non-image .name {
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.non-image .username {
+  color: #8b8a8a;
+}
+
+.non-image .intro {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+#edit-btn-id {
+  border-radius: 50%;
+}
+
+.nav-bar {
+  width: 60%;
+  margin: auto;
+}
+
+.post-palette {
+  width: 55%;
+  margin-top: 25px;
+  margin-left: 20%;
+  border-radius: 10px 10px 10px 10px;
+  border: 1px solid #e4e3e3;
+}
+
+.post-palette:hover .two-btns {
+  display: block;
+}
+
+.row-one {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.two-btns {
+  display: none;
+  /* margin-left: 20px; */
+  float: right;
+}
+
+.two-btns #delete-post {
+  margin-left: 10px;
+}
+
+.delete-btn {
+  color: red;
+}
+
+.post-palette .title {
+  margin-top: 10px;
+  margin-left: 2%;
+  font-size: 30px;
+}
+
+.post-palette .date {
+  margin-left: 2%;
+  font-size: 12px;
+  color: gray;
+}
+
+.post-palette hr {
+  width: 100%;
+}
+
+.thirdRow {
+  margin-left: 2%;
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.thirdRow p {
+  font-size: 15px;
+  color: gray;
+}
+
+.thirdRow .upvotes {
+  margin-left: 10px;
+}
+
+.thirdRow .comments {
+  margin-left: 10px;
+}
+
+.right {
+  width: 30%;
+}
+
+.about-section {
+  margin-top: 25px;
+}
+
+.about {
+  padding-bottom: 10px;
+  width: 40%;
+  font-size: 15px;
+  border-bottom: 1px solid #e9e8e8;
+}
+
+.about-items {
+  margin-top: 15px;
+}
+
+.about-items p {
+  font-size: 12px;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+.activity-section {
+  margin-top: 100px;
+}
+
+.activities {
+  padding-bottom: 10px;
+  width: 40%;
+  font-size: 15px;
+  border-bottom: 1px solid #e9e8e8;
+}
+
+.activity-items {
+  margin-top: 15px;
+}
+
+.activity-items p {
+  font-size: 12px;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+.edit-form input {
+  border: none;
+  border-bottom: 1px solid blue;
+  border-radius: 0px;
+}
+
+.logout-btn {
+  display: none;
+}
+
+@media only screen and (max-width: 500px) {
+  .right {
+    display: none;
+  }
+  .left {
+    width: 98%;
+  }
+  .post-palette {
+    width: 95%;
+    margin-left: 4%;
+  }
+  .post-palette .title {
+    font-size: 15px;
+  }
+  .post-palette .date {
+    font-size: 10px;
+  }
+  .post-palette .thirdRow p {
+    font-size: 12px;
+  }
+  .logout-btn {
+    display: block;
+    float: right;
+    font-size: 20px;
+    margin-right: 20px;
+  }
+  .nav-bar {
+    width: 95%;
+  }
+  .id-row .image {
+    width: 30%;
+  }
+  .id-row .image .user_img {
+    border-radius: 50%;
+    width: 80%;
+    margin-left: 0%;
+  }
+  .non-image {
+    margin-top: 5%;
+  }
+  .non-image .name {
+    font-size: 15px;
+    font-weight: 300;
+  }
+  .non-image .username {
+    font-size: 12px;
+    color: #8b8a8a;
+  }
+  .non-image .intro {
+    margin-top: 12px;
+    font-size: 10px;
+  }
+  .edit-btn {
+    display: none;
+  }
+}
+/*# sourceMappingURL=profile.css.map */

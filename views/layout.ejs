@@ -14,27 +14,14 @@
 
 <body>
 
-    <div class="top-mobile-bar">
-        <a href="/admin/login"> <img class="top-logo" src="https://bad-blogger.herokuapp.com/images/black_cat_logo.jpg" alt=""> </a>
-    </div>
     <%- include('./partials/navbar.ejs') %>
 
         <div class="">
             <%- body %>
         </div>
-        <div class="mobile-bar">
-            <div class="icons">
-                <p class="home">
-                    <a href="/"> <i class="fas fa-home"></i> </a>
-                </p>
-                <p>
-                    <a href="/users/get_notifs"> <i class="fas fa-bell"></i> </a>
-                </p>
-                <p> <i class="fas fa-search" id="id-search"></i> </p>
-                <p>
-                    <a href="/users/profile"> <i class="fas fa-user-circle"></i> </a>
-                </p>
-            </div>
+
+        <div style="margin-top: 30px;">
+            <%- include('./partials/footer.ejs') %>
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 

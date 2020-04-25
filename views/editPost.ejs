@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Post - badBlogger</title>
+</head>
+
+<body>
+
+    <link rel="stylesheet" href="/css/create_blog.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>
+
+    <div id="snackbar"></div>
+
+    <div class="contentWrapper">
+        <div class="alertWrapper">
+            <div class="alert alert-danger" id="alert" style="display: none;"></div>
+            <div class="alert alert-success" id="alert-success" style="display: none;"></div>
+        </div>
+        <div class="titleWrapper">
+            <div class="titleBox">
+                <input type="text" id="titleInput" value="<%= post.title %>" placeholder="It's a nice day!">
+                <button data-toggle="modal" data-target="#thumbnailModal" id="thumbnail-btn"><i class="fa fa-camera"></i></i></button>
+                <button data-toggle="modal" data-target="#tagsModal" id="tags-btn"><i class="fa fa-tags"></i></button>
+            </div>
+        </div>
+        <div class="editorWrapper" id="editorWrapper">
+            <textarea name="editor" id="area" cols="30" rows="10" class="area"><%= post.body %></textarea>
+        </div>
+        <div class="submit">
+            <p>
+                <button class="btn btn-info" id="submit-btn">Publish</button>
+            </p>
+        </div>
+    </div>
+    <input type="hidden" value="<%= post.thumbnail %>" id="thumbnail">
+    <input type="hidden" value="<%= tagString %>" id="tags">
+
+    <div class="modal fade" id="thumbnailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Add Thumbnail</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-input">
+                        <input type="text" value="<%= post.thumbnail %>" id="thumbnail-input">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="add-thumbnail-btn" data-dismiss="modal" class="btn btn-info">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tagsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Add Tags</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-input">
+                        <input type="text" value="<%= tagString %>" id="tags-input">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="add-tags-btn" data-dismiss="modal" class="btn btn-info">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" value="<%- post._id %>" id="id">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var config = {
+            height: 600,
+            width: 1600,
+            extraPlugins: 'embed,autoembed,image2',
+            contentsCss: [
+                'http://cdn.ckeditor.com/4.14.0/full-all/contents.css',
+                'https://ckeditor.com/docs/vendors/4.14.0/ckeditor/assets/css/widgetstyles.css'
+            ],
+            embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',
+            image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+            image2_disableResizer: true
+        };
+
+        const editor = CKEDITOR.replace('area', config);
+
+        let pane = false
+        $('#pane-btn').click((e) => {
+            if (!pane) {
+                pane = true
+                $('#pane').css('visibility', 'visible')
+                $('#editorWrapper').width('70%')
+                $('#pane-opener').width('20%')
+                $('#pane').width('95%')
+            } else {
+                pane = false
+                $('#pane').css('visibility', 'hidden')
+                $('#editorWrapper').width('80%')
+                $('#pane-opener').width('5%')
+                $('#pane').width('0%')
+            }
+        })
+
+        $('#add-thumbnail-btn').click((e) => {
+            $('#thumbnail').val($('#thumbnail-input').val())
+        })
+
+        $('#add-tags-btn').click((e) => {
+            $('#tags').val($('#tags-input').val())
+            console.log($('#tags').val())
+        })
+        const check = (data) => {
+            return data == '' || data == null || data == undefined
+        }
+
+        function showAlert(msg) {
+            console.log(msg);
+            $('#alert').show();
+            $('#alert').html(msg);
+            $('html, body').animate({
+                scrollTop: 0
+            }, 'slow');
+        }
+        $('#submit-btn').click((e) => {
+            const title = $('#titleInput').val()
+            const thumbnail = $('#thumbnail').val()
+            const tagString = $('#tags').val()
+            const body = CKEDITOR.instances.area.getData()
+            const tags = tagString.split(',')
+            const id = $('#id').val()
+            let error = false
+
+            if (check(title)) {
+                error = true
+                showAlert('Enter the title')
+            } else if (check(thumbnail)) {
+                error = true
+                showAlert('Give a link to thumbnail image')
+            } else if (check(tagString)) {
+                error = true
+                showAlert('Enter atleast one tag')
+            } else if (check(body)) {
+                error = true
+                showAlert('Can not publish with an empty body')
+            } else {
+                const data = {
+                    id,
+                    title,
+                    thumbnail,
+                    tags: JSON.stringify(tags),
+                    body
+                }
+                console.log(data)
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/users/save_changes',
+                    data,
+                    success: (data) => {
+                        $('#alert-success').show()
+                        $('#alert-success').html('Your post has been updated')
+                        location = '/users/view/' + data.id
+                    }
+                })
+            }
+        })
+
+        function toast(msg) {
+            var x = document.getElementById("snackbar");
+            x.innerHTML = msg;
+            x.className = "show";
+            setTimeout(function() {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+        }
+    </script>
+
+</body>
+
+</html>

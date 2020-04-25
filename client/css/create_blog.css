@@ -1,0 +1,95 @@
+.contentWrapper {
+  margin-top: 40px;
+}
+
+.contentWrapper .alertWrapper {
+  width: 60%;
+  margin: auto;
+}
+
+.contentWrapper .titleWrapper {
+  width: 50%;
+  margin: auto;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+@media (max-width: 1410px) {
+  .contentWrapper .titleWrapper {
+    width: 75%;
+  }
+}
+
+@media (max-width: 900px) {
+  .contentWrapper .titleWrapper {
+    width: 85%;
+  }
+}
+
+.contentWrapper .titleWrapper .titleBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.contentWrapper .titleWrapper input {
+  width: 80%;
+  margin-left: 5%;
+  height: 45px;
+  border: none;
+}
+
+.contentWrapper .titleWrapper input:focus {
+  outline: none;
+}
+
+.contentWrapper .titleWrapper button {
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  margin-left: 2%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.contentWrapper .titleWrapper button i {
+  color: gray;
+  font-size: 18px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.contentWrapper .titleWrapper button i:hover {
+  color: #17a5be;
+}
+
+.contentWrapper .editorWrapper {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.contentWrapper .submit {
+  margin-top: 30px;
+}
+
+.contentWrapper .submit p {
+  text-align: center;
+}
+
+.contentWrapper .submit p button {
+  font-size: 20px;
+  margin: auto;
+}
+
+.modal-input input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #17a5be;
+}
+
+.modal-input input:hover {
+  outline: none;
+}
+/*# sourceMappingURL=create_blog.css.map */

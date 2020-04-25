@@ -8,7 +8,9 @@ var passport = require('passport');
 const flash = require('express-flash');
 const app = express();
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+app.use(express.static('client'));
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
@@ -24,7 +26,9 @@ mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true}, (er
     mongodb+srv://safwan:<password>@cluster0-gvu5h.mongodb.net/admin
 });
 */
-
+/*
+CoronaApp mongo string : mongodb+srv://saf:home761049@cluster0-ov3aj.mongodb.net/test?retryWrites=true&w=majority
+*/
 mongoose.connect('mongodb+srv://safwan:peeppeep@blogger-aahxs.mongodb.net/testing?retryWrites=true&w=majority', { useNewUrlParser: true },
     () => console.log("atlas db connected")
 );
