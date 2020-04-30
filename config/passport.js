@@ -1,37 +1,59 @@
 const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // Load User model
-const User = require('../models/user');
+const { gUser } = require('../models/gUser');
+const { eUser } = require('../models/eUser')
 
-module.exports = function(passport) {
+module.exports.googleStrategy = (passport) => {
+    passport.use(new GoogleStrategy({
+            clientID: '887125122883-jsba3nm3r7pei13lttvh9bvoifu4vbot.apps.googleusercontent.com',
+            clientSecret: 'EuXF134L9w84RETN3Eo3yYlJ',
+            callbackURL: '/auth/google/redirect'
+        },
+        function(accessToken, refreshToken, profile, cb) {
+            console.log(profile);
+            return cb();
+        }
+    ));
+}
+
+module.exports = (passport) => {
     passport.use(
         new LocalStrategy({
-            usernameField: 'emailN',
-            passwordField: 'passwordN',
+            usernameField: 'email',
+            passwordField: 'password',
             passReqToCallback: true
-        }, (req, email, password, done) => {
+        }, async(req, email, password, done) => {
             // Match user
-
-            User.findOne({
-                email: req.body.emailN
-            }).then(user => {
-                if (!user) {
-                    console.log("Email not registered");
-                    return done(null, false, { message: 'That email is not registered' });
+            // console.log(req.body)
+            const guser = await gUser.findOne({ email: req.body.email })
+            if (guser) {
+                const gmatch = await bcrypt.compare(req.body.password, guser.password)
+                if (gmatch) {
+                    return done(null, guser)
+                } else {
+                    req.flash('errorMessage', 'Incorrect Password')
+                    return done(null, false)
                 }
-                // Match password
-                bcrypt.compare(req.body.passwordN, user.password, (err, isMatch) => {
-                    if (err) throw err;
-                    if (isMatch) {
-                        return done(null, user);
+            } else {
+                const euser = await eUser.findOne({ email: req.body.email })
+                    // console.log(euser)
+                if (euser) {
+                    const ematch = await bcrypt.compare(req.body.password, euser.password)
+                    if (ematch) {
+                        return done(null, euser)
                     } else {
-                        console.log("Incorrect password");
-                        return done(null, false, { message: 'Password incorrect' });
+                        req.flash('errorMessage', 'Incorrect Password')
+                        return done(null, false)
                     }
-                });
-            });
+                } else {
+                    req.flash('errorMessage', 'Email not found')
+                    return done(null, false)
+                }
+            }
         })
     );
 
@@ -40,8 +62,18 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
-        });
+        gUser.findById(id, (err, user) => {
+            if (user) {
+                return done(null, user)
+            } else {
+                eUser.findById(id, (err, user) => {
+                    if (user) {
+                        return done(null, user)
+                    } else {
+                        return done(err)
+                    }
+                })
+            }
+        })
     });
 };

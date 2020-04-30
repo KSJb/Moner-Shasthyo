@@ -85,35 +85,48 @@ body {
     }
 }
 
-// #nameN {
-//     margin: auto;
-//     width: 80%;
-//     border-radius: 15px 15px 15px 15px;
-// }
-// #labelName {
-//     margin-left: 10%;
-// }
-// #usernameN {
-//     margin: auto;
-//     width: 80%;
-//     border-radius: 15px 15px 15px 15px;
-// }
-// #labelUsername {
-//     margin-left: 10%;
-// }
-// #emailN {
-//     margin: auto;
-//     width: 80%;
-//     border-radius: 15px 15px 15px 15px;
-// }
-// #labelEmail {
-//     margin-left: 10%;
-// }
-// #passwordN {
-//     margin: auto;
-//     width: 80%;
-//     border-radius: 15px 15px 15px 15px;
-// }
-// #labelPassword {
-//     margin-left: 10%;
-// }
+.google-btn {
+    p {
+        text-align: center;
+        button {
+            i {
+                padding: 0px 10px;
+            }
+            padding: 10px 0px;
+            width: 85%;
+            border-radius: 20px;
+            border: none;
+        }
+    }
+}
+
+.modal-body {
+    p {
+        text-align: center;
+        font-size: 20px;
+        padding: 20px 0px;
+    }
+    .users {
+        width: 70%;
+        margin: auto;
+        p {
+            text-align: center;
+            button {
+                background-color: #eee;
+                border: 1px solid #eee;
+                padding: 10px 15px;
+                width: 100%;
+                border-radius: 5px;
+                font-size: 18px;
+                transition: 0.5s;
+                i {
+                    padding: 0px 15px;
+                }
+            }
+            button:hover {
+                background-color: #ddd;
+                border: 1px solid #ddd;
+            }
+        }
+    }
+}

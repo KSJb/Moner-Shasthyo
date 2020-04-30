@@ -1,268 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><%= currentuser.name %>'s Profile - badBlogger</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/profile.css">
+    <title>Profile</title>
 </head>
+
 <body>
-  
+    <div class="pageWrapper">
+        <div class="contentWrapper">
+            <div class="primary-dashboard">
+                <div class="left">
+                    <div class="username">hussain_safwan</div>
+                    <div class="name">Hussain MD Safwan</div>
+                    <button class="edit" id="edit-btn">Update</button>
+                </div>
+                <div class="right">
+                    <div class="balance"></div>
+                    <div class="image">
+                        <label for="update-img">
+                            <img src="https://avatars2.githubusercontent.com/u/32009766?s=460&u=6576285a4dc5684ebfc3223a76308f26a784a7ca&v=4" alt="">
+                        </label>
+                        <input type="file" name="" id="update-img">
+                    </div>
+                </div>
+            </div>
 
-<link rel="stylesheet" href="/css/profile.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+            <div class="all-info">
+                <div class="nav">
+                    <a href="#" id="1" class="tab active">Personal</a>
+                    <a href="#" id="2" class="tab">Occupational</a>
+                    <a href="#" id="3" class="tab">Psychological</a>
+                    <a href="#" id="4" class="tab">Tests Taken</a>
+                </div>
+                <div class="each-info" id="info-1">
+                    <div class="header">Personal</div>
+                    <div class="info-box">
+                        <div class="single-fields">
+                            <div class="field">Age</div>
+                            <div class="field">Gender</div>
+                            <div class="field">Marital Status</div>
+                            <div class="field">Area of living</div>
+                            <div class="field">Type of Residence</div>
+                            <div class="field">Family Type</div>
+                        </div>
+                        <div class="single-values">
+                            <div class="value">22</div>
+                            <div class="value">Male</div>
+                            <div class="value">:'-(</div>
+                            <div class="value">Sylhet</div>
+                            <div class="value">Own</div>
+                            <div class="value"></div>
+                        </div>
+                    </div>
+                </div>
 
-<div class="entire-page">
-  <div class="left">
-    <div class="left-contents">
-      <div class="id-row">
-        <div class="image">
-          <img class="user_img" src="https://robohash.org/<%= currentuser._id %>" alt="">
+                <div class="each-info" id="info-2" style="display: none;">
+                    <div class="header">Occupational</div>
+                    <div class="info-box">
+                        <div class="single-fields">
+                            <div class="field">Education</div>
+                            <div class="field">Occupation</div>
+                            <div class="field">Monthly Income</div>
+                        </div>
+                        <div class="single-values">
+                            <div class="value">Bachelors</div>
+                            <div class="value">Gorib</div>
+                            <div class="value">EEEEEEEhhhhh!!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-info" id="info-3" style="display: none;">
+                    <div class="header">Psychological</div>
+                    <div class="info-box">
+                        <div class="single-fields">
+                            <div class="field">Family history of mental illness</div>
+                            <div class="field">Child Abuse</div>
+                            <div class="field">Relationship Problem</div>
+                            <div class="field">Personality Pattern </div>
+                            <div class="field">Stressful Events</div>
+                            <div class="field">Substance Abuse</div>
+                            <div class="field">Diagnosed Mental Disorder</div>
+                            <div class="field">Treatment History</div>
+                        </div>
+                        <div class="single-values">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-info" id="info-4" style="display: none;">
+                    <div class="header">Tests Taken</div>
+
+                </div>
+            </div>
+
         </div>
-        <div class="non-image">
-          <div class="info">
-            <div class="name"><%= currentuser.name %></div>
-            <div class="username"><%= currentuser.username %></div>
-            <div class="intro">Always greener on the other side</div>
-            <input type="hidden" id="owner-id" value="<%= owner %>">
-          </div>
-          <a href="#">
-            <div class="edit-btn"><i data-toggle="modal" data-target="#exampleModalCenter" class="fas fa-edit"></i>
-          </a>
-        </div>
-      </div>
     </div>
-
-    <hr>
-     <a href="/admin/logout"> <i class=" logout-btn fas fa-sign-out-alt"></i> </a>
-
-    <div class="nav-bar">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" id="my" href="/users/profile">My Posts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="saved" href="/users/get_saved_posts">Saved</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Drafts</a>
-        </li>
-      </ul>
-    </div>
-
-    <!-- ------------------------ My posts ---------------------------------- -->
-    <div class="my-posts" id="my-posts">
-      <% posts.forEach(function(posts){ %>
-      <% if (posts.author_id == currentuser._id && owner == 'self') {%>
-      <div class="post-palette" title="Open post in new tab">
-        <a class="title-link" href="/users/view/<%= posts._id %>" target="_blank">
-          <div class="row-one">
-            <input type="hidden" id="<%= posts._id %>" value="<%= posts._id %>">
-            <p class="title"><%= posts.title %></p>
-
-          </div>
-          <p class="date"><%= posts.date %></p>
-          <hr>
-
-          <div class="thirdRow">
-            <div class="views">
-              <p>Views <%= posts.view %></p>
-            </div>
-            <div class="upvotes">
-              <p>· Upvotes <%= posts.upvote %></p>
-            </div>
-            <div class="comments">
-              <p>· Comments <%= posts.comment %></p>
-            </div>
-          </div>
-        </a>
-        <div class="two-btns">
-          <a href="/users/edit_post/<%= posts._id %>" id="<%= posts._id %>"><i class="fas fa-edit" title="Edit post"
-            ></i></a>
-          <a href="#" class="delete-btn"> <i class="far fa-trash-alt" title="Delete post" id="<%= posts._id %>"></i>
-          </a></div>
-      </div>
-      <% } %>
-      <% }) %>
-    </div>
-
-    <!-- ------------------------ My posts ---------------------------------- -->
-
-    <!-- ------------------------ Saved posts ---------------------------------- -->
-    <div class="saved-posts" id="saved-posts">
-      <% posts.forEach(function(posts){ %>
-      <% if (posts.author_id != currentuser._id && owner == 'others') {%>
-      <a class="title-link" href="/users/view/<%= posts._id %>" target="_blank">
-        <div class="post-palette" title="Open post in new tab">
-          <div class="row-one">
-            <p class="title"><%= posts.title %></p>
-            <div class="two-btns">
-              <i class="far fa-trash-alt" title="Unsave post" id="delete-post"></i>
-            </div>
-          </div>
-          <p class="date"><%= posts.date %></p>
-          <hr>
-
-          <div class="thirdRow">
-            <div class="views">
-              <p>Views <%= posts.view %></p>
-            </div>
-            <div class="upvotes">
-              <p>· Upvotes <%= posts.upvote %></p>
-            </div>
-            <div class="comments">
-              <p>· Comments <%= posts.comment %></p>
-            </div>
-          </div>
-        </div>
-      </a>
-      <% } %>
-      <% }) %>
-    </div>
-    <!-- ------------------------ Saved posts ---------------------------------- -->
-
-  </div>
-</div>
-<div class="right">
-  <div class="about-section">
-    <h3 class="about">About</h3>
-    <div class="about-items">
-      <p class="mail"><i class="fas fa-envelope"></i> <%= currentuser.email %></p>
-      <p class="edu"><i class="fas fa-graduation-cap"></i> Dept. of CSE, University of Dhaka</p>
-      <p class="job"><i class="fas fa-briefcase"></i> Kaaj thakle ki gorib hotam??</p>
-      <p class="location"><i class="fas fa-map-marker-alt"></i> Lives in 'Gorib er abar thakar jayga!'</p>
-      <p class="knows" title="What the user usually writes about"><i class="fas fa-pen-square"></i> HTML, CSS,
-        Javascript</p>
-    </div>
-  </div>
-
-  <div class="activity-section">
-    <h3 class="activities">Activities</h3>
-    <div class="about-items">
-      <p class="posts"><i class="fab fa-blogger-b"></i> 788 Posts</p>
-      <p class="views"><i class="fas fa-eye"></i> 4k Views</p>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- Edit post modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true" id="modal-fade">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Create Blog</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form id="form-submit" action="/users/post" method="POST">
-        <input type="text" name="title_name" id="title" placeholder="Title"><br><br>
-        <textarea rows="4" class="area1" name="body_name" cols="50" id="text-body"
-          placeholder="It's a fine day!"></textarea>
-        <div class="modal-footer">
-          <button data-dismiss="modal" class="btn btn-secondary">Cancel</button>
-          <a href="#"> <button type="submit" class="btn btn-info">Save Changes</button></a>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<!-- Edit Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Profile</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-        <form id="edit-form" class="edit-form">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <input type="text" class="form-control" id="name-edit" placeholder="Name">
-            </div>
-            <div class="form-group col-md-6">
-              <input type="text" class="form-control" id="username-edit" placeholder="Username">
-            </div>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="edu-edit" placeholder="Where do/did you study?">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="job-edit" placeholder="Where do/did you work?">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="job-edit"
-              placeholder="What do you know or are gonna write about?">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="addr-edit" placeholder="Where do you live?">
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <input type="text" class="form-control" id="intro-edit" placeholder="Intro">
-            </div>
-
-        </form>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline-info">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+</body>
 <script>
-  let owner = document.getElementById('owner-id').value;
-  console.log('JS entered ', owner);
-  if (owner == 'others') {
-    document.getElementById('my').className = 'nav-link';
-    document.getElementById('saved').className = 'nav-link active';
-  }
-
-
-
-  document.querySelector('.far').addEventListener('click', function (e) {
-    let post_id = e.target.id;
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
+    $('.tab').click((e) => {
+        const eachInfo = $('.each-info')
+        for (i = 0; i < eachInfo.length; i++) {
+            $(eachInfo[i]).hide()
+        }
+        const eachTabs = $('.tab')
+        for (let i = 0; i < eachTabs.length; i++) {
+            $(eachTabs[i]).removeClass('active')
+        }
+        const id = '#info-' + e.target.id
+        $(id).show()
+        $(e.target).addClass('active')
     })
-
-    swalWithBootstrapButtons.fire({
-      title: 'Delete?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Delete',
-      cancelButtonText: 'Cancel',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        window.location = '/users/delete_post/' + post_id;
-        swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-      }
-    })
-  }, false);
-
 </script>
 
-</body>
 </html>

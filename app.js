@@ -44,23 +44,19 @@ app.use(session({
     resave: true
 }));
 
-// Connect flash
-
-require('./config/passport')(passport);
 
 // Passport init
+require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
-
-// Global variables
-app.use(function(req, res, next) {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
+app.use((req, res, next) => {
+    res.locals.successMessage = req.flash('successMessage');
+    res.locals.errorMessage = req.flash('errorMessage');
+    res.locals.alertMessage = req.flash('alertMessage');
     next();
 });
+
 
 // Routes
 

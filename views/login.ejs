@@ -24,26 +24,58 @@
                 </div>
                 <form action="/admin/login" method="POST">
                     <div class="form-reg">
-                        <div class="label">Email</div>
-                        <div class="email input">
-                            <input type="email" name="emailN" id="">
-                        </div>
-                        <div class="label">Password</div>
-                        <div class="password input">
-                            <input type="password" name="passwordN" id="">
-                        </div>
-                        <div class="submit">
-                            <button class="submit-btn">Submit</button>
-                        </div>
+                        <% if (errorMessage.length != 0) { %>
+                            <div class="alert alert-danger" style="margin-top: 20px;">
+                                <%= errorMessage %>
+                            </div>
+                            <% } %>
+                                <div class="label">Email</div>
+                                <div class="email input">
+                                    <input type="email" name="email" id="">
+                                </div>
+                                <div class="label">Password</div>
+                                <div class="password input">
+                                    <input type="password" name="password" id="">
+                                </div>
+                                <div class="submit">
+                                    <button class="submit-btn">Submit</button>
+                                </div>
                     </div>
                 </form>
                 <br>
                 <div class="links">
                     <p><a href="/admin/forgot_password">Forgot Password?</a></p>
-                    <p>Dont have an account? <a href="/admin/register">Create One!</a></p>
+                    <p data-toggle="modal" data-target="#staticBackdrop">Dont have an account? <a href="#">Create One!</a></p>
+                </div>
+            </div>
+
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p>Choose user type</p>
+                            <div class="users">
+                                <div class="user-btn">
+                                    <p><button id="general-user">General User</button></p>
+                                </div>
+                                <div class="user-btn">
+                                    <p><button id="expert-user">Expert User</button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
 </body>
+
+<script>
+    $('#general-user').click((e) => {
+        location = '/admin/register/general'
+    })
+    $('#expert-user').click((e) => {
+        location = '/admin/register/expert'
+    })
+</script>
 
 </html>

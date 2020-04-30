@@ -5,7 +5,8 @@ const passport = require('passport');
 const randomString = require('randomstring');
 const nodemailer = require('nodemailer');
 // Load User model
-const User = require('../models/user');
+const { gUser } = require('../models/gUser');
+const { eUser } = require('../models/eUser')
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const Notif = require('../models/notifs');
@@ -32,19 +33,20 @@ const getDate = () => {
 }
 
 module.exports.profile = (req, res) => {
-    if (!req.isAuthenticated()) {
-        req.flash('login_prompt', 'log in');
-        res.redirect('/');
-    } else {
-        const currentuser = req.user;
-        Post.find().sort({ _id: -1 }).then(posts => {
-            return res.render("profile", {
-                posts: posts,
-                currentuser: currentuser,
-                owner: 'self'
-            });
-        })
-    }
+    // if (!req.isAuthenticated()) {
+    //     req.flash('login_prompt', 'log in');
+    //     res.redirect('/');
+    // } else {
+    //     const currentuser = req.user;
+    //     Post.find().sort({ _id: -1 }).then(posts => {
+    //         return res.render("profile", {
+    //             posts: posts,
+    //             currentuser: currentuser,
+    //             owner: 'self'
+    //         });
+    //     })
+    // }
+    res.render('profile')
 }
 
 module.exports.get_saved_posts = (req, res) => {
@@ -234,36 +236,12 @@ module.exports.verify = (req, res) => {
 
 module.exports.view_post = async(req, res) => {
     const id = req.params.id;
-
-    Post.findOne({ _id: id }, function(err, foundPost) {
-        if (err) res.json(err);
-        else {
-            Comment.find({ myPostID: id }, function(err, foundComments) {
-                if (err) res.json(err);
-                else {
-                    Post.findOneAndUpdate({ _id: id }, { $inc: { view: 1 } }, function(err, data) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            User.find().then(async(users) => {
-                                let User = JSON.stringify(users);
-                                const relatedPosts = await Post.find().sort({ _id: -1 }).limit(4)
-                                res.render('readmore', {
-                                    users: JSON.stringify(users),
-                                    posts: foundPost,
-                                    views: foundPost.view,
-                                    comments: foundComments,
-                                    relatedPosts
-                                });
-                            })
-
-                        }
-                    })
-                }
-
-            });
-        }
-    });
+    const posts = await Post.findOne({ _id: id })
+    const relatedPosts = await Post.find().sort({ _id: -1 }).limit(4)
+    res.render('readmore', {
+        posts,
+        relatedPosts
+    })
 }
 
 module.exports.save_post = async(req, res) => {

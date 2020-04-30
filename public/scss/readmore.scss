@@ -41,7 +41,7 @@ body {
                         display: flex;
                         width: 95%;
                         .image {
-                            width: 10%;
+                            width: 7%;
                             img {
                                 width: 100%;
                                 border-radius: 50%;
@@ -52,6 +52,13 @@ body {
                             font-size: 15px;
                             color: gray;
                             @media (max-width: 650px) {
+                                font-size: 12px;
+                            }
+                            .user {
+                                font-size: 15px;
+                                font-weight: bold;
+                            }
+                            .date {
                                 font-size: 12px;
                             }
                         }

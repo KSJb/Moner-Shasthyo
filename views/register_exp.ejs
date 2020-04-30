@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/auth.css">
+    <title>Register - badBlogger</title>
+
+</head>
+
+<body>
+
+    <div class="form-area">
+        <div class="logo">
+            <img class="logo_img" src="/images/black_cat_logo.jpg" alt="">
+        </div>
+
+        <div class="form-reg">
+            <div class="alert alert-danger" id="alert" style="display: none; margin-top: 20px;"></div>
+            <div class="label">Name</div>
+            <div class="name input">
+                <input type="text" name="name" placeholder="Name" id="name">
+            </div>
+            <div class="label">Username</div>
+            <div class="username input">
+                <input type="text" name="username" placeholder="Username" id="username">
+            </div>
+            <div class="label">Email</div>
+            <div class="email input">
+                <input type="email" name="email" placeholder="Email" id="email">
+            </div>
+            <div class="label">Organization</div>
+            <div class="email input">
+                <input type="text" name="organization" id="organization" placeholder="Where do you work at?">
+            </div>
+            <div class="label">Designation</div>
+            <div class="email input">
+                <input type="text" name="designation" id="designation" placeholder="What's your designation there?">
+            </div>
+            <div class="label">Password</div>
+            <div class="password input">
+                <input type="password" name="password" id="password">
+            </div>
+            <div class="label">Confirm Password</div>
+            <div class="password input">
+                <input type="password" name="cpass" id="cpass">
+            </div>
+            <div class="submit">
+                <button class="submit-btn" id="submit-btn">Submit</button>
+            </div>
+        </div>
+        <br>
+        <div class="links">
+            <p>Have an account? <a href="/admin/login">Login</a></p>
+        </div>
+    </div>
+
+</body>
+<script>
+    const check = (data) => {
+        return data == '' || data == null || data == undefined
+    }
+
+    function showAlert(msg) {
+        console.log(msg);
+        $('#alert').show();
+        $('#alert').html(msg);
+        $('html, body').animate({
+            scrollTop: 0
+        }, 'slow');
+    }
+    $('#submit-btn').click((e) => {
+        const name = $('#name').val()
+        const username = $('#username').val()
+        const email = $('#email').val()
+        const organization = $('#organization').val()
+        const designation = $('#designation').val()
+        const password = $('#password').val()
+        const cpass = $('#cpass').val()
+
+        if (check(name)) {
+            showAlert('Enter your name')
+        } else if (check('username')) {
+            showAlert('Enter the username')
+        } else if (check(email)) {
+            showAlert('Enter the email')
+        } else if (check(username)) {
+            showAlert('Enter the email or phone number')
+        } else if (check(organization)) {
+            showAlert('Enter the roganization you work for')
+        } else if (check(designation)) {
+            showAlert('Enter your designation')
+        } else if (check(password) || password.length < 6) {
+            showAlert('Adjust the length of password, minimum of 6 characters')
+        } else if (password != cpass) {
+            showAlert('Passwords do not match')
+        } else {
+            $('#alert').hide()
+            const data = {
+                name,
+                username,
+                email,
+                organization,
+                designation,
+                password
+            }
+            console.log(data)
+            $.ajax({
+                type: 'POST',
+                url: '/admin/register/expert',
+                data,
+                success: data => {
+                    console.log(data)
+                    if (data.status) {
+                        // location = '/'
+                    }
+                }
+            })
+        }
+    })
+</script>
+
+</html>

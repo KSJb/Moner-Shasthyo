@@ -71,7 +71,7 @@ body {
 }
 
 .contentWrapper .pageContent .left .post .subtitle .left .image {
-  width: 10%;
+  width: 7%;
 }
 
 .contentWrapper .pageContent .left .post .subtitle .left .image img {
@@ -89,6 +89,15 @@ body {
   .contentWrapper .pageContent .left .post .subtitle .left .user-date {
     font-size: 12px;
   }
+}
+
+.contentWrapper .pageContent .left .post .subtitle .left .user-date .user {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.contentWrapper .pageContent .left .post .subtitle .left .user-date .date {
+  font-size: 12px;
 }
 
 .contentWrapper .pageContent .left .post .subtitle .right {

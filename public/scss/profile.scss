@@ -1,248 +1,156 @@
-.entire-page {
-    display: flex;
+@import url("https://fonts.googleapis.com/css?family=Thasadith:700&display=swap");
+body {
+    font-family: "Thasadith", sans-serif;
 }
 
-.left {
-    width: 68%;
-    display: flex;
-}
-
-.left-contents {
-    width: 99%;
-}
-
-.left a {
-    text-decoration: none;
-    color: black;
-}
-
-.left a:hover {
-    color: rgb(60, 134, 168);
-}
-
-.left hr {
-    width: 60%;
-    height: 2px;
-}
-
-.id-row {
-    background-image: linear-gradient(to right, rgb(105, 230, 220), white);
-    display: flex;
-    justify-content: left;
-}
-
-.id-row .image {
-    margin-left: 15%;
-}
-
-.id-row .image .user_img {
-    border-radius: 50%;
-    width: 55%;
-    margin-left: 50%;
-}
-
-.non-image {
-    margin-top: 5%;
-    display: flex;
-    justify-content: space-around;
-}
-
-.non-image .name {
-    font-size: 25px;
-    font-weight: 300;
-}
-
-.non-image .username {
-    color: rgb(139, 138, 138);
-}
-
-.non-image .intro {
-    margin-top: 10px;
-    font-size: 15px;
-}
-
-#edit-btn-id {
-    border-radius: 50%;
-}
-
-.nav-bar {
-    width: 60%;
-    margin: auto;
-}
-
-.post-palette {
-    width: 55%;
-    margin-top: 25px;
-    margin-left: 20%;
-    border-radius: 10px 10px 10px 10px;
-    border: 1px solid rgb(228, 227, 227);
-}
-
-.post-palette:hover .two-btns {
-    display: block;
-}
-
-.row-one {
-    display: flex;
-    justify-content: space-between;
-}
-
-.two-btns {
-    display: none;
-    /* margin-left: 20px; */
-    float: right;
-}
-
-.two-btns #delete-post {
-    margin-left: 10px;
-}
-
-.delete-btn {
-    color: red;
-}
-
-.post-palette .title {
-    margin-top: 10px;
-    margin-left: 2%;
-    font-size: 30px;
-}
-
-.post-palette .date {
-    margin-left: 2%;
-    font-size: 12px;
-    color: gray;
-}
-
-.post-palette hr {
+.pageWrapper {
     width: 100%;
-}
-
-.thirdRow {
-    margin-left: 2%;
-    margin-top: 10px;
-    display: flex;
-}
-
-.thirdRow p {
-    font-size: 15px;
-    color: gray;
-}
-
-.thirdRow .upvotes {
-    margin-left: 10px;
-}
-
-.thirdRow .comments {
-    margin-left: 10px;
-}
-
-.right {
-    width: 30%;
-}
-
-.about-section {
-    margin-top: 25px;
-}
-
-.about {
-    padding-bottom: 10px;
-    width: 40%;
-    font-size: 15px;
-    border-bottom: 1px solid rgb(233, 232, 232);
-}
-
-.about-items {
-    margin-top: 15px;
-}
-
-.about-items p {
-    font-size: 12px;
-    /* font-family: Arial, Helvetica, sans-serif; */
-}
-
-.activity-section {
-    margin-top: 100px;
-}
-
-.activities {
-    padding-bottom: 10px;
-    width: 40%;
-    font-size: 15px;
-    border-bottom: 1px solid rgb(233, 232, 232);
-}
-
-.activity-items {
-    margin-top: 15px;
-}
-
-.activity-items p {
-    font-size: 12px;
-    /* font-family: Arial, Helvetica, sans-serif; */
-}
-
-.edit-form input {
-    border: none;
-    border-bottom: 1px solid blue;
-    border-radius: 0px;
-}
-
-.logout-btn {
-    display: none;
-}
-
-@media only screen and (max-width: 500px) {
-    .right {
-        display: none;
-    }
-    .left {
-        width: 98%;
-    }
-    .post-palette {
-        width: 95%;
-        margin-left: 4%;
-    }
-    .post-palette .title {
-        font-size: 15px;
-    }
-    .post-palette .date {
-        font-size: 10px;
-    }
-    .post-palette .thirdRow p {
-        font-size: 12px;
-    }
-    .logout-btn {
-        display: block;
-        float: right;
-        font-size: 20px;
-        margin-right: 20px;
-    }
-    .nav-bar {
-        width: 95%;
-    }
-    .id-row .image {
-        width: 30%;
-    }
-    .id-row .image .user_img {
-        border-radius: 50%;
-        width: 80%;
-        margin-left: 0%;
-    }
-    .non-image {
-        margin-top: 5%;
-    }
-    .non-image .name {
-        font-size: 15px;
-        font-weight: 300;
-    }
-    .non-image .username {
-        font-size: 12px;
-        color: rgb(139, 138, 138);
-    }
-    .non-image .intro {
-        margin-top: 12px;
-        font-size: 10px;
-    }
-    .edit-btn {
-        display: none;
+    .contentWrapper {
+        width: 40%;
+        margin: auto;
+        margin-top: 50px;
+        @media (max-width: 1465px) {
+            width: 55%;
+        }
+        @media (max-width: 1000px) {
+            width: 75%;
+        }
+        @media (max-width: 650px) {
+            width: 95%;
+        }
+        .primary-dashboard {
+            width: 100%;
+            @media (max-width: 650px) {
+                width: 80%;
+                margin: auto;
+            }
+            display: flex;
+            .left {
+                width: 60%;
+                .username {
+                    font-size: 40px;
+                    font-weight: bolder;
+                    @media (max-width: 1465px) {
+                        font-size: 20px;
+                    }
+                }
+                .name {
+                    color: gray;
+                    @media (max-width: 1465px) {
+                        font-size: 12px;
+                        ;
+                    }
+                }
+                button {
+                    margin-top: 50px;
+                    padding: 10px 15px;
+                    background-color: #fff;
+                    border: 1px solid rgb(23, 165, 190);
+                    border-radius: 5px;
+                    @media (max-width: 650px) {
+                        font-size: 12px;
+                        margin-top: 20px;
+                        padding: 5px;
+                    }
+                }
+            }
+            .right {
+                width: 40%;
+                display: flex;
+                justify-content: space-between;
+                .image {
+                    width: 40%;
+                    img {
+                        width: 100%;
+                        border-radius: 50%;
+                        transition: 0.5s;
+                    }
+                    img:hover {
+                        opacity: 0.6;
+                    }
+                    input {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .all-info {
+            margin-top: 100px;
+            @media (max-width: 650px) {
+                margin-top: 20px;
+            }
+            .nav {
+                width: 100%;
+                border-bottom: 1px solid #ddd;
+                // padding: 10px 0px;
+                .tab {
+                    margin-left: 2%;
+                    color: #000;
+                    font-size: 17.5px;
+                    padding: 10px 15px;
+                    // border-radius: 5px 5px 0px 0px;
+                    transition: 0.5s;
+                    @media (max-width: 1000px) {
+                        font-size: 13.5px;
+                        padding: 7.5px;
+                    }
+                    @media (max-width: 650px) {
+                        font-size: 12px;
+                        margin-left: 1%;
+                        padding: 5px;
+                    }
+                }
+                .active {
+                    border-bottom: 2px solid #000;
+                    // background-color: #eee;
+                }
+                .tab:first-child {
+                    margin-left: 0px;
+                }
+                .tab:hover {
+                    background-color: #eee;
+                    text-decoration: none;
+                }
+            }
+            .each-info {
+                margin-top: 30px;
+                transition: 0.5s;
+                min-height: 400px;
+                .header {
+                    font-size: 20px;
+                    font-weight: bold;
+                    @media (max-width: 650px) {
+                        font-size: 15px;
+                    }
+                }
+                .info-box {
+                    display: flex;
+                    margin-top: 20px;
+                    border: 1px solid #eee;
+                    padding: 25px;
+                    border-radius: 5px;
+                    .single-fields {
+                        font-size: 17.5px;
+                        font-weight: bolder;
+                        @media (max-width: 650px) {
+                            font-size: 13px;
+                        }
+                        .field {
+                            margin-top: 10px;
+                        }
+                    }
+                    .single-values {
+                        margin-left: 10%;
+                        color: gray;
+                        @media (max-width: 650px) {
+                            font-size: 13px;
+                        }
+                        .value {
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
