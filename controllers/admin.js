@@ -7,6 +7,7 @@ const nodemailer = require('nodemailer');
 // Load User model
 const { gUser } = require('../models/gUser');
 const { eUser } = require('../models/eUser')
+const testModel = require('../models/test')
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 var mongoose = require('mongoose');
@@ -182,5 +183,43 @@ function resetPassword(req, res, Email, Password) {
         console.log(docs);
         req.flash('reset_success');
         res.redirect('/admin/login');
+    })
+}
+
+// actual admin tasks :-( 
+
+module.exports.createTest = async(req, res) => {
+    const {
+        title,
+        thumbnail,
+        ageRange,
+        category,
+        about
+    } = req.body
+
+    const questionSet = JSON.parse(req.body.questionSet)
+    console.log(questionSet)
+
+    const newTest = new testModel({
+        title,
+        thumbnail,
+        ageRange,
+        category,
+        about,
+        questionSet
+    })
+    console.log(newTest)
+    await newTest.save()
+    res.send({
+        status: true,
+        msg: 'okke'
+    })
+}
+
+exports.singleTest = async(req, res) => {
+    const data = await testModel.findById('5eafe1eae78b3a1f90b94c74')
+    console.log(data)
+    res.render('singleTest', {
+        data
     })
 }

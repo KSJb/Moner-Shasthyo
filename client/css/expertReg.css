@@ -4,7 +4,7 @@ body {
 }
 
 .logo-reg {
-  width: 15%;
+  width: 12%;
   margin: auto;
 }
 
@@ -33,6 +33,37 @@ body {
   width: 85%;
   margin: 0 auto;
   margin-top: 40px;
+}
+
+.form-reg .side-by-side {
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-reg .side-by-side select {
+  width: 40%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.form-reg .side-by-side input {
+  width: 40%;
+}
+
+.form-reg p {
+  margin-top: 40px;
+  text-align: center;
+  font-weight: bolder;
+  color: gray;
 }
 
 .form-reg .label {
@@ -73,7 +104,7 @@ body {
   margin: auto;
   margin-top: 100px;
   top: 0;
-  width: 30%;
+  width: 50%;
   border: 2px solid #ebeaea;
   border-radius: 10px 10px 10px 10px;
 }
@@ -172,4 +203,4 @@ body {
 .expert-logo {
   width: 20%;
 }
-/*# sourceMappingURL=auth.css.map */
+/*# sourceMappingURL=expertReg.css.map */

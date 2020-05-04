@@ -60,15 +60,15 @@ app.use((req, res, next) => {
 
 // Routes
 
-const adminRoutes = require("./routes/admin.js");
-app.use("/admin", adminRoutes); // Login/Register
+const authRoutes = require("./routes/auth.js");
+app.use("/admin", authRoutes); // Login/Register
 
 const usersRoutes = require("./routes/users.js");
 app.use("/users", usersRoutes); // Inside Homepage
 
 app.use("/", usersRoutes); // Get the start page
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
     console.log('Listening to ', PORT);
 });

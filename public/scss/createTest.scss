@@ -1,0 +1,162 @@
+.pageWrapper {
+    .contentWrapper {
+        width: 50%;
+        margin: auto;
+        margin-top: 50px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 40px 0px;
+        .header {
+            font-size: 30px;
+            font-weight: bolder;
+            p {
+                text-align: center;
+            }
+        }
+        .primary-info {
+            margin-top: 50px;
+            .label {
+                font-size: 20px;
+                width: 80%;
+                margin: auto;
+                margin-bottom: 10px;
+            }
+            .title {
+                width: 80%;
+                margin: auto;
+                input {
+                    width: 100%;
+                    border: 1px solid #ddd;
+                    border-radius: 10px;
+                    padding: 10px;
+                }
+            }
+            .side-by-side {
+                display: flex;
+                justify-content: space-between;
+                width: 80%;
+                margin: auto;
+                margin-top: 30px;
+                .category {
+                    width: 40%;
+                    select {
+                        background-color: #fff;
+                        width: 100%;
+                        padding: 10px;
+                        border-radius: 20px;
+                        border: 1px solid #ddd;
+                    }
+                }
+                .thumbnail {
+                    width: 40%;
+                    input {
+                        width: 100%;
+                        padding: 10px;
+                        border: 1px solid #ddd;
+                        border-radius: 20px;
+                    }
+                }
+            }
+            .about {
+                width: 80%;
+                margin: auto;
+                margin-top: 20px;
+                textarea {
+                    width: 100%;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+    .delete {
+        button {
+            background-color: red;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px 5px;
+            border-radius: 5px;
+        }
+    }
+    .add {
+        margin-top: 10px;
+        margin-left: 5%;
+        button {
+            background-color: #777;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            padding: 5px 10px;
+        }
+    }
+    .questionSpace {
+        margin-top: 100px;
+        width: 100%;
+        i {
+            margin-top: 12px;
+        }
+        .allQuestions {
+            width: 100%;
+            .eachQuestions {
+                width: 100%;
+                margin: auto;
+                .question-scale {
+                    width: 80%;
+                    display: flex;
+                    justify-content: space-between;
+                    margin: auto;
+                    .question {
+                        width: 75%;
+                        input {
+                            width: 100%;
+                            border: 1px solid #ddd;
+                            border-radius: 5px;
+                            padding: 10px;
+                        }
+                    }
+                    .questionScale {
+                        width: 15%;
+                        input {
+                            width: 100%;
+                            border: 1px solid #ddd;
+                            border-radius: 5px;
+                            padding: 10px;
+                        }
+                    }
+                    .delete-question {
+                        width: 5%;
+                    }
+                }
+                .options {
+                    width: 80%;
+                    margin: auto;
+                    margin-top: 20px;
+                    .option-scale {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-left: 5%;
+                        .option {
+                            width: 75%;
+                            input {
+                                width: 100%;
+                                border: 1px solid #ddd;
+                                border-radius: 5px;
+                                padding: 10px;
+                            }
+                        }
+                        .optionScale {
+                            width: 15%;
+                            input {
+                                width: 100%;
+                                border: 1px solid #ddd;
+                                border-radius: 5px;
+                                padding: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

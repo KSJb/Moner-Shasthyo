@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/singleTest.css">
+    <title>Single Test</title>
+</head>
+
+<body>
+    <div class="pageWrapper">
+        <div class="contentWrapper">
+            <div class="top-color">
+                <div class="heading">
+                    <p>
+                        <%= data.title %>
+                    </p>
+                </div>
+            </div>
+            <div class="card-space">
+                <div class="card">
+                    <div class="upper yellow">
+                        <div class="image">
+                            <img src="https://static.neris-assets.com/images/test-header-1.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="lower">
+                        <div class="big-text">
+                            <p>Fast</p>
+                        </div>
+                        <div class="small-text">
+                            <p>Takes only a couple of minutes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="upper blue">
+                        <div class="image">
+                            <img src="https://static.neris-assets.com/images/test-header-2.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="lower">
+                        <div class="big-text">
+                            <p>Be Yourself</p>
+                        </div>
+                        <div class="small-text">
+                            <p>Keep it honest. It's between us</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="upper pink">
+                        <div class="image">
+                            <img src="https://static.neris-assets.com/images/test-header-3.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="lower">
+                        <div class="big-text">
+                            <p>Answer All</p>
+                        </div>
+                        <div class="small-text">
+                            <p>Do not skip any questions and dont leave anything neutral</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="aboutWrapper">
+                <div class="specifier">About this test</div>
+                <p>
+                    <%= data.about %>
+                </p>
+            </div>
+            <div class="questionSpace">
+                <p>Lets begin</p>
+                <div class="slide-container">
+                    <span class="bar"><span class="fill"></span></span>
+                    <input type="range" disabled id="slider">
+                    <p id="comp-percent">0%</p>
+                </div>
+                <% for (let i=0; i<data.questionSet.length; i++) { %>
+                    <div class="question-box">
+                        <div class="question">
+                            <p>
+                                <%= i+1 %>.
+                                    <%= data.questionSet[i].question %>
+                            </p>
+                        </div>
+                        <div class="response-area">
+                            <% if (data.questionSet[i].inputType == 'ranger') { %>
+                                <div class="slide-container response">
+                                    <span class="bar"><span class="fill"></span></span>
+                                    <input type="range" min="0" max="100" value="0" id="slider">
+                                </div>
+                                <% } else { %>
+                                    <% for (let j=0; j<data.questionSet[i].Options.length; j = j + 2) {%>
+                                        <div class="two-options">
+                                            <% if (data.questionSet[i].Options[j].option) { %>
+                                                <div class="one-option">
+                                                    <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j].option %>">
+                                                    <label for="<%= data.questionSet[i].Options[j].option %>">
+                                                        <%= data.questionSet[i].Options[j].option %>
+                                                    </label>
+                                                </div>
+                                                <% } %>
+
+                                                    <% if (data.questionSet[i].Options[j=1].option) { %>
+                                                        <div class="one-option">
+                                                            <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j+1].option %>">
+                                                            <label for="<%= data.questionSet[i].Options[j+1].option %>">
+                                                            <%= data.questionSet[i].Options[j+1].option %>
+                                                        </label>
+                                                        </div>
+                                                        <% } %>
+                                                            <%}%>
+                                                                <% } %>
+
+                                        </div>
+                                        <div class="navigation">
+                                            <div class="prev">
+                                                <button class="pre">Previous</button>
+                                            </div>
+                                            <div class="next">
+                                                <button class="nx">Next</button>
+                                            </div>
+                                        </div>
+                        </div>
+                        <% } %>
+                    </div>
+
+            </div>
+            <div class="related">
+                <div class="heading">
+                    <p>You might also take</p>
+                </div>
+                <div class="card-space">
+                    <% for (let i=0; i<3; i++) { %>
+                        <div class="card">
+                            <div class="image">
+                                <img src="https://g6.psychcentral.com/quizzes/wp-content/uploads/2017/11/psychological-quizzes.jpg" alt="">
+                            </div>
+                            <div class="texts">
+                                <div class="title">
+                                    <p>Insomnia</p>
+                                </div>
+                                <div class="category">
+                                    <p>Sleep Disorders</p>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+</body>
+
+<script>
+    const questions = $('.question-box')
+    for (let i = 0; i < questions.length; i++) {
+        $(questions[i]).hide()
+    }
+    $(questions[0]).show()
+
+    let current = 0
+    $('#slider').val(0)
+    $('.nx').click((e) => {
+        if (current + 1 != questions.length) {
+            $(questions[current]).hide()
+            current += 1
+            $(questions[current]).show()
+            let comp = (current / questions.length) * 100
+            comp = Math.round(comp)
+            $('#slider').val(comp)
+            $('#comp-percent').html(comp + '%')
+        }
+
+    })
+    $('.pre').click((e) => {
+        if (current != 0) {
+            $(questions[current]).hide()
+            current -= 1
+            $(questions[current]).show()
+            let comp = (current / questions.length) * 100
+            comp = Math.round(comp)
+            $('#slider').val(comp)
+            $('#comp-percent').html(comp + '%')
+        }
+    })
+</script>
+
+</html>

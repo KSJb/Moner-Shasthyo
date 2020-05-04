@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/createTest.css">
+    <title>Create Test</title>
+</head>
+
+<body>
+    <div class="pageWrapper">
+        <div class="contentWrapper">
+            <div class="header">
+                <p>Add New Test</p>
+            </div>
+            <div class="primary-info">
+                <div class="label">Name of the test</div>
+                <div class="title">
+                    <input type="text" id="title">
+                </div>
+                <div class="side-by-side">
+                    <div class="category">
+                        <div class="label">Category</div>
+                        <select name="" id="category">
+                <option value="sleep">Sleep</option>
+              </select>
+                    </div>
+                    <div class="thumbnail">
+                        <div class="label">Thumbnail URL</div>
+                        <input type="text" id="thumbnail">
+                    </div>
+                </div>
+                <div class="label" style="margin-top: 20px;">About the test</div>
+                <div class="about">
+                    <textarea name="" id="about" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+            <div class="questionSpace">
+                <div class="allQuestions">
+                    <div class="eachQuestions">
+                        <div class="question-scale">
+                            <i class="fa fa-circle"></i>
+                            <div class="question">
+                                <input type="text" id="question">
+                            </div>
+                            <div class="questionScale">
+                                <input type="text" id="questionScale">
+                            </div>
+                            <div class="delete delete-question">
+                                <button>Delete</button>
+                            </div>
+                        </div>
+                        <div class="options">
+                            <div class="eachOptions">
+                                <div class="option-scale">
+                                    <i class="fa fa-circle"></i>
+                                    <div class="option">
+                                        <input type="text" id="option">
+                                    </div>
+                                    <div class="optionScale">
+                                        <input type="text" id="optionScale">
+                                    </div>
+                                    <div class="delete delete-option">
+                                        <button>Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add add-option">
+                                <button>Add Options</button>
+                            </div>
+                        </div>
+                        <div class="add add-question">
+                            <button>Add Questions</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    $('.add-option').click((e) => {
+        const option = `
+        <div class="eachOptions">
+                                <div class="option-scale">
+                                    <i class="fa fa-circle"></i>
+                                    <div class="option">
+                                        <input type="text" id="option">
+                                    </div>
+                                    <div class="optionScale">
+                                        <input type="text" id="optionScale">
+                                    </div>
+                                    <div class="delete delete-option">
+                                        <button>Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+    `
+        $(e.target.parentElement).append(option)
+    })
+</script>
+
+</html>

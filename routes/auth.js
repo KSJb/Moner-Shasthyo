@@ -29,4 +29,11 @@ router.get('/register/expert', (req, res) => {
 router.post('/register/expert', controller.postRegExp);
 router.post('/register/general', controller.postRegGen)
 router.get('/logout', controller.logout);
+
+// Actual admin tasks :-(
+router.get('/create-test', (req, res) => {
+    res.render('createTest')
+})
+router.post('/create-test', controller.createTest)
+router.get('/single-test', controller.singleTest)
 module.exports = router;

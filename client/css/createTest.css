@@ -1,0 +1,203 @@
+.pageWrapper .contentWrapper {
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 40px 0px;
+}
+
+.pageWrapper .contentWrapper .header {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.pageWrapper .contentWrapper .header p {
+  text-align: center;
+}
+
+.pageWrapper .contentWrapper .primary-info {
+  margin-top: 50px;
+}
+
+.pageWrapper .contentWrapper .primary-info .label {
+  font-size: 20px;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.pageWrapper .contentWrapper .primary-info .title {
+  width: 80%;
+  margin: auto;
+}
+
+.pageWrapper .contentWrapper .primary-info .title input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.pageWrapper .contentWrapper .primary-info .side-by-side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.pageWrapper .contentWrapper .primary-info .side-by-side .category {
+  width: 40%;
+}
+
+.pageWrapper .contentWrapper .primary-info .side-by-side .category select {
+  background-color: #fff;
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+}
+
+.pageWrapper .contentWrapper .primary-info .side-by-side .thumbnail {
+  width: 40%;
+}
+
+.pageWrapper .contentWrapper .primary-info .side-by-side .thumbnail input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+.pageWrapper .contentWrapper .primary-info .about {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.pageWrapper .contentWrapper .primary-info .about textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.pageWrapper .delete button {
+  background-color: red;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 5px;
+  border-radius: 5px;
+}
+
+.pageWrapper .add {
+  margin-top: 10px;
+  margin-left: 5%;
+}
+
+.pageWrapper .add button {
+  background-color: #777;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
+}
+
+.pageWrapper .questionSpace {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.pageWrapper .questionSpace i {
+  margin-top: 12px;
+}
+
+.pageWrapper .questionSpace .allQuestions {
+  width: 100%;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions {
+  width: 100%;
+  margin: auto;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .question-scale {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: auto;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .question-scale .question {
+  width: 75%;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .question-scale .question input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .question-scale .questionScale {
+  width: 15%;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .question-scale .questionScale input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .question-scale .delete-question {
+  width: 5%;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .options {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .options .option-scale {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-left: 5%;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .options .option-scale .option {
+  width: 75%;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .options .option-scale .option input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .options .option-scale .optionScale {
+  width: 15%;
+}
+
+.pageWrapper .questionSpace .allQuestions .eachQuestions .options .option-scale .optionScale input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+/*# sourceMappingURL=createTest.css.map */
