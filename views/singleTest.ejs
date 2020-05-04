@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
     <div class="pageWrapper">
         <div class="contentWrapper">
             <div class="top-color">
@@ -88,46 +89,43 @@
                             </p>
                         </div>
                         <div class="response-area">
-                            <% if (data.questionSet[i].inputType == 'ranger') { %>
+                            <% if (data.questionSet[i].inputType == "ranger") { %>
                                 <div class="slide-container response">
                                     <span class="bar"><span class="fill"></span></span>
                                     <input type="range" min="0" max="100" value="0" id="slider">
                                 </div>
-                                <% } else { %>
-                                    <% for (let j=0; j<data.questionSet[i].Options.length; j = j + 2) {%>
-                                        <div class="two-options">
-                                            <% if (data.questionSet[i].Options[j].option) { %>
+                                <% } %>
+                                    <% if (data.questionSet[i].inputType == "radio") { %>
+                                        <% for (let j=0; j<data.questionSet[i].Options.length; j = j + 2) { %>
+                                            <div class="two-options">
                                                 <div class="one-option">
                                                     <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j].option %>">
                                                     <label for="<%= data.questionSet[i].Options[j].option %>">
                                                         <%= data.questionSet[i].Options[j].option %>
                                                     </label>
                                                 </div>
-                                                <% } %>
 
-                                                    <% if (data.questionSet[i].Options[j=1].option) { %>
-                                                        <div class="one-option">
-                                                            <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j+1].option %>">
-                                                            <label for="<%= data.questionSet[i].Options[j+1].option %>">
+                                                <div class="one-option">
+                                                    <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j+1].option %>">
+                                                    <label for="<%= data.questionSet[i].Options[j+1].option %>">
                                                             <%= data.questionSet[i].Options[j+1].option %>
                                                         </label>
+                                                </div>
+                                                - </div>
+                                            <% } %>
+                                                <% } %>
+                                                    <div class="navigation">
+                                                        <div class="prev">
+                                                            <button class="pre">Previous</button>
                                                         </div>
-                                                        <% } %>
-                                                            <%}%>
-                                                                <% } %>
-
-                                        </div>
-                                        <div class="navigation">
-                                            <div class="prev">
-                                                <button class="pre">Previous</button>
-                                            </div>
-                                            <div class="next">
-                                                <button class="nx">Next</button>
-                                            </div>
-                                        </div>
+                                                        <div class="next">
+                                                            <button class="nx">Next</button>
+                                                        </div>
+                                                    </div>
                         </div>
-                        <% } %>
+
                     </div>
+                    <% } %>
 
             </div>
             <div class="related">

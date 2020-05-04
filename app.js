@@ -68,7 +68,7 @@ app.use("/users", usersRoutes); // Inside Homepage
 
 app.use("/", usersRoutes); // Get the start page
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, function() {
     console.log('Listening to ', PORT);
 });

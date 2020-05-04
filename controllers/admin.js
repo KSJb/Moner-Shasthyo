@@ -218,7 +218,7 @@ module.exports.createTest = async(req, res) => {
 
 exports.singleTest = async(req, res) => {
     const data = await testModel.findById('5eafe1eae78b3a1f90b94c74')
-    console.log(data)
+    console.log(data.title)
     res.render('singleTest', {
         data
     })
