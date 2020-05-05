@@ -221,8 +221,7 @@ exports.allTests = async(req, res) => {
 }
 
 exports.singleTest = async(req, res) => {
-    const data = await testModel.findById('5eafe1eae78b3a1f90b94c74')
-    console.log(data.title)
+    const data = await testModel.findById('5eb1847453de6f0b630ba182')
     res.render('singleTest', {
         data
     })
@@ -232,4 +231,9 @@ exports.searchTests = async(req, res) => {
     // const  } = req.query.search
     console.log(req.query)
         // res.render('testSearchResults')
+}
+
+exports.getQuestion = async(req, res) => {
+    const question = await testModel.findOne({ _id: req.params.id })
+    res.send(question)
 }

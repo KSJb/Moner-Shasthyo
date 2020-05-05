@@ -38,4 +38,5 @@ router.get('/create-test', (req, res) => {
 router.post('/create-test', controller.createTest)
 router.get('/single-test', controller.singleTest)
 router.get('/search-test', controller.searchTests)
+router.get('/get-question/:id', controller.getQuestion)
 module.exports = router;

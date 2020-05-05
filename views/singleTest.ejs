@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+    <input type="hidden" value="<%= data._id %>" id="id">
     <div class="pageWrapper">
         <div class="contentWrapper">
             <div class="top-color">
@@ -109,8 +109,8 @@
                                             <div class="two-options">
                                                 <% if (data.questionSet[i].Options[j]) { %>
                                                     <div class="one-option">
-                                                        <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j].option %>">
-                                                        <label for="<%= data.questionSet[i].Options[j].option %>">
+                                                        <input type="radio" value="<%= data.questionSet[i].Options[j].scale %>" name="<%= data.questionSet[i].question %>" id="op<%=j%>">
+                                                        <label for="op<%=j%>">
                                                             <%= data.questionSet[i].Options[j].option %>
                                                         </label>
                                                     </div>
@@ -118,8 +118,8 @@
 
                                                         <% if (data.questionSet[i].Options[j+1]) { %>
                                                             <div class="one-option">
-                                                                <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j+1].option %>">
-                                                                <label for="<%= data.questionSet[i].Options[j+1].option %>">
+                                                                <input type="radio" value="<%= data.questionSet[i].Options[j+1].scale %>" name="<%= data.questionSet[i].question %>" id="op<%=j+1%>">
+                                                                <label for="op<%=j+1%>">
                                                                 <%= data.questionSet[i].Options[j+1].option %>
                                                             </label>
                                                             </div>
@@ -141,6 +141,9 @@
                     </div>
                     <% } %>
 
+            </div>
+            <div class="compute-btn">
+                <p>The test is complete. Click here to view results.</p>
             </div>
             <div class="related">
                 <div class="heading">
@@ -165,6 +168,24 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="result-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="image">
+                            <img src="https://i.pinimg.com/originals/19/46/09/194609cf8b314908f7274d5b220d76ba.gif" alt="">
+                        </div>
+                        <div class="score">
+                            <p class="number"></p>
+                            <p class="msg">You seem to be happy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </body>
 
 <script>
@@ -185,6 +206,10 @@
             comp = Math.round(comp)
             $('#slider').val(comp)
             $('#comp-percent').html(comp + '%')
+        } else {
+            $('.compute-btn').show()
+            $('#slider').val(100)
+            $('#comp-percent').html('100' + '%')
         }
 
     })
@@ -202,6 +227,59 @@
     $('.response-area #slider').change((e) => {
         $(e.target.parentElement.parentElement.parentElement).find('.applies p').html('Applies ' + $(e.target).val() + ' %')
     })
+
+    $('.compute-btn').click((e) => {
+        const id = $('#id').val()
+        $('.compute-btn p').html('Computing...')
+        $.ajax({
+            type: 'GET',
+            url: '/admin/get-question/' + id,
+            success: data => {
+                // console.log(data)
+                const result = compute(data)
+                console.log(result.score)
+                $('#result-modal').modal('show')
+                $('.number').html(result.score)
+                $('.compute-btn p').html('Computed')
+            }
+        })
+    })
+    const check = (data) => {
+        return data == NaN || data == null || data == undefined || isNaN(data)
+    }
+    const compute = (data) => {
+        let totalScore = 0
+        let achievedScore = 0
+        for (let i = 0; i < data.questionSet.length; i++) {
+            const name = data.questionSet[i].question
+            const qScale = data.questionSet[i].scale
+            if (data.questionSet[i].inputType == 'radio') {
+                const opScale = parseInt($(`input[name="${name}"]:checked`).val())
+                if (check(opScale)) {
+
+                    return ({
+                        status: false,
+                        score: i + 1
+                    })
+                }
+                achievedScore += qScale * opScale
+            } else if (data.questionSet[i].inputType == 'ranger') {
+                const opScale = parseInt($(questions[i]).find('input[type="range"]').val())
+                if (check(opScale)) {
+                    return ({
+                        status: false,
+                        score: i + 1
+                    })
+                }
+                achievedScore += qScale * opScale
+            }
+
+        }
+        return ({
+            status: false,
+            score: achievedScore
+        })
+    }
 </script>
 
 </html>
