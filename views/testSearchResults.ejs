@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/allTests.css">
+    <title>
+    </title>
+</head>
+
+<body>
+    <div class="pageWrapper">
+        <div class="contentWrapper">
+            <div class="top-nav">
+                <div class="row">
+
+                    <div class="categories">
+                        <a href="#">Manage Stress</a>
+                        <a href="#">Connected</a>
+                        <a href="#">Relaxation</a>
+                        <a href="#">Mindfullness</a>
+                        <a href="#">Sleep</a>
+                    </div>
+                    <div class="span-opener"><i class="fa fa-align-justify"></i>
+                        <div class="pane" id="pane">
+                            <p><a href="#">Manage Stress</a></p>
+                            <p><a href="#">Connected</a></p>
+                            <p><a href="#">Relaxation</a></p>
+                            <p><a href="#">Mindfullness</a></p>
+                            <p><a href="#">Sleep</a></p>
+                        </div>
+                    </div>
+
+                    <div class="search-area">
+                        <form action="/admin/search-test" id="search-form" method="GET">
+                            <input type="hidden" id="search-input" name="search">
+                        </form>
+                        <input type="text" id="search">
+                        <i class="fa fa-search" id="search-btn"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="large-heading">
+                <p>Self Assessment Tests</p>
+            </div>
+
+            <div class="all-tests-space" style="margin-top: 0px;">
+
+                <div class="lower-posts">
+                    <div class="left">
+                        <% for (let i=0; i<5; i++) { %>
+                            <div class="each-posts">
+                                <div class="image">
+                                    <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,q_80,w_1600/hjefi7k2t5hl2ml9rsdu.jpg" alt="">
+                                </div>
+                                <div class="texts">
+                                    <div class="category">Category</div>
+                                    <div class="title"><a href="/admin/single-test">This has got to be a loooooooong title</a></div>
+                                    <div class="about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta animi quisquam mollitia non tempora enim officiis deserunt sapiente explicabo, error illo quibusdam possimus alias minima est aspernatur hic omnis provident.</div>
+                                    <div class="additional-info">
+                                        <span>Admin</span>
+                                        <span>12 Questions - 8 Minutes</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="right">
+                        <div class="right-posts">
+                            <div class="heading">People also take</div>
+                            <% for (let i=0; i<3; i++) { %>
+                                <div class="each-posts">
+                                    <div class="image">
+                                        <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,q_80,w_1600/xkvwp2fslqasirabshfm.jpg" alt="">
+                                    </div>
+                                    <div class="texts">
+                                        <div class="category">Category</div>
+                                        <div class="title"><a href="/admin/single-test">A rather short title</a></div>
+                                        <div class="additional-info">
+                                            <span>Admin</span>
+                                            <span>12 Questions - 8 Minutes</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let isOpen = false
+    $('.span-opener').click((e) => {
+        if (!isOpen) {
+            $('#pane').fadeIn()
+            $('.span-opener i').toggleClass('rotate')
+            isOpen = true
+        } else {
+            $('#pane').fadeOut()
+            $('.span-opener i').toggleClass('rotate')
+            isOpen = false
+        }
+    })
+
+    $('#search-btn').click((e) => {
+        const search = $('#search').val()
+        if (search.lenght != 0) {
+            $('#search-input').val(search)
+            $('#search-form').submit()
+        }
+    })
+</script>
+
+</html>

@@ -90,28 +90,42 @@
                         </div>
                         <div class="response-area">
                             <% if (data.questionSet[i].inputType == "ranger") { %>
-                                <div class="slide-container response">
-                                    <span class="bar"><span class="fill"></span></span>
-                                    <input type="range" min="0" max="100" value="0" id="slider">
+                                <div class="ranger-area">
+                                    <div class="ranger-input-area">
+                                        <div>1</div>
+                                        <div class="slide-container response">
+                                            <span class="bar"><span class="fill"></span></span>
+                                            <input type="range" style="cursor: pointer;" min="0" max="100" value="0" id="slider">
+                                        </div>
+                                        <div>100</div>
+                                    </div>
+                                    <div class="applies">
+                                        <p>Applies</p>
+                                    </div>
                                 </div>
                                 <% } %>
                                     <% if (data.questionSet[i].inputType == "radio") { %>
                                         <% for (let j=0; j<data.questionSet[i].Options.length; j = j + 2) { %>
                                             <div class="two-options">
-                                                <div class="one-option">
-                                                    <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j].option %>">
-                                                    <label for="<%= data.questionSet[i].Options[j].option %>">
-                                                        <%= data.questionSet[i].Options[j].option %>
-                                                    </label>
-                                                </div>
-
-                                                <div class="one-option">
-                                                    <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j+1].option %>">
-                                                    <label for="<%= data.questionSet[i].Options[j+1].option %>">
-                                                            <%= data.questionSet[i].Options[j+1].option %>
+                                                <% if (data.questionSet[i].Options[j]) { %>
+                                                    <div class="one-option">
+                                                        <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j].option %>">
+                                                        <label for="<%= data.questionSet[i].Options[j].option %>">
+                                                            <%= data.questionSet[i].Options[j].option %>
                                                         </label>
-                                                </div>
-                                                - </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                        <% if (data.questionSet[i].Options[j+1]) { %>
+                                                            <div class="one-option">
+                                                                <input type="radio" name="radio" id="<%= data.questionSet[i].Options[j+1].option %>">
+                                                                <label for="<%= data.questionSet[i].Options[j+1].option %>">
+                                                                <%= data.questionSet[i].Options[j+1].option %>
+                                                            </label>
+                                                            </div>
+                                                            <% } %>
+
+                                            </div>
                                             <% } %>
                                                 <% } %>
                                                     <div class="navigation">
@@ -161,7 +175,7 @@
     $(questions[0]).show()
 
     let current = 0
-    $('#slider').val(0)
+    $('#slider').val(current)
     $('.nx').click((e) => {
         if (current + 1 != questions.length) {
             $(questions[current]).hide()
@@ -184,6 +198,9 @@
             $('#slider').val(comp)
             $('#comp-percent').html(comp + '%')
         }
+    })
+    $('.response-area #slider').change((e) => {
+        $(e.target.parentElement.parentElement.parentElement).find('.applies p').html('Applies ' + $(e.target).val() + ' %')
     })
 </script>
 

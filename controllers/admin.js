@@ -216,10 +216,20 @@ module.exports.createTest = async(req, res) => {
     })
 }
 
+exports.allTests = async(req, res) => {
+    res.render('allTests')
+}
+
 exports.singleTest = async(req, res) => {
     const data = await testModel.findById('5eafe1eae78b3a1f90b94c74')
     console.log(data.title)
     res.render('singleTest', {
         data
     })
+}
+
+exports.searchTests = async(req, res) => {
+    // const  } = req.query.search
+    console.log(req.query)
+        // res.render('testSearchResults')
 }

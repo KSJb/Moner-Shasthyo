@@ -11,9 +11,9 @@ body {
         background-color: #fff;
         .top-color {
             height: 500px;
-            // border-radius: 10px 10px 0px 0px;
             border-radius: 100%/0 0 100px 100px;
             background-color: rgb(7, 170, 148);
+            background-repeat: no-repeat;
             padding-top: 100px;
             .heading {
                 font-family: 'Mukta', sans-serif;
@@ -186,6 +186,16 @@ body {
                     }
                     @media (max-width: 600px) {
                         width: 98%;
+                    }
+                    .ranger-input-area {
+                        display: flex;
+                        font-size: 20px;
+                    }
+                    .applies {
+                        margin-top: 30px;
+                        p {
+                            text-align: center;
+                        }
                     }
                     .slide-container {
                         width: 80%;
@@ -360,7 +370,7 @@ body {
             justify-content: space-between;
             width: 60%;
             margin: auto;
-            margin-top: 35px;
+            // margin-top: 35px;
             @media (max-width: 1410px) {
                 width: 85%;
             }
@@ -377,12 +387,13 @@ body {
                 margin: auto;
                 border-radius: 10px;
                 cursor: pointer;
+                height: 300px;
                 @media (max-width: 600px) {
                     width: 100%;
                     margin-top: 20px;
                 }
                 .image {
-                    height: 250px;
+                    // height: 250px;
                     padding: 10px;
                     overflow: hidden;
                     border-radius: 5px;
@@ -395,9 +406,9 @@ body {
                         transition: 0.5s;
                         overflow: hidden;
                     }
-                    img:hover {
-                        transform: scale(1.05);
-                    }
+                    // img:hover {
+                    //     transform: scale(1.05);
+                    // }
                 }
                 .texts {
                     padding: 10px 20px;

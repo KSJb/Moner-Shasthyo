@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css?family=Mukta&display=swap');
+.pageWrapper {
+    .rotate {
+        transform: rotate('90deg');
+        transition: 0.3s;
+    }
+    .contentWrapper {
+        width: 70%;
+        margin: auto;
+        @media (max-width: 1410px) {
+            width: 80%;
+        }
+        @media (max-width: 900px) {
+            width: 98%;
+        }
+        .top-nav {
+            .row {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 50px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid #eee;
+                @media (max-width: 650px) {
+                    width: 80%;
+                    margin: auto;
+                    margin-top: 25px;
+                }
+                .span-opener {
+                    display: none;
+                    i {
+                        font-size: 18px;
+                        margin-top: 10px;
+                    }
+                    .pane {
+                        display: none;
+                        margin-top: 10px;
+                        p {
+                            border-bottom: 1px solid #ddd;
+                            padding-right: 20px;
+                            a {
+                                color: #000;
+                            }
+                            a:hover {
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                }
+                .categories {
+                    display: flex;
+                    @media (max-width: 650px) {
+                        display: none;
+                    }
+                    a {
+                        padding: 10px 20px;
+                        font-size: 18px;
+                        color: #444;
+                        transition: 0.5s;
+                        border-radius: 5px;
+                        @media (max-width: 900px) {
+                            font-size: 15px;
+                            padding: 5px 10px;
+                        }
+                        @media (max-width: 650px) {
+                            font-size: 13.5px;
+                            padding: 5px 5px;
+                        }
+                    }
+                    a:hover {
+                        text-decoration: none;
+                        background-color: #eee;
+                    }
+                }
+                @media (max-width: 650px) {
+                    .span-opener {
+                        display: block;
+                    }
+                }
+                .search-area {
+                    width: 30%;
+                    border: 1px solid #ccc;
+                    border-radius: 20px;
+                    padding: 10px 15px;
+                    display: flex;
+                    @media (max-width: 900px) {
+                        padding: 3px 10px;
+                    }
+                    @media (max-width: 650px) {
+                        width: 80%;
+                    }
+                    i {
+                        cursor: pointer;
+                        margin-top: 2.5px;
+                        @media (max-width: 900px) {
+                            margin-top: 5px;
+                            font-size: 12px;
+                        }
+                    }
+                    input {
+                        width: 95%;
+                        border: none;
+                    }
+                    input:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+        .large-heading {
+            p {
+                font-family: 'Mukta', sans-serif;
+                text-align: center;
+                font-size: 40px;
+                font-weight: 100;
+                color: #444;
+                padding: 50px 0px;
+                border-bottom: 1px solid #eee;
+                @media (max-width: 650px) {
+                    font-size: 22px;
+                    padding: 20px;
+                }
+            }
+        }
+        .all-tests-space {
+            margin-top: 50px;
+            @media (max-width: 650px) {
+                margin-top: 15px;
+            }
+            .first-three {
+                display: flex;
+                justify-content: space-between;
+                @media (max-width: 650px) {
+                    flex-direction: column;
+                }
+                .each-post {
+                    width: 31%;
+                    @media (max-width: 650px) {
+                        width: 90%;
+                        margin: auto;
+                        margin-top: 20px;
+                    }
+                    .image {
+                        height: 250px;
+                        overflow: hidden;
+                        border-radius: 5px;
+                        @media (max-width: 650px) {
+                            height: 200px;
+                        }
+                        img {
+                            cursor: pointer;
+                            border-radius: 5px;
+                            width: 100%;
+                            transition: 0.5s;
+                        }
+                        img:hover {
+                            transform: scale(1.05);
+                            opacity: 0.8;
+                        }
+                    }
+                    .texts {
+                        padding: 10px 15px;
+                        @media (max-width: 650px) {
+                            padding: 2px 5px;
+                        }
+                        .category {
+                            font-size: 16px;
+                            color: rgb(28, 98, 228);
+                            font-weight: bolder;
+                            @media (max-width: 900px) {
+                                width: 80%;
+                                font-size: 12px;
+                            }
+                        }
+                        .title a {
+                            font-family: 'Mukta', sans-serif;
+                            font-size: 30px;
+                            color: #000;
+                            @media (max-width: 900px) {
+                                font-size: 22px;
+                            }
+                            @media (max-width: 650px) {
+                                font-size: 15px;
+                            }
+                        }
+                        a:hover {
+                            text-decoration: none;
+                        }
+                        .additional-info {
+                            display: flex;
+                            justify-content: space-between;
+                            color: gray;
+                            font-size: 13px;
+                            @media (max-width: 650px) {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+            hr {
+                margin-top: 30px;
+                border: 1px solid #eee;
+                @media (max-width: 650px) {
+                    margin-top: 15px;
+                }
+            }
+            .lower-posts {
+                margin-top: 80px;
+                display: flex;
+                justify-content: space-between;
+                @media (max-width: 650px) {
+                    flex-direction: column;
+                    margin-top: 0px;
+                }
+                .left {
+                    width: 100%;
+                    @media (max-width: 650px) {
+                        margin: auto;
+                    }
+                    .each-posts {
+                        width: 80%;
+                        @media (max-width: 650px) {
+                            width: 95%;
+                        }
+                        margin: auto;
+                        margin-top: 50px;
+                        .image {
+                            height: 300px;
+                            border-radius: 5px;
+                            overflow: hidden;
+                            @media (max-width: 650px) {
+                                height: 200px;
+                            }
+                            img {
+                                cursor: pointer;
+                                width: 100%;
+                                border-radius: 5px;
+                                transition: 0.5s;
+                            }
+                            img:hover {
+                                transform: scale(1.05);
+                                opacity: 0.8;
+                            }
+                        }
+                        .texts {
+                            padding: 10px 15px;
+                            .category {
+                                font-size: 16px;
+                                color: rgb(28, 98, 228);
+                                font-weight: bolder;
+                                @media (max-width: 650px) {
+                                    font-size: 13px;
+                                }
+                            }
+                            .title a {
+                                font-family: 'Mukta', sans-serif;
+                                font-size: 35px;
+                                color: #000;
+                                @media (max-width: 650px) {
+                                    font-size: 27.5px;
+                                }
+                                @media (max-width: 900px) {
+                                    font-size: 20px;
+                                }
+                            }
+                            a:hover {
+                                text-decoration: none;
+                            }
+                            .about {
+                                color: gray;
+                                @media (max-width: 900px) {
+                                    font-size: 15px;
+                                }
+                                @media (max-width: 650px) {
+                                    font-size: 13.5px;
+                                }
+                            }
+                            .additional-info {
+                                margin-top: 20px;
+                                display: flex;
+                                justify-content: space-between;
+                                color: gray;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+                .right {
+                    width: 25%;
+                    @media (max-width: 900px) {
+                        width: 32%;
+                    }
+                    @media (max-width: 650px) {
+                        width: 80%;
+                        margin: auto;
+                    }
+                    .right-posts {
+                        margin-top: 150px;
+                        .heading {
+                            font-size: 30px;
+                            @media (max-width: 900px) {
+                                font-size: 22.5px;
+                            }
+                            @media (max-width: 650px) {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    .each-posts {
+                        margin-top: 100px;
+                        @media (max-width: 650px) {
+                            margin-top: 20px;
+                        }
+                        .image {
+                            height: 200px;
+                            overflow: hidden;
+                            border-radius: 5px;
+                            @media (max-width: 900px) {
+                                height: 150px;
+                            }
+                            @media (max-width: 650px) {
+                                height: 150px;
+                            }
+                            img {
+                                cursor: pointer;
+                                border-radius: 5px;
+                                width: 100%;
+                                transition: 0.5s;
+                            }
+                            img:hover {
+                                transform: scale(1.05);
+                                opacity: 0.8;
+                            }
+                        }
+                        .texts {
+                            padding: 10px 15px;
+                            @media (max-width: 900px) {
+                                padding: 0px 10px;
+                            }
+                            .category {
+                                font-size: 13px;
+                                color: rgb(28, 98, 228);
+                                font-weight: bolder;
+                                @media (max-width: 650px) {
+                                    font-size: 12px;
+                                }
+                            }
+                            .title a {
+                                font-family: 'Mukta', sans-serif;
+                                font-size: 25px;
+                                color: #000;
+                                @media (max-width: 900px) {
+                                    font-size: 20px;
+                                }
+                                @media (max-width: 650px) {
+                                    font-size: 20px;
+                                }
+                            }
+                            a:hover {
+                                text-decoration: none;
+                            }
+                            .additional-info {
+                                display: flex;
+                                justify-content: space-between;
+                                color: gray;
+                                font-size: 13px;
+                                @media (max-width: 650px) {
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

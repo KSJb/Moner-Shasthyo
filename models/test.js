@@ -8,15 +8,27 @@ const test = mongoose.Schema({
     about: String,
     questionSet: [{
         question: String,
-        scale: String,
+        scale: {
+            type: String,
+            default: 1
+        },
         inputType: String,
         ranger: {
-            min: String,
-            max: String
+            min: {
+                type: String,
+                default: 1
+            },
+            max: {
+                type: String,
+                default: 100
+            }
         },
         Options: [{
             option: String,
-            scale: String
+            scale: {
+                type: String,
+                default: 1
+            }
         }]
     }]
 })
