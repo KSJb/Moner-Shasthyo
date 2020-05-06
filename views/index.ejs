@@ -13,33 +13,55 @@
     <div class="pageWrapper">
         <div class="contentWrapper">
             <div class="all-posts">
-                <div class="first-three">
-                    <% for (let i=0; i<3; i++) { %>
-                        <div class="each-post">
-                            <div class="image">
-                                <img src="<%= data[i].thumbnail %>" alt="">
+                <div class="higher-posts">
+                    <div class="first-post">
+                        <div class="image">
+                            <img src="<%= data[0].thumbnail %>" alt="">
+                        </div>
+                        <div class="texts">
+                            <div class="title">
+                                <a href="/users/view/<%= data[0]._id %>">
+                                    <%= data[0].title %>
+                                </a>
                             </div>
-                            <div class="texts">
-                                <div class="title">
-                                    <a href="/users/view/<%=data[i]._id%>">
-                                        <%= data[i].title %>
-                                    </a>
-                                </div>
-                                <div class="body">
-                                    <%- data[i].body %>
-                                </div>
-                                <div class="add-info">
-                                    <span><i class="fa fa-user"></i><strong><%= data[i].author %></strong></span>
-                                    <span><%= data[i].date %></span>
-                                </div>
+                            <div class="body">
+                                <%- data[0].body %>
+                            </div>
+                            <div class="add-info">
+                                <span><i class="fa fa-user"></i><strong><%= data[0].author %></strong></span>
+                                <span><%= data[0].date %></span>
                             </div>
                         </div>
-                        <% } %>
+                    </div>
+                    <div class="next-three">
+                        <% for (let i=1; i<4; i++) { %>
+                            <div class="each-post">
+                                <div class="image">
+                                    <img src="<%= data[i].thumbnail %>" alt="">
+                                </div>
+                                <div class="texts">
+                                    <div class="title">
+                                        <a href="/users/view/<%=data[i]._id%>">
+                                            <%= data[i].title %>
+                                        </a>
+                                    </div>
+                                    <div class="body">
+                                        <%- data[i].body %>
+                                    </div>
+                                    <div class="add-info">
+                                        <i class="fa fa-user"></i><strong><%= data[i].author %></strong> &#8226
+                                        <%= data[i].date %>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <% } %>
+                    </div>
                 </div>
                 <hr>
                 <div class="lower-posts">
                     <div class="left">
-                        <% for (let i=3; i<data.length; i++) { %>
+                        <% for (let i=4; i<data.length; i++) { %>
                             <div class="each-post">
                                 <div class="texts">
                                     <div class="title">
@@ -51,7 +73,7 @@
                                         <%- data[i].body %>
                                     </div>
                                     <div class="add-info">
-                                        <i class="fa fa-user"></i><strong><%= data[i].author %></strong> -
+                                        <i class="fa fa-user"></i><strong><%= data[i].author %></strong> &#8226
                                         <%= data[i].date %>
                                     </div>
                                 </div>

@@ -2,7 +2,7 @@
 .pageWrapper .contentWrapper {
   width: 60%;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 30px;
 }
 
 @media (max-width: 1410px) {
@@ -46,7 +46,7 @@
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .first-three {
+.pageWrapper .contentWrapper .all-posts .higher-posts {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -56,7 +56,7 @@
 }
 
 @media (max-width: 900px) {
-  .pageWrapper .contentWrapper .all-posts .first-three {
+  .pageWrapper .contentWrapper .all-posts .higher-posts {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -64,85 +64,223 @@
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .first-three .each-post {
-  width: 31%;
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post {
+  width: 43%;
 }
 
 @media (max-width: 900px) {
-  .pageWrapper .contentWrapper .all-posts .first-three .each-post {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post {
     width: 80%;
     margin: auto;
-    margin-top: 20px;
+    padding-bottom: 20px;
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .first-three .each-post .image {
-  border-radius: 5px;
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .image {
+  height: 250px;
   overflow: hidden;
+  border-radius: 5px;
 }
 
-.pageWrapper .contentWrapper .all-posts .first-three .each-post .image img {
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .image {
+    height: 150px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .image img {
   width: 100%;
-  height: 250px;
-  border-radius: 5px;
+  cursor: pointer;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  cursor: pointer;
+  border-radius: 5px;
 }
 
-.pageWrapper .contentWrapper .all-posts .first-three .each-post .image img:hover {
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .image img {
+    height: 150px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .image img:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
   opacity: 0.8;
 }
 
-.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts {
-  padding: 10px 0px;
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .title {
+  padding: 15px 5px 0px 0px;
 }
 
-.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .title a {
-  font-family: 'Mukta', sans-serif;
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .title a {
   color: #000;
   font-size: 25px;
-}
-
-.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .title a:hover {
-  text-decoration: none;
+  font-family: 'Mukta' sans-serif;
 }
 
 @media (max-width: 900px) {
-  .pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .title {
-    font-size: 18px;
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .title a {
+    font-size: 20px;
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .body {
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .title a:hover {
+  text-decoration: none;
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .body {
+  font-size: 15px;
   color: gray;
-  font-size: 13.5px;
-  max-height: 50px;
+  height: 90px;
   overflow: hidden;
 }
 
 @media (max-width: 900px) {
-  .pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .body {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .body {
     font-size: 12px;
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .add-info {
-  padding-top: 10px;
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .add-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding: 10px 0px;
+  color: gray;
+  font-size: 13.5px;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .add-info {
+    font-size: 10px;
+    padding: 0;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .add-info i {
+  padding: 0px 10px;
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three {
+  width: 48%;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .next-three {
+    width: 95%;
+    margin: auto;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 20px;
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts {
+  width: 70%;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts {
+    padding-top: 5px;
+    width: 65%;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts .title a {
+  font-family: 'Mukta', sans-serif;
+  color: #000;
+  font-size: 20px;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts .title a {
+    font-size: 18px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts .title a:hover {
+  text-decoration: none;
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts .body {
+  padding-top: 5px;
+  color: gray;
+  font-size: 13.5px;
+  height: 50px;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts .body {
+    font-size: 12px;
+    height: 50px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts .add-info {
+  padding: 10px;
   color: #666;
   font-size: 13.5px;
 }
 
-.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .add-info i {
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts .add-info {
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts .add-info i {
   padding: 0px 5px;
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .texts .add-info strong {
+  font-weight: bolder;
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .image {
+  width: 20%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .image {
+    width: 30%;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .image img {
+  width: 100%;
+  height: 75px;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .image img {
+    height: 80px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .next-three .each-post .image img:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  opacity: 0.8;
 }
 
 .pageWrapper .contentWrapper .all-posts hr {
