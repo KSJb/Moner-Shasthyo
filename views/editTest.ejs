@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="/css/admin_new_test.css" />
+    <title>Add New Test</title>
+</head>
+
+<body>
+    <section class="adminTest" style="min-height: 100vh; background: #fff;">
+
+        <input type="hidden" value="<%= data._id %>" id="id">
+        <div class="BigSectionFlex">
+            <div class="testAdd">
+                <div class="container">
+                    <div class="add_test_wrapper">
+                        <div class="add_test_Header text-center">
+                            <h1>Add New Test</h1>
+                        </div>
+                        <div class="add_test_form">
+                            <div class="alert alert-danger" id="alert"></div>
+                            <div class="alert alert-success" id="alert-success" style="display: none;"></div>
+                            <form action="#">
+                                <div class="flx-prnt">
+                                    <div class="flx-chld">
+                                        <input type="text" id="title" value="<%= data.title %>" class="form-control" placeholder="Name of the test" />
+                                    </div>
+                                    <div class="flx-chld">
+                                        <input type="text" id="thumbnail" value="<%= data.thumbnail %>" class="form-control" placeholder="Thumbnail URL" />
+                                    </div>
+                                </div>
+                                <div class="flx-prnt">
+                                    <div class="flx-chld">
+                                        <div class="form-selectpicker">
+                                            <select class="selectpicker" data-width="100%" title="Age range" name="age" id="ageRangeInput" data-size="6">
+                          <option value="For Children">For Children</option>
+                          <option value="For Adults">For Adults</option>
+                          <option value="For Old People">For Old People</option>
+                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="flx-chld">
+                                        <div class="form-selectpicker">
+                                            <select class="selectpicker" data-width="100%" title="Select Language" name="lang" id="category" data-size="6">
+                          <option value="sleep">Sleep</option>
+                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="about">
+                                    <textarea placeholder="Brief description about the test" id="about" rows="7"><%= data.about %></textarea>
+                                </div>
+
+                                <h5 class="Ques_heading">Questions</h5>
+
+                                <div class="allQuestionsWrapper">
+                                    <div class="allQuestions">
+                                        <% for (let i=0; i<data.questionSet.length; i++) { %>
+                                            <div class="eachQuestions">
+                                                <div class="quesInfo">
+                                                    <div class="flx-prnt">
+                                                        <span class="fa fa-arrow-right"></span>
+                                                        <div class="flx-chld inp_q_box">
+                                                            <input type="text" class="form-control" id="question" placeholder="Write question here.." value="<%= data.questionSet[i].question %>" />
+                                                        </div>
+                                                        <div class="flx-chld inp_sc_box">
+                                                            <input type="text" class="form-control" id="questionScale" placeholder="Scale (By Default 1)" value="<%= data.questionSet[i].scale %>" />
+                                                        </div>
+                                                        <div class="flx-chld inp_btn">
+                                                            <input type="button" value="Delete" class="btn btn-dark deleteBtn QuestionDelete" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="typeSelect">
+                                                    <select name="" id="" style="width: 20%; margin-left: 3%;" class="selectpicker">
+                                                  <option value="select">Select Response</option>
+                                                  <option value="ranger">Ranger</option>
+                                                  <option value="radio">Radio Buttons</option>
+                                                </select>
+                                                </div>
+                                                <div class="rangerInfo" style="display: none;">
+                                                    <div class="minmax">
+                                                        <input type="text" value="<%= data.questionSet[i].ranger.min %>" placeholder="Mininum score" id="min">
+                                                    </div>
+                                                    <div class="minmax">
+                                                        <input type="text" value="<%= data.questionSet[i].ranger.max %>" placeholder="Maximum score" id="max">
+                                                    </div>
+                                                </div>
+                                                <div class="optionInfo" style="display: none;">
+                                                    <div class="allOptions">
+                                                        <% for (let j=0; j<data.questionSet[i].Options.length; j++) { %>
+                                                            <div class="eachOptions flx-prnt pl-5 pt-1">
+                                                                <div class="flx-chld inp_o_box">
+                                                                    <input type="text" class="form-control" id="option" value="<%= data.questionSet[i].Options[j].option %>" placeholder="Write option here.." />
+                                                                </div>
+                                                                <div class="flx-chld inp_sc_box inp_sco_box">
+                                                                    <input type="text" class="form-control" id="optionScale" value="<%= data.questionSet[i].Options[j].scale %>" placeholder="Scale (By Default 1)" />
+                                                                </div>
+                                                                <div class="flx-chld inp_btn">
+                                                                    <input type="button" value="Delete" class="btn btn-dark deleteBtn optionDelete" />
+                                                                </div>
+                                                            </div>
+                                                            <% } %>
+                                                    </div>
+                                                    <div class="addoption ml-1 pl-5 pt-2 py-2">
+                                                        <input type="button" value="Add option" class="addBtn addOptions" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="newQuestion ml-2 pl-3 py-2">
+                                        <input type="button" value="Add question" class="addBtn" id="addQuestion" />
+                                    </div>
+                                </div>
+
+                                <div class="pt-3 text-center pt-2 pb-5">
+                                    <button id="submit-btn" class="addBtn finalSubmit">
+                      SUBMIT
+                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+<script>
+    function go() {
+        location = '/admin/test/new';
+    }
+    $('#paidInput').on('change', (e) => {
+        if (e.target.value === 'Yes') {
+            $('#payAmount').css('visibility', 'visible');
+        }
+    });
+    $(document).on('click', '.newQuestion', (e) => {
+        $('.allQuestions').append(`
+        <div class="eachQuestions pt-3">
+          <div class="quesInfo">
+            <div class="flx-prnt">
+              <span class="fa fa-arrow-right"></span>
+              <div class="flx-chld inp_q_box">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="question"
+                  placeholder="Write question here.."
+                />
+              </div>
+              <div class="flx-chld inp_sc_box">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="questionScale"
+                  placeholder="Scale (By Default 1)"
+                />
+              </div>
+              <div class="flx-chld inp_btn">
+                <input
+                  type="button"
+                  value="Delete"
+                  class="btn btn-dark deleteBtn QuestionDelete"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="typeSelect">
+                                                <select name="" id="" style="width: 20%; margin-left: 3%;" class="selectpicker">
+                                                  <option value="select">Select Response</option>
+                                                  <option value="ranger">Ranger</option>
+                                                  <option value="radio">Radio Buttons</option>
+                                                </select>
+                                            </div>
+                                            <div class="rangerInfo" style="display: none;">
+                                                <div class="minmax">
+                                                    <input type="text" placeholder="Mininum score" id="min">
+                                                </div>
+                                                <div class="minmax">
+                                                    <input type="text" placeholder="Maximum score" id="max">
+                                                </div>
+                                            </div>
+          <div class="optionInfo" style="display: none;">
+            <div class="allOptions">
+              <div class="eachOptions flx-prnt pl-5 pt-1">
+                <div class="flx-chld inp_o_box">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="option"
+                    placeholder="Write option here.."
+                  />
+                </div>
+                <div class="flx-chld inp_sc_box inp_sco_box">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="optionScale"
+                    placeholder="Scale (By Default 1)"
+                  />
+                </div>
+                <div class="flx-chld inp_btn">
+                  <input
+                    type="button"
+                    value="Delete"
+                    class="btn btn-dark deleteBtn optionDelete"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="addoption ml-1 pl-5 pt-2 py-2">
+              <input
+                type="button"
+                value="Add option"
+                class="addBtn addOptions"
+              />
+            </div>
+          </div>
+        </div>
+      `);
+    });
+    $(document).on('click', '.addOptions', (e) => {
+        $(e.target.parentElement.parentElement.children[0]).append(`
+        <div class="eachOptions flx-prnt pl-5 pt-1">
+          <div class="flx-chld inp_o_box">
+            <input
+              type="text"
+              class="form-control"
+              id="option"
+              placeholder="Write option here.."
+            />
+          </div>
+          <div class="flx-chld inp_sc_box inp_sco_box">
+            <input
+              type="text"
+              class="form-control"
+              id="optionScale"
+              placeholder="Scale (By Default 1)"
+            />
+          </div>
+          <div class="flx-chld inp_btn">
+            <input
+              type="button"
+              value="Delete"
+              class="btn btn-dark deleteBtn optionDelete"
+            />
+          </div>
+        </div>
+      `);
+    });
+    $(document).on('click', '.optionDelete', (e) => {
+        let fld = e.target;
+        while (true) {
+            let val = $(fld)[0].className;
+            console.log(val);
+            if (val.includes('eachOptions')) break;
+            fld = fld.parentElement;
+        }
+        const numOfChildren = fld.parentElement.children.length;
+        if (numOfChildren > 1) {
+            $(fld).remove();
+        }
+    });
+    $(document).on('click', '.QuestionDelete', (e) => {
+        let fld = e.target;
+        while (true) {
+            let val = $(fld)[0].className;
+            if (val.includes('eachQuestions')) break;
+            fld = fld.parentElement;
+        }
+        const numOfChildren = fld.parentElement.children.length;
+        if (numOfChildren > 1) {
+            $(fld).remove();
+        }
+    });
+</script>
+
+<script>
+    const check = (str) => {
+        const res = str == '' || str == null || str == undefined;
+        return res;
+    };
+    const showAlert = (msg) => {
+        $('#alert').show();
+        $('#alert').html(msg);
+        $('html, body').animate({
+                scrollTop: 0,
+            },
+            'slow'
+        );
+    };
+    const Submit = (data) => {
+        $.ajax({
+            type: 'POST',
+            url: '/admin/edit-test',
+            data,
+            success: (response) => {
+                if (response.status) {
+                    location = `/admin/single-test`;
+                } else {
+                    showAlert(response.msg);
+                }
+            },
+        });
+    };
+
+    $(document).on('click', '#submit-btn', (e) => {
+        e.preventDefault();
+        const title = $('#title').val()
+        const thumbnail = $('#thumbnail').val()
+        const ageRange = $('#ageRangeInput').val()
+        const category = $('#category').val()
+        const about = $('#about').val()
+        if (check(title)) {
+            showAlert('Enter the name test');
+        } else if (check(thumbnail)) {
+            showAlert('Enter URL for a suitable thumbnail');
+        } else if (check(ageRange)) {
+            showAlert('Enter the age range for this test');
+        } else if (check(category)) {
+            showAlert('Enter the category of this test');
+        } else if (check(about)) {
+            showAlert('Write a brief description of the test');
+        } else {
+            let Questions = [];
+            const questions = $('.eachQuestions');
+            for (let i = 0; i < questions.length; i++) {
+                const question = $(questions[i]).find('#question').val();
+                let questionScale = $(questions[i]).find('#questionScale').val();
+                const inputType = $(questions[i]).find('select').val()
+                console.log(inputType)
+                if (check(questionScale)) {
+                    questionScale = '1';
+                }
+                if (check(question)) {
+                    showAlert('Enter the question');
+                } else {
+                    if (inputType == 'ranger') {
+                        const min = $(questions[i]).find('#min').val()
+                        const max = $(questions[i]).find('#max').val()
+                        const ranger = {
+                            min,
+                            max
+                        }
+                        Questions.push({
+                            question,
+                            inputType,
+                            scale: questionScale,
+                            ranger,
+                        });
+                    } else {
+                        const options = $(questions[i]).find('.eachOptions');
+                        const Options = [];
+                        for (let j = 0; j < options.length; j++) {
+                            const option = $(options[j]).find('#option').val();
+                            let optionScale = $(options[j]).find('#optionScale').val();
+                            if (check(optionScale)) {
+                                optionScale = '1';
+                            }
+                            if (check(option)) {
+                                showAlert('Enter the option');
+                            } else {
+                                Options.push({
+                                    option,
+                                    scale: optionScale,
+                                });
+                            }
+                        }
+
+                        Questions.push({
+                            question,
+                            inputType,
+                            scale: questionScale,
+                            Options,
+                        });
+                    }
+                }
+            }
+            const questionSet = [];
+            questionSet.push({
+                Questions,
+            });
+            console.log(questionSet);
+            const id = $('#id').val()
+            const postData = {
+                id,
+                title,
+                thumbnail,
+                ageRange,
+                category,
+                about,
+                questionSet: JSON.stringify(Questions),
+            };
+
+            $('#alert').hide();
+            console.log(postData);
+            Submit(postData);
+
+        }
+    });
+</script>
+
+<script>
+    $(document).on('change', '.typeSelect select', (e) => {
+        const choice = $(e.target).val()
+        console.log(choice)
+        if (choice == 'ranger') {
+            $(e.target.parentElement.parentElement).find('.rangerInfo').show()
+            $(e.target.parentElement.parentElement).find('.optionInfo').hide()
+        } else if (choice == 'radio') {
+            $(e.target.parentElement.parentElement).find('.rangerInfo').hide()
+            $(e.target.parentElement.parentElement).find('.optionInfo').show()
+        }
+    })
+</script>
+
+<script>
+    const id = $('#id').val()
+    const questions = $('.eachQuestions')
+    $.ajax({
+        type: 'GET',
+        url: '/admin/get-question/' + id,
+        success: data => {
+            $('#ageRangeInput').val(data.ageRange)
+            $('#category').val(data.category)
+            for (let i = 0; i < data.questionSet.length; i++) {
+                const inp = data.questionSet[i].inputType
+                $(questions[i]).find('select').val(inp)
+                if (inp == 'radio') {
+                    $(questions[i]).find('.optionInfo').show()
+                } else {
+                    $(questions[i]).find('.rangerInfo').show()
+                }
+            }
+        }
+    })
+</script>
+
+</html>

@@ -4,23 +4,20 @@ const Post = require('../models/post');
 
 // router.get('/',  (req, res) => {res.render('index')});
 
-router.get('/', function (req, res) {
-	if (!req.isAuthenticated()) res.redirect('/users/login');
-	const currentuser = req.user;
-	let posts = [];
-	Post.find().sort({_id:-1}) .then(posts => {
-			return res.render("index", {
-					posts: posts,
-					user: currentuser
-			});
-	})
-	.catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+router.get('/', async(req, res) => {
+    const data = await Post.find().sort({ _id: -1 })
+    const trending = await Post.find().sort({ view: 1 }).limit(5)
+        // console.log(trending)
+    res.render('index', {
+        data,
+        trending
+    })
 });
 
 router.get('/index', (req, res) =>
-	res.render('index', {
-		user: req.user
-	})
+    res.render('index', {
+        user: req.user
+    })
 );
 
 module.exports = router;

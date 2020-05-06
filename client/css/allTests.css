@@ -176,6 +176,26 @@
   }
 }
 
+.pageWrapper .contentWrapper .large-heading .new-test {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pageWrapper .contentWrapper .large-heading .new-test button {
+  background-color: #eee;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.pageWrapper .contentWrapper .large-heading .new-test button:hover {
+  background-color: #ddd;
+}
+
 .pageWrapper .contentWrapper .all-tests-space {
   margin-top: 50px;
 }

@@ -1,207 +1,339 @@
-@import url("https://fonts.googleapis.com/css?family=Quattrocento+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei&display=swap");
-.all-posts {
-  margin-left: 22%;
-  margin-top: 20px;
-  width: 55%;
+@import url("https://fonts.googleapis.com/css?family=Mukta&display=swap");
+.pageWrapper .contentWrapper {
+  width: 60%;
+  margin: auto;
+  margin-top: 80px;
 }
 
 @media (max-width: 1410px) {
-  .all-posts {
-    width: 75%;
-    margin: auto;
+  .pageWrapper .contentWrapper {
+    width: 80%;
   }
 }
 
-.all-posts b {
-  line-height: 80%;
+@media (max-width: 1210px) {
+  .pageWrapper .contentWrapper {
+    width: 90%;
+  }
 }
 
-.first-three {
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper {
+    margin-top: 10px;
+    width: 95%;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts a {
+  color: gray;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  text-decoration: none;
+}
+
+.pageWrapper .contentWrapper .all-posts a:hover {
+  color: #000;
+}
+
+.pageWrapper .contentWrapper .all-posts strong {
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts strong {
+    font-size: 10px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .first-three {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-@media (max-width: 950px) {
-  .first-three {
-    display: block;
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .first-three {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
-  .first-three .each-posts {
+}
+
+.pageWrapper .contentWrapper .all-posts .first-three .each-post {
+  width: 31%;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .first-three .each-post {
     width: 80%;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 20px;
   }
 }
 
-.each-posts {
-  width: 33%;
-  margin-left: 30px;
-}
-
-.thumbnail {
-  width: 100%;
-}
-
-.thumbnail-img {
-  height: 200px;
-  width: 100%;
-}
-
-.texts {
-  width: 100%;
-}
-
-.texts .body {
-  font-weight: 200;
-  font-size: 12px;
-  color: gray;
-  height: 50px;
+.pageWrapper .contentWrapper .all-posts .first-three .each-post .image {
+  border-radius: 5px;
   overflow: hidden;
 }
 
-.texts .user-date {
-  margin-top: 5px;
-  font-size: 12px;
-  font-family: "Quattrocento Sans", sans-serif;
+.pageWrapper .contentWrapper .all-posts .first-three .each-post .image img {
+  width: 100%;
+  height: 250px;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  cursor: pointer;
 }
 
-.title {
-  margin-top: 10px;
-  font-family: "ZCOOL XiaoWei", serif;
+.pageWrapper .contentWrapper .all-posts .first-three .each-post .image img:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  opacity: 0.8;
 }
 
-.title b {
-  font-size: 18px;
+.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts {
+  padding: 10px 0px;
 }
 
-.lower {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .title a {
+  font-family: 'Mukta', sans-serif;
+  color: #000;
+  font-size: 25px;
 }
 
-.lower-left {
-  width: 64%;
+.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .title a:hover {
+  text-decoration: none;
 }
 
-@media (max-width: 950px) {
-  .lower-left {
-    width: 100%;
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .title {
+    font-size: 18px;
   }
 }
 
-.lower-right {
-  margin-left: 5%;
-  width: 35%;
+.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .body {
+  color: gray;
+  font-size: 13.5px;
+  max-height: 50px;
+  overflow: hidden;
 }
 
-@media (max-width: 950px) {
-  .lower-right {
-    display: none;
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .body {
+    font-size: 12px;
   }
 }
 
-.lower .each-posts {
+.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .add-info {
+  padding-top: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 90%;
-  margin-top: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #666;
+  font-size: 13.5px;
 }
 
-.lower .texts {
+.pageWrapper .contentWrapper .all-posts .first-three .each-post .texts .add-info i {
+  padding: 0px 5px;
+}
+
+.pageWrapper .contentWrapper .all-posts hr {
+  margin-top: 30px;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 95%;
+  margin: auto;
+  margin-top: 40px;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .lower-posts {
+    margin-top: 20px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .left {
   width: 60%;
 }
 
-.lower .thumbnail {
-  margin-left: 5px;
-  width: 40%;
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .lower-posts .left {
+    width: 98%;
+  }
 }
 
-.lower .thumbnail img {
-  height: 100px;
-}
-
-.lower .user-date {
-  margin-top: 10px;
-}
-
-.lower-right .trending {
-  margin-top: 20px;
-}
-
-.trending-contents .title {
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 20px;
 }
 
-.number {
-  display: none;
-  margin-left: 5px;
-  color: #6d6d6d;
-  font-size: 40px;
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts {
+  width: 60%;
+  padding-top: 20px;
 }
 
-.trending-contents .texts:hover .number {
-  display: block;
-}
-
-.texts a {
-  line-height: 50%;
-  color: black;
-}
-
-.texts a:hover {
-  color: #3c86a8;
-}
-
-.affix {
-  position: fixed;
-  top: 55px;
-  right: 55px;
-}
-
-.mobile {
-  display: none;
-}
-
-@media only screen and (max-width: 500px) {
-  html,
-  body {
-    overflow-x: hidden;
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts {
+    padding-top: 5px;
   }
-  .mobile .each-posts:first-child {
-    margin-left: 30px;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts .title a {
+  font-family: 'Mukta', sans-serif;
+  color: #000;
+  font-size: 25px;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts .title a {
+    font-size: 18px;
   }
-  .all-posts {
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts .title a:hover {
+  text-decoration: none;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts .body {
+  padding-top: 10px;
+  color: gray;
+  font-size: 13.5px;
+  height: 75px;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts .body {
+    font-size: 12px;
+    height: 50px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts .add-info {
+  padding: 20px;
+  color: #666;
+  font-size: 13.5px;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts .add-info {
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts .add-info i {
+  padding: 0px 5px;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts .add-info strong {
+  font-weight: bolder;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .image {
+  width: 30%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .image img {
+  width: 100%;
+  height: 175px;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .image img {
+    height: 80px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .image img:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  opacity: 0.8;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .right {
+  width: 30%;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .lower-posts .right {
+    width: 0%;
     display: none;
   }
-  .mobile {
-    display: block;
-    width: 100%;
-  }
-  .mobile .each-posts {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    margin-top: 20px;
-    width: 95%;
-  }
-  .mobile .texts {
-    width: 60%;
-  }
-  .mobile .thumbnail {
-    margin-left: 5px;
-    width: 25%;
-  }
-  .mobile .thumbnail img {
-    height: 70px;
-  }
-  .mobile .user-date {
-    margin-top: 10px;
-  }
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .right .heading {
+  margin-top: 50px;
+  font-size: 30px;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .right .each-post {
+  margin-top: 20px;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .right .each-post .title a {
+  font-family: 'Mukta', sans-serif;
+  color: #000;
+  font-size: 25px;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .right .each-post .title a:hover {
+  text-decoration: none;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .right .each-post .body {
+  padding-top: 10px;
+  color: gray;
+  font-size: 13.5px;
+  height: 75px;
+  overflow: hidden;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .right .each-post .add-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px;
+  color: #666;
+  font-size: 13.5px;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .right .each-post .add-info i {
+  padding: 0px 5px;
+}
+
+.pageWrapper .contentWrapper .all-posts .lower-posts .right .each-post .add-info strong {
+  font-weight: bolder;
 }
 /*# sourceMappingURL=post_details.css.map */

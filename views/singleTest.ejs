@@ -16,7 +16,8 @@
             <div class="top-color">
                 <div class="heading">
                     <p>
-                        <%= data.title %>
+                        <%= data.title %> <br>
+                            <button class="edit" id="<%= data._id %>">Update</button>
                     </p>
                 </div>
             </div>
@@ -92,12 +93,16 @@
                             <% if (data.questionSet[i].inputType == "ranger") { %>
                                 <div class="ranger-area">
                                     <div class="ranger-input-area">
-                                        <div>1</div>
+                                        <div>
+                                            <%= data.questionSet[i].ranger.min %>
+                                        </div>
                                         <div class="slide-container response">
                                             <span class="bar"><span class="fill"></span></span>
                                             <input type="range" style="cursor: pointer;" min="0" max="100" value="0" id="slider">
                                         </div>
-                                        <div>100</div>
+                                        <div>
+                                            <%= data.questionSet[i].ranger.max %>
+                                        </div>
                                     </div>
                                     <div class="applies">
                                         <p>Applies</p>
@@ -280,6 +285,9 @@
             score: achievedScore
         })
     }
+    $('.edit').click((e) => {
+        location = '/admin/edit-test/' + e.target.id
+    })
 </script>
 
 </html>

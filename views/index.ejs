@@ -5,307 +5,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home - badBlogger</title>
-
-    <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/post_details.css">
-
+    <title>Home - CoronaApp</title>
 </head>
 
 <body>
-    <!-- <%- include('./partials/welcomeModal.ejs') %> -->
-    <% if (messages.login) {%>
-        <div class="alert alert-success" role="alert">
-            Login successfull. Logged in as <strong> <%= user.username %> </strong>
-        </div>
-        <% } %>
-
-            <% if (messages.full_post || messages.quick_post) {%>
-                <div class="alert alert-success" role="alert">
-                    Your post has been published
-                </div>
-                <% } %>
-
-                    <% if (messages.login_prompt) {%>
-                        <div class="alert alert-danger" role="alert">
-                            <strong> Howdy Stranger! </strong> Looks like you're not logged in. Log in to continue
+    <div class="pageWrapper">
+        <div class="contentWrapper">
+            <div class="all-posts">
+                <div class="first-three">
+                    <% for (let i=0; i<3; i++) { %>
+                        <div class="each-post">
+                            <div class="image">
+                                <img src="<%= data[i].thumbnail %>" alt="">
+                            </div>
+                            <div class="texts">
+                                <div class="title">
+                                    <a href="/users/view/<%=data[i]._id%>">
+                                        <%= data[i].title %>
+                                    </a>
+                                </div>
+                                <div class="body">
+                                    <%- data[i].body %>
+                                </div>
+                                <div class="add-info">
+                                    <span><i class="fa fa-user"></i><strong><%= data[i].author %></strong></span>
+                                    <span><%= data[i].date %></span>
+                                </div>
+                            </div>
                         </div>
                         <% } %>
-
-
-                            <div class="notif-contents" id="notif-contents">
-                                <% if (notifs == true) { %>
-                                    <div class="notif_action" id="notif-action">
-                                        <div class="darkener">
-                                            .
-                                        </div>
-
-                                        <div class="notifframe" id="notif-frame">
-                                            <% notifs_array.forEach(function(notifs_array){%>
-                                                <% if (notifs_array.type == 'upvote'){%>
-                                                    <a href="/users/view/<%= notifs_array.post_id %>" onclick="unmarkNotif()" target="_blank">
-                                                        <div class="each-notif">
-                                                            <div class="logo">
-                                                                <i class="far fa-heart"></i>
-                                                            </div>
-                                                            <div class="text">
-                                                                <p><strong><%= notifs_array.sender_username %></strong> likes your post entitled
-                                                                    <b><%= notifs_array.post_title %></b></p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <% } %>
-
-                                                        <% if (notifs_array.type == 'comment'){%>
-                                                            <a href="/users/view/<%= notifs_array.post_id %>" target="_blank">
-                                                                <div class="each-notif">
-                                                                    <div class="logo">
-                                                                        <i class="far fa-comment"></i>
-                                                                    </div>
-                                                                    <div class="text">
-                                                                        <p><strong><%= notifs_array.sender_username %></strong> has commented on your post entitled
-                                                                            <b><%= notifs_array.post_title %></b></p>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                            <% } %>
-
-                                                                <% if (notifs_array == 'mention'){%>
-                                                                    <a href="#">
-                                                                        <div class="each-notif">
-                                                                            <div class="logo">
-                                                                                <i class="fas fa-user-plus"></i>
-                                                                            </div>
-                                                                            <div class="text">
-                                                                                <p><strong>_catastrophe</strong> has mentioned you on a post entitled <br>
-                                                                                    <b>5 Toughest Programming Languages</b></p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                    <% } %>
-                                                                        <% }) %>
-                                                                            <p class="notif-end">Notifications</p>
-                                                                            <!-- <div class="footer">
-          .
-        </div> -->
-                                        </div>
-
+                </div>
+                <hr>
+                <div class="lower-posts">
+                    <div class="left">
+                        <% for (let i=3; i<data.length; i++) { %>
+                            <div class="each-post">
+                                <div class="texts">
+                                    <div class="title">
+                                        <a href="/users/view/<%=data[i]._id%>">
+                                            <%= data[i].title %>
+                                        </a>
                                     </div>
-                                    <% } %>
-                            </div>
-
-                            <!-- New contents -->
-
-                            <div class="all-posts">
-                                <div class="first-three">
-                                    <% for( let i = 0; i < 3; i++ ){ %>
-                                        <div class="each-posts">
-                                            <div class="thumbnail">
-                                                <% if(posts[i].thumbnail != 'none') {%>
-                                                    <img src="<%= posts[i].thumbnail %>" class="thumbnail-img" alt="">
-                                                    <% } %>
-                                            </div>
-
-                                            <div class="texts">
-                                                <div class="title">
-                                                    <a href="/users/view/<%= posts[i]._id %>"> <b> <%= posts[i].title %> </b> </a>
-                                                </div>
-                                                <div class="body">
-                                                    <p>
-                                                        <%- posts[i].body %>
-                                                    </p>
-                                                </div>
-                                                <div class="user-date">
-                                                    <i class="fas fa-user"> </i>
-                                                    <%= posts[i].author %> ·
-                                                        <%= posts[i].date %>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <% } %>
-                                </div>
-
-                                <hr>
-
-                                <div class="lower">
-                                    <div class="lower-left">
-                                        <% for( let i = 3; i < posts.length; i++ ){ %>
-                                            <div class="each-posts">
-
-                                                <div class="texts">
-                                                    <div class="title">
-                                                        <a href="/users/view/<%= posts[i]._id %>"> <b> <%= posts[i].title %> </b> </a>
-                                                    </div>
-                                                    <div class="body">
-                                                        <p>
-                                                            <%- posts[i].body %>
-                                                        </p>
-                                                    </div>
-                                                    <div class="user-date">
-                                                        <i class="fas fa-user"> </i> <b> <%= posts[i].author %> </b> ·
-                                                        <%= posts[i].date %>
-                                                    </div>
-                                                </div>
-                                                <div class="thumbnail">
-                                                    <img src="<%= posts[i].thumbnail %>" class="thumbnail-img" alt="">
-                                                </div>
-
-                                            </div>
-                                            <% } %>
+                                    <div class="body">
+                                        <%- data[i].body %>
                                     </div>
-
-                                    <div class="lower-right">
-                                        <h4 class="trending">Trending</h4>
-                                        <hr>
-                                        <div class="trending-contents">
-                                            <% for (let i=0; i < 5; i++) {%>
-                                                <div class="texts">
-                                                    <div class="title">
-                                                        <a href="/users/view/<%= posts[i]._id %>"> <b> <%= posts[i].title %> </b> </a> <b class="number"> #<%= i+1 %></b> </div>
-                                                    <div class="body">
-                                                        <p>
-                                                            <%- posts[i].body %>
-                                                        </p>
-                                                    </div>
-                                                    <div class="user-date">
-                                                        <i class="fas fa-user"> </i> <b> <%= posts[i].author %> </b> ·
-                                                        <%= posts[i].date %>
-                                                    </div>
-                                                </div>
-                                                <% } %>
-                                        </div>
+                                    <div class="add-info">
+                                        <i class="fa fa-user"></i><strong><%= data[i].author %></strong> -
+                                        <%= data[i].date %>
                                     </div>
                                 </div>
-
-                            </div>
-
-                            <!-- New contents -->
-
-                            <!-- ++++++++++ Mobile View +++++++++ -->
-
-                            <div class="mobile">
-                                <% for( let i = 0; i < posts.length; i++ ){ %>
-                                    <div class="each-posts">
-                                        <div class="texts">
-                                            <div class="title">
-                                                <a href="/users/view/<%= posts[i]._id %>"> <b> <%= posts[i].title %> </b> </a>
-                                            </div>
-                                            <div class="body">
-                                                <p>
-                                                    <%- posts[i].body %>
-                                                </p>
-                                            </div>
-                                            <div class="user-date">
-                                                <i class="fas fa-user"> </i> <b> <%= posts[i].author %> </b> ·
-                                                <%= posts[i].date %>
-                                            </div>
-                                        </div>
-                                        <div class="thumbnail">
-                                            <img src="<%= posts[i].thumbnail %>" class="thumbnail-img" alt="">
-                                        </div>
-                                    </div>
-                                    <% } %>
-                            </div>
-
-                            <!-- ++++++++++ Mobile View +++++++++ -->
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="modal-fade">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Create Blog</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-                                        </div>
-                                        <form id="form-submit" action="/users/post" method="POST">
-                                            <input type="text" name="title_name" id="title" placeholder="Title"><br><br>
-                                            <textarea rows="4" class="area1" name="body_name" cols="50" id="text-body" placeholder="It's a fine day!"></textarea>
-                                            <div class="modal-footer">
-                                                <button type="button" id="more-options" class="btn btn-info">More Options</button>
-                                                <a href="#"> <button type="submit" class="btn btn-info">Post</button></a>
-                                            </div>
-                                        </form>
-                                    </div>
+                                <div class="image">
+                                    <img src="<%= data[i].thumbnail %>" alt="">
                                 </div>
                             </div>
-
-                            <!-- Read more window -->
-                            <!-- Button trigger modal -->
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal-Center" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            ...
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" id="close-btn" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary" id="add-comment-btn">Add comment</button> <br>
-
-                                            <div id="comment-area">
-                                                <form id="comment-form" method="POST" action="/comment">
-                                                    <input name="myComment" type="text" id="comment-box">
-                                                    <button type="submit" class="btn btn-primary" id="post-comment-btn">Post</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <% } %>
+                    </div>
+                    <div class="right">
+                        <div class="heading">Trending</div>
+                        <% for (let i=0; i<trending.length; i++) { %>
+                            <div class="each-post">
+                                <div class="title">
+                                    <a href="/users/view/<%=trending[i]._id%>">
+                                        <%= trending[i].title %>
+                                    </a>
+                                </div>
+                                <div class="body">
+                                    <%- trending[i].body %>
+                                </div>
+                                <div class="add-info">
+                                    <span><i class="fa fa-user"></i><strong><%= trending[i].author %></strong></span>
+                                    <span><%= trending[i].date %></span>
                                 </div>
                             </div>
-
-                            <div class="allPost" id="display"> </div>
-
-
-
-                            <!-- Optional JavaScript -->
-                            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-                            <script>
-                                $('#welcome').modal('show')
-                                document.getElementById('notif-contents').onclick = function(e) {
-                                    if (e.target != document.getElementById('notif-contents')) {
-                                        document.getElementById('notif-contents').style.display = 'none';
-                                    } else {
-                                        console.log('You clicked inside');
-                                    }
-                                }
-
-                                $(document).ready(() => {
-
-                                    // var stickySidebar = $('.lower-right').offset().top;
-
-                                    // $(window).scroll(function () {
-                                    //   if ($(window).scrollTop() > stickySidebar) {
-                                    //     $('.lower-right').addClass('affix');
-                                    //   }
-                                    //   else {
-                                    //     $('.lower-right').removeClass('affix');
-                                    //   }
-                                    // });
-
-                                    document.querySelector("#more-options").addEventListener('click', (e) => {
-                                        console.log('delivered');
-                                        window.location = "/users/create_blog";
-                                    });
-                                })
-
-                                function unmarkNotif() {
-
-                                }
-                            </script>
-
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

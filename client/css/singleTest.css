@@ -13,7 +13,7 @@ body {
 .pageWrapper .contentWrapper .top-color {
   height: 500px;
   border-radius: 100%/0 0 100px 100px;
-  background-color: #07aa94;
+  background-color: #0aac83;
   background-repeat: no-repeat;
   padding-top: 100px;
 }
@@ -33,6 +33,15 @@ body {
 
 .pageWrapper .contentWrapper .top-color .heading p {
   text-align: center;
+}
+
+.pageWrapper .contentWrapper .top-color .heading p button {
+  padding: 5px 10px;
+  border: 1px solid #fff;
+  background-color: #0aac83;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
 }
 
 .pageWrapper .contentWrapper .card-space {

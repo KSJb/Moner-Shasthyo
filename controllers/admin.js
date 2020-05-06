@@ -198,7 +198,7 @@ module.exports.createTest = async(req, res) => {
     } = req.body
 
     const questionSet = JSON.parse(req.body.questionSet)
-    console.log(questionSet)
+        // console.log(questionSet)
 
     const newTest = new testModel({
         title,
@@ -236,4 +236,41 @@ exports.searchTests = async(req, res) => {
 exports.getQuestion = async(req, res) => {
     const question = await testModel.findOne({ _id: req.params.id })
     res.send(question)
+}
+
+exports.getEditTest = async(req, res) => {
+    const data = await testModel.findById(req.params.id)
+    res.render('editTest', {
+        data
+    })
+}
+
+exports.postEditTest = async(req, res) => {
+    const {
+        id,
+        title,
+        thumbnail,
+        ageRange,
+        category,
+        about
+    } = req.body
+
+    const questionSet = JSON.parse(req.body.questionSet)
+    console.log(questionSet)
+
+    await testModel.findOneAndUpdate({ _id: id }, {
+        $set: {
+            id: id,
+            title: title,
+            thumbnail: thumbnail,
+            ageRange: ageRange,
+            category: category,
+            about: about,
+            questionSet: questionSet
+        }
+    })
+    res.send({
+        status: true,
+        msg: 'okke'
+    })
 }

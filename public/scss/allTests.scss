@@ -120,6 +120,19 @@
                     padding: 20px;
                 }
             }
+            .new-test {
+                display: flex;
+                justify-content: space-between;
+                button {
+                    background-color: #eee;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 10px 20px;
+                }
+                button:hover {
+                    background-color: #ddd;
+                }
+            }
         }
         .all-tests-space {
             margin-top: 50px;

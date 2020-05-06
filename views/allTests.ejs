@@ -43,7 +43,15 @@
             </div>
 
             <div class="large-heading">
-                <p>Self Assessment Tests</p>
+                <p>Self Assessment Tests
+                </p>
+                <div class="new-test">
+                    <div class=""></div>
+                    <div class="">
+                        <button id="new-test-btn">Add New Test</button>
+                    </div>
+                </div>
+
             </div>
 
             <div class="all-tests-space">
@@ -135,6 +143,9 @@
             console.log($('#search-input').val())
             $('#search-form').submit()
         }
+    })
+    $('#new-test-btn').click((e) => {
+        location = '/admin/create-test'
     })
 </script>
 

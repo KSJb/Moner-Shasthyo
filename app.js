@@ -66,7 +66,8 @@ app.use("/admin", authRoutes); // Login/Register
 const usersRoutes = require("./routes/users.js");
 app.use("/users", usersRoutes); // Inside Homepage
 
-app.use("/", usersRoutes); // Get the start page
+const homeRoutes = require('./routes/index')
+app.use("/", homeRoutes); // Get the start page
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {

@@ -39,4 +39,6 @@ router.post('/create-test', controller.createTest)
 router.get('/single-test', controller.singleTest)
 router.get('/search-test', controller.searchTests)
 router.get('/get-question/:id', controller.getQuestion)
+router.get('/edit-test/:id', controller.getEditTest)
+router.post('/edit-test', controller.postEditTest)
 module.exports = router;
