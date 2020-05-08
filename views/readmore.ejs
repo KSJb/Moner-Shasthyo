@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/prism-okaidia.css">
     <link rel="stylesheet" href="/css/readmore.css">
     <title>
         <%= posts.title %>
@@ -18,6 +19,13 @@
                 <div class="post">
                     <div class="title">
                         <%= posts.title %>
+                    </div>
+                    <div class="tags">
+                        <% for (let i=0; i<posts.tags.length; i++) { %>
+                            <a href="#" class="each-tag">
+                                <%= posts.tags[i] %>
+                            </a>
+                            <% } %>
                     </div>
                     <div class="subtitle">
                         <div class="left">
@@ -99,6 +107,7 @@
     <input type="hidden" value="<%= posts._id %>" id="id">
     <script id="dsq-count-scr" src="//http-bad-blogger997-herokuapp-com.disqus.com/count.js" async></script>
 </body>
+<script src="/js/prism-okaidia.js"></script>
 <script>
     $('#edit-btn').click(e => {
         const id = $('#id').val()

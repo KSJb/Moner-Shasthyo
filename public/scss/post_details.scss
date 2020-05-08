@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Mukta&display=swap');
+body {
+    background-color: #fff;
+}
+
 .pageWrapper {
     .contentWrapper {
         width: 60%;
@@ -23,6 +27,25 @@
             a:hover {
                 color: #000;
             }
+            .category {
+                padding-top: 15px;
+                @media (max-width: 900px) {
+                    padding-top: 0;
+                }
+                a {
+                    color: #666;
+                    font-size: 15px;
+                    font-family: 'Mukta', sans-serif;
+                    transition: 0.5s;
+                    text-transform: uppercase;
+                    @media (max-width: 900px) {
+                        font-size: 12px;
+                    }
+                }
+                a:hover {
+                    color: #000;
+                }
+            }
             strong {
                 font-size: 15px;
                 font-weight: bolder;
@@ -38,68 +61,75 @@
                 }
                 .first-post {
                     width: 43%;
+                    padding-top: 30px;
                     @media (max-width: 900px) {
-                        width: 80%;
-                        margin: auto;
-                        padding-bottom: 20px;
+                        width: 100%;
                     }
-                    .image {
-                        height: 250px;
-                        overflow: hidden;
-                        border-radius: 5px;
+                    .each-post {
+                        width: 100%;
                         @media (max-width: 900px) {
-                            height: 150px;
+                            width: 80%;
+                            margin: auto;
+                            padding-bottom: 20px;
                         }
-                        img {
-                            width: 100%;
-                            cursor: pointer;
-                            transition: 0.5s;
+                        .image {
+                            height: 250px;
+                            overflow: hidden;
                             border-radius: 5px;
                             @media (max-width: 900px) {
                                 height: 150px;
                             }
-                        }
-                        img:hover {
-                            transform: scale(1.05);
-                            opacity: 0.8;
-                        }
-                    }
-                    .texts {
-                        .title {
-                            padding: 15px 5px 0px 0px;
-                            a {
-                                color: #000;
-                                font-size: 25px;
-                                font-family: 'Mukta' sans-serif;
+                            img {
+                                width: 100%;
+                                cursor: pointer;
+                                transition: 0.5s;
+                                border-radius: 5px;
                                 @media (max-width: 900px) {
-                                    font-size: 20px;
+                                    height: 150px;
                                 }
                             }
-                            a:hover {
-                                text-decoration: none;
+                            img:hover {
+                                transform: scale(1.05);
+                                opacity: 0.8;
                             }
                         }
-                        .body {
-                            font-size: 15px;
-                            color: gray;
-                            height: 90px;
-                            overflow: hidden;
-                            @media (max-width: 900px) {
-                                font-size: 12px;
+                        .texts {
+                            .title {
+                                // padding: 15px 5px 0px 0px;
+                                a {
+                                    color: #000;
+                                    font-size: 25px;
+                                    font-family: 'Mukta' sans-serif;
+                                    @media (max-width: 900px) {
+                                        font-size: 20px;
+                                    }
+                                }
+                                a:hover {
+                                    text-decoration: none;
+                                }
                             }
-                        }
-                        .add-info {
-                            display: flex;
-                            justify-content: space-between;
-                            padding: 10px 0px;
-                            color: gray;
-                            font-size: 13.5px;
-                            @media (max-width: 900px) {
-                                font-size: 10px;
-                                padding: 0;
+                            .body {
+                                font-size: 15px;
+                                color: gray;
+                                height: 90px;
+                                overflow: hidden;
+                                @media (max-width: 900px) {
+                                    font-size: 12px;
+                                }
                             }
-                            i {
-                                padding: 0px 10px;
+                            .add-info {
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 10px 0px;
+                                color: gray;
+                                font-size: 13.5px;
+                                @media (max-width: 900px) {
+                                    font-size: 10px;
+                                    padding: 0;
+                                }
+                                i {
+                                    padding: 0px 10px;
+                                }
                             }
                         }
                     }
@@ -211,7 +241,7 @@
                         margin-top: 20px;
                         .texts {
                             width: 60%;
-                            padding-top: 20px;
+                            // padding-top: 20px;
                             @media (max-width: 900px) {
                                 padding-top: 5px;
                             }

@@ -7,8 +7,14 @@ const Post = require('../models/post');
 router.get('/', async(req, res) => {
     const data = await Post.find().sort({ _id: -1 })
     const trending = await Post.find().sort({ view: 1 }).limit(5)
-        // console.log(trending)
+    let welcome = 'false'
+    if (req.session.prev == 'login') {
+        welcome = 'true'
+        console.log('backend: true')
+    }
     res.render('index', {
+        welcome,
+        user: req.user,
         data,
         trending
     })

@@ -23,14 +23,15 @@ module.exports.get_login = (req, res) => {
     res.render('login');
 };
 // Post login page
-module.exports.post_login = (req, res, next) => {
-    req.flash('login', 'home page reached');
-    passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/admin/login',
-        failureFlash: true
-    })(req, res, next);
-}
+// module.exports.post_login = (req, res, next) => {
+//     req.flash('login', 'home page reached');
+//     passport.authenticate('local', {
+//         successRedirect: '/',
+//         failureRedirect: '/admin/login',
+//         failureFlash: true
+//     })(req, res, next);
+// }
+
 
 // Get register page 
 module.exports.get_register = (req, res) => { res.render('register') }

@@ -1,7 +1,13 @@
+@import url("https://fonts.googleapis.com/css?family=Mukta&display=swap");
 body {
   font-family: "Thasadith", sans-serif;
 }
 
+/*
+National Overseas Transports Assocication
+Halsaki Sea Port Centre - 305 Annex Building
+Port of Halsaki | Halsaki, Echamia, Illiya
+*/
 .contentWrapper .pageContent {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -41,14 +47,48 @@ body {
 }
 
 .contentWrapper .pageContent .left .post .title {
+  font-family: 'Mukta', sans-serif;
   font-size: 40px;
-  font-weight: bold;
 }
 
 @media (max-width: 650px) {
   .contentWrapper .pageContent .left .post .title {
     font-size: 20px;
   }
+}
+
+.contentWrapper .pageContent .left .post .tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 13.5px;
+}
+
+.contentWrapper .pageContent .left .post .tags a {
+  color: #000;
+  background-color: #ddd;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-left: 2%;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media (max-width: 650px) {
+  .contentWrapper .pageContent .left .post .tags a {
+    font-size: 12px;
+    padding: 2px;
+  }
+}
+
+.contentWrapper .pageContent .left .post .tags a:first {
+  margin-left: 0;
+}
+
+.contentWrapper .pageContent .left .post .tags a:hover {
+  text-decoration: none;
+  background-color: #eee;
 }
 
 .contentWrapper .pageContent .left .post .subtitle {
@@ -72,6 +112,12 @@ body {
 
 .contentWrapper .pageContent .left .post .subtitle .left .image {
   width: 7%;
+}
+
+@media (max-width: 650px) {
+  .contentWrapper .pageContent .left .post .subtitle .left .image {
+    width: 12%;
+  }
 }
 
 .contentWrapper .pageContent .left .post .subtitle .left .image img {

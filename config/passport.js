@@ -33,6 +33,8 @@ module.exports = (passport) => {
             if (guser) {
                 const gmatch = await bcrypt.compare(req.body.password, guser.password)
                 if (gmatch) {
+                    // console.log('logged')
+                    req.flash('successMessage', 'logged in')
                     return done(null, guser)
                 } else {
                     req.flash('errorMessage', 'Incorrect Password')

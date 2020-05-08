@@ -1,0 +1,104 @@
+body {
+    background-color: #fff;
+    color: #fff;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    /* height: 40vh; */
+    color: #212121;
+    overflow: hidden;
+}
+
+.slider>.slide-item {
+    /* width: 100%;
+    height: 100%;
+    font-size: 99px;
+    line-height: 40vh;
+    text-align: center;
+    background-color: #fff;*/
+    position: absolute;
+    z-index: 1;
+    display: none;
+}
+
+.slider>.slide-item.slide-item-active {
+    z-index: 1;
+}
+
+.slider>.controls {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 3;
+    background-color: #fafafa;
+    border-radius: 0px 5px 0px 0px;
+    padding: 10px;
+}
+
+.slider>.controls a {
+    margin-right: 10px;
+    color: #212121;
+    text-decoration: none;
+}
+
+.slider>.controls a:hover {
+    text-decoration: underline;
+}
+
+.slider div#slider-top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 4;
+}
+
+.slider div#slider-top-bar span {
+    position: absolute;
+    background-color: #C4302B;
+    top: 0;
+    left: 0;
+    width: 9px;
+    height: 100%;
+}
+
+.slider div#slider-top-bar span.slider-bar-run {
+    /** Styles */
+}
+
+.slider div#slider-top-bar span.slider-bar-run-paused {
+    -webkit-animation-play-state: paused !important;
+    -moz-animation-play-state: paused !important;
+    -ms-animation-play-state: paused !important;
+    -o-animation-play-state: paused !important;
+    animation-play-state: paused !important;
+}
+
+.slider div#slider-top-bar span.slider-bar-run-none {
+    width: 100% !important;
+}
+
+@-webkit-keyframes sliderbarrun {
+    0% {
+        width: 1px;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes sliderbarrun {
+    0% {
+        width: 1px;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+
+/*# sourceMappingURL=main.css.map */

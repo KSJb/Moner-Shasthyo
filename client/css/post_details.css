@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Mukta&display=swap");
+body {
+  background-color: #fff;
+}
+
 .pageWrapper .contentWrapper {
   width: 60%;
   margin: auto;
@@ -35,6 +39,35 @@
   color: #000;
 }
 
+.pageWrapper .contentWrapper .all-posts .category {
+  padding-top: 15px;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .category {
+    padding-top: 0;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .category a {
+  color: #666;
+  font-size: 15px;
+  font-family: 'Mukta', sans-serif;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .category a {
+    font-size: 12px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .category a:hover {
+  color: #000;
+}
+
 .pageWrapper .contentWrapper .all-posts strong {
   font-size: 15px;
   font-weight: bolder;
@@ -66,29 +99,40 @@
 
 .pageWrapper .contentWrapper .all-posts .higher-posts .first-post {
   width: 43%;
+  padding-top: 30px;
 }
 
 @media (max-width: 900px) {
   .pageWrapper .contentWrapper .all-posts .higher-posts .first-post {
+    width: 100%;
+  }
+}
+
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post {
     width: 80%;
     margin: auto;
     padding-bottom: 20px;
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .image {
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .image {
   height: 250px;
   overflow: hidden;
   border-radius: 5px;
 }
 
 @media (max-width: 900px) {
-  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .image {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .image {
     height: 150px;
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .image img {
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .image img {
   width: 100%;
   cursor: pointer;
   -webkit-transition: 0.5s;
@@ -97,38 +141,34 @@
 }
 
 @media (max-width: 900px) {
-  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .image img {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .image img {
     height: 150px;
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .image img:hover {
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .image img:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
   opacity: 0.8;
 }
 
-.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .title {
-  padding: 15px 5px 0px 0px;
-}
-
-.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .title a {
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .texts .title a {
   color: #000;
   font-size: 25px;
   font-family: 'Mukta' sans-serif;
 }
 
 @media (max-width: 900px) {
-  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .title a {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .texts .title a {
     font-size: 20px;
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .title a:hover {
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .texts .title a:hover {
   text-decoration: none;
 }
 
-.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .body {
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .texts .body {
   font-size: 15px;
   color: gray;
   height: 90px;
@@ -136,12 +176,12 @@
 }
 
 @media (max-width: 900px) {
-  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .body {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .texts .body {
     font-size: 12px;
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .add-info {
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .texts .add-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -154,13 +194,13 @@
 }
 
 @media (max-width: 900px) {
-  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .add-info {
+  .pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .texts .add-info {
     font-size: 10px;
     padding: 0;
   }
 }
 
-.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .texts .add-info i {
+.pageWrapper .contentWrapper .all-posts .higher-posts .first-post .each-post .texts .add-info i {
   padding: 0px 10px;
 }
 
@@ -327,7 +367,6 @@
 
 .pageWrapper .contentWrapper .all-posts .lower-posts .left .each-post .texts {
   width: 60%;
-  padding-top: 20px;
 }
 
 @media (max-width: 900px) {

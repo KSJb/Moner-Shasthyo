@@ -91,17 +91,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         var config = {
+            extraPlugins: 'codesnippet',
+            codeSnippet_theme: 'magula',
             height: 600,
-            width: 1600,
-            extraPlugins: 'embed,autoembed,image2',
-            contentsCss: [
-                'http://cdn.ckeditor.com/4.14.0/full-all/contents.css',
-                'https://ckeditor.com/docs/vendors/4.14.0/ckeditor/assets/css/widgetstyles.css'
-            ],
-            embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',
-            image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
-            image2_disableResizer: true
+            width: 1600
         };
+        // var config = {
+        //     height: 600,
+        //     width: 1600,
+        //     extraPlugins: 'embed,autoembed,image2',
+        //     contentsCss: [
+        //         'http://cdn.ckeditor.com/4.14.0/full-all/contents.css',
+        //         'https://ckeditor.com/docs/vendors/4.14.0/ckeditor/assets/css/widgetstyles.css'
+        //     ],
+        //     embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',
+        //     image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+        //     image2_disableResizer: true
+        // };
 
         const editor = CKEDITOR.replace('area', config);
 

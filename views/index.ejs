@@ -5,41 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/Responsive-Auto-Carousel-Plugin-With-jQuery-My-Slider/dist/css/my-slider.css">
     <link rel="stylesheet" href="/css/post_details.css">
     <title>Home - CoronaApp</title>
 </head>
 
 <body>
+    <input type="hidden" value="<%= welcome %>" id="loggedIn">
+
     <div class="pageWrapper">
         <div class="contentWrapper">
             <div class="all-posts">
                 <div class="higher-posts">
-                    <div class="first-post">
-                        <div class="image">
-                            <img src="<%= data[0].thumbnail %>" alt="">
-                        </div>
-                        <div class="texts">
-                            <div class="title">
-                                <a href="/users/view/<%= data[0]._id %>">
-                                    <%= data[0].title %>
-                                </a>
-                            </div>
-                            <div class="body">
-                                <%- data[0].body %>
-                            </div>
-                            <div class="add-info">
-                                <span><i class="fa fa-user"></i><strong><%= data[0].author %></strong></span>
-                                <span><%= data[0].date %></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="next-three">
-                        <% for (let i=1; i<4; i++) { %>
+                    <div class="slider first-post">
+                        <% for (let i=0; i<3; i++) { %>
                             <div class="each-post">
                                 <div class="image">
                                     <img src="<%= data[i].thumbnail %>" alt="">
                                 </div>
                                 <div class="texts">
+                                    <div class="category"><a href="#">CATEGORY</a></div>
+                                    <div class="title">
+                                        <a href="/users/view/<%= data[i]._id %>">
+                                            <%= data[i].title %>
+                                        </a>
+                                    </div>
+                                    <div class="body">
+                                        <%- data[i].body %>
+                                    </div>
+                                    <div class="add-info">
+                                        <span><i class="fa fa-user"></i><strong><%= data[i].author %></strong></span>
+                                        <span><%= data[i].date %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="next-three">
+                        <% for (let i=4; i<7; i++) { %>
+                            <div class="each-post">
+                                <div class="image">
+                                    <img src="<%= data[i].thumbnail %>" alt="">
+                                </div>
+                                <div class="texts">
+                                    <div class="category"><a href="#">CATEGORY</a></div>
                                     <div class="title">
                                         <a href="/users/view/<%=data[i]._id%>">
                                             <%= data[i].title %>
@@ -61,9 +70,10 @@
                 <hr>
                 <div class="lower-posts">
                     <div class="left">
-                        <% for (let i=4; i<data.length; i++) { %>
+                        <% for (let i=7; i<data.length; i++) { %>
                             <div class="each-post">
                                 <div class="texts">
+                                    <div class="category"><a href="#">CATEGORY</a></div>
                                     <div class="title">
                                         <a href="/users/view/<%=data[i]._id%>">
                                             <%= data[i].title %>
@@ -106,6 +116,43 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="staticBackdrop" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 25px;">
+                <div class="modal-body" style="display: flex; justify-content: space-between; ">
+                    <div class="texts" style="color: #000;">
+                        <strong style="font-weight: bolder;">Hussain</strong>, how's it going?
+                    </div>
+                    <div class="image" style="width: 10%;">
+                        <img style="width: 100%; border-radius: 50%;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+
+<script src="/js/my-slider.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+    if ($(window).width() < 650) {
+        $('.slider').removeClass('slider')
+    }
+    $('.slider').slider({
+        'autoPlay': true,
+        'interval': 4000,
+        'controls': false,
+        'topBar': false
+    })
+</script>
+<script>
+    console.log($('#loggedIn').val())
+    if ($('#loggedIn').val() == 'true') {
+        $('#loggedIn').val('false')
+            // $('#staticBackdrop').modal('show')
+    }
+</script>
 
 </html>
