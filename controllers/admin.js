@@ -50,6 +50,7 @@ module.exports.postRegGen = async(req, res, next) => {
         email,
         password: hashed
     }
+
     const newGenUser = new gUser(userObj)
         // console.log(newGenUser)
     await newGenUser.save()
