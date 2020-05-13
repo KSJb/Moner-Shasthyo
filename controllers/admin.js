@@ -23,14 +23,21 @@ module.exports.get_login = (req, res) => {
     res.render('login');
 };
 // Post login page
-// module.exports.post_login = (req, res, next) => {
-//     req.flash('login', 'home page reached');
-//     passport.authenticate('local', {
-//         successRedirect: '/',
-//         failureRedirect: '/admin/login',
-//         failureFlash: true
-//     })(req, res, next);
-// }
+module.exports.post_login = async(req, res) => {
+        console.log('backend!')
+        if (req.user) {
+            if (req.body.device == 'android') {
+                res.send({
+                    user: req.user
+                })
+            }
+            req.session.prev = 'login'
+            res.redirect('/')
+        } else {
+            res.render('login')
+        }
+    }
+    //Quick Login: safwan.du167@gmail.com, home761049
 
 
 // Get register page 
@@ -39,21 +46,22 @@ module.exports.get_register = (req, res) => { res.render('register') }
 module.exports.postRegGen = async(req, res, next) => {
     const {
         name,
-        username,
         email,
+        phoneNumber,
         password
     } = req.body
     const hashed = await bcrypt.hash(password, 10)
     const userObj = {
         name,
         username,
+        phoneNumber,
         email,
         password: hashed
     }
 
     const newGenUser = new gUser(userObj)
-        // console.log(newGenUser)
-    await newGenUser.save()
+    console.log(newGenUser)
+        // await newGenUser.save()
     console.log('general saved')
     res.send({
         status: true,
@@ -78,20 +86,37 @@ module.exports.googleRegGen = async(req, res) => {
 module.exports.postRegExp = async(req, res, next) => {
     const {
         name,
-        username,
         email,
+        phoneNumber,
         organization,
         designation,
-        password
+        password,
+        city,
+        country,
+        hDegree,
+        institute,
+        field,
+        license
     } = req.body
     const hashed = await bcrypt.hash(password, 10)
+    const residence = {
+        city,
+        country
+    }
+    const education = {
+        hDegree,
+        institute,
+        field
+    }
     const userObj = {
         name,
-        username,
         email,
         organization,
+        phoneNumber,
         designation,
-        password: hashed
+        password: hashed,
+        residence,
+        education
     }
     const newExpUser = new eUser(userObj)
         // console.log(newExpUser)

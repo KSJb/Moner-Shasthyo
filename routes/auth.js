@@ -16,14 +16,7 @@ router.get('/forgot_password', controller.get_forgot_password);
 router.post('/forgot_password', controller.post_forgot_password);
 router.get('/reset_password/:email', controller.get_reset_password);
 router.post('/reset_password/', controller.post_reset_password);
-router.post('/login', passport.authenticate('local'), (req, res) => {
-    if (req.user) {
-        req.session.prev = 'login'
-        res.redirect('/')
-    } else {
-        res.redirect('back')
-    }
-});
+router.post('/login', passport.authenticate('local'), controller.post_login);
 router.get('/register/general/google', passport.authenticate('googleStrategy', {
     scope: ['profile', 'https://www.googleapis.com/auth/userinfo.email']
 }), controller.googleRegGen)

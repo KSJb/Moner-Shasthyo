@@ -26,10 +26,11 @@ mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true}, (er
     mongodb+srv://safwan:<password>@cluster0-gvu5h.mongodb.net/admin
 });
 */
+// bad-blogger: 'mongodb+srv://safwan:peeppeep@blogger-aahxs.mongodb.net/testing?retryWrites=true&w=majority'
 /*
 CoronaApp mongo string : mongodb+srv://saf:home761049@cluster0-ov3aj.mongodb.net/test?retryWrites=true&w=majority
 */
-mongoose.connect('mongodb+srv://safwan:peeppeep@blogger-aahxs.mongodb.net/testing?retryWrites=true&w=majority', { useNewUrlParser: true },
+mongoose.connect('mongodb+srv://saf:home761049@cluster0-ov3aj.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true },
     () => console.log("atlas db connected")
 );
 

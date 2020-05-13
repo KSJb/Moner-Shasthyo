@@ -29,20 +29,31 @@ module.exports = (passport) => {
         }, async(req, email, password, done) => {
             // Match user
             // console.log(req.body)
-            const guser = await gUser.findOne({ email: req.body.email })
+            let guser
+            let euser
+            if (req.body.handle == 'email') {
+                guser = await gUser.findOne({ email: req.body.email })
+            } else {
+                guser = await gUser.findOne({ phoneNumber: req.body.phoneNumber })
+            }
+
             if (guser) {
                 const gmatch = await bcrypt.compare(req.body.password, guser.password)
                 if (gmatch) {
                     // console.log('logged')
-                    req.flash('successMessage', 'logged in')
                     return done(null, guser)
                 } else {
+
                     req.flash('errorMessage', 'Incorrect Password')
                     return done(null, false)
                 }
             } else {
-                const euser = await eUser.findOne({ email: req.body.email })
-                    // console.log(euser)
+                if (req.body.handle == 'email') {
+                    euser = await eUser.findOne({ email: req.body.email })
+                } else {
+                    euser = await eUser.findOne({ phoneNumber: req.body.phoneNumber })
+                }
+                // console.log(euser)
                 if (euser) {
                     const ematch = await bcrypt.compare(req.body.password, euser.password)
                     if (ematch) {
@@ -52,7 +63,8 @@ module.exports = (passport) => {
                         return done(null, false)
                     }
                 } else {
-                    req.flash('errorMessage', 'Email not found')
+                    console.log(':-(')
+                    req.flash('errorMessage', 'Email/Phone Number not found')
                     return done(null, false)
                 }
             }
@@ -60,7 +72,7 @@ module.exports = (passport) => {
     );
 
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user._id);
     });
 
     passport.deserializeUser(function(id, done) {

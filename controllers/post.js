@@ -33,19 +33,6 @@ const getDate = () => {
 }
 
 module.exports.profile = (req, res) => {
-    // if (!req.isAuthenticated()) {
-    //     req.flash('login_prompt', 'log in');
-    //     res.redirect('/');
-    // } else {
-    //     const currentuser = req.user;
-    //     Post.find().sort({ _id: -1 }).then(posts => {
-    //         return res.render("profile", {
-    //             posts: posts,
-    //             currentuser: currentuser,
-    //             owner: 'self'
-    //         });
-    //     })
-    // }
     res.render('profile')
 }
 
@@ -63,20 +50,28 @@ module.exports.get_saved_posts = (req, res) => {
     })
 }
 
-module.exports.get_all_posts = (req, res) => {
-    const currentuser = req.user;
-    Post.find().sort({ _id: -1 }).then(posts => {
-            Post.find().sort({ view: 1 }).then(vs_posts => {
-                return res.render("index", {
-                    notifs: false,
-                    posts: posts,
-                    vsPosts: vs_posts,
-                    user: currentuser
-                });
-            })
-
+module.exports.get_all_posts = async(req, res) => {
+    const { device } = req.query
+    if (device == 'android') {
+        const data = await Post.find().sort({ _id: -1 })
+        res.send({
+            data,
+            user: req.user
         })
-        // .catch(err => returnError({ msg: "Getting Error In Getting Data" }))
+    }
+    const data = await Post.find().sort({ _id: -1 })
+    const trending = await Post.find().sort({ view: 1 }).limit(5)
+    let welcome = 'false'
+    if (req.session.prev == 'login') {
+        welcome = 'true'
+        console.log('backend: true')
+    }
+    res.render('allBlogs', {
+        welcome,
+        user: req.user,
+        data,
+        trending
+    })
 }
 
 module.exports.get_notifs = (req, res) => {
@@ -235,9 +230,17 @@ module.exports.verify = (req, res) => {
 }
 
 module.exports.view_post = async(req, res) => {
+    const { device } = req.query
+
     const id = req.params.id;
     const posts = await Post.findOne({ _id: id })
     const relatedPosts = await Post.find().sort({ _id: -1 }).limit(4)
+    if (device == 'android') {
+        res.send({
+            data: posts,
+            user: req.user
+        })
+    }
     res.render('readmore', {
         posts,
         relatedPosts
@@ -377,3 +380,5 @@ module.exports.get_user = async(req, res) => {
         })
     }
 }
+
+// http://bad-blogger.herokuapp.com/users/blogs?device=android

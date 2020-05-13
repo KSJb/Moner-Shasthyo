@@ -26,13 +26,13 @@
             <div class="name input">
                 <input type="text" name="name" placeholder="Name" id="name">
             </div>
-            <div class="label">Username</div>
-            <div class="username input">
-                <input type="text" name="username" placeholder="Username" id="username">
-            </div>
             <div class="label">Email</div>
             <div class="email input">
                 <input type="email" name="email" placeholder="Email" id="email">
+            </div>
+            <div class="label">Phone</div>
+            <div class="email input">
+                <input type="email" name="phoneNumber" placeholder="Phone Number" id="phoneNumber">
             </div>
             <div class="label">Password</div>
             <div class="password input">
@@ -44,11 +44,11 @@
             </div>
             <div class="label">Residence</div>
             <div class="side-by-side">
-                <select name="" id="">
-                    <option value="">Sylhet</option>
+                <select name="" id="city">
+                    <option value="sylhet">Sylhet</option>
                 </select>
-                <select name="" id="">
-                    <option value="">Bangladesh</option>
+                <select name="" id="country">
+                    <option value="bd">Bangladesh</option>
                 </select>
             </div>
             <p>Professional</p>
@@ -66,6 +66,7 @@
             <div class="side-by-side">
                 <input type="text" placeholder="Highest Degree" id="hDegree">
                 <input type="text" placeholder="Institute" id="institute">
+                <input type="text" placeholder="Field of Study" id="field">
             </div>
 
             <div class="label">License Number</div>
@@ -101,21 +102,36 @@
         const name = $('#name').val()
         const username = $('#username').val()
         const email = $('#email').val()
+        const phoneNumber = $('#phoneNumber').val()
         const organization = $('#organization').val()
         const designation = $('#designation').val()
         const password = $('#password').val()
         const cpass = $('#cpass').val()
+        const city = $('#city').val()
+        const country = $('#country').val()
+        const license = $('#license').val()
+        const hDegree = $('#hDegree').val()
+        const institute = $('#institute').val()
+        const field = $('#field').val()
 
         if (check(name)) {
             showAlert('Enter your name')
-        } else if (check('username')) {
-            showAlert('Enter the username')
         } else if (check(email)) {
             showAlert('Enter the email')
-        } else if (check(username)) {
-            showAlert('Enter the email or phone number')
+        } else if (check(phoneNumber)) {
+            showAlert('Enter the phone number')
         } else if (check(organization)) {
-            showAlert('Enter the roganization you work for')
+            showAlert('Enter the organization you work for')
+        } else if (check(city)) {
+            showAlert('Enter the city you live in')
+        } else if (check(country)) {
+            showAlert('Enter the country you live')
+        } else if (check(hDegree)) {
+            showAlert('Enter the your highest achieved degree')
+        } else if (check(institute)) {
+            showAlert('Enter the institute')
+        } else if (check(field)) {
+            showAlert('Enter your field of study')
         } else if (check(designation)) {
             showAlert('Enter your designation')
         } else if (check(password) || password.length < 6) {
@@ -126,11 +142,16 @@
             $('#alert').hide()
             const data = {
                 name,
-                username,
                 email,
                 organization,
                 designation,
-                password
+                password,
+                city,
+                country,
+                license,
+                hDegree,
+                institute,
+                field
             }
             console.log(data)
             $.ajax({
@@ -140,7 +161,7 @@
                 success: data => {
                     console.log(data)
                     if (data.status) {
-                        // location = '/'
+                        location = '/admin/login'
                     }
                 }
             })
