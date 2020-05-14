@@ -50,20 +50,33 @@ module.exports.postRegGen = async(req, res, next) => {
         phoneNumber,
         password
     } = req.body
+    const dupEmail = await gUser.findOne({ email: email })
+    const dupPhone = await gUser.findOne({ phoneNumber: phoneNumber })
+    if (dupEmail) {
+        return res.send({
+            status: false,
+            msg: 'Email already used'
+        })
+    } else if (dupPhone) {
+        return res.send({
+            status: false,
+            msg: 'Phone number already used'
+        })
+    }
+
     const hashed = await bcrypt.hash(password, 10)
     const userObj = {
         name,
-        username,
         phoneNumber,
         email,
         password: hashed
     }
 
     const newGenUser = new gUser(userObj)
-    console.log(newGenUser)
-        // await newGenUser.save()
+        // console.log(newGenUser)
+    await newGenUser.save()
     console.log('general saved')
-    res.send({
+    return res.send({
         status: true,
         msg: 'okke'
     })
@@ -98,6 +111,22 @@ module.exports.postRegExp = async(req, res, next) => {
         field,
         license
     } = req.body
+
+    const dupEmail = await eUser.findOne({ email: email })
+    const dupPhone = await eUser.findOne({ phoneNumber: phoneNumber })
+    if (dupEmail) {
+        return res.send({
+            status: false,
+            msg: 'Email already used'
+        })
+    } else if (dupPhone) {
+        console.log(dupPhone)
+        return res.send({
+            status: false,
+            msg: 'Phone number already used'
+        })
+    }
+
     const hashed = await bcrypt.hash(password, 10)
     const residence = {
         city,
@@ -122,10 +151,11 @@ module.exports.postRegExp = async(req, res, next) => {
         // console.log(newExpUser)
     await newExpUser.save()
     console.log('expert saved')
-    res.send({
+    return res.send({
         status: true,
         msg: 'okke'
     })
+
 }
 
 // Logout

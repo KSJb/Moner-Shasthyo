@@ -382,3 +382,6 @@ module.exports.get_user = async(req, res) => {
 }
 
 // http://bad-blogger.herokuapp.com/users/blogs?device=android
+// http://bad-blogger.herokuapp.com/users/view/:id?device=android
+// http://bad-blogger.herokuapp.com/admin/register/general
+// http://bad-blogger.herokuapp.com/admin/register/expert

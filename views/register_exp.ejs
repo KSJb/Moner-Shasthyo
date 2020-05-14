@@ -143,6 +143,7 @@
             const data = {
                 name,
                 email,
+                phoneNumber,
                 organization,
                 designation,
                 password,
@@ -162,6 +163,9 @@
                     console.log(data)
                     if (data.status) {
                         location = '/admin/login'
+                    } else {
+                        console.log('else')
+                        showAlert(data.msg)
                     }
                 }
             })

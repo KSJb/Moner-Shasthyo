@@ -25,13 +25,13 @@
             <div class="name input">
                 <input type="text" name="name" id="name">
             </div>
-            <div class="label">Username</div>
-            <div class="username input">
-                <input type="text" name="username" id="username">
-            </div>
             <div class="label">Email</div>
             <div class="email input">
                 <input type="email" name="email" id="email">
+            </div>
+            <div class="label">Phone Number</div>
+            <div class="email input">
+                <input type="text" name="phoneNumber" id="phoneNumber">
             </div>
             <div class="label">Password</div>
             <div class="password input">
@@ -73,7 +73,7 @@
     }
     $('#submit-btn').click((e) => {
         const name = $('#name').val()
-        const username = $('#username').val()
+        const phoneNumber = $('#phoneNumber').val()
         const email = $('#email').val()
         const password = $('#password').val()
         const cpass = $('#cpass').val()
@@ -82,8 +82,8 @@
             showAlert('Enter your name')
         } else if (check(email)) {
             showAlert('Enter the email')
-        } else if (check(username)) {
-            showAlert('Enter the email or phone number')
+        } else if (check(phoneNumber)) {
+            showAlert('Enter the phone number')
         } else if (check(password) || password.length < 6) {
             showAlert('Adjust the length of password, minimum of 6 characters')
         } else if (password != cpass) {
@@ -92,7 +92,7 @@
             $('#alert').hide()
             const data = {
                 name,
-                username,
+                phoneNumber,
                 email,
                 password
             }
@@ -104,7 +104,9 @@
                 success: data => {
                     console.log(data)
                     if (data.status) {
-                        // location = '/'
+                        location = '/'
+                    } else {
+                        showAlert(data.msg)
                     }
                 }
             })
