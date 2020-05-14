@@ -171,20 +171,28 @@ module.exports.get_forgot_password = (req, res) => {
 };
 
 module.exports.post_forgot_password = async(req, res) => {
-    const userEmail = req.body.emailN;
-    console.log('email: ', userEmail);
-    const user = await User.findOne({ email: userEmail }).select("email").lean();
-    if (user) {
-        console.log('user found');
-        sendResetLink(userEmail);
+    const { userType, email } = req.body
+    let user
+    if (userType == 'general') {
+        user = await gUser.findOne({ email: email })
     } else {
-        console.log('not found');
+        user = await eUser.findOne({ email: email })
     }
-    req.flash('mail_sent', '  ');
-    res.redirect('back');
+    if (!user) {
+        return res.send({
+            status: false,
+            msg: 'Email not found'
+        })
+    } else {
+        sendResetLink(email, userType)
+        return res.send({
+            status: true,
+            msg: 'A link has been sent to the email you provided.'
+        })
+    }
 }
 
-function sendResetLink(email) {
+function sendResetLink(email, type) {
     var Transport = nodemailer.createTransport({
         service: "Gmail",
         auth: {
@@ -194,12 +202,12 @@ function sendResetLink(email) {
     });
     var rand, mailOptions, host, link;
     let sender = 'admin@badblogger.com';
-    let port = 4003;
+    let port = 3000;
     mailOptions = {
         from: sender,
         to: email,
         subject: "badBlogger : Password Reset",
-        html: `Seems like you just forgot your password :-( , it happens :-)<br>Click on the link to reset your password.<br><a href="http://localhost:${port}/admin/reset_password/${email}"><b>Reset Page</b></a> <br> Nice day!`
+        html: `Seems like you just forgot your password :-( , it happens :-)<br>Click on the link to reset your password.<br><a href="http://localhost:${port}/admin/reset_password?email=${email}&usertype=${type}"><b>Reset Page</b></a> <br> Nice day!`
     }
     console.log(mailOptions);
 
@@ -213,35 +221,45 @@ function sendResetLink(email) {
 }
 
 module.exports.get_reset_password = async(req, res) => {
-    const email = req.params.email;
+    const {
+        email,
+        usertype
+    } = req.query
     console.log('get_reset_password - ', email);
     req.flash('okay');
     res.render('reset_password', {
-        Email: email
+        email,
+        usertype
     });
 }
 
 module.exports.post_reset_password = async(req, res) => {
-    const password = req.body.password;
-    const confirmPassword = req.body.confirmPassword;
-    const email = req.body.email;
+    const {
+        password,
+        confirmPassword,
+        email,
+        usertype
+    } = req.body
 
-    if (password == confirmPassword) {
-        console.log('matched , ', password, " + ", confirmPassword);
-        resetPassword(req, res, email, password);
+    if (usertype == 'general') {
+        await gUser.findOneAndUpdate({ email: email }, {
+            $set: {
+                password: password
+            }
+        })
     } else {
-        req.flash('notmatched', ' ');
-        res.redirect('back');
+        await eUser.findOneAndUpdate({ email: email }, {
+            $set: {
+                password: password
+            }
+        })
     }
-}
-
-function resetPassword(req, res, Email, Password) {
-    User.updateOne({ email: Email }, { $set: { password: Password } }, function(err, docs) {
-        console.log(docs);
-        req.flash('reset_success');
-        res.redirect('/admin/login');
+    return res.send({
+        status: false,
+        msg: 'okke'
     })
 }
+
 
 // actual admin tasks :-( 
 

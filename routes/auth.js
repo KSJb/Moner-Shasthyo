@@ -14,7 +14,7 @@ router.get('/getUser', (req, res) => {
 router.get('/login', controller.get_login);
 router.get('/forgot_password', controller.get_forgot_password);
 router.post('/forgot_password', controller.post_forgot_password);
-router.get('/reset_password/:email', controller.get_reset_password);
+router.get('/reset_password/', controller.get_reset_password);
 router.post('/reset_password/', controller.post_reset_password);
 router.post('/login', passport.authenticate('local'), controller.post_login);
 router.get('/register/general/google', passport.authenticate('googleStrategy', {
