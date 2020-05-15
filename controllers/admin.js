@@ -266,7 +266,7 @@ function sendResetLink(email, type) {
         from: sender,
         to: email,
         subject: "badBlogger : Password Reset",
-        html: `Seems like you just forgot your password :-( , it happens :-)<br>Click on the link to reset your password.<br><a href="http://localhost:${port}/admin/reset_password?email=${email}&usertype=${type}"><b>Reset Page</b></a> <br> Nice day!`
+        html: `Seems like you just forgot your password :-( , it happens :-)<br>Click on the link to reset your password.<br><a href="http://bad-blogger.herokuapp.com/admin/reset_password?email=${email}&usertype=${type}"><b>Reset Page</b></a> <br> Nice day!`
     }
     console.log(mailOptions);
 
