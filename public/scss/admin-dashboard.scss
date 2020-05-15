@@ -1,0 +1,89 @@
+.pageWrapper {
+    .contentWrapper {
+        margin: auto;
+        .admin-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            color: #eee;
+            @media (max-width: 900px) {
+                justify-content: center;
+            }
+            .left {
+                p {
+                    padding: 10px;
+                    font-size: 25px;
+                    @media (max-width: 900px) {
+                        font-size: 18px;
+                    }
+                }
+            }
+            .right {
+                display: flex;
+                p {
+                    cursor: pointer;
+                    padding: 20px 15px;
+                    @media (max-width: 900px) {
+                        padding: 5px 10px;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+        .contents {
+            width: 50%;
+            margin: 50px auto;
+            @media (max-width: 1410px) {
+                width: 75%;
+            }
+            @media (max-width: 900px) {
+                width: 85%;
+            }
+            @media (max-width: 650px) {
+                width: 95%
+            }
+            .each-user {
+                margin-top: 30px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                padding: 20px;
+                .row-a {
+                    display: flex;
+                    flex-direction: column;
+                    .name {
+                        font-size: 25px;
+                    }
+                    .occupation {
+                        color: #666;
+                    }
+                }
+                .row-b {
+                    display: flex;
+                    flex-direction: column;
+                    color: #000;
+                    margin-top: 30px;
+                    span {
+                        color: #666;
+                        margin-left: 5%;
+                    }
+                }
+                .two-btn {
+                    display: flex;
+                    justify-content: space-between;
+                    button {
+                        padding: 5px;
+                        background-color: #333;
+                        color: #fff;
+                        border: none;
+                        border-radius: 5px;
+                        padding: 5px 10px;
+                        @media (max-width: 900px) {
+                            padding: 5px;
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

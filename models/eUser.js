@@ -10,6 +10,14 @@ var eUser = mongoose.Schema({
     designation: String,
     password: String,
     license: String,
+    userType: {
+        type: String,
+        default: 'expert'
+    },
+    isVerified: {
+        type: String,
+        default: false
+    },
     residence: {
         city: String,
         country: String

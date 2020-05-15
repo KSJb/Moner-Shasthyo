@@ -255,97 +255,10 @@ module.exports.post_reset_password = async(req, res) => {
         })
     }
     return res.send({
-        status: false,
-        msg: 'okke'
-    })
-}
-
-
-// actual admin tasks :-( 
-
-module.exports.createTest = async(req, res) => {
-    const {
-        title,
-        thumbnail,
-        ageRange,
-        category,
-        about
-    } = req.body
-
-    const questionSet = JSON.parse(req.body.questionSet)
-        // console.log(questionSet)
-
-    const newTest = new testModel({
-        title,
-        thumbnail,
-        ageRange,
-        category,
-        about,
-        questionSet
-    })
-    console.log(newTest)
-    await newTest.save()
-    res.send({
         status: true,
         msg: 'okke'
     })
 }
 
-exports.allTests = async(req, res) => {
-    res.render('allTests')
-}
 
-exports.singleTest = async(req, res) => {
-    const data = await testModel.findById('5eb1847453de6f0b630ba182')
-    res.render('singleTest', {
-        data
-    })
-}
-
-exports.searchTests = async(req, res) => {
-    // const  } = req.query.search
-    console.log(req.query)
-        // res.render('testSearchResults')
-}
-
-exports.getQuestion = async(req, res) => {
-    const question = await testModel.findOne({ _id: req.params.id })
-    res.send(question)
-}
-
-exports.getEditTest = async(req, res) => {
-    const data = await testModel.findById(req.params.id)
-    res.render('editTest', {
-        data
-    })
-}
-
-exports.postEditTest = async(req, res) => {
-    const {
-        id,
-        title,
-        thumbnail,
-        ageRange,
-        category,
-        about
-    } = req.body
-
-    const questionSet = JSON.parse(req.body.questionSet)
-    console.log(questionSet)
-
-    await testModel.findOneAndUpdate({ _id: id }, {
-        $set: {
-            id: id,
-            title: title,
-            thumbnail: thumbnail,
-            ageRange: ageRange,
-            category: category,
-            about: about,
-            questionSet: questionSet
-        }
-    })
-    res.send({
-        status: true,
-        msg: 'okke'
-    })
-}
+// actual admin tasks :-(

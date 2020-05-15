@@ -45,12 +45,12 @@
             <div class="large-heading">
                 <p>Self Assessment Tests
                 </p>
-                <div class="new-test">
+                <!-- <div class="new-test">
                     <div class=""></div>
                     <div class="">
                         <button id="new-test-btn">Add New Test</button>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -59,14 +59,16 @@
                     <% for (let i=0; i<3; i++) { %>
                         <div class="each-post">
                             <div class="image">
-                                <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,q_80,w_1600/uzofhedbokefh96ifjd5.jpg" alt="">
+                                <img src="<%= data[i].thumbnail %>" alt="">
                             </div>
                             <div class="texts">
                                 <div class="category">
-                                    Category
+                                    <%= data[i].category %>
                                 </div>
                                 <div class="title">
-                                    <a href="/admin/single-test">This is the title</a>
+                                    <a href="/app-admin/single-test/<%= data[i]._id %>">
+                                        <%= data[i].title %>
+                                    </a>
                                 </div>
                                 <div class="additional-info">
                                     <span style="font-weight: bolder;">Admin</span>
@@ -79,15 +81,23 @@
                 <hr>
                 <div class="lower-posts">
                     <div class="left">
-                        <% for (let i=0; i<5; i++) { %>
+                        <% for (let i=3; i<data.length; i++) { %>
                             <div class="each-posts">
                                 <div class="image">
-                                    <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,q_80,w_1600/hjefi7k2t5hl2ml9rsdu.jpg" alt="">
+                                    <img src="<%= data[i].thumbnail %>" alt="">
                                 </div>
                                 <div class="texts">
-                                    <div class="category">Category</div>
-                                    <div class="title"><a href="/admin/single-test">This has got to be a loooooooong title</a></div>
-                                    <div class="about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta animi quisquam mollitia non tempora enim officiis deserunt sapiente explicabo, error illo quibusdam possimus alias minima est aspernatur hic omnis provident.</div>
+                                    <div class="category">
+                                        <%= data[i].category %>
+                                    </div>
+                                    <div class="title">
+                                        <a href="/app-admin/single-test/<%= data[i]._id %>">
+                                            <%= data[i].title %>
+                                        </a>
+                                    </div>
+                                    <div class="about">
+                                        <%= data[i].about %>
+                                    </div>
                                     <div class="additional-info">
                                         <span>Admin</span>
                                         <span>12 Questions - 8 Minutes</span>
@@ -106,7 +116,7 @@
                                     </div>
                                     <div class="texts">
                                         <div class="category">Category</div>
-                                        <div class="title"><a href="/admin/single-test">A rather short title</a></div>
+                                        <div class="title"><a href="/app-admin/single-test">A rather short title</a></div>
                                         <div class="additional-info">
                                             <span>Admin</span>
                                             <span>12 Questions - 8 Minutes</span>
@@ -145,7 +155,7 @@
         }
     })
     $('#new-test-btn').click((e) => {
-        location = '/admin/create-test'
+        location = '/app-admin/create-test'
     })
 </script>
 

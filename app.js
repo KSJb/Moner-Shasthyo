@@ -60,6 +60,8 @@ app.use((req, res, next) => {
 
 
 // Routes
+const adminRoutes = require('./routes/admin.js')
+app.use("/app-admin", adminRoutes)
 
 const authRoutes = require("./routes/auth.js");
 app.use("/admin", authRoutes); // Login/Register

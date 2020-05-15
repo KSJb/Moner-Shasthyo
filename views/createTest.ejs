@@ -44,6 +44,8 @@
                                         <div class="form-selectpicker">
                                             <select class="selectpicker" data-width="100%" title="Select Language" name="lang" id="category" data-size="6">
                           <option value="sleep">Sleep</option>
+                          <option value="mindfulness">Mindfulness</option>
+                          <option value="stress">Stress Relief</option>
                         </select>
                                         </div>
                                     </div>
@@ -293,11 +295,11 @@
     const Submit = (data) => {
         $.ajax({
             type: 'POST',
-            url: '/admin/create-test',
+            url: '/app-admin/create-test',
             data,
             success: (response) => {
                 if (response.status) {
-                    location = `/admin/create-test`;
+                    location = `/app-admin/all-tests`;
                 } else {
                     showAlert(response.msg);
                 }

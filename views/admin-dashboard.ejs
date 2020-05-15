@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/admin-dashboard.css">
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <div class="pageWrapper">
+        <div class="contentWrapper">
+            <div class="admin-nav">
+                <div class="left">
+                    <p>Corona App Admin</p>
+                </div>
+                <div class="right">
+                    <p>Add Resources</p>
+                    <p>Add Questionnire</p>
+                </div>
+            </div>
+            <div class="contents">
+                <% for (let i=0; i<data.length; i++) { %>
+                    <div class="each-user">
+                        <div class="row-a">
+                            <div class="name">
+                                <%= data[i].name %>
+                            </div>
+                            <div class="occupation">
+                                <%= data[i].designation %>,
+                                    <%= data[i].organization %>
+                            </div>
+                        </div>
+                        <div class="row-b">
+                            <div class="item">
+                                Email: <span><%= data[i].email %></span>
+                            </div>
+                            <div class="item">
+                                Phone Number: <span><%= data[i].phoneNumber %></span>
+                            </div>
+                            <div class="item">
+                                Residence: <span><%= data[i].residence.city %>, <%= data[i].residence.country %></span>
+                            </div>
+                            <div class="item">
+                                Education: <span><%= data[i].education.hDegree %> in <%= data[i].education.field %>, <%= data[i].education.institution %></span>
+                            </div>
+                            <div class="item">
+                                License: <span><%= data[i].license %></span>
+                            </div>
+                        </div>
+                        <div class="two-btn">
+                            <div class=""></div>
+                            <div class="">
+                                <button name="<%= data[i]._id %>" id="discard">Discard</button>
+                                <button name="<%= data[i]._id %>" id="approve">Approve</button>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $('button#approve').click((e) => {
+        location = '/app-admin/approve-user/' + e.target.name
+    })
+    $('button#discard').click((e) => {
+        location = '/app-admin/discard-user/' + e.target.name
+    })
+</script>
+
+</html>
