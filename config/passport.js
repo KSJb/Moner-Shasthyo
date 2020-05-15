@@ -24,6 +24,7 @@ module.exports = function(passport) {
                     return done(null, admin)
                 } else {
                     req.flash('errorMessage', 'Incorrect password')
+                    req.session.loginMsg = 'Incorrect password'
                     return done(null, false)
                 }
             }
@@ -31,9 +32,11 @@ module.exports = function(passport) {
             if (guser) {
                 const gmatch = await bcrypt.compare(req.body.password, guser.password)
                 if (gmatch) {
+
                     return done(null, guser)
                 } else {
                     req.flash('errorMessage', 'Incorrect password')
+                    req.session.loginMsg = 'Incorrect password'
                     return done(null, false)
                 }
             } else {
@@ -45,10 +48,12 @@ module.exports = function(passport) {
                         return done(null, euser)
                     } else {
                         req.flash('errorMessage', 'Incorrect password')
+                        req.session.loginMsg = 'Incorrect password'
                         return done(null, false)
                     }
                 } else {
                     req.flash('errorMessage', 'Email not found')
+                    req.session.loginMsg = 'Email not found'
                     return done(null, false)
                 }
             }

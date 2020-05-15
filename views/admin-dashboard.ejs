@@ -17,8 +17,8 @@
                     <p>Corona App Admin</p>
                 </div>
                 <div class="right">
-                    <p>Add Resources</p>
-                    <p>Add Questionnire</p>
+                    <p id="add-res">Add Resources</p>
+                    <p id="add-q">Add Questionnire</p>
                 </div>
             </div>
             <div class="contents">
@@ -64,6 +64,12 @@
     </div>
 </body>
 <script>
+    $('#add-q').click((e) => {
+        location = '/app-admin/create-test'
+    })
+    $('#add-res').click((e) => {
+        location = '/users/create'
+    })
     $('button#approve').click((e) => {
         location = '/app-admin/approve-user/' + e.target.name
     })

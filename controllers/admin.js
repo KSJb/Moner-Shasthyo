@@ -18,27 +18,79 @@ db.once('open', function(callback) {
 });
 const Schema = mongoose.Schema;
 
+
 // Get login page
 module.exports.get_login = (req, res) => {
     res.render('login');
 };
 // Post login page
-module.exports.post_login = async(req, res) => {
-        console.log('backend!')
-        if (req.user) {
-            if (req.body.device == 'android') {
-                res.send({
-                    user: req.user
-                })
-            }
-            req.session.prev = 'login'
-            res.redirect('/')
+const onSuccess = (user, device) => {
+    console.log(user)
+    if (device == 'android') {
+        return '/admin/app-login'
+    } else {
+        if (user) {
+            return '/'
         } else {
-            res.render('login')
+            return '/admin/login'
         }
+    }
+}
+module.exports.post_login = (req, res, next) => {
+        passport.authenticate('local', {
+            successRedirect: onSuccess(true, req.body.device),
+            failureRedirect: onSuccess(false, req.body.device),
+            failureFlash: true
+        })(req, res, next);
     }
     //Quick Login: safwan.du167@gmail.com, home761049
 
+
+module.exports.androidLogin = async(req, res) => {
+    let user = await gUser.findOne({ email: req.body.email })
+    if (user) {
+        let gmatch = await bcrypt.compare(req.body.password, user.password)
+        if (gmatch) {
+            req.user = user
+            res.send({
+                user,
+                msg: 'Logged in'
+            })
+        } else {
+            res.send({
+                user: null,
+                msg: 'Incorrect password'
+            })
+        }
+    } else {
+        user = await eUser.findOne({ email: req.body.email })
+        if (user) {
+            let ematch = await bcrypt.compare(req.body.password, user.password)
+            if (user.isVerified == true && ematch) {
+                req.user = user
+                res.send({
+                    user,
+                    msg: 'Logged in'
+                })
+            } else if (!user.isVerified) {
+                res.send({
+                    user: null,
+                    msg: 'Your expert account is pending for admin approval'
+                })
+            } else {
+                res.send({
+                    user: null,
+                    msg: 'Incorrect password'
+                })
+            }
+        } else {
+            res.send({
+                user: null,
+                msg: 'Email not found'
+            })
+        }
+    }
+}
 
 // Get register page 
 module.exports.get_register = (req, res) => { res.render('register') }
@@ -197,7 +249,7 @@ function sendResetLink(email, type) {
         service: "Gmail",
         auth: {
             user: "safwan.du16@gmail.com",
-            pass: "home761049997"
+            pass: "home-761049"
         }
     });
     var rand, mailOptions, host, link;
@@ -240,17 +292,17 @@ module.exports.post_reset_password = async(req, res) => {
         email,
         usertype
     } = req.body
-
+    const hashed = await bcrypt.hash(password, 10)
     if (usertype == 'general') {
         await gUser.findOneAndUpdate({ email: email }, {
             $set: {
-                password: password
+                password: hashed
             }
         })
     } else {
         await eUser.findOneAndUpdate({ email: email }, {
             $set: {
-                password: password
+                password: hashed
             }
         })
     }

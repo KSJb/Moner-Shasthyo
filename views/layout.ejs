@@ -31,8 +31,10 @@
 
         <script>
             $.get('/admin/getUser', (data) => {
-                console.log(data.userType == 'admin')
-                $('#admin-btn').show()
+                if (data.userType == 'admin') {
+                    $('#admin-btn').show()
+                }
+
             })
             $(document).ready(() => {
 
