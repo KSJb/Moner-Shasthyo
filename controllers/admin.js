@@ -214,6 +214,13 @@ module.exports.postRegExp = async(req, res, next) => {
 module.exports.logout = (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
+    const { device } = req.query
+    if (device == 'android') {
+        res.send({
+            status: true,
+            msg: 'Logged out'
+        })
+    }
     res.redirect('/admin/login');
 }
 
