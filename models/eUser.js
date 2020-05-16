@@ -9,7 +9,10 @@ var eUser = mongoose.Schema({
     organization: String,
     designation: String,
     password: String,
-    license: String,
+    license: {
+        type: String,
+        default: 'Not given'
+    },
     userType: {
         type: String,
         default: 'expert'

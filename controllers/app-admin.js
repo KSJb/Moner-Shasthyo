@@ -1,5 +1,8 @@
 const { eUser } = require('../models/eUser.js')
+const { gUser } = require('../models/gUser.js')
 const testModel = require('../models/test.js')
+const material = require('../models/material.js')
+
 module.exports.getUsers = async(req, res) => {
     const data = await eUser.find()
     res.render('admin-dashboard', {
@@ -51,24 +54,64 @@ module.exports.createTest = async(req, res) => {
 
 exports.allTests = async(req, res) => {
     const data = await testModel.find()
+    const related = await testModel.find().sort({ _id: -1 }).limit(3)
     const { device } = req.query
     if (device == 'android') {
         res.send({ data })
     }
     res.render('allTests', {
-        data
+        data,
+        related
     })
 }
 
 exports.singleTest = async(req, res) => {
-    const data = await testModel.findById(req.params.id)
     const { device } = req.query
+    if (!req.user) {
+        if (device == 'android') {
+            res.send({
+                status: false,
+                data: null,
+                msg: 'You must be logged in to take this test'
+            })
+        } else {
+            req.flash('errorMessage', 'You must be logged in to take this test')
+            res.redirect('back')
+        }
+    }
+    const data = await testModel.findById(req.params.id)
     if (device == 'android') {
-        res.send(data)
+        res.send({
+            status: true,
+            data,
+            msg: 'Okke'
+        })
     }
     res.render('singleTest', {
         data
     })
+}
+
+exports.addTestToProfile = async(req, res) => {
+    if (req.user) {
+        if (req.user.userType == 'general') {
+            const test = {
+                id: req.body.id,
+                name: req.body.name,
+                score: req.body.score,
+                date: getDate()
+            }
+            await gUser.findOneAndUpdate({ _id: req.user._id }, {
+                $push: {
+                    testsTaken: test
+                }
+            })
+            res.send({
+                status: true,
+                msg: 'Test appended'
+            })
+        }
+    }
 }
 
 exports.searchTests = async(req, res) => {
@@ -117,4 +160,55 @@ exports.postEditTest = async(req, res) => {
         status: true,
         msg: 'okke'
     })
+}
+const getDate = () => {
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+            "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth()); //January is 0!
+        var yyyy = today.getFullYear();
+        let thisDate = monthNames[mm] + " " + dd + ", " + yyyy
+        return thisDate;
+        // console.log("Date: "+thisDate);
+    }
+    // material
+
+module.exports.createMaterial = async(req, res) => {
+    console.log('post', req.body);
+    let title = req.body.title;
+    let body = req.body.body;
+    let author = req.user.name;
+    let author_id = req.user._id;
+    let author_username = req.user.username;
+    let category = req.body.category;
+    let date = getDate();
+    let view = 0;
+    let upvote = 0;
+    let tags = JSON.parse(req.body.tags);
+    let thumbnail = req.body.thumbnail;
+
+
+    const newPost = new material({
+        title,
+        thumbnail,
+        body,
+        author,
+        author_id,
+        author_username,
+        category,
+        date,
+        view,
+        upvote,
+        tags,
+    });
+
+    console.log(newPost)
+
+    await newPost.save()
+    res.send({
+        status: true
+    });
+
 }

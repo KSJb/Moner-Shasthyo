@@ -17,19 +17,19 @@
                 <div class="row">
 
                     <div class="categories">
-                        <a href="#">Manage Stress</a>
-                        <a href="#">Connected</a>
-                        <a href="#">Relaxation</a>
-                        <a href="#">Mindfullness</a>
-                        <a href="#">Sleep</a>
+                        <a href="/users/materials?category=Manage Stress">Manage Stress</a>
+                        <a href="/users/materials?category=Connected">Connected</a>
+                        <a href="/users/materials?category=Relaxation">Relaxation</a>
+                        <a href="/users/materials?category=Mindfulness">Mindfulness</a>
+                        <a href="/users/materials?category=Sleep">Sleep</a>
                     </div>
                     <div class="span-opener"><i class="fa fa-align-justify"></i>
                         <div class="pane" id="pane">
-                            <p><a href="#">Manage Stress</a></p>
-                            <p><a href="#">Connected</a></p>
-                            <p><a href="#">Relaxation</a></p>
-                            <p><a href="#">Mindfullness</a></p>
-                            <p><a href="#">Sleep</a></p>
+                            <p><a href="/users/materials?category=Manage Stress">Manage Stress</a></p>
+                            <p><a href="/users/materials?category=Connected">Connected</a></p>
+                            <p><a href="/users/materials?category=Relaxation">Relaxation</a></p>
+                            <p><a href="/users/materials?category=Mindfulness">Mindfulness</a></p>
+                            <p><a href="/users/materials?category=Sleep">Sleep</a></p>
                         </div>
                     </div>
 
@@ -51,15 +51,23 @@
 
                 <div class="lower-posts">
                     <div class="left">
-                        <% for (let i=0; i<5; i++) { %>
+                        <% for (let i=0; i<data.length; i++) { %>
                             <div class="each-posts">
                                 <div class="image">
-                                    <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,q_80,w_1600/hjefi7k2t5hl2ml9rsdu.jpg" alt="">
+                                    <img src="<%=data[i].thumbnail%>" alt="">
                                 </div>
                                 <div class="texts">
-                                    <div class="category">Category</div>
-                                    <div class="title"><a href="/admin/single-test">This has got to be a loooooooong title</a></div>
-                                    <div class="about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta animi quisquam mollitia non tempora enim officiis deserunt sapiente explicabo, error illo quibusdam possimus alias minima est aspernatur hic omnis provident.</div>
+                                    <div class="category">
+                                        <%=data[i].category%>
+                                    </div>
+                                    <div class="title">
+                                        <a href="/admin/single-test">
+                                            <%=data[i].title%>
+                                        </a>
+                                    </div>
+                                    <div class="about">
+                                        <%-data[i].body%>
+                                    </div>
                                     <div class="additional-info">
                                         <span>Admin</span>
                                         <span>12 Questions - 8 Minutes</span>

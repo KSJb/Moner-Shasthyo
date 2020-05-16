@@ -442,6 +442,8 @@
 }
 
 .pageWrapper .contentWrapper .all-tests-space .lower-posts .left .each-posts .texts .about {
+  max-height: 150px;
+  overflow: hidden;
   color: gray;
 }
 

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/prism-okaidia.css">
+    <link rel="stylesheet" href="/css/readmore.css">
+    <title>
+        <%= posts.title %>
+    </title>
+</head>
+<input type="hidden" value="<%= posts.title %>" id="name">
+<input type="hidden" value="<%= posts._id %>" id="id">
+
+<body>
+    <div class="contentWrapper">
+        <div class="mood-box">
+            <div class="heading">
+                <p>On a scale of 1 to 100, how is your mood right now?</p>
+            </div>
+            <div class="slide-container">
+                <span class="bar"><span class="fill"></span></span>
+                <input type="range" id="slider-top" value="0">
+                <p id="comp-percent-top">0%</p>
+            </div>
+        </div>
+        <div class="pageContent">
+
+            <div class="left">
+                <div class="post">
+                    <div class="title">
+                        <%= posts.title %>
+                    </div>
+                    <div class="tags">
+                        <% for (let i=0; i<posts.tags.length; i++) { %>
+                            <a href="#" class="each-tag">
+                                <%= posts.tags[i] %>
+                            </a>
+                            <% } %>
+                    </div>
+                    <div class="subtitle">
+                        <div class="left">
+                            <div class="image">
+                                <img src="https://avatars2.githubusercontent.com/u/32009766?s=460&u=6576285a4dc5684ebfc3223a76308f26a784a7ca&v=4" alt="">
+                            </div>
+                            <div class="user-date">
+                                <div class="user">
+                                    <%= posts.author %>
+                                </div>
+                                <div class="date">
+                                    <%= posts.date %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <button class="btn btn-info" id="edit-btn">Edit</button>
+                        </div>
+
+                    </div>
+                    <div class="cover">
+                        <img src="<%= posts.thumbnail %>" alt="">
+                    </div>
+                    <div class="body">
+                        <%- posts.body %>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="related-section">
+                    <div class="title">Recently Added</div>
+                    <div class="posts">
+                        <% relatedPosts.forEach(post => { %>
+                            <a href="/users//view/<%= post._id %>">
+                                <div class="eachRelatedPost">
+                                    <div class="thumbnail">
+                                        <img src="<%= post.thumbnail %>" alt="">
+                                    </div>
+                                    <div class="texts">
+                                        <div class="title">
+                                            <%= post.title %>
+                                        </div>
+                                        <div class="author">
+                                            <%= post.author %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <% }) %>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                /**
+                 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                /*
+                var disqus_config = function () {
+                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                */
+                (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document,
+                        s = d.createElement('script');
+                    s.src = 'https://http-bad-blogger997-herokuapp-com.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </div>
+        <div class="mood-box">
+            <div class="heading">
+                <p>How's your mood now, after reading this material?</p>
+            </div>
+            <div class="slide-container">
+                <span class="bar"><span class="fill"></span></span>
+                <input type="range" id="slider-btm" value="0">
+                <p id="comp-percent-btm">0%</p>
+            </div>
+            <p><button id="finish-btn">Finish Reading</button></p>
+        </div>
+        <div class="disqus" id="disqus_thread"></div>
+
+    </div>
+    <input type="hidden" value="<%= posts._id %>" id="id">
+    <script id="dsq-count-scr" src="//http-bad-blogger997-herokuapp-com.disqus.com/count.js" async></script>
+</body>
+<script src="/js/prism-okaidia.js"></script>
+<script>
+    $('#edit-btn').click(e => {
+        const id = $('#id').val()
+        location = '/users/update-material/' + id
+    })
+    $('#slider-top').change(e => {
+        const val = ($(e.target).val()) + '%'
+        $('#comp-percent-top').html(val)
+    })
+    $('#slider-btm').change(e => {
+        const val = ($(e.target).val()) + '%'
+        $('#comp-percent-btm').html(val)
+    })
+    $('#finish-btn').click(e => {
+        const score = $('#slider-btm').val() - $('#slider-top').val()
+        const id = $('#id').val()
+        const name = $('#name').val()
+        const data = {
+            score,
+            id,
+            name
+        }
+        location = `/users/add/material/?score=${score}&id=${id}&name=${name}`
+    })
+</script>
+
+</html>

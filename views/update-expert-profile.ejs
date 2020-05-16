@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/profile.css">
+    <title>Profile</title>
+</head>
+
+<body>
+    <div class="pageWrapper">
+        <div class="contentWrapper">
+            <div class="alert alert-danger" style="display: none;" id="alert"></div>
+            <div class="alert alert-success" style="display: none;" id="success"></div>
+            <div class="primary-dashboard">
+                <div class="left">
+                    <div class="username">
+                        <input type="text" value="<%=user.name%>" id="name">
+                    </div>
+                    <div class="name">
+                        <input type="text" value="<%=user.email%>" id="email">
+                    </div>
+                    <button class="edit" id="save-btn">Save Changes</button>
+                    <button class="edit" id="pass-btn" data-toggle="modal" data-target="#change-pass">Change Password</button>
+
+                </div>
+                <div class="right">
+                    <div class="balance"></div>
+                    <div class="image">
+                        <label for="update-img">
+                            <img src="https://scontent.xx.fbcdn.net/v/t1.15752-0/p280x280/97277716_239301293831022_6040842150017499136_n.jpg?_nc_cat=100&_nc_sid=b96e70&_nc_eui2=AeEe2LzQkNDYFOrLunk792mf1u4s5DCPhm7W7izkMI-GbnbOfEJm1RWow5XHmRGWM3J47NZknt8LrtfCBjeuy5OH&_nc_oc=AQmcq9cRMbLEpSnJMaBnAVMbSZmUr3Z-77nPmA9zHoYCH4qBRxg4iTbeP-PUr6zIW8o&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&_nc_tp=6&oh=26053ab62533e1c9e50c40d03dc2ba5c&oe=5EE3AD45" alt="">
+                        </label>
+                        <input type="file" name="" id="update-img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="all-info">
+                <div class="nav">
+                    <a href="#" id="1" class="tab active">Personal</a>
+                </div>
+                <div class="each-info" id="info-1">
+                    <div class="header">Personal</div>
+                    <div class="info-box">
+                        <div class="single-fields">
+                            <div class="field">Phone Number</div>
+                            <div class="field">Organization</div>
+                            <div class="field">Designation</div>
+                            <div class="field">License</div>
+                            <div class="field">Edcational Institute</div>
+                            <div class="field">Highest Degree</div>
+                            <div class="field">Field of Study</div>
+                            <div class="field">City</div>
+                            <div class="country">Country</div>
+
+                        </div>
+                        <div class="single-values">
+                            <div class="value"><input type="text" value="<%=user.phoneNumber%>" id="phoneNumber"></div>
+                            <div class="value"><input type="text" value="<%=user.organization%>" id="organization"></div>
+                            <div class="value"><input type="text" value="<%=user.designation%>" id="designation"></div>
+                            <div class="value"><input type="text" value="<%=user.license%>" id="license"></div>
+                            <div class="value"><input type="text" value="<%=user.education.institute%>" id="institute"></div>
+                            <div class="value"><input type="text" value="<%=user.education.hDegree%>" id="hDegree"></div>
+                            <div class="value"><input type="text" value="<%=user.education.field%>" id="field"></div>
+                            <div class="value"><input type="text" value="<%=user.residence.city%>" id="city"></div>
+                            <div class="value"><input type="text" value="<%=user.residence.country%>" id="country"></div>
+                        </div>
+                    </div>
+
+                    <div class="each-info" id="info-2" style="display: none;">
+                        <div class="header">Occupational</div>
+                        <div class="info-box">
+                            <div class="single-fields">
+                                <div class="field">Education</div>
+                                <div class="field">Occupation</div>
+                                <div class="field">Monthly Income</div>
+                            </div>
+                            <div class="single-values">
+                                <div class="value"><input type="text" value="<%=user.education%>" id="education"></div>
+                                <div class="value"><input type="text" value="<%=user.occupation%>" id="occupation"></div>
+                                <div class="value"><input type="text" value="<%=user.monthlyIncome%>" id="monthlyIncome"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+</body>
+<div class="modal fade" id="change-pass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="alert alert-danger" id="modal-danger" style="display: none;"></div>
+                <div class="alert alert-success" id="modal-success" style="display: none;"></div>
+                <input style="
+                  width: 100%;
+                  border: 1px solid #ddd;
+                  padding: 5px;
+                  border-radius: 20px;" placeholder="Enter the old password" type="password" id="old-pass">
+                <br> <br>
+                <input style="
+                width: 100%;
+                border: 1px solid #ddd;
+                padding: 5px;
+                border-radius: 20px;" placeholder="Enter the new password" type="password" id="new-pass">
+            </div>
+            <button style="
+                          width: 50%;
+                          margin: auto;
+                          color: #fff;
+                          background-color: #333;
+                          border: 1px solid #ddd;
+                          border-radius: 5px;
+                          padding: 5px;" class="edit" id="change-pass-btn">Submit</button>
+            <br>
+        </div>
+    </div>
+</div>
+<script>
+    let globalUser
+    $.get('/admin/getUser', (user) => {
+        console.log(user)
+        globalUser = user
+        $('#gender').val(user.gender)
+        $('#maritalStatus').val(user.maritalStatus)
+        $('#residenceType').val(user.residenceType)
+        $('#familyType').val(user.familyType)
+    })
+    $('#change-pass-btn').click((e) => {
+        console.log('ko')
+        const newPass = $('#new-pass').val()
+        const oldPass = $('#old-pass').val()
+        if (newPass == '' || newPass == null || newPass.length < 6) {
+            $('#modal-danger').show().html('Enter the new password with length of 6')
+        } else if (newPass == '' || newPass == null || newPass.length < 6) {
+            $('#modal-danger').show().html('Enter the correct old password')
+        } else {
+            $('#modal-danger').hide()
+            $('#modal-success').show()
+            $('#modal-success').html('Password updated')
+            data = {
+                usertype: 'expert',
+                email: globalUser.email,
+                password: newPass,
+                confirmPassword: newPass
+            }
+            console.log(data)
+            $.ajax({
+                type: 'POST',
+                url: '/admin/reset_password',
+                data,
+                success: data => {
+                    $('#change-pass').modal('toggle')
+                }
+            })
+        }
+    })
+</script>
+<script>
+    $('.tab').click((e) => {
+        const eachInfo = $('.each-info')
+        for (i = 0; i < eachInfo.length; i++) {
+            $(eachInfo[i]).hide()
+        }
+        const eachTabs = $('.tab')
+        for (let i = 0; i < eachTabs.length; i++) {
+            $(eachTabs[i]).removeClass('active')
+        }
+        const id = '#info-' + e.target.id
+        $(id).show()
+        $(e.target).addClass('active')
+    })
+</script>
+<script>
+    const check = data => {
+        return data == '' || data == null || data == undefined
+    }
+    const showAlert = msg => {
+        $('#alert').show()
+        $('#alert').html(msg)
+    }
+    $('#save-btn').click((e) => {
+        const name = $('#name').val()
+        const email = $('#email').val()
+        const phoneNumber = $('#phoneNumber').val()
+        const organization = $('#organization').val()
+        const designation = $('#designation').val()
+        const license = $('#license').val()
+        const institute = $('#institute').val()
+        const hDegree = $('#hDegree').val()
+        const field = $('#field').val()
+        const city = $('#city').val()
+        const country = $('#country').val()
+
+        if (check(name)) {
+            showAlert('Name field can not be left empty')
+        } else if (check(email)) {
+            showAlert('Email field cannot be left empty')
+        } else if (check(phoneNumber)) {
+            showAlert('Phone number field cannot be left empty')
+        } else if (check(organization)) {
+            showAlert('Organization field cannot be left empty')
+        } else if (check(designation)) {
+            showAlert('Designation field cannot be left empty')
+        } else if (check(institute)) {
+            showAlert('Educational institute cannot be left empty')
+        } else if (check(hDegree)) {
+            showAlert('Highest degree cannot be left empty')
+        } else if (check(field)) {
+            showAlert('Field of study cannot be left empty')
+        } else if (check(city)) {
+            showAlert('City field cannot be left empty')
+        } else if (check(country)) {
+            showAlert('Country field cannot be left empty')
+        } else {
+            $('#alert').hide()
+            $('#success').show()
+            $('#success').html('Your profile is being updated')
+            const data = {
+                name,
+                email,
+                phoneNumber,
+                designation,
+                organization,
+                license,
+                institute,
+                hDegree,
+                field,
+                city,
+                country
+            }
+            console.log(data)
+            $.ajax({
+                type: 'POST',
+                url: '/users/update-expert-profile',
+                data,
+                success: data => {
+                    if (data.status) {
+                        location = '/users/profile'
+                    } else {
+                        $('#alert').show()
+                        $('#alert').html(data.msg)
+                    }
+                }
+            })
+        }
+    })
+</script>
+
+</html>

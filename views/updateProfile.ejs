@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/profile.css">
+    <title>Profile</title>
+</head>
+
+<body>
+    <div class="pageWrapper">
+        <div class="contentWrapper">
+            <div class="alert alert-danger" style="display: none;" id="alert"></div>
+            <div class="alert alert-success" style="display: none;" id="success"></div>
+            <div class="primary-dashboard">
+                <div class="left">
+                    <div class="username">
+                        <input type="text" value="<%=user.name%>" id="name">
+                    </div>
+                    <div class="name">
+                        <input type="text" value="<%=user.email%>" id="email">
+                    </div>
+                    <button class="edit" id="save-btn">Save Changes</button>
+                    <button class="edit" id="pass-btn" data-toggle="modal" data-target="#change-pass">Change Password</button>
+
+                </div>
+                <div class="right">
+                    <div class="balance"></div>
+                    <div class="image">
+                        <label for="update-img">
+                            <img src="https://scontent.xx.fbcdn.net/v/t1.15752-0/p280x280/97277716_239301293831022_6040842150017499136_n.jpg?_nc_cat=100&_nc_sid=b96e70&_nc_eui2=AeEe2LzQkNDYFOrLunk792mf1u4s5DCPhm7W7izkMI-GbnbOfEJm1RWow5XHmRGWM3J47NZknt8LrtfCBjeuy5OH&_nc_oc=AQmcq9cRMbLEpSnJMaBnAVMbSZmUr3Z-77nPmA9zHoYCH4qBRxg4iTbeP-PUr6zIW8o&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&_nc_tp=6&oh=26053ab62533e1c9e50c40d03dc2ba5c&oe=5EE3AD45" alt="">
+                        </label>
+                        <input type="file" name="" id="update-img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="all-info">
+                <div class="nav">
+                    <a href="#" id="1" class="tab active">Personal</a>
+                    <a href="#" id="2" class="tab">Occupational</a>
+                </div>
+                <div class="each-info" id="info-1">
+                    <div class="header">Personal</div>
+                    <div class="info-box">
+                        <div class="single-fields">
+                            <div class="field">Age</div>
+                            <div class="field">Gender</div>
+                            <div class="field">Marital Status</div>
+                            <div class="field">Area of living</div>
+                            <div class="field">Type of Residence</div>
+                            <div class="field">Family Type</div>
+                        </div>
+                        <div class="single-values">
+                            <div class="value"><input type="text" value="<%=user.age%>" id="age"></div>
+                            <div class="value">
+                                <select name="" id="gender">
+                                  <option value="Not specified">Not specified</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                              </select>
+                            </div>
+                            <div class="value">
+                                <select name="" id="maritalStatus">
+                                  <option value="Not specified">Not specified</option>
+                                <option value="Married">Married</option>
+                                <option value="Unmarried">Unmarried</option>
+                              </select>
+                            </div>
+                            <div class="value"><input type="text" value="<%=user.livingArea%>" id="livingArea"></div>
+                            <div class="value">
+                                <select name="" id="residenceType">
+                                  <option value="Not specified">Not specified</option>
+                                <option value="Own">Own</option>
+                                <option value="Others">Others</option>
+                              </select>
+                            </div>
+                            <div class="value">
+                                <select name="" id="familyType">
+                                  <option value="Not specified">Not specified</option>
+                                <option value="Single">Single</option>
+                                <option value="Joint">Joint</option>
+                              </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="each-info" id="info-2" style="display: none;">
+                    <div class="header">Occupational</div>
+                    <div class="info-box">
+                        <div class="single-fields">
+                            <div class="field">Education</div>
+                            <div class="field">Occupation</div>
+                            <div class="field">Monthly Income</div>
+                        </div>
+                        <div class="single-values">
+                            <div class="value"><input type="text" value="<%=user.education%>" id="education"></div>
+                            <div class="value"><input type="text" value="<%=user.occupation%>" id="occupation"></div>
+                            <div class="value"><input type="text" value="<%=user.monthlyIncome%>" id="monthlyIncome"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</body>
+<div class="modal fade" id="change-pass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="alert alert-danger" id="modal-danger" style="display: none;"></div>
+                <div class="alert alert-success" id="modal-success" style="display: none;"></div>
+                <input style="
+                  width: 100%;
+                  border: 1px solid #ddd;
+                  padding: 5px;
+                  border-radius: 20px;" placeholder="Enter the old password" type="password" id="old-pass">
+                <br> <br>
+                <input style="
+                width: 100%;
+                border: 1px solid #ddd;
+                padding: 5px;
+                border-radius: 20px;" placeholder="Enter the new password" type="password" id="new-pass">
+            </div>
+            <button style="
+                          width: 50%;
+                          margin: auto;
+                          color: #fff;
+                          background-color: #333;
+                          border: 1px solid #ddd;
+                          border-radius: 5px;
+                          padding: 5px;" class="edit" id="change-pass-btn">Submit</button>
+            <br>
+        </div>
+    </div>
+</div>
+<script>
+    let globalUser
+    $.get('/admin/getUser', (user) => {
+        console.log(user)
+        globalUser = user
+        $('#gender').val(user.gender)
+        $('#maritalStatus').val(user.maritalStatus)
+        $('#residenceType').val(user.residenceType)
+        $('#familyType').val(user.familyType)
+    })
+    $('#change-pass-btn').click((e) => {
+        console.log('ko')
+        const newPass = $('#new-pass').val()
+        const oldPass = $('#old-pass').val()
+        if (newPass == '' || newPass == null || newPass.length < 6) {
+            $('#modal-danger').show().html('Enter the new password with length of 6')
+        } else if (newPass == '' || newPass == null || newPass.length < 6) {
+            $('#modal-danger').show().html('Enter the correct old password')
+        } else {
+            $('#modal-danger').hide()
+            $('#modal-success').show()
+            $('#modal-success').html('Password updated')
+            data = {
+                usertype: 'general',
+                email: globalUser.email,
+                password: newPass,
+                confirmPassword: newPass
+            }
+            console.log(data)
+            $.ajax({
+                type: 'POST',
+                url: '/admin/reset_password',
+                data,
+                success: data => {
+                    $('#change-pass').modal('toggle')
+                }
+            })
+        }
+    })
+</script>
+<script>
+    $('.tab').click((e) => {
+        const eachInfo = $('.each-info')
+        for (i = 0; i < eachInfo.length; i++) {
+            $(eachInfo[i]).hide()
+        }
+        const eachTabs = $('.tab')
+        for (let i = 0; i < eachTabs.length; i++) {
+            $(eachTabs[i]).removeClass('active')
+        }
+        const id = '#info-' + e.target.id
+        $(id).show()
+        $(e.target).addClass('active')
+    })
+</script>
+<script>
+    $('#save-btn').click((e) => {
+        const name = $('#name').val()
+        const email = $('#email').val()
+        const age = $('#age').val()
+        const gender = $('#gender').val()
+        const maritalStatus = $('#maritalStatus').val()
+        const livingArea = $('#livingArea').val()
+        const residenceType = $('#residenceType').val()
+        const familyType = $('#familyType').val()
+        const education = $('#education').val()
+        const occupation = $('#occupation').val()
+        const monthlyIncome = $('#monthlyIncome').val()
+
+        if (name == '' || name == null) {
+            $('#alert').show()
+            $('#alert').html('Can not leave the name field empty')
+        } else if (email == '' || email == null) {
+            $('#alert').show()
+            $('#alert').html('Can not leave the email field empty')
+        } else {
+            $('#alert').hide()
+            $('#success').show()
+            $('#success').html('Your profile is being updated')
+            const data = {
+                name,
+                email,
+                age,
+                gender,
+                maritalStatus,
+                livingArea,
+                residenceType,
+                familyType,
+                education,
+                occupation,
+                monthlyIncome
+            }
+            console.log(data)
+            $.ajax({
+                type: 'POST',
+                url: '/users/update-profile',
+                data,
+                success: data => {
+                    if (data.status) {
+                        location = '/users/profile'
+                    } else {
+                        $('#alert').show()
+                        $('#alert').html(data.msg)
+                    }
+                }
+            })
+        }
+    })
+</script>
+
+</html>

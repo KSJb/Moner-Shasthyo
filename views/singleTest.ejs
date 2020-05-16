@@ -11,6 +11,7 @@
 
 <body>
     <input type="hidden" value="<%= data._id %>" id="id">
+    <input type="hidden" value="<%= data.title %>" id="name">
     <div class="pageWrapper">
         <div class="contentWrapper">
             <div class="top-color">
@@ -238,14 +239,29 @@
         $('.compute-btn p').html('Computing...')
         $.ajax({
             type: 'GET',
-            url: '/admin/get-question/' + id,
+            url: '/app-admin/get-question/' + id,
             success: data => {
                 // console.log(data)
                 const result = compute(data)
                 console.log(result.score)
-                $('#result-modal').modal('show')
-                $('.number').html(result.score)
-                $('.compute-btn p').html('Computed')
+                const name = $('#name').val()
+                const id = $('#id').val()
+                const test = {
+                    score: result.score,
+                    id,
+                    name
+                }
+                console.log(test)
+                $.ajax({
+                    type: 'POST',
+                    url: '/app-admin/test/new',
+                    data: test,
+                    success: data => {
+                        $('#result-modal').modal('show')
+                        $('.number').html(result.score)
+                        $('.compute-btn p').html('Computed')
+                    }
+                })
             }
         })
     })

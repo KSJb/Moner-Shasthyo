@@ -5,6 +5,19 @@ body {
 
 .pageWrapper {
     width: 100%;
+    input[type="text"] {
+        border: none;
+    }
+    input:focus {
+        outline: none;
+    }
+    select {
+        padding: 5px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #fff;
+    }
     .contentWrapper {
         width: 40%;
         margin: auto;
@@ -147,6 +160,36 @@ body {
                         }
                         .value {
                             margin-top: 10px;
+                        }
+                    }
+                    .title {
+                        font-size: 25px;
+                        @media (max-width: 1000px) {
+                            font-size: 22px;
+                        }
+                        @media (max-width: 650px) {
+                            font-size: 17px;
+                        }
+                    }
+                    .add-info {
+                        color: gray;
+                        @media (max-width: 1000px) {
+                            font-size: 13.5px;
+                        }
+                    }
+                    .lower {
+                        display: flex;
+                        justify-content: space-between;
+                        button {
+                            background-color: #333;
+                            border: 1px solid #333;
+                            border-radius: 5px;
+                            padding: 10px;
+                            color: #fff;
+                            @media (max-width: 650px) {
+                                padding: 5px;
+                                font-size: 12px;
+                            }
                         }
                     }
                 }

@@ -36,66 +36,43 @@
             <div class="all-info">
                 <div class="nav">
                     <a href="#" id="1" class="tab active">Personal</a>
-                    <a href="#" id="2" class="tab">Occupational</a>
-                    <a href="#" id="3" class="tab">Materials Read</a>
-                    <a href="#" id="4" class="tab">Tests Taken</a>
+                    <a href="#" id="2" class="tab">Posts</a>
                 </div>
                 <div class="each-info" id="info-1">
                     <div class="header">Personal</div>
                     <div class="info-box">
                         <div class="single-fields">
-                            <div class="field">Age</div>
-                            <div class="field">Gender</div>
-                            <div class="field">Marital Status</div>
-                            <div class="field">Area of living</div>
-                            <div class="field">Type of Residence</div>
-                            <div class="field">Family Type</div>
+                            <div class="field">Phone Number</div>
+                            <div class="field">Works at</div>
+                            <div class="field">License</div>
+                            <div class="field">Educational</div>
+                            <div class="field">Residence</div>
                         </div>
                         <div class="single-values">
                             <div class="value">
-                                <%= user.age %>
+                                <%= user.phoneNumber %>
                             </div>
                             <div class="value">
-                                <%= user.gender %>
+                                <%= user.designation %>,
+                                    <%= user.organization %>
                             </div>
                             <div class="value">
-                                <%= user.maritalStatus %>
+                                <%= user.license %>
                             </div>
                             <div class="value">
-                                <%= user.livingArea %>
+                                <%= user.education.hDegree %> in
+                                    <%= user.education.field %> from
+                                        <%= user.education.institute %>
                             </div>
                             <div class="value">
-                                <%= user.residenceType %>
-                            </div>
-                            <div class="value">
-                                <%= user.familyType %>
+                                <%= user.residence.city %>,
+                                    <%= user.residence.country %>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="each-info" id="info-2" style="display: none;">
-                    <div class="header">Occupational</div>
-                    <div class="info-box">
-                        <div class="single-fields">
-                            <div class="field">Education</div>
-                            <div class="field">Occupation</div>
-                            <div class="field">Monthly Income</div>
-                        </div>
-                        <div class="single-values">
-                            <div class="value">
-                                <%= user.education %>
-                            </div>
-                            <div class="value">
-                                <%= user.occupation %>
-                            </div>
-                            <div class="value">
-                                <%= user.monthlyIncome %>!!</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="each-info" id="info-3" style="display: none;">
                     <div class="header">Materials Read</div>
                     <!-- <div class="info-box">
                         <div class="single-fields">
@@ -112,19 +89,16 @@
 
                         </div>
                     </div> -->
-                    <% for (let i=0; i<user.materialsRead.length; i++) { %>
+                    <% for (let i=0; i<3; i++) { %>
                         <div class="info-box" style="flex-direction: column;">
                             <div class="title">
-                                <%= user.materialsRead[i].name %>
+                                Name of the material
                             </div>
-                            <div class="add-info">
-                                <%= user.materialsRead[i].score %> Points &#8226
-                                    <%= user.materialsRead[i].date %>
-                            </div>
+                            <div class="add-info">178 Points &#8226 May 16, 2020</div>
                             <div class="lower">
                                 <div class=""></div>
-                                <div class="materialsRead">
-                                    <button name="<%= user.materialsRead[i].id %>">Read Again</button>
+                                <div class="">
+                                    <button>Read Again</button>
                                 </div>
                             </div>
                         </div>
@@ -133,19 +107,16 @@
 
                 <div class="each-info" id="info-4" style="display: none;">
                     <div class="header">Tests Taken</div>
-                    <% for (let i=0; i<user.testsTaken.length; i++) { %>
+                    <% for (let i=0; i<3; i++) { %>
                         <div class="info-box" style="flex-direction: column;">
                             <div class="title">
-                                <%= user.testsTaken[i].name %>
+                                Name of the Test
                             </div>
-                            <div class="add-info">
-                                <%= user.testsTaken[i].score %> Points &#8226
-                                    <%= user.testsTaken[i].date %>
-                            </div>
+                            <div class="add-info">178 Points &#8226 May 16, 2020</div>
                             <div class="lower">
                                 <div class=""></div>
-                                <div class="testsTaken">
-                                    <button name="<%= user.testsTaken[i].id %>">Retake Test</button>
+                                <div class="">
+                                    <button>Retake Test</button>
                                 </div>
                             </div>
                         </div>
@@ -159,12 +130,6 @@
 <script>
     $('#edit-btn').click((e) => {
         location = '/users/update-profile'
-    })
-    $('.materialsRead button').click((e) => {
-        location = '/users/single-material/' + e.target.name
-    })
-    $('.testsTaken button').click((e) => {
-        location = '/app-admin/single-test/' + e.target.name
     })
     $('.tab').click((e) => {
         const eachInfo = $('.each-info')

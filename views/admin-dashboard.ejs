@@ -17,6 +17,7 @@
                     <p>Corona App Admin</p>
                 </div>
                 <div class="right">
+                    <p id="add-mat">Add Materials</p>
                     <p id="add-res">Add Resources</p>
                     <p id="add-q">Add Questionnire</p>
                 </div>
@@ -64,6 +65,9 @@
     </div>
 </body>
 <script>
+    $('#add-mat').click((e) => {
+        location = '/app-admin/create-material'
+    })
     $('#add-q').click((e) => {
         location = '/app-admin/create-test'
     })

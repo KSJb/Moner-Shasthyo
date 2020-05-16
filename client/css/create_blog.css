@@ -44,6 +44,19 @@
   outline: none;
 }
 
+.contentWrapper .titleWrapper select {
+  border: none;
+  background-color: #fff;
+  padding: 5px;
+  margin-right: 2%;
+  cursor: pointer;
+  color: gray;
+}
+
+.contentWrapper .titleWrapper select:focus {
+  outline: none;
+}
+
 .contentWrapper .titleWrapper button {
   background-color: #fff;
   border-radius: 50%;

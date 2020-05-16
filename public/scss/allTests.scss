@@ -280,6 +280,8 @@
                                 text-decoration: none;
                             }
                             .about {
+                                max-height: 150px;
+                                overflow: hidden;
                                 color: gray;
                                 @media (max-width: 900px) {
                                     font-size: 15px;

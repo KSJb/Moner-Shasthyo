@@ -5,158 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/css/allTests.css">
-    <title>All Tests</title>
+    <link rel="stylesheet" href="/css/test.css">
+    <title>Assessment Tests</title>
 </head>
 
 <body>
     <div class="pageWrapper">
+        <div class="top-bar">
+            <div class="heading">
+                <p>Mental Assessment Tests</p>
+            </div>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Type to search">
+            </div>
+        </div>
         <div class="contentWrapper">
-            <div class="top-nav">
-                <div class="row">
 
-                    <div class="categories">
-                        <a href="#">Manage Stress</a>
-                        <a href="#">Connected</a>
-                        <a href="#">Relaxation</a>
-                        <a href="#">Mindfullness</a>
-                        <a href="#">Sleep</a>
-                    </div>
-                    <div class="span-opener"><i class="fa fa-align-justify"></i>
-                        <div class="pane" id="pane">
-                            <p><a href="#">Manage Stress</a></p>
-                            <p><a href="#">Connected</a></p>
-                            <p><a href="#">Relaxation</a></p>
-                            <p><a href="#">Mindfullness</a></p>
-                            <p><a href="#">Sleep</a></p>
-                        </div>
-                    </div>
+            <hr>
+            <div class="left">
 
-                    <div class="search-area">
-                        <form action="/admin/search-test" id="search-form" method="GET">
-                            <input type="hidden" id="search-input" name="searchInput">
-                        </form>
-                        <input type="text" id="search">
-                        <i class="fa fa-search" id="search-btn"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="large-heading">
-                <p>Self Assessment Tests
-                </p>
-                <!-- <div class="new-test">
-                    <div class=""></div>
-                    <div class="">
-                        <button id="new-test-btn">Add New Test</button>
-                    </div>
-                </div> -->
-
-            </div>
-
-            <div class="all-tests-space">
-                <div class="first-three">
-                    <% for (let i=0; i<3; i++) { %>
-                        <div class="each-post">
-                            <div class="image">
-                                <img src="<%= data[i].thumbnail %>" alt="">
-                            </div>
-                            <div class="texts">
-                                <div class="category">
-                                    <%= data[i].category %>
-                                </div>
-                                <div class="title">
-                                    <a href="/app-admin/single-test/<%= data[i]._id %>">
-                                        <%= data[i].title %>
-                                    </a>
-                                </div>
-                                <div class="additional-info">
-                                    <span style="font-weight: bolder;">Admin</span>
-                                    <span>12 Questions - 8 Minutes</span>
-                                </div>
-                            </div>
+                <div class="tests-space">
+                    <% if (errorMessage.length != 0) { %>
+                        <div class="alert alert-danger">
+                            <%= errorMessage %>
                         </div>
                         <% } %>
-                </div>
-                <hr>
-                <div class="lower-posts">
-                    <div class="left">
-                        <% for (let i=3; i<data.length; i++) { %>
-                            <div class="each-posts">
-                                <div class="image">
-                                    <img src="<%= data[i].thumbnail %>" alt="">
-                                </div>
-                                <div class="texts">
-                                    <div class="category">
-                                        <%= data[i].category %>
+                            <% for (let i=0; i<data.length; i++) { %>
+                                <div class="each-test">
+                                    <div class="left">
+                                        <div class="image">
+                                            <img src="<%= data[i].thumbnail %>" alt="">
+                                        </div>
                                     </div>
-                                    <div class="title">
-                                        <a href="/app-admin/single-test/<%= data[i]._id %>">
-                                            <%= data[i].title %>
-                                        </a>
-                                    </div>
-                                    <div class="about">
-                                        <%= data[i].about %>
-                                    </div>
-                                    <div class="additional-info">
-                                        <span>Admin</span>
-                                        <span>12 Questions - 8 Minutes</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <% } %>
-                    </div>
-                    <div class="right">
-                        <div class="right-posts">
-                            <div class="heading">People also take</div>
-                            <% for (let i=0; i<3; i++) { %>
-                                <div class="each-posts">
-                                    <div class="image">
-                                        <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,q_80,w_1600/xkvwp2fslqasirabshfm.jpg" alt="">
-                                    </div>
-                                    <div class="texts">
-                                        <div class="category">Category</div>
-                                        <div class="title"><a href="/app-admin/single-test">A rather short title</a></div>
-                                        <div class="additional-info">
-                                            <span>Admin</span>
-                                            <span>12 Questions - 8 Minutes</span>
+                                    <div class="right">
+                                        <div class="texts">
+                                            <div class="category">
+                                                <%= data[i].category %>
+                                            </div>
+                                            <div class="title">
+                                                <a href="/app-admin/single-test/<%= data[i]._id %>">
+                                                    <%= data[i].title %>
+                                                </a>
+                                            </div>
+                                            <div class="body">
+                                                <%= data[i].about %>
+                                            </div>
+                                            <div class="add-info">
+                                                <% const time = Math.round(data[i].questionSet.length / 1.5) %>
+                                                    <span><%= data[i].questionSet.length %> Questions &#8226 <%= time %> Minutes</span>
+                                                    <span class="for"><%= data[i].ageRange %></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <% } %>
-                        </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="related">
+                    <div class="heading">People also take</div>
+                    <div class="tests-space">
+                        <% for (let i=0; i<related.length; i++) { %>
+                            <div class="each-test">
+                                <div class="image">
+                                    <img src="<%= related[i].thumbnail %>" alt="">
+                                </div>
+                                <div class="texts">
+                                    <div class="title">
+                                        <%= related[i].title %>
+                                    </div>
+                                    <div class="category">
+                                        <%= related[i].category %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script>
-    let isOpen = false
-    $('.span-opener').click((e) => {
-        if (!isOpen) {
-            $('#pane').fadeIn()
-            $('.span-opener i').toggleClass('rotate')
-            isOpen = true
-        } else {
-            $('#pane').fadeOut()
-            $('.span-opener i').toggleClass('rotate')
-            isOpen = false
-        }
-    })
-
-    $('#search-btn').click((e) => {
-        const search = $('#search').val()
-        if (search.length != 0) {
-
-            $('#search-input').val(search)
-            console.log($('#search-input').val())
-            $('#search-form').submit()
-        }
-    })
-    $('#new-test-btn').click((e) => {
-        location = '/app-admin/create-test'
-    })
-</script>
 
 </html>

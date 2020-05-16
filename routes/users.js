@@ -15,7 +15,20 @@ router.get('/save_post/:id', controller.save_post);
 router.get('/get_saved_posts', controller.get_saved_posts);
 router.get('/getAllusers', controller.getAllusers);
 router.get('/get_notifs', controller.get_notifs);
+
+// Profile
 router.get('/profile', controller.profile);
+router.get('/update-profile', controller.getUpdateProfile)
+router.post('/update-profile', controller.postUpdateProfile)
+router.post('/update-expert-profile', controller.postUpdateExpertProfile)
+
+// Material
+router.get('/materials', controller.allMaterials)
+router.get('/single-material/:id', controller.singleMaterial)
+router.get('/update-material/:id', controller.getUpdateMaterial)
+router.post('/update-material', controller.postUpdateMaterial)
+router.get('/add/material', controller.addMaterialToProfile)
+
 router.get('/edit_post/:id', controller.edit_post);
 router.get('/delete_post/:id', controller.delete_post);
 router.post('/save_changes', controller.save_changes);

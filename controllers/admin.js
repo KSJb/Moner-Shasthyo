@@ -299,6 +299,7 @@ module.exports.post_reset_password = async(req, res) => {
         email,
         usertype
     } = req.body
+    console.log(req.body)
     const hashed = await bcrypt.hash(password, 10)
     if (usertype == 'general') {
         await gUser.findOneAndUpdate({ email: email }, {

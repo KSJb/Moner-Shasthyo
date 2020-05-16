@@ -7,6 +7,22 @@ body {
   width: 100%;
 }
 
+.pageWrapper input[type="text"] {
+  border: none;
+}
+
+.pageWrapper input:focus {
+  outline: none;
+}
+
+.pageWrapper select {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff;
+}
+
 .pageWrapper .contentWrapper {
   width: 40%;
   margin: auto;
@@ -223,5 +239,55 @@ body {
 
 .pageWrapper .contentWrapper .all-info .each-info .info-box .single-values .value {
   margin-top: 10px;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .info-box .title {
+  font-size: 25px;
+}
+
+@media (max-width: 1000px) {
+  .pageWrapper .contentWrapper .all-info .each-info .info-box .title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 650px) {
+  .pageWrapper .contentWrapper .all-info .each-info .info-box .title {
+    font-size: 17px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .info-box .add-info {
+  color: gray;
+}
+
+@media (max-width: 1000px) {
+  .pageWrapper .contentWrapper .all-info .each-info .info-box .add-info {
+    font-size: 13.5px;
+  }
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .info-box .lower {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .info-box .lower button {
+  background-color: #333;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px;
+  color: #fff;
+}
+
+@media (max-width: 650px) {
+  .pageWrapper .contentWrapper .all-info .each-info .info-box .lower button {
+    padding: 5px;
+    font-size: 12px;
+  }
 }
 /*# sourceMappingURL=profile.css.map */

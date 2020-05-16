@@ -16,6 +16,13 @@ router.get('/search-test', controller.searchTests)
 router.get('/get-question/:id', controller.getQuestion)
 router.get('/edit-test/:id', controller.getEditTest)
 router.post('/edit-test', controller.postEditTest)
+router.post('/test/new', controller.addTestToProfile)
+
+// materials
+router.get('/create-material', (req, res) => {
+    res.render('createMaterial')
+})
+router.post('/material/new', controller.createMaterial)
 module.exports = router;
 
 // http://bad-blogger.herokuapp.com/admin/reset_password

@@ -28,6 +28,17 @@
         input:focus {
             outline: none;
         }
+        select {
+            border: none;
+            background-color: #fff;
+            padding: 5px;
+            margin-right: 2%;
+            cursor: pointer;
+            color: gray;
+        }
+        select:focus {
+            outline: none;
+        }
         button {
             background-color: #fff;
             border-radius: 50%;

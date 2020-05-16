@@ -7,6 +7,7 @@ const nodemailer = require('nodemailer');
 // Load User model
 const { gUser } = require('../models/gUser');
 const { eUser } = require('../models/eUser')
+const material = require('../models/material.js')
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const Notif = require('../models/notifs');
@@ -33,7 +34,97 @@ const getDate = () => {
 }
 
 module.exports.profile = (req, res) => {
-    res.render('profile')
+    if (req.user) {
+        if (req.user.userType == 'general') {
+            res.render('profile', {
+                user: req.user
+            })
+        } else if (req.user.userType == 'expert') {
+            res.render('expert-profile', {
+                user: req.user
+            })
+        }
+    } else {
+        req.flash('errorMessage', 'Log in to continue')
+        res.redirect('back')
+    }
+}
+module.exports.getUpdateProfile = async(req, res) => {
+    if (req.user) {
+        if (req.user.userType == 'general') {
+            res.render('updateProfile', {
+                user: req.user
+            })
+        } else if (req.user.userType == 'expert') {
+            res.render('update-expert-profile', {
+                user: req.user
+            })
+        }
+    } else {
+        req.flash('errorMessage', 'Log in to continue')
+        res.redirect('back')
+    }
+}
+
+module.exports.postUpdateProfile = async(req, res) => {
+    if (req.user) {
+        await gUser.findOneAndUpdate({ _id: req.user._id }, {
+            $set: {
+                name: req.body.name,
+                email: req.body.email,
+                age: req.body.age,
+                maritalStatus: req.body.maritalStatus,
+                gender: req.body.gender,
+                livingArea: req.body.livingArea,
+                residenceType: req.body.residenceType,
+                familyType: req.body.familyType,
+                education: req.body.education,
+                occupation: req.body.education,
+                monthlyIncome: req.body.monthlyIncome
+            }
+        })
+        res.send({
+            status: true,
+            msg: 'Updated'
+        })
+    } else {
+        res.send({
+            status: false,
+            msg: 'Log in to continue'
+        })
+    }
+}
+
+module.exports.postUpdateExpertProfile = async(req, res) => {
+    if (req.user) {
+        await eUser.findOneAndUpdate({ _id: req.user._id }, {
+            $set: {
+                name: req.body.name,
+                email: req.body.email,
+                phoneNumber: req.body.phoneNumber,
+                designation: req.body.designation,
+                organization: req.body.organization,
+                license: req.body.license,
+                education: {
+                    institute: req.body.institute,
+                    hDegree: req.body.hDegree,
+                    field: req.body.field
+                },
+                residence: {
+                    city: req.body.city,
+                    country: req.body.country
+                }
+            }
+        })
+        res.send({
+            status: true,
+            msg: 'Updated'
+        })
+    }
+    res.send({
+        status: false,
+        msg: 'Log in to continue'
+    })
 }
 
 module.exports.get_saved_posts = (req, res) => {
@@ -72,6 +163,120 @@ module.exports.get_all_posts = async(req, res) => {
         data,
         trending
     })
+}
+
+exports.allMaterials = async(req, res) => {
+    const { device, category } = req.query
+    if (category) {
+        const data = await material.find({ category: category })
+        if (device == 'android') {
+            res.send({
+                status: true,
+                data,
+                msg: 'okke'
+            })
+        } else {
+            res.render('materialSearchResults', {
+                data
+            })
+        }
+    }
+    const data = await material.find()
+    if (device == 'android') {
+        res.send({
+            status: true,
+            data,
+            msg: 'okke'
+        })
+    }
+    res.render('all-materials', {
+        data
+    })
+}
+
+exports.singleMaterial = async(req, res) => {
+    const { device } = req.query
+    if (!req.user) {
+        if (device == 'android') {
+            res.send({
+                status: false,
+                data: null,
+                msg: 'You must be logged in to view this material'
+            })
+        } else {
+            req.flash('errorMessage', 'You must be logged in to view this material')
+            res.redirect('back')
+        }
+    }
+    const data = await material.findOne({ _id: req.params.id })
+    const relatedPosts = await material.find().sort({ _id: -1 }).limit(3)
+    if (device == 'android') {
+        res.send({
+            status: true,
+            data,
+            msg: 'Okke'
+        })
+    }
+    res.render('single-material', {
+        posts: data,
+        relatedPosts
+    })
+}
+
+exports.getUpdateMaterial = async(req, res) => {
+    const post = await material.find({ _id: req.params.id })
+    let tagString = ''
+    for (let i = 0; i < post[0].tags.length; i++) {
+        tagString += post[0].tags[i]
+        tagString += ', '
+    }
+    console.log(tagString)
+    res.render('updateMaterial', {
+        post: post[0],
+        tagString
+    })
+}
+
+exports.postUpdateMaterial = async(req, res) => {
+    const {
+        id,
+        title,
+        body,
+        thumbnail
+    } = req.body
+    const tags = JSON.parse(req.body.tags)
+    await material.findOneAndUpdate({ _id: id }, {
+        $set: {
+            title: title,
+            body: body,
+            thumbnail: thumbnail,
+            tags: tags
+        }
+    })
+    res.send({
+        staus: true,
+        id: id
+    })
+}
+
+exports.addMaterialToProfile = async(req, res) => {
+    const mat = {
+        id: req.query.id,
+        name: req.query.name,
+        score: req.query.score,
+        date: getDate(),
+    }
+    if (req.user.userType == 'general') {
+        await gUser.findOneAndUpdate({ _id: req.user._id }, {
+            $push: {
+                materialsRead: mat
+            }
+        })
+        res.redirect('/users/profile')
+
+    } else {
+        res.redirect('back')
+    }
 }
 
 module.exports.get_notifs = (req, res) => {
