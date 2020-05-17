@@ -70,7 +70,7 @@ const usersRoutes = require("./routes/users.js");
 app.use("/users", usersRoutes); // Inside Homepage
 
 const homeRoutes = require('./routes/index')
-app.use("/", homeRoutes); // Get the start page
+app.use("/", usersRoutes); // Get the start page
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {

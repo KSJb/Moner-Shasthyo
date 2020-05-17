@@ -5,7 +5,7 @@ const Post = require('../models/post');
 // router.get('/',  (req, res) => {res.render('index')});
 
 router.get('/', async(req, res) => {
-    res.render('homepage')
+    res.redirect('/users/load-hompage')
 });
 
 router.get('/index', (req, res) =>

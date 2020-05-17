@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const controller = require('../controllers/post');
 
+router.get('/', controller.loadHomepage)
+
 router.get('/create', controller.create_blog);
 router.get('/blogs', controller.get_all_posts);
 router.post('/post', controller.create_post);

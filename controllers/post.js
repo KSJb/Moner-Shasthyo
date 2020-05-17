@@ -9,6 +9,7 @@ const { gUser } = require('../models/gUser');
 const { eUser } = require('../models/eUser')
 const material = require('../models/material.js')
 const Post = require('../models/post');
+const testModel = require('../models/test')
 const Comment = require('../models/comment');
 const Notif = require('../models/notifs');
 var mongoose = require('mongoose');
@@ -31,6 +32,19 @@ const getDate = () => {
     let thisDate = monthNames[mm] + " " + dd + ", " + yyyy
     return thisDate;
     // console.log("Date: "+thisDate);
+}
+
+module.exports.loadHomepage = async(req, res) => {
+    const materials = await material.find().sort({ _id: -1 }).limit(3)
+    const tests = await testModel.find().sort({ _id: -1 }).limit(3)
+    const resources = await Post.find().sort({ _id: -1 }).limit(3)
+
+    res.render('homepage', {
+        user: req.user,
+        materials,
+        tests,
+        resources
+    })
 }
 
 module.exports.profile = (req, res) => {
@@ -406,16 +420,14 @@ module.exports.full_post = async(req, res) => {
 
 
 module.exports.create_blog = (req, res) => {
-    if (!req.isAuthenticated()) {
-        console.log('not logged in');
-        req.flash('login_prompt', 'log in');
-        res.redirect('/');
+    if (!req.user) {
+        req.flash('errorMessage', 'Please sign in to continue')
+        res.redirect('/')
+    } else if (req.user.userType == 'general') {
+        req.flash('errorMessage', 'This feature is not available for general users')
+        res.redirect('/')
     } else {
-        const actionRoute = '/users/full_post';
-        return res.render('create_blog', {
-            edit: false,
-            route: actionRoute
-        });
+        res.render('create_blog')
     }
 }
 

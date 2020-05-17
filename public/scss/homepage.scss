@@ -1,0 +1,560 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+.pageWrapper {
+    .contentWrapper {
+        background-color: rgb(243, 242, 242);
+        padding-bottom: 100px;
+        a {
+            color: #000;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+        .view-more {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin: auto;
+            @media (max-width: 650px) {
+                justify-content: center;
+            }
+            button {
+                margin-top: 30px;
+                padding: 15px;
+                background-color: rgb(23, 165, 190);
+                color: #fff;
+                border: 1px solid rgb(23, 165, 190);
+                transition: 0.5s;
+                @media (max-width: 650px) {
+                    padding: 5px;
+                    font-size: 13.5px;
+                }
+            }
+            button:hover {
+                background-color: #fff;
+                color: rgb(23, 165, 190);
+            }
+        }
+        .sect-1 {
+            background-color: rgb(243, 242, 242);
+            padding-top: 200px;
+            padding-bottom: 50px;
+            @media (max-width: 900px) {
+                padding-top: 100px;
+            }
+            p {
+                text-align: center;
+            }
+            .big-texts {
+                font-size: 45px;
+                font-family: 'Jost', sans-serif;
+                font-weight: bolder;
+                @media (max-width: 900px) {
+                    font-size: 35px;
+                }
+            }
+            .small-texts {
+                color: #666;
+                font-size: 18px;
+            }
+            .wel {
+                font-family: 'Jost', sans-serif;
+                font-size: 35px;
+                color: rgb(23, 165, 190);
+                @media (max-width: 900px) {
+                    font-size: 28px;
+                }
+                @media (max-width: 900px) {
+                    margin-top: 50px;
+                    font-size: 18px;
+                }
+            }
+            button {
+                margin-top: 30px;
+                padding: 15px 25px;
+                background-color: rgb(23, 165, 190);
+                color: #fff;
+                border: 1px solid rgb(23, 165, 190);
+                font-size: 25px;
+                transition: 0.5s;
+                @media (max-width: 900px) {
+                    font-size: 18px;
+                    padding: 10px 15px;
+                }
+            }
+            button:hover {
+                background-color: #fff;
+                color: rgb(23, 165, 190);
+            }
+        }
+        .sect-2 {
+            display: flex;
+            justify-content: center;
+            padding-top: 100px;
+            @media (max-width: 650px) {
+                width: 95%;
+                flex-direction: column;
+                padding-top: 30px;
+                p {
+                    text-align: center;
+                }
+            }
+            .image {
+                width: 30%;
+                @media (max-width: 1410px) {
+                    width: 40%;
+                }
+                @media (max-width: 650px) {
+                    width: 50%;
+                    margin: auto;
+                }
+                img {
+                    width: 70%;
+                    height: 400px;
+                    @media (max-width: 900px) {
+                        width: 100%;
+                        height: 250px;
+                    }
+                }
+            }
+            .texts {
+                padding: 100px;
+                width: 35%;
+                @media (max-width: 1410px) {
+                    width: 50%;
+                }
+                @media (max-width: 1150px) {
+                    justify-content: space-between;
+                    padding: 50px;
+                    width: 65%;
+                }
+                @media (max-width: 650px) {
+                    width: 100%;
+                    margin: auto;
+                    padding: 20px;
+                }
+                .heading {
+                    font-size: 35px;
+                    font-family: 'Jost', sans-serif;
+                    @media (max-width: 650px) {
+                        font-size: 25px;
+                    }
+                }
+                .body {
+                    margin-top: 20px;
+                    padding: 0px 15px;
+                    border-left: 3px solid rgb(23, 165, 190);
+                    color: gray;
+                    font-size: 18px;
+                    @media (max-width: 650px) {
+                        padding: 0px;
+                        font-size: 15px;
+                        border: none;
+                    }
+                }
+                button {
+                    margin-top: 30px;
+                    padding: 10px;
+                    background-color: rgb(23, 165, 190);
+                    color: #fff;
+                    border: 1px solid rgb(23, 165, 190);
+                    transition: 0.5s;
+                }
+            }
+        }
+        .sect-3 {
+            width: 60%;
+            margin: auto;
+            margin-top: 100px;
+            @media (max-width: 1410px) {
+                width: 75%;
+            }
+            @media (max-width: 1150px) {
+                width: 85%;
+                margin-top: 50px;
+            }
+            @media (max-width: 900px) {
+                width: 95%;
+                margin-top: 20px;
+            }
+            @media (max-width: 650px) {
+                width: 95%;
+                margin-top: 0px;
+            }
+            p {
+                text-align: center;
+            }
+            .heading {
+                font-size: 35px;
+                font-family: 'Jost', sans-serif;
+                @media (max-width: 650px) {
+                    font-size: 25px;
+                }
+            }
+            .sub-heading {
+                @media (max-width: 650px) {
+                    font-size: 14px;
+                }
+            }
+            .posts {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 100px;
+                @media (max-width: 650px) {
+                    flex-direction: column;
+                    margin-top: 50px;
+                }
+                .first-post {
+                    width: 45%;
+                    padding: 15px;
+                    background-color: #fff;
+                    @media (max-width: 650px) {
+                        width: 90%;
+                        margin: auto;
+                    }
+                    .image {
+                        border-radius: 5px;
+                        overflow: hidden;
+                        img {
+                            height: 300px;
+                            width: 100%;
+                            border-radius: 5px;
+                            transition: 0.5s;
+                            cursor: pointer;
+                        }
+                        img:hover {
+                            transform: scale(1.05);
+                            opacity: 0.8;
+                        }
+                    }
+                    .texts {
+                        padding: 10px 5px;
+                        .category {
+                            font-size: 16.5px;
+                            text-transform: uppercase;
+                            color: gray;
+                        }
+                        .title {
+                            font-size: 25px;
+                            font-family: 'Jost', sans-serif;
+                        }
+                        .add-info {
+                            font-size: 13.5px;
+                            color: gray;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                    }
+                }
+                .other-post {
+                    width: 45%;
+                    @media (max-width: 650px) {
+                        width: 90%;
+                        margin: auto;
+                    }
+                    .each-post {
+                        display: flex;
+                        justify-content: space-around;
+                        margin-top: 30px;
+                        padding: 20px;
+                        background-color: #fff;
+                        .image {
+                            width: 30%;
+                            overflow: hidden;
+                            border-radius: 5px;
+                            img {
+                                width: 100%;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                transition: 0.5s;
+                                height: 100px;
+                            }
+                            img:hover {
+                                opacity: 0.8;
+                                transform: scale(1.05);
+                            }
+                        }
+                        .texts {
+                            width: 60%;
+                            .category {
+                                text-transform: uppercase;
+                                color: gray;
+                            }
+                            .title {
+                                font-family: 'Jost', sans-serif;
+                                color: #000;
+                                font-size: 22px;
+                            }
+                            .body {
+                                color: #666;
+                                max-height: 50px;
+                                overflow: hidden;
+                                font-size: 13.5px;
+                            }
+                            .add-info {
+                                margin-top: 5px;
+                                color: gray;
+                                font-size: 13.5px;
+                                display: block;
+                                justify-content: space-between;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .sect-4 {
+            width: 60%;
+            margin: auto;
+            margin-top: 120px;
+            @media (max-width: 1410px) {
+                width: 70%;
+            }
+            @media (max-width: 1150px) {
+                margin-top: 80px;
+                width: 80%;
+            }
+            @media (max-width: 900px) {
+                margin-top: 40px;
+                width: 95%;
+            }
+            @media (max-width: 650px) {
+                margin-top: 20;
+            }
+            p {
+                text-align: center;
+            }
+            .heading {
+                font-size: 35px;
+                font-family: 'Jost', sans-serif;
+                @media (max-width: 900px) {
+                    font-size: 30px;
+                }
+                @media (max-width: 650px) {
+                    font-size: 22px;
+                }
+            }
+            .sub-heading {
+                width: 70%;
+                margin: auto;
+                @media (max-width: 900px) {
+                    width: 100%;
+                    font-size: 13.5px;
+                }
+            }
+            .tests {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 100px;
+                @media (max-width: 900px) {
+                    width: 100%;
+                    margin-top: 40px;
+                    justify-content: space-between;
+                }
+                @media (max-width: 650px) {
+                    flex-direction: column;
+                    margin-top: 0;
+                }
+                .each-test {
+                    width: 31%;
+                    background-color: #fff;
+                    border-radius: 5px;
+                    padding: 10px;
+                    @media (max-width: 650px) {
+                        width: 95%;
+                        margin: 20px auto;
+                    }
+                    .image {
+                        height: 200px;
+                        overflow: hidden;
+                        border-radius: 5px;
+                        img {
+                            border-radius: 5px;
+                            transition: 0.5s;
+                            width: 100%;
+                            cursor: pointer;
+                        }
+                        img:hover {
+                            transform: scale(1.05);
+                            opacity: 0.8;
+                        }
+                    }
+                    .texts {
+                        padding: 10px;
+                        .category {
+                            text-transform: uppercase;
+                            color: gray;
+                        }
+                        .title {
+                            font-family: 'Jost', sans-serif;
+                            color: #000;
+                            font-size: 22px;
+                        }
+                        .body {
+                            color: #666;
+                            max-height: 50px;
+                            overflow: hidden;
+                            font-size: 13.5px;
+                        }
+                        .add-info {
+                            margin-top: 10px;
+                            color: gray;
+                            font-size: 13.5px;
+                            display: block;
+                            justify-content: space-between;
+                        }
+                        button {
+                            margin-top: 20px;
+                            padding: 5px 15px;
+                            background-color: rgb(23, 165, 190);
+                            color: #fff;
+                            border: 1px solid rgb(23, 165, 190);
+                            transition: 0.5s;
+                        }
+                    }
+                }
+            }
+        }
+        .sect-5 {
+            width: 60%;
+            margin: auto;
+            margin-top: 100px;
+            @media (max-width: 1410px) {
+                width: 75%;
+            }
+            @media (max-width: 1150px) {
+                width: 85%;
+                margin-top: 50px;
+            }
+            @media (max-width: 900px) {
+                width: 95%;
+                margin-top: 20px;
+            }
+            @media (max-width: 650px) {
+                width: 95%;
+                margin-top: 30px;
+            }
+            p {
+                text-align: center;
+            }
+            .heading {
+                font-size: 35px;
+                font-family: 'Jost', sans-serif;
+                @media (max-width: 650px) {
+                    font-size: 25px;
+                }
+            }
+            .sub-heading {
+                @media (max-width: 650px) {
+                    font-size: 14px;
+                }
+            }
+            .posts {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 100px;
+                @media (max-width: 650px) {
+                    flex-direction: column;
+                    margin-top: 50px;
+                }
+                .first-post {
+                    width: 45%;
+                    padding: 15px;
+                    background-color: #fff;
+                    @media (max-width: 650px) {
+                        width: 90%;
+                        margin: auto;
+                        margin-top: 20px;
+                    }
+                    .image {
+                        border-radius: 5px;
+                        overflow: hidden;
+                        img {
+                            width: 100%;
+                            height: 300px;
+                            border-radius: 5px;
+                            transition: 0.5s;
+                            cursor: pointer;
+                        }
+                        img:hover {
+                            transform: scale(1.05);
+                            opacity: 0.8;
+                        }
+                    }
+                    .texts {
+                        padding: 10px 5px;
+                        .category {
+                            font-size: 16.5px;
+                            text-transform: uppercase;
+                            color: gray;
+                        }
+                        .title {
+                            font-size: 25px;
+                            font-family: 'Jost', sans-serif;
+                        }
+                        .add-info {
+                            font-size: 13.5px;
+                            color: gray;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                    }
+                }
+                .other-post {
+                    width: 45%;
+                    @media (max-width: 650px) {
+                        width: 90%;
+                        margin: auto;
+                    }
+                    .each-post {
+                        display: flex;
+                        justify-content: space-around;
+                        margin-top: 30px;
+                        padding: 20px;
+                        background-color: #fff;
+                        .image {
+                            width: 30%;
+                            overflow: hidden;
+                            border-radius: 5px;
+                            img {
+                                width: 100%;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                transition: 0.5s;
+                                height: 100px;
+                            }
+                            img:hover {
+                                opacity: 0.8;
+                                transform: scale(1.05);
+                            }
+                        }
+                        .texts {
+                            width: 60%;
+                            .category {
+                                text-transform: uppercase;
+                                color: gray;
+                            }
+                            .title {
+                                font-family: 'Jost', sans-serif;
+                                color: #000;
+                                font-size: 22px;
+                            }
+                            .body {
+                                color: #666;
+                                max-height: 50px;
+                                overflow: hidden;
+                                font-size: 13.5px;
+                            }
+                            .add-info {
+                                margin-top: 5px;
+                                color: gray;
+                                font-size: 13.5px;
+                                display: block;
+                                justify-content: space-between;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

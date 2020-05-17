@@ -5,11 +5,257 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/homepage.css">
     <title>Corona App Home</title>
 </head>
 
 <body>
+    <div class="pageWrapper">
+        <div class="contentWrapper">
+            <div class="sect-1">
+                <% if (errorMessage.length != 0) { %>
+                    <div class="alert alert-danger" style="width: 50%; margin: auto;">
+                        <p style="text-align: center;">
+                            <%= errorMessage %>
+                        </p>
+                    </div>
+                    <% } %>
+                        <div class="big-texts">
+                            <p>Lorem, ipsum dolor.</p>
+                        </div>
+                        <div class="small-texts">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et voluptas rerum quae voluptatibus voluptate quia.</p>
+                        </div>
+                        <% if (!user) { %>
+                            <p><button id="reg-btn">Join us</button></p>
+                            <% } else { %>
+                                <p class="wel">Welcome back,
+                                    <%= user.name %>
+                                </p>
+                                <% } %>
+            </div>
 
+            <div class="sect-2">
+                <div class="image">
+                    <img src="https://colorlib.com/preview/theme/medisen/img/top_service.png" alt="">
+                </div>
+                <div class="texts">
+                    <div class="heading">
+                        <p>About Us</p>
+                    </div>
+                    <div class="body">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut expedita necessitatibus natus odit sed perferendis non doloremque, sapiente odio, corporis vel, at optio iusto id blanditiis. Nihil asperiores beatae aperiam.</p>
+                    </div>
+                    <p><button>Learn more</button></p>
+                </div>
+            </div>
+
+            <div class="sect-3">
+                <div class="heading">
+                    <p>Lockdown Materials</p>
+                </div>
+                <div class="sub-heading">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad porro voluptatum architecto, repudiandae magnam autem?</p>
+                </div>
+                <div class="posts">
+                    <div class="first-post">
+                        <div class="image">
+                            <img src="<%= materials[0].thumbnail %>" alt="">
+                        </div>
+                        <div class="texts">
+                            <div class="category">
+                                <%= materials[0].category %>
+                            </div>
+                            <div class="title">
+                                <% let mtitle = materials[0].title
+                                        if (mtitle.length > 30) {
+                                            mtitle = mtitle.substring(0, 30)
+                                        }
+                                    %>
+                                    <a href="/users/single-material/<%= materials[0]._id %>">
+                                        <%= mtitle %>
+                                    </a>
+                            </div>
+                            <div class="add-info">
+                                Admin &#8226
+                                <%= materials[0].date %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="other-post">
+                        <% for (let i=1; i<materials.length; i++) { %>
+                            <div class="each-post">
+                                <div class="image">
+                                    <img src="<%= materials[i].thumbnail %>" alt="">
+                                </div>
+                                <div class="texts">
+                                    <div class="category">
+                                        <%= materials[i].category %>
+                                    </div>
+                                    <% let title = materials[i].title
+                                        if (title.length > 30) {
+                                            title = title.substring(0, 30)
+                                        }
+                                    %>
+                                        <div class="title">
+                                            <a href="/users/single-material/<%= materials[i]._id %>">
+                                                <%= title %>
+                                            </a>
+                                        </div>
+                                        <div class="body">
+                                            <%- materials[i].body %>
+                                        </div>
+                                        <div class="add-info">Admin &#8226
+                                            <%= materials[i].date %>
+                                        </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+                <div class="view-more">
+                    <div class=""></div>
+                    <div class="">
+                        <p><button id="mat-btn">View All Materials</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sect-4">
+                <div class="heading">
+                    <p>Take a test</p>
+                </div>
+                <div class="sub-heading">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus et magni adipisci eum officia nobis suscipit cum praesentium, aliquam ipsum?</p>
+                </div>
+                <div class="tests">
+                    <% for (let i=0; i<tests.length; i++) { %>
+                        <div class="each-test">
+                            <div class="image">
+                                <img src="<%= tests[i].thumbnail %>" alt="">
+                            </div>
+                            <div class="texts">
+                                <div class="category">
+                                    <%= tests[i].category %>
+                                </div>
+                                <% let ttitle = tests[i].title
+                                        if (ttitle.length > 30) {
+                                            ttitle = ttitle.substring(0, 30)
+                                        }
+                                    %>
+                                    <div class="title">
+                                        <a href="/app-admin/single-test/<%= tests[i]._id %>">
+                                            <%= ttitle %>
+                                        </a>
+                                    </div>
+                                    <div class="body">
+                                        <%= tests[i].about %>
+                                    </div>
+                                    <div class="add-info">
+                                        <%= tests[i].questionSet.length %> Questions &#8226
+                                            <%= tests[i].questionSet.length %> Minutes</div>
+                                    <p><button>Take</button></p>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="view-more">
+                    <div class=""></div>
+                    <div class="">
+                        <p><button id="test-btn">View All Tests</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sect-5">
+                <div class="heading">
+                    <p>Our Resources</p>
+                </div>
+                <div class="sub-heading">
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad porro voluptatum architecto, repudiandae magnam autem?</p>
+                </div>
+                <div class="posts">
+
+                    <div class="other-post">
+                        <% for (let i=0; i<2; i++) { %>
+                            <div class="each-post">
+                                <div class="image">
+                                    <img src="<%= resources[i].thumbnail %>" alt="">
+                                </div>
+                                <div class="texts">
+                                    <div class="category">
+                                        <%= resources[i].category%>
+                                    </div>
+                                    <% let title = resources[i].title
+                                        if (title.length > 30) {
+                                            title = title.substring(0, 30)
+                                        }
+                                    %>
+                                        <div class="title">
+                                            <a href="/users/view/<%= resources[i]._id %>">
+                                                <%= title %>
+                                            </a>
+                                        </div>
+                                        <div class="body">
+                                            <%- resources[i].body %>
+                                        </div>
+                                        <div class="add-info">
+                                            <%= resources[i].author %> &#8226
+                                                <%= resources[i].date %>
+                                        </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="first-post">
+                        <div class="image">
+                            <img src="<%= resources[2].thumbnail %>" alt="">
+                        </div>
+                        <div class="texts">
+                            <div class="category">
+                                <%= resources[2].category %>
+                            </div>
+                            <% let title = resources[2].title
+                                        if (title.length > 30) {
+                                            title = title.substring(0, 30)
+                                        }
+                                    %>
+                                <div class="title">
+                                    <a href="/users/view/<%= resources[2]._id %>">
+                                        <%= title %>
+                                    </a>
+                                </div>
+                                <div class="add-info">
+                                    <%= resources[2].author %> &#8226
+                                        <%= resources[2].date %>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-more">
+                    <div class=""></div>
+                    <div class="">
+                        <p><button id="res-btn">View All Resources</button></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
+<script>
+    $('#reg-btn').click((e) => {
+        location = '/admin/login'
+    })
+    $('#mat-btn').click((e) => {
+        location = '/users/materials'
+    })
+    $('#test-btn').click((e) => {
+        location = '/app-admin/all-tests'
+    })
+    $('#res-btn').click((e) => {
+        location = '/users/blogs'
+    })
+</script>
 
 </html>
