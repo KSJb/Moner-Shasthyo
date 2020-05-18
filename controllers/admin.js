@@ -37,14 +37,22 @@ const onSuccess = (user, device) => {
     }
 }
 module.exports.post_login = (req, res, next) => {
+        console.log(req.body)
         passport.authenticate('local', {
-            successRedirect: onSuccess(true, req.body.device),
-            failureRedirect: onSuccess(false, req.body.device),
+            successRedirect: '/',
+            failureRedirect: '/admin/login',
             failureFlash: true
         })(req, res, next);
     }
     //Quick Login: safwan.du167@gmail.com, home761049
-
+module.exports.AndroidLogin = async(req, res, next) => {
+    console.log(req.body)
+    passport.authenticate('local', {
+        successRedirect: '/admin/app-login',
+        failureRedirect: '/admin/app-login',
+        failureFlash: true
+    })(req, res, next);
+}
 
 module.exports.androidLogin = async(req, res) => {
     let user = await gUser.findOne({ email: req.body.email })
