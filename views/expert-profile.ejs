@@ -12,117 +12,114 @@
 <body>
     <div class="pageWrapper">
         <div class="contentWrapper">
-            <div class="primary-dashboard">
-                <div class="left">
-                    <div class="username">
-                        <%= user.name %>
-                    </div>
-                    <div class="name">
-                        <%= user.email %>
-                    </div>
-                    <button class="edit" id="edit-btn">Update</button>
+            <% if (successMessage.length != 0) { %>
+                <div class="alert alert-success">
+                    <%= successMessage %>
                 </div>
-                <div class="right">
-                    <div class="balance"></div>
-                    <div class="image">
-                        <label for="update-img">
+                <% } %>
+                    <div class="primary-dashboard">
+                        <div class="left">
+                            <div class="username">
+                                <%= user.name %>
+                            </div>
+                            <div class="name">
+                                <%= user.email %>
+                            </div>
+                            <button class="edit" id="edit-btn">Update</button>
+                        </div>
+                        <div class="right">
+                            <div class="balance"></div>
+                            <div class="image">
+                                <label for="update-img">
                             <img src="https://scontent.xx.fbcdn.net/v/t1.15752-0/p280x280/97277716_239301293831022_6040842150017499136_n.jpg?_nc_cat=100&_nc_sid=b96e70&_nc_eui2=AeEe2LzQkNDYFOrLunk792mf1u4s5DCPhm7W7izkMI-GbnbOfEJm1RWow5XHmRGWM3J47NZknt8LrtfCBjeuy5OH&_nc_oc=AQmcq9cRMbLEpSnJMaBnAVMbSZmUr3Z-77nPmA9zHoYCH4qBRxg4iTbeP-PUr6zIW8o&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&_nc_tp=6&oh=26053ab62533e1c9e50c40d03dc2ba5c&oe=5EE3AD45" alt="">
                         </label>
-                        <input type="file" name="" id="update-img">
-                    </div>
-                </div>
-            </div>
-
-            <div class="all-info">
-                <div class="nav">
-                    <a href="#" id="1" class="tab active">Personal</a>
-                    <a href="#" id="2" class="tab">Posts</a>
-                </div>
-                <div class="each-info" id="info-1">
-                    <div class="header">Personal</div>
-                    <div class="info-box">
-                        <div class="single-fields">
-                            <div class="field">Phone Number</div>
-                            <div class="field">Works at</div>
-                            <div class="field">License</div>
-                            <div class="field">Educational</div>
-                            <div class="field">Residence</div>
-                        </div>
-                        <div class="single-values">
-                            <div class="value">
-                                <%= user.phoneNumber %>
-                            </div>
-                            <div class="value">
-                                <%= user.designation %>,
-                                    <%= user.organization %>
-                            </div>
-                            <div class="value">
-                                <%= user.license %>
-                            </div>
-                            <div class="value">
-                                <%= user.education.hDegree %> in
-                                    <%= user.education.field %> from
-                                        <%= user.education.institute %>
-                            </div>
-                            <div class="value">
-                                <%= user.residence.city %>,
-                                    <%= user.residence.country %>
+                                <input type="file" name="" id="update-img">
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="each-info" id="info-2" style="display: none;">
-                    <div class="header">Materials Read</div>
-                    <!-- <div class="info-box">
-                        <div class="single-fields">
-                            <div class="field">Family history of mental illness</div>
-                            <div class="field">Child Abuse</div>
-                            <div class="field">Relationship Problem</div>
-                            <div class="field">Personality Pattern </div>
-                            <div class="field">Stressful Events</div>
-                            <div class="field">Substance Abuse</div>
-                            <div class="field">Diagnosed Mental Disorder</div>
-                            <div class="field">Treatment History</div>
+                    <div class="all-info">
+                        <div class="nav">
+                            <a href="#" id="1" class="tab active">Personal</a>
+                            <a href="#" id="2" class="tab">Posts</a>
                         </div>
-                        <div class="single-values">
-
-                        </div>
-                    </div> -->
-                    <% for (let i=0; i<3; i++) { %>
-                        <div class="info-box" style="flex-direction: column;">
-                            <div class="title">
-                                Name of the material
-                            </div>
-                            <div class="add-info">178 Points &#8226 May 16, 2020</div>
-                            <div class="lower">
-                                <div class=""></div>
-                                <div class="">
-                                    <button>Read Again</button>
+                        <div class="each-info" id="info-1">
+                            <div class="header">Personal</div>
+                            <div class="info-box">
+                                <div class="single-fields">
+                                    <div class="field">Phone Number</div>
+                                    <div class="field">Works at</div>
+                                    <div class="field">License</div>
+                                    <div class="field">Educational</div>
+                                    <div class="field">Residence</div>
+                                </div>
+                                <div class="single-values">
+                                    <div class="value">
+                                        <%= user.phoneNumber %>
+                                    </div>
+                                    <div class="value">
+                                        <%= user.designation %>,
+                                            <%= user.organization %>
+                                    </div>
+                                    <div class="value">
+                                        <%= user.license %>
+                                    </div>
+                                    <div class="value">
+                                        <%= user.education.hDegree %> in
+                                            <%= user.education.field %> from
+                                                <%= user.education.institute %>
+                                    </div>
+                                    <div class="value">
+                                        <%= user.residence.city %>,
+                                            <%= user.residence.country %>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <% } %>
-                </div>
 
-                <div class="each-info" id="info-4" style="display: none;">
-                    <div class="header">Tests Taken</div>
-                    <% for (let i=0; i<3; i++) { %>
-                        <div class="info-box" style="flex-direction: column;">
-                            <div class="title">
-                                Name of the Test
-                            </div>
-                            <div class="add-info">178 Points &#8226 May 16, 2020</div>
-                            <div class="lower">
-                                <div class=""></div>
-                                <div class="">
-                                    <button>Retake Test</button>
+                        <div class="each-info" id="info-2" style="display: none;">
+                            <div class="header">Your Posts</div>
+
+                            <% for (let i=0; i<posts.length; i++) { %>
+                                <div class="info-box" style="flex-direction: column;">
+                                    <div class="title">
+                                        <a href="/users/view/<%= posts[i]._id %>" style="color: #000;">
+                                            <%= posts[i].title %>
+                                        </a>
+                                    </div>
+                                    <div class="add-info">
+                                        <%= posts[i].date %>
+                                    </div>
+                                    <div class="lower">
+                                        <div class=""></div>
+                                        <div class="">
+                                            <button id="edit" name="<%=posts[i]._id%>">Edit</button>
+                                            <button id="delete" name="<%=posts[i]._id%>">Delete</button>
+
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                <% } %>
                         </div>
-                        <% } %>
-                </div>
-            </div>
+
+                        <div class="each-info" id="info-4" style="display: none;">
+                            <div class="header">Tests Taken</div>
+                            <% for (let i=0; i<3; i++) { %>
+                                <div class="info-box" style="flex-direction: column;">
+                                    <div class="title">
+                                        Name of the Test
+                                    </div>
+                                    <div class="add-info">178 Points &#8226 May 16, 2020</div>
+                                    <div class="lower">
+                                        <div class=""></div>
+                                        <div class="">
+                                            <button>Retake Test</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
 
         </div>
     </div>
@@ -130,6 +127,12 @@
 <script>
     $('#edit-btn').click((e) => {
         location = '/users/update-profile'
+    })
+    $('#edit').click((e) => {
+        location = '/users/edit_post/' + e.target.name
+    })
+    $('#delete').click((e) => {
+        location = '/users/delete_post/' + e.target.name
     })
     $('.tab').click((e) => {
         const eachInfo = $('.each-info')

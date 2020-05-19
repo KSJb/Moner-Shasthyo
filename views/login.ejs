@@ -22,14 +22,14 @@
                 <div class="logo-reg">
                     <img class="logo_img" src="/images/black_cat_logo.jpg" alt="">
                 </div>
-                <form action="/admin/login/" method="POST">
+                <form action="/admin/login/android" method="POST">
                     <div class="form-reg">
                         <% if (errorMessage.length != 0) { %>
                             <div class="alert alert-danger" style="margin-top: 20px;">
                                 <%= errorMessage %>
                             </div>
                             <% } %>
-                                <input type="hidden" name="device" value="android">
+                                <input type="hidden" name="device" value="web">
                                 <input type="hidden" name="handle" value="email">
                                 <div class="label">Email/Phone</div>
                                 <div class="email input">

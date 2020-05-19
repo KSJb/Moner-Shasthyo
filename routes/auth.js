@@ -31,7 +31,7 @@ router.post('/forgot_password', controller.post_forgot_password);
 router.get('/reset_password/', controller.get_reset_password);
 router.post('/reset_password/', controller.post_reset_password);
 router.post('/login', controller.post_login);
-router.post('/login/android', controller.AndroidLogin)
+router.post('/login/android', passport.authenticate('local'), controller.AndroidLogin)
 router.get('/register/general/google', passport.authenticate('googleStrategy', {
     scope: ['profile', 'https://www.googleapis.com/auth/userinfo.email']
 }), controller.googleRegGen)

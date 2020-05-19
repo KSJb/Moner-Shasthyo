@@ -47,11 +47,13 @@ module.exports.post_login = (req, res, next) => {
     //Quick Login: safwan.du167@gmail.com, home761049
 module.exports.AndroidLogin = async(req, res, next) => {
     console.log(req.body)
-    passport.authenticate('local', {
-        successRedirect: '/admin/app-login',
-        failureRedirect: '/admin/app-login',
-        failureFlash: true
-    })(req, res, next);
+    if (req.user) {
+        return res.send({
+            status: true,
+            user: req.user,
+            msg: 'Logged in'
+        })
+    }
 }
 
 module.exports.androidLogin = async(req, res) => {

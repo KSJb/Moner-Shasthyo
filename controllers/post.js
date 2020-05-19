@@ -47,14 +47,16 @@ module.exports.loadHomepage = async(req, res) => {
     })
 }
 
-module.exports.profile = (req, res) => {
+module.exports.profile = async(req, res) => {
     if (req.user) {
         if (req.user.userType == 'general') {
             res.render('profile', {
                 user: req.user
             })
         } else if (req.user.userType == 'expert') {
+            const posts = await Post.find({ author_id: req.user._id })
             res.render('expert-profile', {
+                posts,
                 user: req.user
             })
         }
@@ -232,6 +234,7 @@ exports.singleMaterial = async(req, res) => {
         })
     }
     res.render('single-material', {
+        user: req.user,
         posts: data,
         relatedPosts
     })
@@ -575,10 +578,9 @@ module.exports.save_changes = async(req, res) => {
 }
 
 module.exports.delete_post = async(req, res) => {
-    const id = req.params.id;
-    console.log('id : ', id);
-    Post.findOneAndRemove({ _id: id }, function(err) { console.log(err) });
-    res.redirect('back');
+    await Post.findByIdAndDelete(req.params.id)
+    req.flash('successMessage', 'Post has been removed')
+    res.redirect('back')
 }
 
 module.exports.uploadfile = async(req, res) => {

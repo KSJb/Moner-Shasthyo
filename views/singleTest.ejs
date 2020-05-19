@@ -18,7 +18,9 @@
                 <div class="heading">
                     <p>
                         <%= data.title %> <br>
-                            <button class="edit" id="<%= data._id %>">Update</button>
+                            <% if (user.userType == 'admin') { %>
+                                <button class="edit" id="<%= data._id %>">Update</button>
+                                <% } %>
                     </p>
                 </div>
             </div>

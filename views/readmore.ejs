@@ -42,7 +42,6 @@
                             </div>
                         </div>
                         <div class="right">
-                            <button class="btn btn-info" id="edit-btn">Edit</button>
                         </div>
 
                     </div>
@@ -111,7 +110,7 @@
 <script>
     $('#edit-btn').click(e => {
         const id = $('#id').val()
-        location = '/users/edit_post/' + id
+        location = 'edit' + id
     })
 </script>
 

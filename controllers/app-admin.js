@@ -88,6 +88,7 @@ exports.singleTest = async(req, res) => {
         })
     }
     res.render('singleTest', {
+        user: req.user,
         data
     })
 }
