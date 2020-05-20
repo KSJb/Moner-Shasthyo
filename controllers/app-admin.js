@@ -86,25 +86,44 @@ exports.singleTest = async(req, res) => {
 
 
 exports.addTestToProfile = async(req, res) => {
-    if (req.user) {
-        if (req.user.userType == 'general') {
-            const test = {
-                id: req.body.id,
-                name: req.body.name,
-                score: req.body.score,
-                date: getDate()
+    if (req.body.device == 'android') {
+        const test = {
+            id: req.body.id,
+            name: req.body.name,
+            score: req.body.score,
+            date: getDate()
+        }
+        await gUser.findOneAndUpdate({ _id: req.body.user_id }, {
+            $push: {
+                testsTaken: test
             }
-            await gUser.findOneAndUpdate({ _id: req.user._id }, {
-                $push: {
-                    testsTaken: test
+        })
+        return res.send({
+            status: true,
+            msg: 'Test appended'
+        })
+    } else {
+        if (req.user) {
+            if (req.user.userType == 'general') {
+                const test = {
+                    id: req.body.id,
+                    name: req.body.name,
+                    score: req.body.score,
+                    date: getDate()
                 }
-            })
-            res.send({
-                status: true,
-                msg: 'Test appended'
-            })
+                await gUser.findOneAndUpdate({ _id: req.user._id }, {
+                    $push: {
+                        testsTaken: test
+                    }
+                })
+                return res.send({
+                    status: true,
+                    msg: 'Test appended'
+                })
+            }
         }
     }
+
 }
 
 exports.searchTests = async(req, res) => {

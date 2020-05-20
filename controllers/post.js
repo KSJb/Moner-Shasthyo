@@ -269,22 +269,41 @@ exports.postUpdateMaterial = async(req, res) => {
 }
 
 exports.addMaterialToProfile = async(req, res) => {
-    const mat = {
-        id: req.query.id,
-        name: req.query.name,
-        score: req.query.score,
-        date: getDate(),
-    }
-    if (req.user.userType == 'general') {
-        await gUser.findOneAndUpdate({ _id: req.user._id }, {
+    if (req.query.device == 'android') {
+        const mat = {
+            user_id: req.query.user_id,
+            id: req.query.id,
+            name: req.query.name,
+            score: req.query.score,
+            date: getDate(),
+        }
+        await gUser.findOneAndUpdate({ _id: req.query.user_id }, {
             $push: {
                 materialsRead: mat
             }
         })
-        res.redirect('/users/profile')
-
+        res.send({
+            status: true,
+            msg: 'Material added to profile'
+        })
     } else {
-        res.redirect('back')
+        const mat = {
+            id: req.query.id,
+            name: req.query.name,
+            score: req.query.score,
+            date: getDate(),
+        }
+        if (req.user.userType == 'general') {
+            await gUser.findOneAndUpdate({ _id: req.user._id }, {
+                $push: {
+                    materialsRead: mat
+                }
+            })
+            res.redirect('/users/profile')
+
+        } else {
+            res.redirect('back')
+        }
     }
 }
 
