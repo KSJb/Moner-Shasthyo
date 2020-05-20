@@ -67,31 +67,23 @@ exports.allTests = async(req, res) => {
 
 exports.singleTest = async(req, res) => {
     const { device } = req.query
-    if (!req.user) {
-        if (device == 'android') {
-            res.send({
-                status: false,
-                data: null,
-                msg: 'You must be logged in to take this test'
-            })
-        } else {
-            req.flash('errorMessage', 'You must be logged in to take this test')
-            res.redirect('back')
-        }
-    }
-    const data = await testModel.findById(req.params.id)
     if (device == 'android') {
+        const data = await testModel.findById(req.params.id)
         res.send({
-            status: true,
-            data,
-            msg: 'Okke'
+            data
         })
     }
+    if (!req.user) {
+        req.flash('errorMessage', 'You must be logged in to take this test')
+        res.redirect('back')
+    }
+    const data = await testModel.findById(req.params.id)
     res.render('singleTest', {
         user: req.user,
         data
     })
 }
+
 
 exports.addTestToProfile = async(req, res) => {
     if (req.user) {

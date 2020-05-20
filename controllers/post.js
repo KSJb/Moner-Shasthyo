@@ -212,27 +212,19 @@ exports.allMaterials = async(req, res) => {
 
 exports.singleMaterial = async(req, res) => {
     const { device } = req.query
+    if (device == 'android') {
+        const data = await material.findOne({ _id: req.params.id })
+        res.send({
+            data
+        })
+    }
     if (!req.user) {
-        if (device == 'android') {
-            res.send({
-                status: false,
-                data: null,
-                msg: 'You must be logged in to view this material'
-            })
-        } else {
-            req.flash('errorMessage', 'You must be logged in to view this material')
-            res.redirect('back')
-        }
+        req.flash('errorMessage', 'You must be logged in to view this material')
+        res.redirect('back')
+
     }
     const data = await material.findOne({ _id: req.params.id })
     const relatedPosts = await material.find().sort({ _id: -1 }).limit(3)
-    if (device == 'android') {
-        res.send({
-            status: true,
-            data,
-            msg: 'Okke'
-        })
-    }
     res.render('single-material', {
         user: req.user,
         posts: data,
