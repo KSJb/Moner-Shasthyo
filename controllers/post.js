@@ -111,6 +111,36 @@ module.exports.postUpdateProfile = async(req, res) => {
     }
 }
 
+module.exports.postUpdateProfileAndroid = async(req, res) => {
+    await gUser.findOneAndUpdate({ _id: req.body.user_id }, {
+        $set: {
+            name: req.body.name,
+            email: req.body.email,
+            age: req.body.age,
+            maritalStatus: req.body.maritalStatus,
+            gender: req.body.gender,
+            livingArea: req.body.livingArea,
+            residenceType: req.body.residenceType,
+            familyType: req.body.familyType,
+            education: req.body.education,
+            occupation: req.body.education,
+            monthlyIncome: req.body.monthlyIncome,
+            familyIllness: req.body.familyIllness,
+            complaint: req.body.complaint,
+            childhoodDeprivation: req.body.childhoodDeprivation,
+            relationProblem: req.body.relationProblem,
+            stressfullEvent: req.body.stressfullEvent,
+            subtanceAbuse: req.body.subtanceAbuse,
+            diagnosedDisorder: diagnosedDisorder,
+            treatmentHistory: req.body.treatmentHistory
+        }
+    })
+    res.send({
+        status: true,
+        msg: 'Updated'
+    })
+}
+
 module.exports.postUpdateExpertProfile = async(req, res) => {
     if (req.user) {
         await eUser.findOneAndUpdate({ _id: req.user._id }, {

@@ -49,6 +49,40 @@ var gUser = mongoose.Schema({
         default: 'Not specified'
     },
 
+    // not in web 
+    familyIllness: {
+        type: String,
+        default: 'Not specified'
+    },
+    complaint: {
+        type: String,
+        default: 'Not specified'
+    },
+    childhoodDeprivation: {
+        type: String,
+        default: 'Not specified'
+    },
+    relationProblem: {
+        type: String,
+        default: 'Not specified'
+    },
+    stressfullEvent: {
+        type: String,
+        default: 'Not specified'
+    },
+    subtanceAbuse: {
+        type: String,
+        default: 'Not specified'
+    },
+    diagnosedDisorder: {
+        type: String,
+        default: 'Not specified'
+    },
+    treatmentHistory: {
+        type: String,
+        default: 'Not specified'
+    },
+
     // auto update
     materialsRead: [{
         id: String,

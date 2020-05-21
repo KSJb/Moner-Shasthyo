@@ -22,6 +22,7 @@ router.get('/get_notifs', controller.get_notifs);
 router.get('/profile', controller.profile);
 router.get('/update-profile', controller.getUpdateProfile)
 router.post('/update-profile', controller.postUpdateProfile)
+router.post('/update-profile/android', controller.postUpdateProfileAndroid)
 router.post('/update-expert-profile', controller.postUpdateExpertProfile)
 
 // Material

@@ -241,6 +241,11 @@ body {
   margin-top: 10px;
 }
 
+.pageWrapper .contentWrapper .all-info .each-info .info-box .large-value {
+  padding: 5px;
+  color: gray;
+}
+
 .pageWrapper .contentWrapper .all-info .each-info .info-box .title {
   font-size: 25px;
 }
