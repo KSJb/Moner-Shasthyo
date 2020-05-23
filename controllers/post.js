@@ -131,7 +131,7 @@ module.exports.postUpdateProfileAndroid = async(req, res) => {
             relationProblem: req.body.relationProblem,
             stressfullEvent: req.body.stressfullEvent,
             subtanceAbuse: req.body.subtanceAbuse,
-            diagnosedDisorder: diagnosedDisorder,
+            diagnosedDisorder: req.body.diagnosedDisorder,
             treatmentHistory: req.body.treatmentHistory
         }
     })
