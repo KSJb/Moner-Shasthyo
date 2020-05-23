@@ -112,6 +112,7 @@ module.exports.postUpdateProfile = async(req, res) => {
 }
 
 module.exports.postUpdateProfileAndroid = async(req, res) => {
+    console.log(req.body)
     await gUser.findOneAndUpdate({ _id: req.body.user_id }, {
         $set: {
             name: req.body.name,
@@ -142,8 +143,8 @@ module.exports.postUpdateProfileAndroid = async(req, res) => {
 }
 
 module.exports.postUpdateExpertProfile = async(req, res) => {
-    if (req.user) {
-        await eUser.findOneAndUpdate({ _id: req.user._id }, {
+    if (req.body.device == 'android') {
+        await eUser.findOneAndUpdate({ _id: req.body.user_id }, {
             $set: {
                 name: req.body.name,
                 email: req.body.email,
@@ -162,15 +163,41 @@ module.exports.postUpdateExpertProfile = async(req, res) => {
                 }
             }
         })
-        res.send({
+        return res.send({
             status: true,
             msg: 'Updated'
         })
+    } else {
+        if (req.user) {
+            await eUser.findOneAndUpdate({ _id: req.user._id }, {
+                $set: {
+                    name: req.body.name,
+                    email: req.body.email,
+                    phoneNumber: req.body.phoneNumber,
+                    designation: req.body.designation,
+                    organization: req.body.organization,
+                    license: req.body.license,
+                    education: {
+                        institute: req.body.institute,
+                        hDegree: req.body.hDegree,
+                        field: req.body.field
+                    },
+                    residence: {
+                        city: req.body.city,
+                        country: req.body.country
+                    }
+                }
+            })
+            res.send({
+                status: true,
+                msg: 'Updated'
+            })
+        }
+        res.send({
+            status: false,
+            msg: 'Log in to continue'
+        })
     }
-    res.send({
-        status: false,
-        msg: 'Log in to continue'
-    })
 }
 
 module.exports.get_saved_posts = (req, res) => {
