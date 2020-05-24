@@ -21,6 +21,10 @@
                         <a href="/users/materials?category=Relaxation">Relaxation</a>
                         <a href="/users/materials?category=Mindfulness">Mindfulness</a>
                         <a href="/users/materials?category=Sleep">Sleep</a>
+                        <a href="/users/materials?category=Activity Schedule">Activity Schedule</a>
+                        <a href="/users/materials?category=Self Care">Self Care</a>
+                        <a href="/users/materials?category=Specific Problem">Specific Problem</a>
+                        <a href="/users/materials?category=Health Updates">Health Updates</a>
                     </div>
                     <div class="span-opener"><i class="fa fa-align-justify"></i>
                         <div class="pane" id="pane">
@@ -31,8 +35,7 @@
                             <p><a href="/users/materials?category=Sleep">Sleep</a></p>
                         </div>
                     </div>
-
-                    <div class="search-area">
+                    <!-- <div class="search-area">
                         <form action="/admin/search-test" id="search-form" method="GET">
                             <input type="hidden" id="search-input" name="searchInput">
                         </form>
@@ -40,91 +43,91 @@
                         <i class="fa fa-search" id="search-btn"></i>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
 
-            <div class="all-tests-space">
-                <% if (errorMessage.length != 0) { %>
-                    <div class="alert alert-danger">
-                        <%=errorMessage%>
-                    </div>
-                    <% } %>
-                        <div class="first-three">
-                            <% for (let i=0; i<3; i++) { %>
-                                <div class="each-post">
-                                    <div class="image">
-                                        <img src="<%= data[i].thumbnail %>" alt="">
-                                    </div>
-                                    <div class="texts">
-                                        <div class="category">
-                                            <%= data[i].category %>
-                                        </div>
-                                        <div class="title">
-                                            <a href="/users/single-material/<%= data[i]._id %>">
-                                                <%= data[i].title %>
-                                            </a>
-                                        </div>
-                                        <div class="additional-info">
-                                            <span style="font-weight: bolder;">Admin</span>
-                                            <span>12 Questions - 8 Minutes</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <% } %>
-                        </div>
-                        <hr>
-                        <div class="lower-posts">
-                            <div class="left">
-                                <% for (let i=3; i<data.length; i++) { %>
-                                    <div class="each-posts">
-                                        <div class="image">
-                                            <img src="<%= data[i].thumbnail %>" alt="">
-                                        </div>
-                                        <div class="texts">
-                                            <div class="category">
-                                                <%= data[i].category %>
-                                            </div>
-                                            <div class="title">
-                                                <a href="/users/single-material/<%= data[i]._id %>">
-                                                    <%= data[i].title %>
-                                                </a>
-                                            </div>
-                                            <div class="about">
-                                                <%- data[i].body %>
-                                            </div>
-                                            <div class="additional-info">
-                                                <span>Admin</span>
-                                                <span>12 Questions - 8 Minutes</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% } %>
+                    <div class="all-tests-space">
+                        <% if (errorMessage.length != 0) { %>
+                            <div class="alert alert-danger">
+                                <%=errorMessage%>
                             </div>
-                            <div class="right">
-                                <div class="right-posts">
-                                    <div class="heading">People also take</div>
+                            <% } %>
+                                <div class="first-three">
                                     <% for (let i=0; i<3; i++) { %>
-                                        <div class="each-posts">
+                                        <div class="each-post">
                                             <div class="image">
-                                                <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,q_80,w_1600/xkvwp2fslqasirabshfm.jpg" alt="">
+                                                <img src="<%= data[i].thumbnail %>" alt="">
                                             </div>
                                             <div class="texts">
-                                                <div class="category">Category</div>
-                                                <div class="title"><a href="/app-admin/single-test">A rather short title</a></div>
+                                                <div class="category">
+                                                    <%= data[i].category %>
+                                                </div>
+                                                <div class="title">
+                                                    <a href="/users/single-material/<%= data[i]._id %>">
+                                                        <%= data[i].title %>
+                                                    </a>
+                                                </div>
                                                 <div class="additional-info">
-                                                    <span>Admin</span>
+                                                    <span style="font-weight: bolder;">Admin</span>
                                                     <span>12 Questions - 8 Minutes</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <% } %>
                                 </div>
-                            </div>
-                        </div>
+                                <hr>
+                                <div class="lower-posts">
+                                    <div class="left">
+                                        <% for (let i=3; i<data.length; i++) { %>
+                                            <div class="each-posts">
+                                                <div class="image">
+                                                    <img src="<%= data[i].thumbnail %>" alt="">
+                                                </div>
+                                                <div class="texts">
+                                                    <div class="category">
+                                                        <%= data[i].category %>
+                                                    </div>
+                                                    <div class="title">
+                                                        <a href="/users/single-material/<%= data[i]._id %>">
+                                                            <%= data[i].title %>
+                                                        </a>
+                                                    </div>
+                                                    <div class="about">
+                                                        <%- data[i].body %>
+                                                    </div>
+                                                    <div class="additional-info">
+                                                        <span>Admin</span>
+                                                        <span>12 Questions - 8 Minutes</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="right">
+                                        <div class="right-posts">
+                                            <div class="heading">People also take</div>
+                                            <% for (let i=0; i<3; i++) { %>
+                                                <div class="each-posts">
+                                                    <div class="image">
+                                                        <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,q_80,w_1600/xkvwp2fslqasirabshfm.jpg" alt="">
+                                                    </div>
+                                                    <div class="texts">
+                                                        <div class="category">Category</div>
+                                                        <div class="title"><a href="/app-admin/single-test">A rather short title</a></div>
+                                                        <div class="additional-info">
+                                                            <span>Admin</span>
+                                                            <span>12 Questions - 8 Minutes</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 </body>
 <script>
     let isOpen = false

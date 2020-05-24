@@ -243,13 +243,13 @@ exports.allMaterials = async(req, res) => {
     if (category) {
         const data = await material.find({ category: category })
         if (device == 'android') {
-            res.send({
+            return res.send({
                 status: true,
                 data,
                 msg: 'okke'
             })
         } else {
-            res.render('materialSearchResults', {
+            return res.render('materialSearchResults', {
                 data
             })
         }
