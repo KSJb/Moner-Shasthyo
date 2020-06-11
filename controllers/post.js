@@ -50,7 +50,12 @@ module.exports.loadHomepage = async(req, res) => {
 module.exports.profile = async(req, res) => {
     if (req.user) {
         if (req.user.userType == 'general') {
+            const diary = await diaryModel.findOne({ owner_id: req.user._id })
+            diary.records.sort((a, b) => {
+                return b.date - a.date
+            })
             res.render('profile', {
+                diary, 
                 user: req.user
             })
         } else if (req.user.userType == 'expert') {
@@ -65,6 +70,39 @@ module.exports.profile = async(req, res) => {
         res.redirect('back')
     }
 }
+
+const { diaryModel } = require('../models/diary.js')
+exports.addDiaryRecord = async (req, res) => {
+    if (req.user) {
+        const record = {
+            ...req.body,
+            displayDate: getDate()
+        }    
+        const diary = await diaryModel.findOne({ owner_id: req.user._id })
+        const records = diary.records
+        records.push(record)
+        await diaryModel.findOneAndUpdate({ owner_id: req.user._id }, {
+            $set: {
+                records: records
+            }
+        })
+    }
+    res.send({
+        msg: 'Record saved',
+        status: true
+    })
+}
+
+exports.deleteRecord = async (req, res) => {
+    console.log(req.params.id)
+    await diaryModel.update({ owner_id: req.user._id }, {
+        $pull: {
+            records: { _id: req.params.id}
+        }
+    })
+    res.redirect('back')
+}
+
 module.exports.getUpdateProfile = async(req, res) => {
     if (req.user) {
         if (req.user.userType == 'general') {
@@ -290,15 +328,15 @@ exports.singleMaterial = async(req, res) => {
 }
 
 exports.getUpdateMaterial = async(req, res) => {
-    const post = await material.find({ _id: req.params.id })
+    const post = await material.findOne({ _id: req.params.id })
     let tagString = ''
-    for (let i = 0; i < post[0].tags.length; i++) {
-        tagString += post[0].tags[i]
+    for (let i = 0; i < post.tags.length; i++) {
+        tagString += post.tags[i]
         tagString += ', '
     }
     console.log(tagString)
     res.render('updateMaterial', {
-        post: post[0],
+        post,
         tagString
     })
 }
@@ -310,17 +348,20 @@ exports.postUpdateMaterial = async(req, res) => {
         body,
         thumbnail
     } = req.body
+    console.log(req.body)
     const tags = JSON.parse(req.body.tags)
+    const activities = JSON.parse(req.body.activities)
     await material.findOneAndUpdate({ _id: id }, {
         $set: {
             title: title,
             body: body,
             thumbnail: thumbnail,
-            tags: tags
+            tags: tags,
+            activities: activities
         }
     })
     res.send({
-        staus: true,
+        status: true,
         id: id
     })
 }

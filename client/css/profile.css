@@ -295,4 +295,115 @@ body {
     font-size: 12px;
   }
 }
+
+.pageWrapper .contentWrapper .all-info .each-info .record-space .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .record-space .header input {
+  padding: 5px;
+  width: 70%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .record-space .header button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .record-space .each-record {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90%;
+  margin: auto;
+  margin-top: 15px;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .record-space .each-record span {
+  font-size: 30px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 50%;
+  padding: 0 12px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .record-space .each-record .record {
+  width: 90%;
+  margin-left: 2%;
+  margin-top: 10px;
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .record-space .each-record .record p {
+  color: #666;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .record-space .each-record .record .last-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .record-space .each-record .record .last-row i {
+  cursor: pointer;
+}
+
+.modal .modalHeader {
+  padding: 20px;
+  font-size: 25px;
+  color: #fff;
+  background-color: #333;
+}
+
+.modal .modalHeader i {
+  font-size: 30px;
+  padding: 0 10px;
+}
+
+.modal .modal-body textarea {
+  border: 1px solid #ddd;
+  width: 100%;
+  height: 75px;
+}
+
+.modal .modalFooter {
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal .modalFooter .add-btn {
+  background-color: lightseagreen;
+}
+
+.modal .modalFooter button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 10px;
+}
 /*# sourceMappingURL=profile.css.map */

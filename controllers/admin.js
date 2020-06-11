@@ -138,6 +138,17 @@ module.exports.postRegGen = async(req, res, next) => {
         // console.log(newGenUser)
     await newGenUser.save()
     console.log('general saved')
+
+    const { diaryModel } = require('../models/diary.js')
+    const userDiary = {
+        owner_id: newGenUser._id,
+        owner_name: newGenUser.name,
+        records: []
+    }
+    const diary = new diaryModel(userDiary)
+    console.log(diary)
+    await diary.save()
+    
     return res.send({
         status: true,
         msg: 'okke'

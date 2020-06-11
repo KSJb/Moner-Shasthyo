@@ -37,9 +37,9 @@
                 <div class="nav">
                     <a href="#" id="1" class="tab active">Personal</a>
                     <a href="#" id="2" class="tab">Occupational</a>
-                    <a href="#" id="5" class="tab">Psychological</a>
                     <a href="#" id="3" class="tab">Materials Read</a>
                     <a href="#" id="4" class="tab">Tests Taken</a>
+                    <a href="#" id="6" class="tab">Diary</a>
                 </div>
                 <div class="each-info" id="info-1">
                     <div class="header">Personal</div>
@@ -152,11 +152,132 @@
                         </div>
                         <% } %>
                 </div>
+
+                <div class="each-info" id="info-6" style="display: none;">
+                    <div class="record-space">
+                        <div class="header">
+                                <input type="text" placeholder="Type to filter records" id="filter">
+                                <button data-target='#record-modal' data-toggle='modal'>Add Record</button>
+                        </div>
+                        <% for (let i=0; i<diary.records.length; i++) { %>
+                            <div class="each-record">
+                                <span><%= user.name.charAt(0).toUpperCase() %></span>
+                                <div class="record">
+                                    <% if (diary.records[i].situation != ''){ %>
+                                        <h5>Situtation</h5>
+                                        <p>
+                                            <%= diary.records[i].situation %>
+                                        </p>
+                                    <% } %>
+
+                                    <% if (diary.records[i].emotions != ''){ %>
+                                        <h5>Emotions</h5>
+                                        <p>
+                                            <%= diary.records[i].emotions %>
+                                        </p>
+                                    <% } %>
+
+                                    <% if (diary.records[i].thoughts != ''){ %>
+                                        <h5>Thoughts</h5>
+                                        <p>
+                                            <%= diary.records[i].thoughts %>
+                                        </p>
+                                    <% } %>
+
+                                    <% if (diary.records[i].reactions != ''){ %>
+                                        <h5>Reactions</h5>
+                                        <p>
+                                            <%= diary.records[i].reactions %>
+                                        </p>
+                                    <% } %>
+
+                                    <% if (diary.records[i].behaiviour != ''){ %>
+                                        <h5>Behaiviour</h5>
+                                        <p>
+                                            <%= diary.records[i].behaiviour %>
+                                        </p>
+                                    <% } %>
+                                    <span style="display: none;">
+                                        <%= diary.records[i].situation %>
+                                        <%= diary.records[i].emotions %>
+                                        <%= diary.records[i].thoughts%>
+                                        <%= diary.records[i].reactions %>
+                                        <%= diary.records[i].behaiviour %>
+                                    </span>                                  <div class="last-row">
+                                        <i class="fas fa-trash" id="<%=diary.records[i]._id%>"></i>
+                                        <%= diary.records[i].displayDate %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
 </body>
+
+<div class="modal fade" id="record-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modalHeader">
+            <i class="fa fa-smile"></i> Diary Entry
+        </div>
+        <div class="modal-body">
+            <div class="section">
+                <div class="question">
+                    What's the situation like?
+                </div>
+                <div class="response">
+                    <textarea id="situation" ></textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">
+                    What are your thoughts?
+                </div>
+                <div class="response">
+                    <textarea id="thoughts" ></textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">
+                    Whatare your emotions??
+                </div>
+                <div class="response">
+                    <textarea id="emotions" ></textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">
+                    How is your reaction?
+                </div>
+                <div class="response">
+                    <textarea id="reactions" ></textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">
+                    How is your behaiviour?
+                </div>
+                <div class="response">
+                    <textarea id="behaiviour" ></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modalFooter">
+            <button class="cancel-btn" data-dismiss='modal'>Cancel</button>
+            <button class="add-btn">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script>
     $('#edit-btn').click((e) => {
         location = '/users/update-profile'
@@ -166,6 +287,10 @@
     })
     $('.testsTaken button').click((e) => {
         location = '/app-admin/single-test/' + e.target.name
+    })
+    $('.fa-trash').click((e) => {
+        console.log(e.target.id)
+        location = '/users/profile/delete-record/'+e.target.id
     })
     $('.tab').click((e) => {
         const eachInfo = $('.each-info')
@@ -179,6 +304,42 @@
         const id = '#info-' + e.target.id
         $(id).show()
         $(e.target).addClass('active')
+    })
+    $('#filter').on('keyup', (e) => {
+        const text = e.target.value.toLowerCase()
+        const recordArr = $('.record span')
+        // console.log('hi')
+        for (let i=0; i<recordArr.length; i++) {
+            const recVal = $(recordArr[i]).html().toLocaleLowerCase()
+            if (!recVal.includes(text)) {
+                $(recordArr[i].parentElement.parentElement).hide()
+            }
+        }
+    })
+
+    $('.add-btn').click((e) => {
+        const situation = $('#situation').val()
+        const emotions = $('#emotions').val()
+        const thoughts = $('#thoughts').val()
+        const reactions = $('#reactions').val()
+        const behaiviour = $('#behaiviour').val()
+
+        const data = {
+            situation,
+            emotions,
+            thoughts,
+            reactions,
+            behaiviour
+        }
+        console.log(data)
+        $.ajax({
+            type: 'POST',
+            url: '/users/profile/add-record',
+            data,
+            success: (data) => {
+                location = '/users/profile'
+            }
+        })
     })
 </script>
 

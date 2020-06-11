@@ -11,6 +11,13 @@ var PostSchema = mongoose.Schema({
     body: {
         type: String
     },
+    activities: {
+        type: [{
+            title: String,
+            body: String
+        }],
+        default: []
+    },
     category: {
         type: String
     },

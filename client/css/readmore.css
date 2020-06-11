@@ -270,6 +270,24 @@ Port of Halsaki | Halsaki, Echamia, Illiya
   }
 }
 
+.contentWrapper .pageContent .left .post .activities-section {
+  margin-top: 100px;
+}
+
+.contentWrapper .pageContent .left .post .activities-section .each-act .title {
+  font-size: 25px;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.contentWrapper .pageContent .left .post .activities-section .each-act .body {
+  background-color: #eee;
+  padding: 20px;
+  border-radius: 20px;
+}
+
 .contentWrapper .pageContent .right {
   width: 40%;
 }

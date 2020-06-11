@@ -82,3 +82,36 @@
         outline: none;
     }
 }
+
+.activity-section {
+    width: 78%;
+    margin: auto;
+    margin-top: 30px;
+    .title {
+        display: flex;
+        padding: 15px 0;
+        input {
+            width: 100%;
+            margin: auto;
+            padding: 10px 0;
+            margin-right: 10px;
+        }
+        button {
+            background-color: red;
+            border: none;
+            color: #fff;
+        }
+    }
+    textarea {
+        margin-top: 20px;
+    }
+    .add-btn {
+        padding: 10px 0;
+        button {
+            padding: 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+        }
+    }
+}

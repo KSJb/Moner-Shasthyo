@@ -24,6 +24,8 @@ router.get('/update-profile', controller.getUpdateProfile)
 router.post('/update-profile', controller.postUpdateProfile)
 router.post('/update-profile/android', controller.postUpdateProfileAndroid)
 router.post('/update-expert-profile', controller.postUpdateExpertProfile)
+router.post('/profile/add-record', controller.addDiaryRecord)
+router.get('/profile/delete-record/:id', controller.deleteRecord)
 
 // Material
 router.get('/materials', controller.allMaterials)

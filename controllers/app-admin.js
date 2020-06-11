@@ -199,6 +199,7 @@ module.exports.createMaterial = async(req, res) => {
     let view = 0;
     let upvote = 0;
     let tags = JSON.parse(req.body.tags);
+    let activities = JSON.parse(req.body.activities)
     let thumbnail = req.body.thumbnail;
 
 
@@ -206,6 +207,7 @@ module.exports.createMaterial = async(req, res) => {
         title,
         thumbnail,
         body,
+        activities,
         author,
         author_id,
         author_username,

@@ -129,6 +129,7 @@ body {
                 margin-top: 30px;
                 transition: 0.5s;
                 min-height: 400px;
+                
                 .header {
                     font-size: 20px;
                     font-weight: bold;
@@ -197,7 +198,97 @@ body {
                         }
                     }
                 }
+                .record-space {
+                    .header {
+                        display: flex;
+                        justify-content: space-between;
+                        input {
+                            padding: 5px;
+                            width: 70%;
+                            border: 1px solid #ddd;
+                            border-radius: 5px;
+                        }
+                        button {
+                            background-color: #333;
+                            color: #fff;
+                            border: none;
+                            border-radius: 5px;
+                            font-size: 15px;
+                            padding: 10px;
+                        }
+                    }
+                    .each-record {
+                        display: flex;
+                        width: 90%;
+                        margin: auto;
+                        margin-top: 15px;
+
+                        span {
+                            font-size: 30px;
+                            background-color: #333;
+                            color: #fff;
+                            border-radius: 50%;
+                            padding: 0 12px;
+                            height: 50px;
+                            cursor: pointer;
+                        }
+                        .record {
+                            width: 90%;
+                            margin-left: 2%;
+                            margin-top: 10px;
+                            background-color: #eee;
+                            padding: 15px;
+                            border-radius: 10px; 
+                            p {
+                                color: #666;
+                            }
+                            .last-row {
+                                display: flex;
+                                justify-content: space-between;
+                                i {
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
             }
+        }
+    }
+}
+
+.modal {
+    .modalHeader {
+        padding: 20px;
+        font-size: 25px;
+        color: #fff;
+        background-color: #333;
+        i {
+            font-size: 30px;
+            padding: 0 10px;
+        }
+    }
+    .modal-body {
+        textarea {
+            border: 1px solid #ddd;
+            width: 100%;
+            height: 75px;
+        }
+    }
+    .modalFooter {
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        .add-btn {
+            background-color: lightseagreen;
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            padding: 10px;
         }
     }
 }

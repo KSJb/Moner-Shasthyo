@@ -105,4 +105,45 @@
 .modal-input input:hover {
   outline: none;
 }
+
+.activity-section {
+  width: 78%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.activity-section .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 15px 0;
+}
+
+.activity-section .title input {
+  width: 100%;
+  margin: auto;
+  padding: 10px 0;
+  margin-right: 10px;
+}
+
+.activity-section .title button {
+  background-color: red;
+  border: none;
+  color: #fff;
+}
+
+.activity-section textarea {
+  margin-top: 20px;
+}
+
+.activity-section .add-btn {
+  padding: 10px 0;
+}
+
+.activity-section .add-btn button {
+  padding: 15px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+}
 /*# sourceMappingURL=create_blog.css.map */

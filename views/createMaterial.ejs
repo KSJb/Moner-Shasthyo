@@ -42,6 +42,24 @@
         <div class="editorWrapper" id="editorWrapper">
             <textarea name="editor" id="area" cols="30" rows="10" class="area"></textarea>
         </div>
+
+        <div class="activity-section">
+            <div class="add-here">
+                <div class="each-activity">
+                    <div class="title">
+                        <input type="text">
+                        <button class="remove-btn">Remove</button>
+                    </div>
+                    <div class="body">
+                        <textarea name="" id="body1" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="add-btn">
+                <button>Add Activity</button>
+            </div>
+        </div>
+
         <div class="submit">
             <p>
                 <button class="btn btn-info" id="submit-btn">Publish</button>
@@ -122,6 +140,13 @@
 
         const editor = CKEDITOR.replace('area', config);
 
+        let editors = []
+        const wd = $(window).width * 0.8
+        config['width'] = wd
+        config['height'] = 300
+        let id = `body1`
+        editors[0] = CKEDITOR.replace(id, config)
+
         let pane = false
         $('#pane-btn').click((e) => {
             if (!pane) {
@@ -168,6 +193,21 @@
             const tags = tagString.split(',')
             let error = false
 
+            let activities = []
+            let titleArr = $('.title input')
+            for (let i=0; i<titleArr.length; i++) {
+                const id = `body${i+1}`
+                const body = CKEDITOR.instances[id].getData()
+                const title = $(titleArr[i]).val()
+                const activity = {
+                    title,
+                    body
+                }
+                activities.push(activity)
+            }
+
+            console.log(activities)
+
             if (check(title)) {
                 error = true
                 showAlert('Enter the title')
@@ -189,6 +229,7 @@
                     title,
                     thumbnail,
                     tags: JSON.stringify(tags),
+                    activities: JSON.stringify(activities),
                     category,
                     body
                 }
@@ -215,6 +256,29 @@
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
+    </script>
+
+    <script>
+        let ckID = 1
+        $('.add-btn').click((e) => {
+            ckID++
+            const node = `
+                <div class="each-activity">
+                    <div class="title">
+                        <input type="text">
+                        <button class="remove-btn">Remove</button>
+                    </div>
+                    <div class="body">
+                        <textarea name="" id="body${ckID}" cols="30" rows="10"></textarea>
+                    </div>
+                </div>`
+            $('.add-here').append(node)
+                const newid = `body${ckID}`
+                editors[ckID] = CKEDITOR.replace(newid, config )
+        })
+        $(document).on('click', '.remove-btn', e => {
+            $(e.target.parentElement.parentElement).remove()
+        })
     </script>
 
 </body>

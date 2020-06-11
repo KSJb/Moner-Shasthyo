@@ -67,6 +67,18 @@
                     <div class="body">
                         <%- posts.body %>
                     </div>
+                    <div class="activities-section">
+                        <% for (let i=0; i<posts.activities.length; i++) { %>
+                            <div class="each-act">
+                                <div class="title act-title">
+                                    <%=i+1%>. <%= posts.activities[i].title %>
+                                </div>
+                                <div class="body">
+                                    <%- posts.activities[i].body %>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
                 </div>
             </div>
             <div class="right">
@@ -74,7 +86,7 @@
                     <div class="title">Recently Added</div>
                     <div class="posts">
                         <% relatedPosts.forEach(post => { %>
-                            <a href="/users//view/<%= post._id %>">
+                            <a href="/users/single-material/<%= post._id %>">
                                 <div class="eachRelatedPost">
                                     <div class="thumbnail">
                                         <img src="<%= post.thumbnail %>" alt="">
@@ -135,6 +147,11 @@
 </body>
 <script src="/js/prism-okaidia.js"></script>
 <script>
+    let anyOpen = false
+    const actBodies = $('.each-act .body')
+    for (let i=0; i<actBodies.length; i++) {
+        $(actBodies[i]).hide()
+    }
     $('#edit-btn').click(e => {
         const id = $('#id').val()
         location = '/users/update-material/' + id
@@ -147,6 +164,22 @@
         const val = ($(e.target).val()) + '%'
         $('#comp-percent-btm').html(val)
     })
+
+    $('.act-title').click((e) => {
+        if (anyOpen) {
+            anyOpen = false
+            for (let i=0; i<actBodies.length; i++) {
+                $(actBodies[i]).hide()
+            }
+            $(e.target.parentElement).find('.body').slideDown()
+        } else {
+            anyOpen = true
+            for (let i=0; i<actBodies.length; i++) {
+                $(actBodies[i]).slideUp()
+            }
+        }
+    })
+
     $('#finish-btn').click(e => {
         const score = $('#slider-btm').val() - $('#slider-top').val()
         const id = $('#id').val()

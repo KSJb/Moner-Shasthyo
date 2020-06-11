@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Post - badBlogger</title>
+    <title>Create Material - badBlogger</title>
 </head>
 
 <body>
@@ -23,22 +23,60 @@
         </div>
         <div class="titleWrapper">
             <div class="titleBox">
-                <input type="text" id="titleInput" value="<%= post.title %>" placeholder="It's a nice day!">
+                <input type="text" value="<%= post.title %>" id="titleInput" placeholder="It's a nice day!">
                 <button data-toggle="modal" data-target="#thumbnailModal" id="thumbnail-btn"><i class="fa fa-camera"></i></i></button>
                 <button data-toggle="modal" data-target="#tagsModal" id="tags-btn"><i class="fa fa-tags"></i></button>
+                <select name="" id="category" style="margin: auto;">
+                  <option value="Select Category">Select Category</option>
+                  <option value="Mindfulness">Mindfulness</option>
+                  <option value="Manage Stress">Manage Stress</option>
+                  <option value="Connected">Connected</option>
+                  <option value="Sleep">Sleep</option>
+                  <option value="Activity Schedule">Activity Schedule</option>
+                  <option value="Self Care">Self Care</option>
+                  <option value="Specific Problem">Specific Problem</option>
+                  <option value="Health Updates">Health Updates</option>
+                </select>
             </div>
         </div>
         <div class="editorWrapper" id="editorWrapper">
-            <textarea name="editor" id="area" cols="30" rows="10" class="area"><%= post.body %></textarea>
+            <textarea name="editor" id="area" cols="30" rows="10" class="area">
+                <%- post.body %>
+            </textarea>
         </div>
+
+        <input type="hidden" value="<%= post._id %>" id="id">
+        <input type="hidden" value="<%= post.category %>" id="post-category">
+        <input type="hidden" value="<%= post.activities.length %>" id="actLength">
+        <div class="activity-section">
+            <div class="add-here">
+                <% for (let i=0; i<post.activities.length; i++) { %>
+                    <div class="each-activity">
+                        <div class="title">
+                            <input value="<%= post.activities[i].title %>" type="text">
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                        <div class="body">
+                            <textarea name="" id="body<%=i%>" cols="30" rows="10">
+                                <%- post.activities[i].body %>
+                            </textarea>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+            <div class="add-btn">
+                <button>Add Activity</button>
+            </div>
+        </div>
+
         <div class="submit">
             <p>
                 <button class="btn btn-info" id="submit-btn">Publish</button>
             </p>
         </div>
     </div>
-    <input type="hidden" value="<%= post.thumbnail %>" id="thumbnail">
-    <input type="hidden" value="<%= tagString %>" id="tags">
+    <input type="hidden" name="" id="thumbnail">
+    <input type="hidden" name="" id="tags">
 
     <div class="modal fade" id="thumbnailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -83,7 +121,7 @@
             </div>
         </div>
     </div>
-    <input type="hidden" value="<%- post._id %>" id="id">
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -91,24 +129,35 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         // var config = {
+        //     extraPlugins: 'codesnippet',
+        //     codeSnippet_theme: 'magula',
         //     height: 600,
-        //     width: 1600,
-        //     extraPlugins: 'embed,autoembed,image2',
-        //     contentsCss: [
-        //         'http://cdn.ckeditor.com/4.14.0/full-all/contents.css',
-        //         'https://ckeditor.com/docs/vendors/4.14.0/ckeditor/assets/css/widgetstyles.css'
-        //     ],
-        //     embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',
-        //     image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
-        //     image2_disableResizer: true
+        //     width: 1600
         // };
         var config = {
-            extraPlugins: 'codesnippet',
-            codeSnippet_theme: 'magula',
             height: 600,
-            width: 1600
+            width: 1600,
+            extraPlugins: 'embed,autoembed,image2',
+            contentsCss: [
+                'http://cdn.ckeditor.com/4.14.0/full-all/contents.css',
+                'https://ckeditor.com/docs/vendors/4.14.0/ckeditor/assets/css/widgetstyles.css'
+            ],
+            embed_provider: '//ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}',
+            image2_alignClasses: ['image-align-left', 'image-align-center', 'image-align-right'],
+            image2_disableResizer: true
         };
+
         const editor = CKEDITOR.replace('area', config);
+
+        let editors = []
+        const actLength = parseInt($('#actLength').val())
+        for (let i=0; i<actLength; i++) {
+            const wd = $(window).width * 0.8
+            config['width'] = wd
+            config['height'] = 300
+            let id = `body${i}`
+            editors[0] = CKEDITOR.replace(id, config)
+        }
 
         let pane = false
         $('#pane-btn').click((e) => {
@@ -151,10 +200,25 @@
             const title = $('#titleInput').val()
             const thumbnail = $('#thumbnail').val()
             const tagString = $('#tags').val()
+            const category = $('#category').val()
             const body = CKEDITOR.instances.area.getData()
             const tags = tagString.split(',')
-            const id = $('#id').val()
             let error = false
+
+            let activities = []
+            let titleArr = $('.title input')
+            for (let i=0; i<titleArr.length; i++) {
+                const id = `body${i}`
+                const body = CKEDITOR.instances[id].getData()
+                const title = $(titleArr[i]).val()
+                const activity = {
+                    title,
+                    body
+                }
+                activities.push(activity)
+            }
+
+            console.log(activities)
 
             if (check(title)) {
                 error = true
@@ -165,15 +229,22 @@
             } else if (check(tagString)) {
                 error = true
                 showAlert('Enter atleast one tag')
+            } else if (category == 'Select Category') {
+                error = true
+                showAlert('Select the category of this material')
             } else if (check(body)) {
                 error = true
                 showAlert('Can not publish with an empty body')
             } else {
+                $('#alert').hide()
+                const id = $('#id').val()
                 const data = {
-                    id,
+                    id, 
                     title,
                     thumbnail,
                     tags: JSON.stringify(tags),
+                    activities: JSON.stringify(activities),
+                    category,
                     body
                 }
                 console.log(data)
@@ -184,8 +255,8 @@
                     data,
                     success: (data) => {
                         $('#alert-success').show()
-                        $('#alert-success').html('Your post has been updated')
-                        location = '/users/single-material/' + data.id
+                        $('#alert-success').html('Your material has been published')
+                        location = `/users/single-material/${id}`
                     }
                 })
             }
@@ -199,6 +270,30 @@
                 x.className = x.className.replace("show", "");
             }, 3000);
         }
+    </script>
+
+    <script>
+        $('#category').val($('#post-category').val())
+        let ckID = 1
+        $('.add-btn').click((e) => {
+            ckID++
+            const node = `
+                <div class="each-activity">
+                    <div class="title">
+                        <input type="text">
+                        <button class="remove-btn">Remove</button>
+                    </div>
+                    <div class="body">
+                        <textarea name="" id="body${ckID}" cols="30" rows="10"></textarea>
+                    </div>
+                </div>`
+            $('.add-here').append(node)
+                const newid = `body${ckID}`
+                editors[ckID] = CKEDITOR.replace(newid, config )
+        })
+        $(document).on('click', '.remove-btn', e => {
+            $(e.target.parentElement.parentElement).remove()
+        })
     </script>
 
 </body>
