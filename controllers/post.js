@@ -93,6 +93,28 @@ exports.addDiaryRecord = async (req, res) => {
     })
 }
 
+exports.addDiaryRecordAndroid = async (req, res) => {
+    const { user_id } = req.body
+    console.log(req.body)
+    delete req.body.user_id
+    const diary = await diaryModel.findOne({ owner_id: user_id })
+    const record = {
+        ...req.body,
+        displayDate: getDate()
+    }    
+    const records = diary.records
+    records.push(record)
+    await diaryModel.findOneAndUpdate({ owner_id: user_id }, {
+        $set: {
+            records: records
+        }
+    })
+    res.send({
+        msg: 'Record saved',
+        status: true
+    })
+}   
+    
 exports.deleteRecord = async (req, res) => {
     console.log(req.params.id)
     await diaryModel.update({ owner_id: req.user._id }, {
@@ -101,6 +123,19 @@ exports.deleteRecord = async (req, res) => {
         }
     })
     res.redirect('back')
+}
+
+exports.deleteRecordAndroid = async (req, res) => {
+    console.log(req.params.id)
+    await diaryModel.update({ owner_id: req.params.user_id }, {
+        $pull: {
+            records: { _id: req.params.id}
+        }
+    })
+    res.send({
+        status: true,
+        msg: 'Record deleted'
+    })
 }
 
 module.exports.getUpdateProfile = async(req, res) => {
