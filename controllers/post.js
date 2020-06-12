@@ -71,6 +71,15 @@ module.exports.profile = async(req, res) => {
     }
 }
 
+exports.getDiaryRecords = async (req, res) => {
+    const user_id = req.params.id
+    const diary = await diaryModel.findOne({ owner_id: user_id })
+    diary.records.sort((a, b) => {
+        return b.date - a.date
+    })
+    res.send(diary)        
+}
+
 const { diaryModel } = require('../models/diary.js')
 exports.addDiaryRecord = async (req, res) => {
     if (req.user) {

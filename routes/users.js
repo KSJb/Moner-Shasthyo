@@ -28,6 +28,7 @@ router.post('/profile/add-record', controller.addDiaryRecord)
 router.get('/profile/delete-record/:id', controller.deleteRecord)
 router.get('/profile/delete-record/android/:id/:user_id', controller.deleteRecordAndroid)
 router.post('/profile/add-record/android', controller.addDiaryRecordAndroid)
+router.get('/profile/get-diary/:id', controller.getDiaryRecords)
 
 // Material
 router.get('/materials', controller.allMaterials)
