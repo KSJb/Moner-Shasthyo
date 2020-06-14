@@ -312,6 +312,12 @@ body {
   border-radius: 5px;
 }
 
+@media (max-width: 650px) {
+  .pageWrapper .contentWrapper .all-info .each-info .record-space .header input {
+    padding: 0;
+  }
+}
+
 .pageWrapper .contentWrapper .all-info .each-info .record-space .header button {
   background-color: #333;
   color: #fff;
@@ -319,6 +325,13 @@ body {
   border-radius: 5px;
   font-size: 15px;
   padding: 10px;
+}
+
+@media (max-width: 650px) {
+  .pageWrapper .contentWrapper .all-info .each-info .record-space .header button {
+    padding: 5px;
+    font-size: 12px;
+  }
 }
 
 .pageWrapper .contentWrapper .all-info .each-info .record-space .each-record {
@@ -340,6 +353,12 @@ body {
   cursor: pointer;
 }
 
+@media (max-width: 650px) {
+  .pageWrapper .contentWrapper .all-info .each-info .record-space .each-record span {
+    display: none;
+  }
+}
+
 .pageWrapper .contentWrapper .all-info .each-info .record-space .each-record .record {
   width: 90%;
   margin-left: 2%;
@@ -347,6 +366,15 @@ body {
   background-color: #eee;
   padding: 15px;
   border-radius: 10px;
+}
+
+@media (max-width: 650px) {
+  .pageWrapper .contentWrapper .all-info .each-info .record-space .each-record .record {
+    margin: auto;
+  }
+  .pageWrapper .contentWrapper .all-info .each-info .record-space .each-record .record h5 {
+    font-size: 16.5px;
+  }
 }
 
 .pageWrapper .contentWrapper .all-info .each-info .record-space .each-record .record p {
@@ -360,6 +388,12 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+@media (max-width: 650px) {
+  .pageWrapper .contentWrapper .all-info .each-info .record-space .each-record .record .last-row {
+    font-size: 12px;
+  }
 }
 
 .pageWrapper .contentWrapper .all-info .each-info .record-space .each-record .record .last-row i {

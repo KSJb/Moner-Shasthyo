@@ -15,10 +15,22 @@ Port of Halsaki | Halsaki, Echamia, Illiya
   padding-bottom: 50px;
 }
 
+@media (max-width: 600px) {
+  .mood-box {
+    width: 90%;
+  }
+}
+
 .mood-box p {
   text-align: center;
   font-family: 'Mukta', sans-serif;
   font-size: 25px;
+}
+
+@media (max-width: 600px) {
+  .mood-box p {
+    font-size: 18px;
+  }
 }
 
 .mood-box button {
@@ -206,6 +218,7 @@ Port of Halsaki | Halsaki, Echamia, Illiya
 
 .contentWrapper .pageContent .left .post .subtitle .left .image {
   width: 7%;
+  cursor: pointer;
 }
 
 @media (max-width: 650px) {

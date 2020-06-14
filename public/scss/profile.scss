@@ -207,6 +207,9 @@ body {
                             width: 70%;
                             border: 1px solid #ddd;
                             border-radius: 5px;
+                            @media (max-width: 650px) {
+                                padding: 0;
+                            }
                         }
                         button {
                             background-color: #333;
@@ -215,6 +218,10 @@ body {
                             border-radius: 5px;
                             font-size: 15px;
                             padding: 10px;
+                            @media (max-width: 650px) {
+                                padding: 5px;
+                                font-size: 12px;
+                            }
                         }
                     }
                     .each-record {
@@ -231,6 +238,9 @@ body {
                             padding: 0 12px;
                             height: 50px;
                             cursor: pointer;
+                            @media (max-width: 650px) {
+                                display: none;
+                            }
                         }
                         .record {
                             width: 90%;
@@ -239,12 +249,21 @@ body {
                             background-color: #eee;
                             padding: 15px;
                             border-radius: 10px; 
+                            @media (max-width: 650px) {
+                                margin: auto;
+                                h5 {
+                                    font-size: 16.5px;
+                                }
+                            }
                             p {
                                 color: #666;
                             }
                             .last-row {
                                 display: flex;
                                 justify-content: space-between;
+                                @media (max-width: 650px) {
+                                    font-size: 12px;
+                                }
                                 i {
                                     cursor: pointer;
                                 }
