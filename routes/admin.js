@@ -17,6 +17,7 @@ router.get('/get-question/:id', controller.getQuestion)
 router.get('/edit-test/:id', controller.getEditTest)
 router.post('/edit-test', controller.postEditTest)
 router.post('/test/new', controller.addTestToProfile)
+router.get('/tests/getScores/:id', controller.getTestScores)
 
 // materials
 router.get('/create-material', (req, res) => {

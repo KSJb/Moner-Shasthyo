@@ -449,6 +449,46 @@ exports.addMaterialToProfile = async(req, res) => {
     }
 }
 
+function groupBy(collection, property) {
+    var i = 0, val, index,
+        values = [], result = [];
+    for (; i < collection.length; i++) {
+        val = collection[i][property];
+        index = values.indexOf(val);
+        if (index > -1)
+            result[index].push(collection[i]);
+        else {
+            values.push(val);
+            result.push([collection[i]]);
+        }
+    }
+    return result;
+}
+
+exports.getMaterialScores = async (req, res) => {
+    const { id } = req.params
+    let d = new Date()
+    d = d.setDate(d.getDate() - 7)
+    console.log(new Date(d))
+    const user = await gUser.findOne({ _id: id })
+    const mat = user.materialsRead
+    const gMat = groupBy(mat, 'date')
+    let scores = []
+    for (let i=0; i<gMat.length; i++) {
+        let sum = 0
+        for (let j=0; j<gMat[i].length; j++) {
+            sum += parseInt(gMat[i][j].score)
+        }
+        const avg = sum/gMat[i].length
+        scores.push(avg)
+    }
+    console.log(scores)
+    res.send({
+        status: true,
+        scores
+    })
+}
+
 module.exports.get_notifs = (req, res) => {
     if (!req.isAuthenticated()) {
         req.flash('login_prompt', 'log in');

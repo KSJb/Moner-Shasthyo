@@ -126,6 +126,46 @@ exports.addTestToProfile = async(req, res) => {
 
 }
 
+function groupBy(collection, property) {
+    var i = 0, val, index,
+        values = [], result = [];
+    for (; i < collection.length; i++) {
+        val = collection[i][property];
+        index = values.indexOf(val);
+        if (index > -1)
+            result[index].push(collection[i]);
+        else {
+            values.push(val);
+            result.push([collection[i]]);
+        }
+    }
+    return result;
+}
+
+exports.getTestScores = async (req, res) => {
+    const { id } = req.params
+    let d = new Date()
+    d = d.setDate(d.getDate() - 7)
+    console.log(new Date(d))
+    const user = await gUser.findOne({ _id: id })
+    const mat = user.testsTaken
+    const gMat = groupBy(mat, 'date')
+    let scores = []
+    for (let i=0; i<gMat.length; i++) {
+        let sum = 0
+        for (let j=0; j<gMat[i].length; j++) {
+            sum += parseInt(gMat[i][j].score)
+        }
+        const avg = sum/gMat[i].length
+        scores.push(avg)
+    }
+    console.log(scores)
+    res.send({
+        status: true,
+        scores
+    })
+}
+
 exports.searchTests = async(req, res) => {
     // const  } = req.query.search
     console.log(req.query)
