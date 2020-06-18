@@ -71,8 +71,10 @@
                     </div>
                 </div>
             </div>
+            
             <div class="aboutWrapper">
                 <div class="specifier">About this test</div>
+                
                 <p>
                     <%= data.about %>
                 </p>
@@ -151,6 +153,8 @@
 
             </div>
             <div class="compute-btn">
+                <div class="alert alert-danger" style="display: none;"></div>
+
                 <p>The test is complete. Click here to view results.</p>
             </div>
             <div class="related">
@@ -260,9 +264,18 @@
                     url: '/app-admin/test/new',
                     data: test,
                     success: data => {
-                        $('#result-modal').modal('show')
-                        $('.number').html(result.score)
-                        $('.compute-btn p').html('Computed')
+                        if (data.status) {
+                            console.log('posted')
+                            $('#result-modal').modal('show')
+                            $('.number').html(result.score)
+                            $('.compute-btn p').html('Computed')
+                        } else {
+                            $('.alert-danger').show()
+                            $('.alert-danger').html(`<p>${data.msg}</p>`)
+                            $('html, body').animate({
+                                scrollTop: 0
+                            }, 'slow')
+                        }
                     }
                 })
             }
@@ -305,7 +318,7 @@
         })
     }
     $('.edit').click((e) => {
-        location = '/admin/edit-test/' + e.target.id
+        location = '/app-admin/edit-test/' + e.target.id
     })
 </script>
 

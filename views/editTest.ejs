@@ -10,7 +10,7 @@
 <body>
     <section class="adminTest" style="min-height: 100vh; background: #fff;">
 
-        <input type="hidden" value="<%= data._id %>" id="id">
+        <input type="hidden" value="<%= data._id.toString() %>" id="id">
         <div class="BigSectionFlex">
             <div class="testAdd">
                 <div class="container">
@@ -33,7 +33,7 @@
                                 <div class="flx-prnt">
                                     <div class="flx-chld">
                                         <div class="form-selectpicker">
-                                            <select class="selectpicker" data-width="100%" title="Age range" name="age" id="ageRangeInput" data-size="6">
+                                            <select class="" data-width="100%" title="Age range" name="age" id="ageRangeInput" data-size="6">
                           <option value="For Children">For Children</option>
                           <option value="For Adults">For Adults</option>
                           <option value="For Old People">For Old People</option>
@@ -74,40 +74,42 @@
                                                     </div>
                                                 </div>
                                                 <div class="typeSelect">
-                                                    <select name="" id="" style="width: 20%; margin-left: 3%;" class="selectpicker">
-                                                  <option value="select">Select Response</option>
-                                                  <option value="ranger">Ranger</option>
-                                                  <option value="radio">Radio Buttons</option>
-                                                </select>
+                                                    <select name="" id="" style="width: 20%; margin-left: 3%;" class="input-select">
+                                                        <option value="select">Select Response</option>
+                                                        <option value="ranger">Ranger</option>
+                                                        <option value="radio">Radio Buttons</option>
+                                                    </select>
                                                 </div>
-                                                <div class="rangerInfo" style="display: none;">
-                                                    <div class="minmax">
-                                                        <input type="text" value="<%= data.questionSet[i].ranger.min %>" placeholder="Mininum score" id="min">
+                                                    <div class="rangerInfo" style="display: none;" >
+                                                        <div class="minmax">
+                                                            <input type="text" value="<%= data.questionSet[i].ranger.min %>" placeholder="Mininum score" id="min">
+                                                        </div>
+                                                        <div class="minmax">
+                                                            <input type="text" value="<%= data.questionSet[i].ranger.max %>" placeholder="Maximum score" id="max">
+                                                        </div>
                                                     </div>
-                                                    <div class="minmax">
-                                                        <input type="text" value="<%= data.questionSet[i].ranger.max %>" placeholder="Maximum score" id="max">
-                                                    </div>
-                                                </div>
-                                                <div class="optionInfo" style="display: none;">
-                                                    <div class="allOptions">
-                                                        <% for (let j=0; j<data.questionSet[i].Options.length; j++) { %>
-                                                            <div class="eachOptions flx-prnt pl-5 pt-1">
-                                                                <div class="flx-chld inp_o_box">
-                                                                    <input type="text" class="form-control" id="option" value="<%= data.questionSet[i].Options[j].option %>" placeholder="Write option here.." />
+                                                    <div class="optionInfo" style="display: none;" >
+                                                        <div class="allOptions">
+                                                            <% for (let j=0; j<data.questionSet[i].Options.length; j++) { %>
+                                                                <div class="eachOptions flx-prnt pl-5 pt-1">
+                                                                    <div class="flx-chld inp_o_box">
+                                                                        <input type="text" class="form-control" id="option" value="<%= data.questionSet[i].Options[j].option %>" placeholder="Write option here.." />
+                                                                    </div>
+                                                                    <div class="flx-chld inp_sc_box inp_sco_box">
+                                                                        <input type="text" class="form-control" id="optionScale" value="<%= data.questionSet[i].Options[j].scale %>" placeholder="Scale (By Default 1)" />
+                                                                    </div>
+                                                                    <div class="flx-chld inp_btn">
+                                                                        <input type="button" value="Delete" class="btn btn-dark deleteBtn optionDelete" />
+                                                                    </div>
                                                                 </div>
-                                                                <div class="flx-chld inp_sc_box inp_sco_box">
-                                                                    <input type="text" class="form-control" id="optionScale" value="<%= data.questionSet[i].Options[j].scale %>" placeholder="Scale (By Default 1)" />
-                                                                </div>
-                                                                <div class="flx-chld inp_btn">
-                                                                    <input type="button" value="Delete" class="btn btn-dark deleteBtn optionDelete" />
-                                                                </div>
-                                                            </div>
-                                                            <% } %>
+                                                                <% } %>
+                                                        </div>
+                                                        <div class="addoption ml-1 pl-5 pt-2 py-2">
+                                                            <input type="button" value="Add option" class="addBtn addOptions" />
+                                                        </div>
                                                     </div>
-                                                    <div class="addoption ml-1 pl-5 pt-2 py-2">
-                                                        <input type="button" value="Add option" class="addBtn addOptions" />
-                                                    </div>
-                                                </div>
+                                                
+                                                
                                             </div>
                                             <% } %>
                                     </div>
@@ -171,7 +173,7 @@
             </div>
           </div>
           <div class="typeSelect">
-                                                <select name="" id="" style="width: 20%; margin-left: 3%;" class="selectpicker">
+                                                <select name="" id="" style="width: 20%; margin-left: 3%;" class="input-select">
                                                   <option value="select">Select Response</option>
                                                   <option value="ranger">Ranger</option>
                                                   <option value="radio">Radio Buttons</option>
@@ -281,6 +283,16 @@
 </script>
 
 <script>
+    // const id = $('#id').val()
+    // $.get(`/app-admin/get-question/${id}`, data => {
+    //     $('#ageRangeInput').val(data.ageRange)
+    //     $('#category').val(data.category)
+    //     const selects = $('.input-select')
+    //     for (let i=0; i<data.questionSet.length; i++) {
+    //         console.log(data.questionSet[i].inputType)
+    //         $(selects[i]).val(data.questionSet[i].inputType)
+    //     }
+    // })
     const check = (str) => {
         const res = str == '' || str == null || str == undefined;
         return res;
@@ -295,13 +307,14 @@
         );
     };
     const Submit = (data) => {
+        const id = $('#id').val()
         $.ajax({
             type: 'POST',
-            url: '/admin/edit-test',
+            url: '/app-admin/edit-test',
             data,
             success: (response) => {
                 if (response.status) {
-                    location = `/admin/single-test`;
+                    location = `/app-admin/single-test/${id}`;
                 } else {
                     showAlert(response.msg);
                 }
@@ -406,7 +419,7 @@
 </script>
 
 <script>
-    $(document).on('change', '.typeSelect select', (e) => {
+    $(document).on('change', '.input-select', (e) => {
         const choice = $(e.target).val()
         console.log(choice)
         if (choice == 'ranger') {
@@ -424,12 +437,13 @@
     const questions = $('.eachQuestions')
     $.ajax({
         type: 'GET',
-        url: '/admin/get-question/' + id,
+        url: '/app-admin/get-question/' + id,
         success: data => {
             $('#ageRangeInput').val(data.ageRange)
             $('#category').val(data.category)
             for (let i = 0; i < data.questionSet.length; i++) {
                 const inp = data.questionSet[i].inputType
+                console.log(inp)
                 $(questions[i]).find('select').val(inp)
                 if (inp == 'radio') {
                     $(questions[i]).find('.optionInfo').show()

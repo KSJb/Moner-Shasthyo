@@ -19,7 +19,7 @@ var eUser = mongoose.Schema({
         default: 'expert'
     },
     isVerified: {
-        type: String,
+        type: Boolean,
         default: false
     },
     residence: {

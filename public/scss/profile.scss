@@ -6,7 +6,9 @@ body {
 .pageWrapper {
     width: 100%;
     input[type="text"] {
-        border: none;
+        border: 1px solid #ddd;
+        padding: 3px;
+        border-radius: 2px;
     }
     input:focus {
         outline: none;
@@ -311,3 +313,4 @@ body {
         }
     }
 }
+

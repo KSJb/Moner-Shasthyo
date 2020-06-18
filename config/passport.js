@@ -43,13 +43,18 @@ module.exports = function(passport) {
                 const euser = await eUser.findOne({ email: req.body.email })
                 if (euser) {
                     const ematch = await bcrypt.compare(req.body.password, euser.password)
-
-                    if (ematch) {
-                        return done(null, euser)
-                    } else {
+                    console.log(euser.isVerified)
+                    if (!ematch ) {
                         req.flash('errorMessage', 'Incorrect password')
                         req.session.loginMsg = 'Incorrect password'
                         return done(null, false)
+                    } else if (!euser.isVerified) {
+                        console.log('here')
+                        req.flash('errorMessage', 'Your request is under consideration')
+                        req.session.loginMsg = 'Incorrect password'
+                        return done(null, false)
+                    } else {
+                        return done(null, euser)
                     }
                 } else {
                     req.flash('errorMessage', 'Email not found')

@@ -1255,3 +1255,12 @@ p {
     border-color: #d82912;
     font-weight: 500;
 }
+
+select {
+    width: 100%;
+    padding: 5px 0;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}

@@ -4,7 +4,7 @@ const testModel = require('../models/test.js')
 const material = require('../models/material.js')
 
 module.exports.getUsers = async(req, res) => {
-    const data = await eUser.find()
+    const data = await eUser.find({ isVerified: false })
     res.render('admin-dashboard', {
         data,
         user: req.user
@@ -120,6 +120,11 @@ exports.addTestToProfile = async(req, res) => {
                     status: true,
                     msg: 'Test appended'
                 })
+            } else {
+                res.send({
+                    status: false,
+                    msg: 'This feature is only available to general users'
+                })
             }
         }
     }
@@ -173,6 +178,7 @@ exports.searchTests = async(req, res) => {
 }
 
 exports.getQuestion = async(req, res) => {
+    console.log(req.params.id)
     const question = await testModel.findOne({ _id: req.params.id })
     res.send(question)
 }

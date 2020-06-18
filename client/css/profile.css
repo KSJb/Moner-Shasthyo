@@ -8,7 +8,9 @@ body {
 }
 
 .pageWrapper input[type="text"] {
-  border: none;
+  border: 1px solid #ddd;
+  padding: 3px;
+  border-radius: 2px;
 }
 
 .pageWrapper input:focus {

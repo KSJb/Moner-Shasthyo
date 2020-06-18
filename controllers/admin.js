@@ -39,7 +39,7 @@ const onSuccess = (user, device) => {
 module.exports.post_login = (req, res, next) => {
         console.log(req.body)
         passport.authenticate('local', {
-            successRedirect: '/',
+            successRedirect: '/app-admin/dashboard',
             failureRedirect: '/admin/login',
             failureFlash: true
         })(req, res, next);

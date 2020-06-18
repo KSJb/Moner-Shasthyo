@@ -444,6 +444,7 @@ exports.addMaterialToProfile = async(req, res) => {
             res.redirect('/users/profile')
 
         } else {
+            req.flash('errorMessage', 'This feature is available only to the general users')
             res.redirect('back')
         }
     }

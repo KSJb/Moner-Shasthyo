@@ -16,8 +16,13 @@
 
 <body>
     <div class="contentWrapper">
+
         <div class="mood-box">
             <div class="heading">
+                <% if (errorMessage.length != 0) { %>
+                    <div class="alert alert-danger"><%= errorMessage %></div>
+                <% } %>
+
                 <p>On a scale of 1 to 100, how is your mood right now?</p>
             </div>
             <div class="slide-container">
@@ -27,8 +32,8 @@
             </div>
         </div>
         <div class="pageContent">
-
             <div class="left">
+
                 <div class="post">
                     <div class="title">
                         <%= posts.title %>
@@ -181,7 +186,7 @@
     })
 
     $('#finish-btn').click(e => {
-        const score = $('#slider-btm').val() - $('#slider-top').val()
+        const score = $('#slider-top').val() - $('#slider-btm').val()
         const id = $('#id').val()
         const name = $('#name').val()
         const data = {
@@ -189,7 +194,7 @@
             id,
             name
         }
-        location = `/users/add/material/?score=${score}&id=${id}&name=${name}&user_id=5ebf8d5629b48518b331c623&device=android`
+        location = `/users/add/material/?score=${score}&id=${id}&name=${name}&user_id=5ebf8d5629b48518b331c623&device=web`
     })
 </script>
 
