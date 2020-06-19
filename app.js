@@ -30,7 +30,7 @@ mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true}, (er
 /*
 CoronaApp mongo string : mongodb+srv://saf:home761049@cluster0-ov3aj.mongodb.net/test?retryWrites=true&w=majority
 */
-mongoose.connect('mongodb+srv://saf:home761049@cluster0-ov3aj.mongodb.net/corona?retryWrites=true&w=majority', { useNewUrlParser: true },
+mongoose.connect('mongodb+srv://saf:home761049@cluster0-ov3aj.mongodb.net/Corona?retryWrites=true&w=majority', { useNewUrlParser: true },
     () => console.log("atlas db connected")
 );
 
