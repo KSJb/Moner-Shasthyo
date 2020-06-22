@@ -344,8 +344,10 @@ exports.allMaterials = async(req, res) => {
             msg: 'okke'
         })
     }
+    const related = await material.find().sort({ _id: -1 })
     res.render('all-materials', {
-        data
+        data,
+        related
     })
 }
 

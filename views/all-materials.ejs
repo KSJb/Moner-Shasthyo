@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/allTests.css">
-    <title>All Tests</title>
+    <title>Lockdown Materials</title>
 </head>
 
 <body>
@@ -70,7 +70,7 @@
                                                 </div>
                                                 <div class="additional-info">
                                                     <span style="font-weight: bolder;">Admin</span>
-                                                    <span>12 Questions - 8 Minutes</span>
+                                                    <span><%= data[i].activities.length %> Activities</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                                     </div>
                                                     <div class="additional-info">
                                                         <span>Admin</span>
-                                                        <span>12 Questions - 8 Minutes</span>
+                                                        <span><%= data[i].activities.length %> Activities</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,14 +110,14 @@
                                             <% for (let i=0; i<3; i++) { %>
                                                 <div class="each-posts">
                                                     <div class="image">
-                                                        <img src="https://i.kinja-img.com/gawker-media/image/upload/c_scale,f_auto,fl_progressive,q_80,w_1600/xkvwp2fslqasirabshfm.jpg" alt="">
+                                                        <img src="<%= related[i].thumbnail %>" alt="">
                                                     </div>
                                                     <div class="texts">
-                                                        <div class="category">Category</div>
-                                                        <div class="title"><a href="/app-admin/single-test">A rather short title</a></div>
+                                                        <div class="category"><%= related[i].category %></div>
+                                                        <div class="title"><a href="/users/single-material/<%= data[i]._id%>"><%= related[i].title %></a></div>
                                                         <div class="additional-info">
                                                             <span>Admin</span>
-                                                            <span>12 Questions - 8 Minutes</span>
+                                                            <span><%= data[i].activities.length %> Activities</span>
                                                         </div>
                                                     </div>
                                                 </div>

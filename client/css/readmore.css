@@ -171,6 +171,7 @@ Port of Halsaki | Halsaki, Echamia, Illiya
 }
 
 .contentWrapper .pageContent .left .post .tags a {
+  white-space: nowrap;
   color: #000;
   background-color: #ddd;
   padding: 5px 10px;
