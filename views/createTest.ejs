@@ -59,19 +59,20 @@
                                 <h5 class="Ques_heading">Questions</h5>
 
                                 <div class="allQuestionsWrapper">
-                                    <div class="allQuestions">
+                                    <div class="allQuestions" id="allQuestions">
                                         <div class="eachQuestions">
                                             <div class="quesInfo">
                                                 <div class="flx-prnt">
                                                     <span class="fa fa-arrow-right"></span>
                                                     <div class="flx-chld inp_q_box">
-                                                        <input type="text" class="form-control" id="question" placeholder="Write question here.." />
+                                                        <input type="text" class="form-control question" id="question" placeholder="Write question here.." />
                                                     </div>
                                                     <div class="flx-chld inp_sc_box">
-                                                        <input type="text" class="form-control" id="questionScale" placeholder="Scale (By Default 1)" />
+                                                        <input type="text" class="form-control qScale" id="questionScale" placeholder="Scale (By Default 1)" />
                                                     </div>
                                                     <div class="flx-chld inp_btn">
-                                                        <input type="button" value="Delete" class="btn btn-dark deleteBtn QuestionDelete" />
+                                                        <button class="btn btn-dark deleteBtn QuestionDelete"> <i class="fa fa-trash"></i> </button>
+                                                        <button class="btn btn-dark deleteBtn QuestionClone"> <i class="fa fa-clone"></i> </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,10 +85,10 @@
                                             </div>
                                             <div class="rangerInfo" style="display: none;">
                                                 <div class="minmax">
-                                                    <input type="text" placeholder="Mininum score" id="min">
+                                                    <input type="text" placeholder="Mininum score" class="min" id="min">
                                                 </div>
                                                 <div class="minmax">
-                                                    <input type="text" placeholder="Maximum score" id="max">
+                                                    <input type="text" placeholder="Maximum score" class="max" id="max">
                                                 </div>
                                             </div>
                                             <div class="optionInfo" style="display: none;">
@@ -149,6 +150,7 @@
                   type="text"
                   class="form-control"
                   id="question"
+                  class="question"
                   placeholder="Write question here.."
                 />
               </div>
@@ -157,15 +159,13 @@
                   type="text"
                   class="form-control"
                   id="questionScale"
+                  class="qScale"
                   placeholder="Scale (By Default 1)"
                 />
               </div>
               <div class="flx-chld inp_btn">
-                <input
-                  type="button"
-                  value="Delete"
-                  class="btn btn-dark deleteBtn QuestionDelete"
-                />
+                <button class="btn btn-dark deleteBtn QuestionDelete"> <i class="fa fa-trash"></i> </button>
+                                                        <button class="btn btn-dark deleteBtn QuestionClone"> <i class="fa fa-clone"></i> </button>
               </div>
             </div>
           </div>
@@ -178,10 +178,10 @@
                                             </div>
                                             <div class="rangerInfo" style="display: none;">
                                                 <div class="minmax">
-                                                    <input type="text" placeholder="Mininum score" id="min">
+                                                    <input type="text" placeholder="Mininum score" class="min" id="min">
                                                 </div>
                                                 <div class="minmax">
-                                                    <input type="text" placeholder="Maximum score" id="max">
+                                                    <input type="text" placeholder="Maximum score" class="max" id="max">
                                                 </div>
                                             </div>
           <div class="optionInfo" style="display: none;">
@@ -266,6 +266,7 @@
         }
     });
     $(document).on('click', '.QuestionDelete', (e) => {
+        e.preventDefault()
         let fld = e.target;
         while (true) {
             let val = $(fld)[0].className;
@@ -307,6 +308,15 @@
             },
         });
     };
+    let counter = 0
+    $(document).on('click', '.QuestionClone', (e) => {
+        e.preventDefault()
+        counter++
+        const node = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.cloneNode(true)
+        // $(node).attr('class', '.eachQuestions' + counter.toString())
+        document.getElementById('allQuestions').appendChild(node)
+        console.log(node)
+    })
 
     $(document).on('click', '#submit-btn', (e) => {
         e.preventDefault();

@@ -1264,3 +1264,10 @@ select {
     background-color: #fff;
     cursor: pointer;
 }
+
+.inp_btn {
+    display: flex;
+}
+.inp_btn button {
+    margin-left: 2px;
+}
