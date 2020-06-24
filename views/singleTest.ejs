@@ -162,17 +162,17 @@
                     <p>You might also take</p>
                 </div>
                 <div class="card-space">
-                    <% for (let i=0; i<3; i++) { %>
+                    <% for (let i=0; i<related.length; i++) { %>
                         <div class="card">
                             <div class="image">
-                                <img src="https://g6.psychcentral.com/quizzes/wp-content/uploads/2017/11/psychological-quizzes.jpg" alt="">
+                                <img src="<%= related[i].thumbnail %>" alt="">
                             </div>
                             <div class="texts">
                                 <div class="title">
-                                    <p>Insomnia</p>
+                                    <p><%= related[i].title %></p>
                                 </div>
                                 <div class="category">
-                                    <p>Sleep Disorders</p>
+                                    <p><%= related[i].category %></p>
                                 </div>
                             </div>
                         </div>

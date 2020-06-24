@@ -78,9 +78,11 @@ exports.singleTest = async(req, res) => {
         res.redirect('back')
     }
     const data = await testModel.findById(req.params.id)
+    const related = await testModel.find().limit(3).sort({ _id: -1 })
     res.render('singleTest', {
         user: req.user,
-        data
+        data,
+        related
     })
 }
 

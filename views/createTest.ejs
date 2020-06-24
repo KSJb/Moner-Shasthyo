@@ -308,14 +308,10 @@
             },
         });
     };
-    let counter = 0
     $(document).on('click', '.QuestionClone', (e) => {
         e.preventDefault()
-        counter++
         const node = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.cloneNode(true)
-        // $(node).attr('class', '.eachQuestions' + counter.toString())
         document.getElementById('allQuestions').appendChild(node)
-        console.log(node)
     })
 
     $(document).on('click', '#submit-btn', (e) => {
