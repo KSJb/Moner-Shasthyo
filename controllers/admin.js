@@ -27,7 +27,7 @@ module.exports.get_login = (req, res) => {
 const onSuccess = (user, device) => {
     console.log(user)
     if (device == 'android') {
-        return '/admin/app-login'
+        return '/'
     } else {
         if (user) {
             return '/'
