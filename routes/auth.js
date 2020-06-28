@@ -39,10 +39,7 @@ router.get('/register/general', (req, res) => {
     res.render('register_gen')
 });
 router.get('/register/expert', (req, res) => {
-    const country = require('../data/country.js')
-    res.render('register_exp', {
-        country
-    })
+    res.render('register_exp')
 });
 router.post('/register/expert', controller.postRegExp);
 router.post('/register/general', controller.postRegGen)

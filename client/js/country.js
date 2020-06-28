@@ -1,4 +1,4 @@
-module.exports = [
+const countryArray = [
   {
     country: 'Afghanistan',
     states: [

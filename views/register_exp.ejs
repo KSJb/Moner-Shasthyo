@@ -44,18 +44,11 @@
             </div>
             <div class="label">Residence</div>
             <div class="side-by-side">
-                <select name="" id="city">
-                    <option value="Dhaka">Dhaka</option>
-                    <option value="Chittagong">Chittagong</option>
-                    <option value="Sylhet">Sylhet</option>
-                    <option value="Khulna">Khulna</option>
-                    <option value="Rajshahi">Rajshahi</option>
-                    <option value="Barisal">Barisal</option>
-                    <option value="Rangpur">Rangpur</option>
-                    <option value="Mymensingh">Mymensingh</option>
-                </select>
                 <select name="" id="country">
-                        <option value="Bangladesh">Bangladesh</option>
+                    <option value="" disabled>Select country</option>
+                </select>
+
+                <select name="" id="city">
                 </select>
             </div>
             <p>Professional</p>
@@ -115,11 +108,13 @@
         const password = $('#password').val()
         const cpass = $('#cpass').val()
         const city = $('#city').val()
-        const country = $('#country').val()
+        // const country = $('#country').val()
         const license = $('#license').val()
         const hDegree = $('#hDegree').val()
         const institute = $('#institute').val()
         const field = $('#field').val()
+
+        console.log(city, selectedCountry)
 
         if (check(name)) {
             showAlert('Enter your name')
@@ -155,7 +150,7 @@
                 designation,
                 password,
                 city,
-                country,
+                country: selectedCountry,
                 license,
                 hDegree,
                 institute,
@@ -179,5 +174,25 @@
         }
     })
 </script>
+<script src="/js/country.js"></script>
+<script>
+    let selectedCountry;
+    const country = countryArray.map((x) => x.country);
+    for (let i = 0; i < country.length; i++) {
+      $('#country').append(`<option value="${i}">${country[i]}</option>`);
+    }
+    const citySelector = $('#city');
+    $(document).on('change', '#country', (e) => {
+      const selectedIndex = e.target.value;
+      selectedCountry = countryArray[selectedIndex].country
+      citySelector.empty();
+      for (let i = 0; i < countryArray[selectedIndex].states.length; i++) {
+        const city = countryArray[selectedIndex].states[i];
+        citySelector.append(
+          `<option value="${city}">${city}</option>`
+        );
+      }
+    });
+  </script>
 
 </html>
