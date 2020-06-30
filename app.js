@@ -6,11 +6,12 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
 const flash = require('express-flash');
+const cors = require('cors')
 const app = express();
 
 // app.use(express.static('public'));
 app.use(express.static('client'));
-
+app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
@@ -72,7 +73,7 @@ app.use("/users", usersRoutes); // Inside Homepage
 const homeRoutes = require('./routes/index')
 app.use("/", usersRoutes); // Get the start page
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, function() {
     console.log('Listening to ', PORT);
 });

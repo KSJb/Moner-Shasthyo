@@ -22,6 +22,7 @@
         "ckeditor": "^4.12.1",
         "connect-flash": "^0.1.1",
         "cookie-parser": "^1.4.4",
+        "cors": "^2.8.5",
         "ejs": "^2.6.2",
         "express": "^4.17.1",
         "express-ejs-layouts": "^2.5.0",
