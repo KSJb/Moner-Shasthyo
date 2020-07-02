@@ -103,7 +103,7 @@
     })
     $('#connect-with-experts').click((e) => {
         if (auth) {
-            location = `http://localhost:3000/services/emergencyAppointment?name=${auth.name}&age=${auth.age}&email=${auth.email}&phone=${auth.phoneNumber}`
+            location = `http://trin-innovation.com/services/emergencyAppointment?name=${auth.name}&age=${auth.age}&email=${auth.email}&phone=${auth.phoneNumber}`
         } else {
             M.toast({
                 html: 'Please log in to connect with the experts'

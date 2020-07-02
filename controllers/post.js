@@ -331,8 +331,10 @@ exports.allMaterials = async(req, res) => {
                 msg: 'okke'
             })
         } else {
-            return res.render('materialSearchResults', {
-                data
+            const related = await material.find().sort({ _id: -1 })
+            res.render('materialSearchResults', {
+                data,
+                related
             })
         }
     }
