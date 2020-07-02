@@ -1,39 +1,122 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+
+#reg-btn {
+    margin-top: 30px;
+    padding: 15px 25px;
+    background-color: lightseagreen;
+    color: #fff;
+    border: 1px solid lightseagreen;
+    font-size: 25px;
+    transition: 0.5s;
+    @media (max-width: 900px) {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+}
+#reg-btn:hover {
+    background-color: #fff;
+    color: lightseagreen;
+    border: 1px solid lightseagreen;
+}
+
+.wel {
+    font-family: 'Jost', sans-serif;
+    font-size: 35px;
+    color: lightseagreen;
+    text-align: center;
+    @media (max-width: 900px) {
+        font-size: 28px;
+    }
+    @media (max-width: 900px) {
+        margin-top: 50px;
+        font-size: 18px;
+    }
+}
+
+.about {
+    width: 50%;
+    margin: auto;
+    padding-bottom: 30px;
+    text-align: center;
+    @media (max-width: 900px) {
+        width: 80%;
+    }
+    .header {
+        font-size: 30px;
+        text-align: left;
+    }
+    .body {
+        border-left: 2px solid lightseagreen;
+        padding: 0 5px;
+        font-size: 16px;
+        text-align: center;
+        color: gray;
+        @media (max-width: 900px) {
+            border: none;
+        }
+    }
+}
+
+.view-more {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    @media (max-width: 650px) {
+        justify-content: center;
+    }
+    button {
+        margin-top: 30px;
+        padding: 15px;
+        background-color: lightseagreen;
+        color: #fff;
+        border: 1px solid lightseagreen;
+        transition: 0.5s;
+        @media (max-width: 650px) {
+            padding: 5px;
+            font-size: 13.5px;
+        }
+    }
+    button:hover {
+        background-color: #fff;
+        color: lightseagreen;
+    }
+}
+
+.big {
+    white-space: nowrap;
+    @media (max-width: 900px){
+        font-size: 30px;
+    }
+}
+
+.parallax-texts {
+    width: 100%;
+    p {
+        text-align: center;
+    }
+    .head {
+        font-size: 35px;
+        @media (max-width: 900px){
+            font-size: 25px;
+        }
+    }
+    .body {
+        font-size: 18px;
+    }
+}
+
 .pageWrapper {
     .contentWrapper {
-        background-color: rgb(243, 242, 242);
-        padding-bottom: 100px;
+        // background-color: rgb(243, 242, 242);
+        // padding-bottom: 100px;
         a {
             color: #000;
         }
         a:hover {
             text-decoration: none;
         }
-        .view-more {
-            display: flex;
-            justify-content: space-between;
-            width: 90%;
-            margin: auto;
-            @media (max-width: 650px) {
-                justify-content: center;
-            }
-            button {
-                margin-top: 30px;
-                padding: 15px;
-                background-color: rgb(23, 165, 190);
-                color: #fff;
-                border: 1px solid rgb(23, 165, 190);
-                transition: 0.5s;
-                @media (max-width: 650px) {
-                    padding: 5px;
-                    font-size: 13.5px;
-                }
-            }
-            button:hover {
-                background-color: #fff;
-                color: rgb(23, 165, 190);
-            }
-        }
+        
         .sect-1 {
             background-color: rgb(243, 242, 242);
             padding-top: 200px;
@@ -56,35 +139,8 @@
                 color: #666;
                 font-size: 18px;
             }
-            .wel {
-                font-family: 'Jost', sans-serif;
-                font-size: 35px;
-                color: rgb(23, 165, 190);
-                @media (max-width: 900px) {
-                    font-size: 28px;
-                }
-                @media (max-width: 900px) {
-                    margin-top: 50px;
-                    font-size: 18px;
-                }
-            }
-            button {
-                margin-top: 30px;
-                padding: 15px 25px;
-                background-color: rgb(23, 165, 190);
-                color: #fff;
-                border: 1px solid rgb(23, 165, 190);
-                font-size: 25px;
-                transition: 0.5s;
-                @media (max-width: 900px) {
-                    font-size: 18px;
-                    padding: 10px 15px;
-                }
-            }
-            button:hover {
-                background-color: #fff;
-                color: rgb(23, 165, 190);
-            }
+            
+            
         }
         .sect-2 {
             display: flex;
@@ -162,9 +218,9 @@
             }
         }
         .sect-3 {
-            width: 60%;
+            width: 100%;
             margin: auto;
-            margin-top: 100px;
+            margin-top: 40px;
             @media (max-width: 1410px) {
                 width: 75%;
             }
@@ -198,7 +254,7 @@
             .posts {
                 display: flex;
                 justify-content: space-around;
-                margin-top: 100px;
+                margin-top: 40px;
                 @media (max-width: 650px) {
                     flex-direction: column;
                     margin-top: 50px;
@@ -305,7 +361,7 @@
         .sect-4 {
             width: 60%;
             margin: auto;
-            margin-top: 120px;
+            margin-top: 40px;
             @media (max-width: 1410px) {
                 width: 70%;
             }
@@ -344,7 +400,7 @@
             .tests {
                 display: flex;
                 justify-content: space-around;
-                margin-top: 100px;
+                margin-top: 40px;
                 @media (max-width: 900px) {
                     width: 100%;
                     margin-top: 40px;
@@ -379,7 +435,6 @@
                         }
                     }
                     .texts {
-                        padding: 10px;
                         .category {
                             text-transform: uppercase;
                             color: gray;
@@ -403,11 +458,11 @@
                             justify-content: space-between;
                         }
                         button {
-                            margin-top: 20px;
+                            // margin-top: 20px;
                             padding: 5px 15px;
-                            background-color: rgb(23, 165, 190);
+                            background-color: lightseagreen;
                             color: #fff;
-                            border: 1px solid rgb(23, 165, 190);
+                            border: 1px solid lightseagreen;
                             transition: 0.5s;
                         }
                     }
@@ -417,7 +472,7 @@
         .sect-5 {
             width: 60%;
             margin: auto;
-            margin-top: 100px;
+            margin-top: 40px;
             @media (max-width: 1410px) {
                 width: 75%;
             }
@@ -451,7 +506,7 @@
             .posts {
                 display: flex;
                 justify-content: space-around;
-                margin-top: 100px;
+                margin-top: 40px;
                 @media (max-width: 650px) {
                     flex-direction: column;
                     margin-top: 50px;

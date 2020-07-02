@@ -1,4 +1,4 @@
-</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <div class="nav-body">
     <div class="content-area">
         <div class="logo">
@@ -7,10 +7,6 @@
             </a>
         </div>
         <div class="right-contents">
-            <!-- <div class="search item">
-                <input type="text" class="searh-input" id="search-input">
-                <a href="#"><i class="fa fa-search"></i></a>
-            </div> -->
             <a href="/app-admin/dashboard" id="admin-btn" style="display: none;" class="item">
                 <div class="create-post">Admin</div>
             </a>
@@ -26,17 +22,18 @@
             <a href="/app-admin/all-tests" class="item">
                 <div class="create-post">Assessment</div>
             </a>
+            <a href="#" id="connect-with-experts" class="item">
+                <div class="create-post">Connect with Experts</div>
+            </a>
             <a href="/users/profile" class="item">
                 <div class="saved">Profile</div>
             </a>
-            <a href="#" class="item">
-                <div class="ntoifications"><i class="fa fa-bell"></i></div>
-            </a>
+        </div>
+        <div class="far-right">
+            <a href="/admin/login" id="logger" class="log">Login</a>
         </div>
     </div>
-    <div class="far-right">
-        <a href="/admin/login" id="logger" class="log">Login</a>
-    </div>
+    
 </div>
 
 <div class="mobile-nav">
@@ -78,8 +75,11 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 <script>
     let open = false
+    let auth = false
     $('#spans').click((e) => {
         if (!open) {
             open = true
@@ -94,10 +94,20 @@
     })
     $.get('/admin/getUser', (data) => {
         if (data) {
+            auth = data
             const fname = data.name.split(' ')[0]
             $('#logger').html(fname)
             $('#logger').attr('href', '/admin/logout')
             $('#logger').attr('title', 'Signed in. Click to sign out')
+        }
+    })
+    $('#connect-with-experts').click((e) => {
+        if (auth) {
+            location = `http://localhost:3000/services/emergencyAppointment?name=${auth.name}&age=${auth.age}&email=${auth.email}&phone=${auth.phoneNumber}`
+        } else {
+            M.toast({
+                html: 'Please log in to connect with the experts'
+            })
         }
     })
 </script>
