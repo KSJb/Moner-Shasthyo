@@ -11,6 +11,7 @@ body {
 .footer-body {
   height: 200px;
   background-color: #222;
+  white-space: nowrap;
 }
 
 .rows {
@@ -37,6 +38,12 @@ body {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   width: 100%;
+  padding-top: 40px;
+}
+
+.row-1 .title {
+  font-size: 25px;
+  color: #ddd;
 }
 
 .row-1 i {
