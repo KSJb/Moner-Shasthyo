@@ -28,21 +28,23 @@
         <div class="row center">
           <h5 class="header col s12 light">Your daily mental health assistant during corona pandemic.</h5>
         </div>
-        <% if (user) { %>
-          <p class="wel" >
-            Welcome back, <%= user.name %>
-          </p>
-        <% } else { %>
-          <p style="text-align: center;">
-            <button id="reg-btn">Join us</button>
-          </p>
-        <% } %>
+        
         <br><br>
 
       </div>
     </div>
-    <div class="parallax"><img src="https://i.stack.imgur.com/gpYhu.png" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="https://wallpapercave.com/wp/wp2833173.jpg" alt="Unsplashed background img 1"></div>
   </div>
+
+  <% if (user) { %>
+    <p class="wel" >
+      Welcome back, <%= user.name %>
+    </p>
+  <% } else { %>
+    <p style="text-align: center;">
+      <button id="reg-btn">Join us</button>
+    </p>
+  <% } %>
 
   <div class="about">
     <p class="header">About Us</p>

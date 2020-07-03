@@ -10,14 +10,18 @@
     <link rel="stylesheet" href="/Responsive-Auto-Carousel-Plugin-With-jQuery-My-Slider/dist/css/my-slider.css">
     <link rel="stylesheet" href="/css/post_details.css">
     <script data-ad-client="ca-pub-1358296104373169" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <title>Home - CoronaApp</title>
+    <title>Resources - Moner Shastho</title>
 </head>
 
 <body>
     <input type="hidden" value="<%= welcome %>" id="loggedIn">
 
     <div class="pageWrapper">
+        
         <div class="contentWrapper">
+            <div class="search-box">
+                <input type="text" id="search" placeholder="Type keywords and press enter to search">
+            </div>
             <div class="all-posts">
                 <div class="higher-posts">
                     <div class="slider first-post">
@@ -156,6 +160,17 @@
         $('#loggedIn').val('false')
             // $('#staticBackdrop').modal('show')
     }
+
+    $('#search').keypress(e => {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            const phrase = e.target.value
+            if (phrase) {
+                console.log(phrase)
+                location = `/users/resources/search?q=${phrase}`
+            }
+    }
+});
 </script>
 
 </html>

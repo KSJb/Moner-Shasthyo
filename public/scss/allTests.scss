@@ -1,4 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Mukta&display=swap');
+
+.search-box {
+    width: 50%;
+    margin: auto;
+    padding-bottom: 20px;
+    input {
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 5px;
+        margin-top: 0px;
+    }
+}
+
 .pageWrapper {
     .rotate {
         transform: rotate('90deg');

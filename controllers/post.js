@@ -320,6 +320,34 @@ module.exports.get_all_posts = async(req, res) => {
     })
 }
 
+exports.resourceSearch = async (req, res) => {
+    const { q, device } = req.query
+
+    let searchOptions = {
+        $regex: q,
+        $options: 'i'
+    }
+
+    const data = await Post.find({ $or: [
+        { title: searchOptions },
+        { body: searchOptions },
+        { categroy: searchOptions }
+    ] })
+    if (device == 'android') {
+        return res.send({
+            status: true,
+            data
+        })
+    }
+
+    const related = await Post.find().sort({ _id: -1 })
+
+    res.render('resourceSearchResults', {
+        data, 
+        related
+    })
+}
+
 exports.allMaterials = async(req, res) => {
     const { device, category } = req.query
     if (category) {

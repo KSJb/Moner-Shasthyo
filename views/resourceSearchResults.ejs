@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/allTests.css">
+    <title>
+      Search results - Resources
+    </title>
+</head>
+
+<body>
+    <div class="pageWrapper">
+        <div class="contentWrapper">
+
+            <div class="all-tests-space">
+                <div class="search-box">
+                    <input type="text" id="search" placeholder="Type keywords and press enter to search">
+                </div>
+                <div class="lower-posts" style="margin-top: 0;">
+                    <div class="left">
+                        <% for (let i=0; i<data.length; i++) { %>
+                            <div class="each-posts">
+                                <div class="image">
+                                    <img src="<%=data[i].thumbnail%>" alt="">
+                                </div>
+                                <div class="texts">
+                                    <div class="category">
+                                        <%=data[i].category%>
+                                    </div>
+                                    <div class="title">
+                                        <a href="/users/single-material/<%= data[i]._id %>">
+                                            <%=data[i].title %>
+                                        </a>
+                                    </div>
+                                    <div class="about">
+                                        <%-data[i].body%>
+                                    </div>
+                                    <div class="additional-info">
+                                        <span><%= data[i].author %></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="right">
+                        <div class="right-posts">
+                            <div class="heading">People also take</div>
+                            <% for (let i=0; i<3; i++) { %>
+                                <div class="each-posts">
+                                    <div class="image">
+                                        <img src="<%= related[i].thumbnail %>" alt="">
+                                    </div>
+                                    <div class="texts">
+                                        <div class="category"><%= related[i].category %></div>
+                                        <div class="title"><a href="/users/single-material/<%= related[i]._id %>"><%= related[i].title %></a></div>
+                                        <div class="additional-info">
+                                            <span>Admin</span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<% if (errorMessage.length != 0) { %>
+    <script >
+      const msg = <%- JSON.stringify(errorMessage) %>
+      M.toast({html: msg})
+    </script>
+  <% } %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    let isOpen = false
+    $('.span-opener').click((e) => {
+        if (!isOpen) {
+            $('#pane').fadeIn()
+            $('.span-opener i').toggleClass('rotate')
+            isOpen = true
+        } else {
+            $('#pane').fadeOut()
+            $('.span-opener i').toggleClass('rotate')
+            isOpen = false
+        }
+    })
+
+    $('#search-btn').click((e) => {
+        const search = $('#search').val()
+        if (search.lenght != 0) {
+            $('#search-input').val(search)
+            $('#search-form').submit()
+        }
+    })
+    $('#search').keypress(e => {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            const phrase = e.target.value
+            if (phrase) {
+                console.log(phrase)
+                location = `/users/resources/search?q=${phrase}`
+            }
+        }
+    })
+</script>
+
+</html>

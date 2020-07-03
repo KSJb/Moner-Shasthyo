@@ -17,6 +17,7 @@ router.get('/save_post/:id', controller.save_post);
 router.get('/get_saved_posts', controller.get_saved_posts);
 router.get('/getAllusers', controller.getAllusers);
 router.get('/get_notifs', controller.get_notifs);
+router.get('/resources/search', controller.resourceSearch)
 
 // Profile
 router.get('/profile', controller.profile);

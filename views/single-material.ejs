@@ -40,7 +40,7 @@
                     </div>
                     <div class="tags">
                         <% for (let i=0; i<3; i++) { %>
-                            <a href="#" class="each-tag">
+                            <a href="/resources/search?q=<%= posts.tags[i] %>" title="Search resources for this tag" class="each-tag">
                                 <%= posts.tags[i] %>
                             </a>
                             <% } %>
