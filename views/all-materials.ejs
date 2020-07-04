@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/allTests.css">
-    <title>Lockdown Materials</title>
+    <title>Lockdown Materials - Moner Shastho</title>
 </head>
 
 <body>
@@ -64,7 +64,7 @@
                                     <% for (let i=0; i<3; i++) { %>
                                         <div class="each-post">
                                             <div class="image">
-                                                <img src="<%= data[i].thumbnail %>" alt="">
+                                                <img src="<%= data[i].thumbnail %>" id="<%= data[i]._id %>" alt="">
                                             </div>
                                             <div class="texts">
                                                 <div class="category">
@@ -89,7 +89,7 @@
                                         <% for (let i=3; i<data.length; i++) { %>
                                             <div class="each-posts">
                                                 <div class="image">
-                                                    <img src="<%= data[i].thumbnail %>" alt="">
+                                                    <img src="<%= data[i].thumbnail %>" id="<%= data[i]._id %>" alt="">
                                                 </div>
                                                 <div class="texts">
                                                     <div class="category">
@@ -117,7 +117,7 @@
                                             <% for (let i=0; i<3; i++) { %>
                                                 <div class="each-posts">
                                                     <div class="image">
-                                                        <img src="<%= related[i].thumbnail %>" alt="">
+                                                        <img src="<%= related[i].thumbnail %>" id="<%= related[i]._id %>" alt="">
                                                     </div>
                                                     <div class="texts">
                                                         <div class="category"><%= related[i].category %></div>
@@ -162,6 +162,9 @@
     })
     $('#new-test-btn').click((e) => {
         location = '/app-admin/create-test'
+    })
+    $('img').click((e) => {
+        location = `/users/single-material/${e.target.id}`
     })
 </script>
 

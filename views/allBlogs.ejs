@@ -28,7 +28,7 @@
                         <% for (let i=0; i<3; i++) { %>
                             <div class="each-post">
                                 <div class="image">
-                                    <img src="<%= data[i].thumbnail %>" alt="">
+                                    <img src="<%= data[i].thumbnail %>" id="<%= data[i]._id %>" alt="">
                                 </div>
                                 <div class="texts">
                                     <div class="category"><a href="#">CATEGORY</a></div>
@@ -52,7 +52,7 @@
                         <% for (let i=4; i<7; i++) { %>
                             <div class="each-post">
                                 <div class="image">
-                                    <img src="<%= data[i].thumbnail %>" alt="">
+                                    <img src="<%= data[i].thumbnail %>" id="<%= data[i]._id %>" alt="">
                                 </div>
                                 <div class="texts">
                                     <div class="category"><a href="#">CATEGORY</a></div>
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                                 <div class="image">
-                                    <img src="<%= data[i].thumbnail %>" alt="">
+                                    <img src="<%= data[i].thumbnail %>" id="<%= data[i]._id %>" alt="">
                                 </div>
                             </div>
                             <% } %>
@@ -142,7 +142,6 @@
 </body>
 
 <script src="/js/my-slider.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script>
     if ($(window).width() < 650) {
         $('.slider').removeClass('slider')
@@ -170,6 +169,11 @@
                 location = `/users/resources/search?q=${phrase}`
             }
     }
+
+    $('.image img').click((e) => {
+        console.log('object')
+        location = `/users/view/${e.target.id}`
+    })
 });
 </script>
 

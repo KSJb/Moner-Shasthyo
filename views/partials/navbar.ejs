@@ -16,7 +16,7 @@
             <a href="/users/materials" class="item">
                 <div class="create-post">Lockdown</div>
             </a>
-            <a href="/users/create" class="item">
+            <a href="/users/create" id="create-btn" class="item">
                 <div class="create-post">Create</div>
             </a>
             <a href="/app-admin/all-tests" class="item">
@@ -25,7 +25,7 @@
             <a href="#" id="connect-with-experts" class="item">
                 <div class="create-post">Connect with Experts</div>
             </a>
-            <a href="/users/profile" class="item">
+            <a href="/users/profile" id="profile-btn" class="item">
                 <div class="saved">Profile</div>
             </a>
         </div>
@@ -99,6 +99,20 @@
             $('#logger').html(fname)
             $('#logger').attr('href', '/admin/logout')
             $('#logger').attr('title', 'Signed in. Click to sign out')
+
+            if (data.userType == 'general') {
+                $('#create-btn').hide()
+            } else if (data.userType == 'expert') {
+                $('#connect-with-experts').hide()
+            } else {
+                $('#create-btn').hide()
+                $('#connect-with-experts').hide()
+                $('#profile-btn').hide()
+            }
+        } else {
+            $('#create-btn').hide()
+            $('#connect-with-experts').hide()
+            $('#profile-btn').hide()
         }
     })
     $('#connect-with-experts').click((e) => {

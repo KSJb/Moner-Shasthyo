@@ -28,6 +28,7 @@
   font-size: 35px;
   color: lightseagreen;
   text-align: center;
+  margin-top: 20px;
 }
 
 @media (max-width: 900px) {
@@ -135,7 +136,7 @@
 }
 
 .parallax-texts .head {
-  font-size: 35px;
+  font-size: 45px;
 }
 
 @media (max-width: 900px) {
@@ -144,8 +145,12 @@
   }
 }
 
-.parallax-texts .body {
-  font-size: 18px;
+.parallax-texts .sub-head {
+  font-size: 25px;
+}
+
+.pageWrapper .contentWrapper .body p {
+  text-align: left;
 }
 
 .pageWrapper .contentWrapper a {

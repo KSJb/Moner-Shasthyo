@@ -10,7 +10,8 @@ body {
 
 .footer-body {
   height: 200px;
-  background-color: #222;
+  background: -webkit-gradient(linear, left top, right top, from(#333), to(#666));
+  background: linear-gradient(to right, #333, #666);
   white-space: nowrap;
 }
 

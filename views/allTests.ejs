@@ -7,17 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/test.css">
-    <title>Assessment Tests</title>
+    <title>Assessment Tests - Moner Shastho</title>
 </head>
 
 <body>
     <div class="pageWrapper">
         <div class="top-bar">
             <div class="heading">
-                <p>Mental Assessment Tests</p>
-            </div>
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Type to search">
+                <p style="text-align: center;">Mental Assessment Tests</p>
             </div>
         </div>
         <div class="contentWrapper">
@@ -35,7 +32,7 @@
                                 <div class="each-test">
                                     <div class="left">
                                         <div class="image">
-                                            <img src="<%= data[i].thumbnail %>" alt="">
+                                            <img src="<%= data[i].thumbnail %>" id="<%= data[i]._id %>" alt="">
                                         </div>
                                     </div>
                                     <div class="right">
@@ -69,7 +66,7 @@
                         <% for (let i=0; i<related.length; i++) { %>
                             <div class="each-test">
                                 <div class="image">
-                                    <img src="<%= related[i].thumbnail %>" alt="">
+                                    <img src="<%= related[i].thumbnail %>" id="<%= related[i]._id %>" alt="">
                                 </div>
                                 <div class="texts">
                                     <div class="title">
@@ -94,4 +91,9 @@
     </script>
   <% } %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    $('img').click((e) => {
+        location = `/app-admin/single-test/${e.target.id}`
+    })
+</script>
 </html>

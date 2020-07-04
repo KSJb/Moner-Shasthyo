@@ -24,6 +24,7 @@
     font-size: 35px;
     color: lightseagreen;
     text-align: center;
+    margin-top: 20px;
     @media (max-width: 900px) {
         font-size: 28px;
     }
@@ -96,13 +97,13 @@
         text-align: center;
     }
     .head {
-        font-size: 35px;
+        font-size: 45px;
         @media (max-width: 900px){
             font-size: 25px;
         }
     }
-    .body {
-        font-size: 18px;
+    .sub-head {
+        font-size: 25px;
     }
 }
 
@@ -110,6 +111,11 @@
     .contentWrapper {
         // background-color: rgb(243, 242, 242);
         // padding-bottom: 100px;
+        .body {
+            p {
+                text-align: left;
+            }
+        }
         a {
             color: #000;
         }

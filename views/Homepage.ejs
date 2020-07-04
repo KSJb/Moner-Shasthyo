@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Moner Shasthyo - Home</title>
+  <title>Home - Moner Shastho</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -24,7 +24,7 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center big" >Moner Shasthyo</h1>
+        <h1 class="header center big" >Moner Shastho</h1>
         <div class="row center">
           <h5 class="header col s12 light">Your daily mental health assistant during corona pandemic.</h5>
         </div>
@@ -157,9 +157,14 @@ this pandemic situation.
                                         <%= title %>
                                     </a>
                                 </div>
-                                <div class="body">
-                                    <%- materials[i].body %>
-                                </div>
+                                <% let mbody = materials[i].body
+                                  if (mbody.length > 30) {
+                                      mbody = mbody.substring(0, 30)
+                                  }
+                                %>
+                                <!-- <div class="body">
+                                    <%- mbody %>
+                                </div> -->
                                 <div class="add-info">Admin &#8226
                                     <%= materials[i].date %>
                                 </div>
@@ -233,9 +238,9 @@ this pandemic situation.
                                     <%= ttitle %>
                                 </a>
                             </div>
-                            <div class="body">
+                            <!-- <div class="body">
                                 <%= tests[i].about %>
-                            </div>
+                            </div> -->
                             <div class="add-info">
                                 <%= tests[i].questionSet.length %> Questions &#8226
                                     <%= tests[i].questionSet.length %> Minutes</div>
@@ -324,9 +329,9 @@ this pandemic situation.
                                                 <%= title %>
                                             </a>
                                         </div>
-                                        <div class="body">
+                                        <!-- <div class="body">
                                             <%- resources[i].body %>
-                                        </div>
+                                        </div> -->
                                         <div class="add-info">
                                             <%= resources[i].author %> &#8226
                                                 <%= resources[i].date %>
@@ -374,7 +379,6 @@ this pandemic situation.
     <div class="section no-pad-bot">
       <div class="container">
         <p style="text-align: center;">
-          <h4>Take a test</h4>
         </p>
       </div>
     </div>

@@ -7,12 +7,6 @@
 }
 
 .pageWrapper .top-bar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   width: 60%;
   margin: auto;
   padding-top: 30px;
