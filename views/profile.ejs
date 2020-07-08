@@ -33,6 +33,12 @@
                 </div>
             </div>
 
+            <input type="hidden" value="<%= user._id %>" id="id">
+            <canvas id="myChart" width="400" height="150"></canvas>
+            <div class="tip">The scores are of the last 7 days arranged in descending, eg. 5th denotes 5 days earlier than today.
+                <a href="#">Learn more</a>
+            </div>
+
             <div class="all-info">
                 <div class="nav">
                     <a href="#" id="1" class="tab active">Personal</a>
@@ -342,5 +348,47 @@
         })
     })
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    const id = $('#id').val()
+    $.get(`/users/materials/getScores/${id}`, data => {
+        if (data.scores.length == 0) {
+            $('.tip').html(`You've not practised any materials in the last seven days.`)
+        } else {
+            var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Today', 'Yesterday', '3rd', '4th', '5th', '6th', '7th'],
+            datasets: [
+            {
+                label: 'Scores',
+                data: data.scores,
+                backgroundColor: [
+                    'rgba(32, 178, 170, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(32, 178, 170, 1)',
+                ],
+                borderWidth: 1
+            }
+        ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+        }
+        
+    })
+    
+    </script>
 
 </html>

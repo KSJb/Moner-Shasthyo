@@ -442,4 +442,12 @@ body {
   font-size: 15px;
   padding: 10px;
 }
+
+.tip {
+  margin-top: 10px;
+  background-color: #eee;
+  padding: 15px 5px;
+  border-left: 2px solid lightseagreen;
+  font-size: 12px;
+}
 /*# sourceMappingURL=profile.css.map */
