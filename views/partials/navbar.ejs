@@ -16,16 +16,16 @@
             <a href="/users/materials" class="item">
                 <div class="create-post">Lockdown</div>
             </a>
-            <a href="/users/create" id="create-btn" class="item">
+            <a href="/users/create" id="create-btn" class="item create-btn">
                 <div class="create-post">Create</div>
             </a>
             <a href="/app-admin/all-tests" class="item">
                 <div class="create-post">Assessment</div>
             </a>
-            <a href="#" id="connect-with-experts" class="item">
+            <a href="#" id="connect-with-experts" class="item connect-with-experts">
                 <div class="create-post">Connect with Experts</div>
             </a>
-            <a href="/users/profile" id="profile-btn" class="item">
+            <a href="/users/profile" id="profile-btn" class="item profile-btn">
                 <div class="saved">Profile</div>
             </a>
         </div>
@@ -52,7 +52,7 @@
     <div class="body">
         <div class="options">
             <a href="/users/create">
-                <div class="option">Create</div>
+                <div class="option create-btn">Create</div>
             </a>
             <a href="/users/blogs">
                 <div class="option">Resources</div>
@@ -64,10 +64,10 @@
                 <div class="option">Lockdown</div>
             </a>
             <a href="/profile">
-                <div class="option">Profile</div>
+                <div class="option profile-btn">Profile</div>
             </a>
-            <a href="/admin/login">
-                <div class="option">Login</div>
+            <a href="/admin/login" class="log">
+                <div class="option" id="mobile-logger">Login</div>
             </a>
         </div>
     </div>
@@ -83,13 +83,16 @@
     $('#spans').click((e) => {
         if (!open) {
             open = true
-            $('#options-pane').css('visibility', 'visible')
-            $('#options-pane').width('65%');
-            $("#options-pane").height($(document).height())
+
+            $('html, body').animate({ scrollTop: 0 })
+
+            $('#options-pane').show()
+            // $('#options-pane').width('65%');
+            $("#options-pane").height('500px')
         } else {
             open = false
-            $('#options-pane').css('visibility', 'hidden')
-            document.getElementById('options-pane').style.width = '0px'
+            $('#options-pane').hide()
+            document.getElementById('options-pane').style.height = '0px'
         }
     })
     $.get('/admin/getUser', (data) => {
@@ -97,25 +100,26 @@
             auth = data
             const fname = data.name.split(' ')[0]
             $('#logger').html(fname)
-            $('#logger').attr('href', '/admin/logout')
-            $('#logger').attr('title', 'Signed in. Click to sign out')
+            $('#mobile-logger').html('Log out')
+            $('.log').attr('href', '/admin/logout')
+            $('.log').attr('title', 'Signed in. Click to sign out')
 
             if (data.userType == 'general') {
-                $('#create-btn').hide()
+                $('.create-btn').hide()
             } else if (data.userType == 'expert') {
-                $('#connect-with-experts').hide()
+                $('.connect-with-experts').hide()
             } else {
-                $('#create-btn').hide()
-                $('#connect-with-experts').hide()
-                $('#profile-btn').hide()
+                $('.create-btn').hide()
+                $('.connect-with-experts').hide()
+                $('.profile-btn').hide()
             }
         } else {
-            $('#create-btn').hide()
-            $('#connect-with-experts').hide()
-            $('#profile-btn').hide()
+            $('.create-btn').hide()
+            $('.connect-with-experts').hide()
+            $('.profile-btn').hide()
         }
     })
-    $('#connect-with-experts').click((e) => {
+    $('.connect-with-experts').click((e) => {
         if (auth) {
             location = `http://trin-innovation.com/services/emergencyAppointment?name=${auth.name}&age=${auth.age}&email=${auth.email}&phone=${auth.phoneNumber}`
         } else {

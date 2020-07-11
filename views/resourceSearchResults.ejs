@@ -19,53 +19,57 @@
                 <div class="search-box">
                     <input type="text" id="search" placeholder="Type keywords and press enter to search">
                 </div>
-                <div class="lower-posts" style="margin-top: 0;">
-                    <div class="left">
-                        <% for (let i=0; i<data.length; i++) { %>
-                            <div class="each-posts">
-                                <div class="image">
-                                    <img src="<%=data[i].thumbnail%>" alt="">
-                                </div>
-                                <div class="texts">
-                                    <div class="category">
-                                        <%=data[i].category%>
-                                    </div>
-                                    <div class="title">
-                                        <a href="/users/single-material/<%= data[i]._id %>">
-                                            <%=data[i].title %>
-                                        </a>
-                                    </div>
-                                    <div class="about">
-                                        <%-data[i].body%>
-                                    </div>
-                                    <div class="additional-info">
-                                        <span><%= data[i].author %></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <% } %>
-                    </div>
-                    <div class="right">
-                        <div class="right-posts">
-                            <div class="heading">People also take</div>
-                            <% for (let i=0; i<3; i++) { %>
+                <% if (data.length == 0) { %>
+                    <p style="text-align: center; color: gray; margin-top: 30px;">Sorry. No results were found. Try a different set of keywords.</p>
+                <% } else { %>
+                    <div class="lower-posts" style="margin-top: 0;">
+                        <div class="left">
+                            <% for (let i=0; i<data.length; i++) { %>
                                 <div class="each-posts">
                                     <div class="image">
-                                        <img src="<%= related[i].thumbnail %>" alt="">
+                                        <img src="<%=data[i].thumbnail%>" alt="">
                                     </div>
                                     <div class="texts">
-                                        <div class="category"><%= related[i].category %></div>
-                                        <div class="title"><a href="/users/single-material/<%= related[i]._id %>"><%= related[i].title %></a></div>
+                                        <div class="category">
+                                            <%=data[i].category%>
+                                        </div>
+                                        <div class="title">
+                                            <a href="/users/single-material/<%= data[i]._id %>">
+                                                <%=data[i].title %>
+                                            </a>
+                                        </div>
+                                        <div class="about">
+                                            <%-data[i].body%>
+                                        </div>
                                         <div class="additional-info">
-                                            <span>Admin</span>
-                                            <span></span>
+                                            <span><%= data[i].author %></span>
                                         </div>
                                     </div>
                                 </div>
                                 <% } %>
                         </div>
+                        <div class="right">
+                            <div class="right-posts">
+                                <div class="heading">People also take</div>
+                                <% for (let i=0; i<3; i++) { %>
+                                    <div class="each-posts">
+                                        <div class="image">
+                                            <img src="<%= related[i].thumbnail %>" alt="">
+                                        </div>
+                                        <div class="texts">
+                                            <div class="category"><%= related[i].category %></div>
+                                            <div class="title"><a href="/users/single-material/<%= related[i]._id %>"><%= related[i].title %></a></div>
+                                            <div class="additional-info">
+                                                <span>Admin</span>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <% } %>
             </div>
         </div>
     </div>

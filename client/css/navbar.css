@@ -5,9 +5,6 @@ body {
 
 .nav-body {
   background-color: #fff;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -123,13 +120,12 @@ body {
 }
 
 .options-pane {
-  visibility: hidden;
+  display: none;
   height: 100%;
-  width: 0%;
+  width: 100%;
   background-color: #1d2124;
   -webkit-transition: 0.2s;
   transition: 0.2s;
-  position: fixed;
 }
 
 .options-pane .option {
