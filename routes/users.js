@@ -37,6 +37,7 @@ router.get('/single-material/:id', controller.singleMaterial)
 router.get('/update-material/:id', controller.getUpdateMaterial)
 router.post('/update-material', controller.postUpdateMaterial)
 router.get('/add/material', controller.addMaterialToProfile)
+router.get('/materials/task/:id', controller.singleTask)
 router.get('/materials/getScores/:id', controller.getMaterialScores)
 
 router.get('/edit_post/:id', controller.edit_post);

@@ -80,7 +80,8 @@ exports.getDiaryRecords = async (req, res) => {
     res.send(diary)        
 }
 
-const { diaryModel } = require('../models/diary.js')
+const { diaryModel } = require('../models/diary.js');
+const { ObjectID, ObjectId } = require('mongodb');
 exports.addDiaryRecord = async (req, res) => {
     if (req.user) {
         const record = {
@@ -400,6 +401,18 @@ exports.singleMaterial = async(req, res) => {
         user: req.user,
         posts: data,
         relatedPosts
+    })
+}
+
+exports.singleTask = async (req, res) => {
+    const mat = await material.findOne({ "activities._id": ObjectId( req.params.id ) })
+    const data = mat.activities.filter(task => {
+        return task._id.toString() === req.params.id
+    })
+    console.log(data)
+    res.send({
+        status: true,
+        data
     })
 }
 
