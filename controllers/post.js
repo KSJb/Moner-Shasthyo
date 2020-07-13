@@ -435,6 +435,7 @@ exports.postUpdateMaterial = async(req, res) => {
         id,
         title,
         body,
+        prompts,
         thumbnail
     } = req.body
     console.log(req.body)
@@ -443,6 +444,7 @@ exports.postUpdateMaterial = async(req, res) => {
     await material.findOneAndUpdate({ _id: id }, {
         $set: {
             title: title,
+            prompts: prompts,
             body: body,
             thumbnail: thumbnail,
             tags: tags,

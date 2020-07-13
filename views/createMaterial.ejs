@@ -39,6 +39,11 @@
                 </select>
             </div>
         </div>
+        <div class="prompts">
+            <input type="text" placeholder="Top prompt" id="top">
+            <br>
+            <input type="text" placeholder="Bottom prompt" id="bottom">
+        </div>
         <div class="editorWrapper" id="editorWrapper">
             <textarea name="editor" id="area" cols="30" rows="10" class="area"></textarea>
         </div>
@@ -186,6 +191,8 @@
         }
         $('#submit-btn').click((e) => {
             const title = $('#titleInput').val()
+            const top = $('#top').val()
+            const bottom = $('#bottom').val()
             const thumbnail = $('#thumbnail').val()
             const tagString = $('#tags').val()
             const category = $('#category').val()
@@ -211,6 +218,12 @@
             if (check(title)) {
                 error = true
                 showAlert('Enter the title')
+            } else if (check(top)) {
+                error = true
+                showAlert('Enter the top prompt')
+            } else if (check(bottom)) {
+                error = true
+                showAlert('Enter the bottom prompt')
             } else if (check(thumbnail)) {
                 error = true
                 showAlert('Give a link to thumbnail image')
@@ -225,8 +238,13 @@
                 showAlert('Can not publish with an empty body')
             } else {
                 $('#alert').hide()
+                const prompts = {
+                    top,
+                    bottom
+                }
                 const data = {
                     title,
+                    prompts,
                     thumbnail,
                     tags: JSON.stringify(tags),
                     activities: JSON.stringify(activities),

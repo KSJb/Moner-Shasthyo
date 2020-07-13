@@ -238,6 +238,7 @@ const getDate = () => {
 module.exports.createMaterial = async(req, res) => {
     console.log('post', req.body);
     let title = req.body.title;
+    let prompts = req.body.prompts
     let body = req.body.body;
     let author = req.user.name;
     let author_id = req.user._id;
@@ -253,6 +254,7 @@ module.exports.createMaterial = async(req, res) => {
 
     const newPost = new material({
         title,
+        prompts,
         thumbnail,
         body,
         activities,

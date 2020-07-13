@@ -77,6 +77,19 @@
   color: #17a5be;
 }
 
+.contentWrapper .prompts {
+  width: 50%;
+  margin: 30px auto;
+}
+
+.contentWrapper .prompts input {
+  border: 1px solid #ddd;
+  width: 100%;
+  margin-top: 15px;
+  padding: 5px;
+  border-radius: 20px;
+}
+
 .contentWrapper .editorWrapper {
   width: 80%;
   margin: auto;

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="/css/prism-okaidia.css">
     <link rel="stylesheet" href="/css/readmore.css">
     <title>
@@ -14,7 +13,43 @@
 </head>
 <input type="hidden" value="<%= posts.title %>" id="name">
 <input type="hidden" value="<%= posts._id %>" id="id">
-
+<style>
+    .slidecontainer {
+      width: 100%;
+    }
+    
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 5px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+    
+    .slider:hover {
+      opacity: 1;
+    }
+    
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: lightseagreen;
+      cursor: pointer;
+    }
+    
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      background: #4CAF50;
+      cursor: pointer;
+    }
+    </style>
 <body>
     <div class="contentWrapper">
 
@@ -24,13 +59,14 @@
                     <div class="alert alert-danger"><%= errorMessage %></div>
                 <% } %>
 
-                <p>On a scale of 1 to 100, how is your mood right now?</p>
+                <p><%= posts.prompts.top %></p>
             </div>
-            <div class="slide-container">
+            <div class="slidecontainer">
                 <span class="bar"><span class="fill"></span></span>
-                <input type="range" id="slider-top" value="0">
+                <input type="range" id="slider-top" class="slider" value="0">
                 <p id="comp-percent-top">0%</p>
             </div>
+
         </div>
         <div class="pageContent">
             <div class="left">
@@ -89,7 +125,7 @@
             </div>
             <div class="right">
                 <div class="related-section">
-                    <div class="title">Recently Added</div>
+                    <div class="title">You might also practise</div>
                     <div class="posts">
                         <% relatedPosts.forEach(post => { %>
                             <a href="/users/single-material/<%= post._id %>">
@@ -136,11 +172,11 @@
         </div>
         <div class="mood-box">
             <div class="heading">
-                <p>How's your mood now, after reading this material?</p>
+                <p><%= posts.prompts.bottom %></p>
             </div>
-            <div class="slide-container">
+            <div class="slidecontainer">
                 <span class="bar"><span class="fill"></span></span>
-                <input type="range" id="slider-btm" value="0">
+                <input type="range" id="slider-btm" class="slider" value="0">
                 <p id="comp-percent-btm">0%</p>
             </div>
             <p><button id="finish-btn">Finish Reading</button></p>

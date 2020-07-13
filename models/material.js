@@ -11,6 +11,10 @@ var PostSchema = mongoose.Schema({
     body: {
         type: String
     },
+    prompts: {
+        top: String,
+        bottom: String
+    },
     activities: {
         type: [{
             title: String,

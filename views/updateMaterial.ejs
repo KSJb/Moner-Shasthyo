@@ -39,6 +39,11 @@
                 </select>
             </div>
         </div>
+        <div class="prompts">
+            <input type="text" value="<%= post.prompts.top %>" placeholder="Top prompt" id="top">
+            <br>
+            <input type="text" value="<%= post.prompts.bottom %>" placeholder="Bottom prompt" id="bottom">
+        </div>
         <div class="editorWrapper" id="editorWrapper">
             <textarea name="editor" id="area" cols="30" rows="10" class="area">
                 <%- post.body %>
@@ -198,6 +203,8 @@
         }
         $('#submit-btn').click((e) => {
             const title = $('#titleInput').val()
+            const top = $('#top').val()
+            const bottom = $('#bottom').val()
             const thumbnail = $('#thumbnail').val()
             const tagString = $('#tags').val()
             const category = $('#category').val()
@@ -223,6 +230,12 @@
             if (check(title)) {
                 error = true
                 showAlert('Enter the title')
+            } else if (check(top)) {
+                error = true
+                showAlert('Enter the top prompt')
+            } else if (check(bottom)) {
+                error = true
+                showAlert('Enter the bottom prompt')
             } else if (check(thumbnail)) {
                 error = true
                 showAlert('Give a link to thumbnail image')
@@ -238,8 +251,13 @@
             } else {
                 $('#alert').hide()
                 const id = $('#id').val()
+                const prompts = {
+                    top,
+                    bottom
+                }
                 const data = {
-                    id, 
+                    id,
+                    prompts, 
                     title,
                     thumbnail,
                     tags: JSON.stringify(tags),
