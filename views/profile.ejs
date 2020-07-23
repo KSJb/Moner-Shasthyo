@@ -160,7 +160,13 @@
                 </div>
 
                 <div class="each-info" id="info-6" style="display: none;">
-                    <div class="record-space">
+
+                    <div class="sub-nav">
+                        <div class="sub-tab active" id="diary-sub-tab">Records</div>
+                        <div class="sub-tab" id="stress-sub-tab">Stressors</div>
+                    </div>
+
+                    <div class="record-space" id="diary-records">
                         <div class="header">
                                 <input type="text" placeholder="Type to filter records" id="filter">
                                 <button data-target='#record-modal' data-toggle='modal'>Add Record</button>
@@ -210,8 +216,58 @@
                                         <%= diary.records[i].reactions %>
                                         <%= diary.records[i].behaiviour %>
                                     </span>                                  <div class="last-row">
-                                        <i class="fas fa-trash" id="<%=diary.records[i]._id%>"></i>
+                                        <i class="fas fa-trash del-records" id="<%=diary.records[i]._id%>"></i>
                                         <%= diary.records[i].displayDate %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+
+                    <div class="record-space" id="stress-records" style="display: none;">
+                        <div class="header">
+                                <!-- <input type="text" placeholder="Type to filter records" id="filter"> -->
+                                <button data-target='#stress-modal' data-toggle='modal'>Add Stressor</button>
+                        </div>
+                        <% for (let i=0; i<stressors.records.length; i++) { %>
+                            <div class="each-record">
+                                <span><%= user.name.charAt(0).toUpperCase() %></span>
+                                <div class="record">
+                                    <% if (stressors.records[i].situation != ''){ %>
+                                        <h5>Situtation</h5>
+                                        <p>
+                                            <%= stressors.records[i].situation %>
+                                        </p>
+                                    <% } %>
+
+                                    <% if (stressors.records[i].level != ''){ %>
+                                        <h5> Stress level</h5>
+                                        <p>
+                                            <%= stressors.records[i].level %>
+                                        </p>
+                                    <% } %>
+
+                                    <% if (stressors.records[i].response != ''){ %>
+                                        <h5>Response</h5>
+                                        <p>
+                                            <%= stressors.records[i].response %>
+                                        </p>
+                                    <% } %>
+
+                                    <% if (stressors.records[i].postResponse != ''){ %>
+                                        <h5>Post response level</h5>
+                                        <p>
+                                            <%= stressors.records[i].postResponse %>
+                                        </p>
+                                    <% } %>
+                                    <span style="display: none;">
+                                        <%= stressors.records[i].situation %>
+                                        <%= stressors.records[i].level %>
+                                        <%= stressors.records[i].response%>
+                                        <%= stressors.records[i].postResponse %>
+                                    </span>                                  <div class="last-row">
+                                        <i class="fas fa-trash del-stress" id="<%=stressors.records[i]._id%>"></i>
+                                        <%= stressors.records[i].displayDate %>
                                     </div>
                                 </div>
                             </div>
@@ -251,7 +307,7 @@
 
             <div class="section">
                 <div class="question">
-                    Whatare your emotions??
+                    What are your emotions?
                 </div>
                 <div class="response">
                     <textarea id="emotions" ></textarea>
@@ -278,7 +334,58 @@
         </div>
         <div class="modalFooter">
             <button class="cancel-btn" data-dismiss='modal'>Cancel</button>
-            <button class="add-btn">Add</button>
+            <button class="add-btn" id="add-diary">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="stress-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modalHeader">
+            <i class="fa fa-frown"></i></i> Stressful Events
+        </div>
+        <div class="modal-body">
+            <div class="section">
+                <div class="question">
+                    What was the stressful situation?
+                </div>
+                <div class="response">
+                    <textarea id="stress-situation" ></textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">
+                    What was the level of the stress? (On a scale of 1 to 10)
+                </div>
+                <div class="response">
+                    <textarea id="stress-level" ></textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">
+                    What was your response?
+                </div>
+                <div class="response">
+                    <textarea id="stress-response" ></textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="question">
+                    What was the level of stress after the response? (Scale of 1 to 10)
+                </div>
+                <div class="response">
+                    <textarea id="stress-post-reaction" ></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modalFooter">
+            <button class="cancel-btn" data-dismiss='modal'>Cancel</button>
+            <button class="add-btn" id="add-stress">Add</button>
         </div>
       </div>
     </div>
@@ -294,9 +401,22 @@
     $('.testsTaken button').click((e) => {
         location = '/app-admin/single-test/' + e.target.name
     })
-    $('.fa-trash').click((e) => {
+    $('.del-records').click((e) => {
         console.log(e.target.id)
         location = '/users/profile/delete-record/'+e.target.id
+    })
+    $('.del-stress').click((e) => {
+        console.log(e.target.id)
+        location = '/users/profile/delete-stress/'+e.target.id
+    })
+    $('.upper-tab').click((e) => {
+        if (e.target.id == 'diary') {
+            $('.diary').show()
+            $('.stressor').hide()
+        } else if (e.target.id == 'stressor') {
+            $('.stressor').show()
+            $('.diary').hide()
+        }
     })
     $('.tab').click((e) => {
         const eachInfo = $('.each-info')
@@ -311,6 +431,21 @@
         $(id).show()
         $(e.target).addClass('active')
     })
+
+    $('#diary-sub-tab').click(e => {
+        $('#diary-records').show()
+        $('#stress-records').hide()
+        $('.active').removeClass('active')
+        $(e.target).addClass('active')
+    })
+
+    $('#stress-sub-tab').click(e => {
+        $('#stress-records').show()
+        $('#diary-records').hide()
+        $('.active').removeClass('active')
+        $(e.target).addClass('active')
+    })
+
     $('#filter').on('keyup', (e) => {
         const text = e.target.value.toLowerCase()
         const recordArr = $('.record span')
@@ -323,7 +458,7 @@
         }
     })
 
-    $('.add-btn').click((e) => {
+    $('#add-dairy').click((e) => {
         const situation = $('#situation').val()
         const emotions = $('#emotions').val()
         const thoughts = $('#thoughts').val()
@@ -342,6 +477,30 @@
             type: 'POST',
             url: '/users/profile/add-record',
             data,
+            success: (data) => {
+                location = '/users/profile'
+            }
+        })
+    })
+
+    $('#add-stress').click((e) => {
+        const sSituation = $('#stress-situation').val()
+        const sLevel = $('#stress-level').val()
+        const sResonse = $('#stress-response').val()
+        const postResponse = $('#stress-post-reaction').val()
+
+        const sData = {
+            situation: sSituation,
+            level: sLevel,
+            response: sResonse,
+            postResponse
+        }
+
+        console.log(sData)
+        $.ajax({
+            type: 'POST',
+            url: '/users/profile/add-stress',
+            data: sData,
             success: (data) => {
                 location = '/users/profile'
             }

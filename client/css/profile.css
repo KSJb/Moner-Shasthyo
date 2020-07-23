@@ -192,6 +192,31 @@ body {
   min-height: 400px;
 }
 
+.pageWrapper .contentWrapper .all-info .each-info .sub-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 10px;
+  font-size: 15px;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .sub-nav .sub-tab {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .sub-nav .sub-tab:hover {
+  background-color: #ddd;
+}
+
+.pageWrapper .contentWrapper .all-info .each-info .sub-nav .active {
+  border-bottom: 3px solid lightseagreen;
+}
+
 .pageWrapper .contentWrapper .all-info .each-info .header {
   font-size: 20px;
   font-weight: bold;

@@ -131,7 +131,25 @@ body {
                 margin-top: 30px;
                 transition: 0.5s;
                 min-height: 400px;
-                
+                .sub-nav {
+                    display: flex;
+                    padding-bottom: 10px;
+                    font-size: 15px;
+                    .sub-tab {
+                        padding: 5px 10px;
+                        border: 1px solid #ddd;
+                        background-color: #eee;
+                        cursor: pointer;
+                        transition: 0.5s;
+                    }
+                    .sub-tab:hover {
+                        background-color: #ddd;
+                    }
+                    .active {
+                        border-bottom: 3px solid lightseagreen;
+                    }
+                }
+
                 .header {
                     font-size: 20px;
                     font-weight: bold;

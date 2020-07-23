@@ -54,7 +54,12 @@ module.exports.profile = async(req, res) => {
             diary.records.sort((a, b) => {
                 return b.date - a.date
             })
+            const stressors = await stressModel.findOne({ owner_id: req.user._id })
+            diary.records.sort((a, b) => {
+                return b.date - a.date
+            })
             res.render('profile', {
+                stressors,
                 diary, 
                 user: req.user
             })
@@ -80,8 +85,18 @@ exports.getDiaryRecords = async (req, res) => {
     res.send(diary)        
 }
 
+exports.getStressRecords = async (req, res) => {
+    const user_id = req.params.id
+    const diary = await stressModel.findOne({ owner_id: user_id })
+    diary.records.sort((a, b) => {
+        return b.date - a.date
+    })
+    res.send(diary)        
+}
+
 const { diaryModel } = require('../models/diary.js');
 const { ObjectID, ObjectId } = require('mongodb');
+const { stressModel } = require('../models/stressors');
 exports.addDiaryRecord = async (req, res) => {
     if (req.user) {
         const record = {
@@ -92,6 +107,27 @@ exports.addDiaryRecord = async (req, res) => {
         const records = diary.records
         records.push(record)
         await diaryModel.findOneAndUpdate({ owner_id: req.user._id }, {
+            $set: {
+                records: records
+            }
+        })
+    }
+    res.send({
+        msg: 'Record saved',
+        status: true
+    })
+}
+
+exports.addStressRecord = async (req, res) => {
+    if (req.user) {
+        const record = {
+            ...req.body,
+            displayDate: getDate()
+        }    
+        const diary = await stressModel.findOne({ owner_id: req.user._id })
+        const records = diary.records
+        records.push(record)
+        await stressModel.findOneAndUpdate({ owner_id: req.user._id }, {
             $set: {
                 records: records
             }
@@ -123,11 +159,43 @@ exports.addDiaryRecordAndroid = async (req, res) => {
         msg: 'Record saved',
         status: true
     })
-}   
+}
+
+exports.addStressRecordAndroid = async (req, res) => {
+    const { user_id } = req.body
+    console.log(req.body)
+    delete req.body.user_id
+    const diary = await stressModel.findOne({ owner_id: user_id })
+    const record = {
+        ...req.body,
+        displayDate: getDate()
+    }    
+    const records = diary.records
+    records.push(record)
+    await stressModel.findOneAndUpdate({ owner_id: user_id }, {
+        $set: {
+            records: records
+        }
+    })
+    res.send({
+        msg: 'Record saved',
+        status: true
+    })
+}
     
 exports.deleteRecord = async (req, res) => {
     console.log(req.params.id)
     await diaryModel.update({ owner_id: req.user._id }, {
+        $pull: {
+            records: { _id: req.params.id}
+        }
+    })
+    res.redirect('back')
+}
+
+exports.deleteStress = async (req, res) => {
+    console.log(req.params.id)
+    await stressModel.update({ owner_id: req.user._id }, {
         $pull: {
             records: { _id: req.params.id}
         }
@@ -145,6 +213,20 @@ exports.deleteRecordAndroid = async (req, res) => {
     res.send({
         status: true,
         msg: 'Record deleted'
+    })
+}
+
+exports.deleteStressAndroid = async (req, res) => {
+    const { id, user_id } = req.params
+    console.log(req.params)
+    await stressModel.updateOne({ owner_id: user_id }, {
+        $pull: {
+            records: { _id: id}
+        }
+    })
+    res.send({
+        status: true,
+        msg: 'Stress deleted'
     })
 }
 

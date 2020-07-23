@@ -25,11 +25,21 @@ router.get('/update-profile', controller.getUpdateProfile)
 router.post('/update-profile', controller.postUpdateProfile)
 router.post('/update-profile/android', controller.postUpdateProfileAndroid)
 router.post('/update-expert-profile', controller.postUpdateExpertProfile)
+
+// Diary Records
 router.post('/profile/add-record', controller.addDiaryRecord)
 router.get('/profile/delete-record/:id', controller.deleteRecord)
 router.get('/profile/delete-record/android/:id/:user_id', controller.deleteRecordAndroid)
 router.post('/profile/add-record/android', controller.addDiaryRecordAndroid)
 router.get('/profile/get-diary/:id', controller.getDiaryRecords)
+
+// Stress Records
+router.post('/profile/add-stress', controller.addStressRecord)
+router.get('/profile/delete-stress/:id', controller.deleteStress)
+router.get('/profile/delete-stress/android/:id/:user_id', controller.deleteStressAndroid)
+router.post('/profile/add-stress/android', controller.addStressRecordAndroid)
+router.get('/profile/get-stress/:id', controller.getStressRecords)
+
 
 // Material
 router.get('/materials', controller.allMaterials)
