@@ -27,14 +27,34 @@ const getDate = () => {
     ];
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth()); //January is 0!
+    var mm = String(today.getMonth()); 
     var yyyy = today.getFullYear();
     let thisDate = monthNames[mm] + " " + dd + ", " + yyyy
     return thisDate;
-    // console.log("Date: "+thisDate);
+}
+
+const getTime = () => {
+    const d = new Date()
+    let meridian = 'AM'
+    if (parseInt(d.getHours()) > 11) {
+        meridian = 'PM'
+    }
+    const offset = d.getTimezoneOffset()/60
+    console.log(offset)
+    d.setHours(d.getHours() - offset )
+    let h = ((d.getHours() + 24) % 12 || 12).toString()
+    let m = d.getMinutes().toString()
+    if (m.length < 2) {
+        m = '0' + m
+    }
+    if (h.length < 2) {
+        h = '0' + h
+    }
+    return h+':'+m+' ' +meridian
 }
 
 module.exports.loadHomepage = async(req, res) => {
+    console.log(getTime())
     const materials = await material.find().sort({ _id: -1 }).limit(3)
     const tests = await testModel.find().sort({ _id: -1 }).limit(3)
     const resources = await Post.find().sort({ _id: -1 }).limit(3)
@@ -774,17 +794,6 @@ module.exports.verify = (req, res) => {
         }
 
     })
-}
-
-const getTime = () => {
-    const d = new Date()
-    let meridian = 'AM'
-    if (parseInt(d.getHours()) > 11) {
-        meridian = 'PM'
-    }
-    const h = ((d.getHours() + 24) % 12 || 12).toString()
-    const m = d.getMinutes().toString()
-    return h+':'+m+' ' +meridian
 }
 
 module.exports.view_post = async(req, res) => {
