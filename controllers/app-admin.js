@@ -276,3 +276,8 @@ module.exports.createMaterial = async(req, res) => {
     });
 
 }
+
+exports.deleteTest = async (req, res) => {
+    await testModel.findByIdAndDelete(req.params.id)
+    res.redirect('/app-admin/all-tests')
+}

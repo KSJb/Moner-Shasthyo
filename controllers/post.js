@@ -101,7 +101,7 @@ exports.addDiaryRecord = async (req, res) => {
     if (req.user) {
         const record = {
             ...req.body,
-            displayDate: getDate()
+            displayDate: getTime() + ' ' + getDate()
         }    
         const diary = await diaryModel.findOne({ owner_id: req.user._id })
         const records = diary.records
@@ -122,7 +122,7 @@ exports.addStressRecord = async (req, res) => {
     if (req.user) {
         const record = {
             ...req.body,
-            displayDate: getDate()
+            displayDate:  getTime() + ' ' + getDate()
         }    
         const diary = await stressModel.findOne({ owner_id: req.user._id })
         const records = diary.records
@@ -146,7 +146,7 @@ exports.addDiaryRecordAndroid = async (req, res) => {
     const diary = await diaryModel.findOne({ owner_id: user_id })
     const record = {
         ...req.body,
-        displayDate: getDate()
+        displayDate:  getTime() + ' ' + getDate()
     }    
     const records = diary.records
     records.push(record)
@@ -168,7 +168,7 @@ exports.addStressRecordAndroid = async (req, res) => {
     const diary = await stressModel.findOne({ owner_id: user_id })
     const record = {
         ...req.body,
-        displayDate: getDate()
+        displayDate:  getTime() + ' ' + getDate()
     }    
     const records = diary.records
     records.push(record)
@@ -498,6 +498,10 @@ exports.singleTask = async (req, res) => {
     })
 }
 
+exports.deleteMaterial = async (req,  res) => {
+    await material.findByIdAndDelete(req.params.id)
+    res.redirect('/users/materials')
+}
 exports.getUpdateMaterial = async(req, res) => {
     const post = await material.findOne({ _id: req.params.id })
     let tagString = ''
@@ -772,6 +776,17 @@ module.exports.verify = (req, res) => {
     })
 }
 
+const getTime = () => {
+    const d = new Date()
+    let meridian = 'AM'
+    if (parseInt(d.getHours()) > 11) {
+        meridian = 'PM'
+    }
+    const h = ((d.getHours() + 24) % 12 || 12).toString()
+    const m = d.getMinutes().toString()
+    return h+':'+m+' ' +meridian
+}
+
 module.exports.view_post = async(req, res) => {
     const { device } = req.query
 
@@ -784,7 +799,12 @@ module.exports.view_post = async(req, res) => {
             user: req.user
         })
     }
+    let previlege = 'false'
+    if (req.user && req.user.userType == 'admin') {
+        previlege = 'true'
+    }
     res.render('readmore', {
+       previlege,
         posts,
         relatedPosts
     })
@@ -864,6 +884,10 @@ module.exports.inc_comment = async(req, res) => {
     res.redirect('back');
 }
 
+exports.deleteResource = async (req, res) => {
+    await Post.findByIdAndDelete(req.params.id)
+    res.redirect('/users/blog')
+}
 module.exports.edit_post = async(req, res) => {
     const post = await Post.find({ _id: req.params.id })
     let tagString = ''

@@ -49,9 +49,10 @@ router.post('/update-material', controller.postUpdateMaterial)
 router.get('/add/material', controller.addMaterialToProfile)
 router.get('/materials/task/:id', controller.singleTask)
 router.get('/materials/getScores/:id', controller.getMaterialScores)
+router.get('/delete-material/:id',  controller.deleteMaterial)
 
-router.get('/edit_post/:id', controller.edit_post);
-router.get('/delete_post/:id', controller.delete_post);
+router.get('/edit-resource/:id', controller.edit_post);
+router.get('/delete-resource/:id', controller.deleteResource);
 router.post('/save_changes', controller.save_changes);
 router.post('/uploadfile', controller.uploadfile);
 router.get('/get_user', controller.get_user);

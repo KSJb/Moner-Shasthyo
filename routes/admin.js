@@ -20,6 +20,7 @@ router.get('/edit-test/:id', adminAccess, controller.getEditTest)
 router.post('/edit-test', adminAccess, controller.postEditTest)
 router.post('/test/new', controller.addTestToProfile)
 router.get('/tests/getScores/:id', controller.getTestScores)
+router.get('/delete-test/:id', controller.deleteTest)
 
 // materials
 router.get('/create-material', adminAccess, (req, res) => {

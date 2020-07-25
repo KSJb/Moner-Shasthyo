@@ -19,7 +19,8 @@
                     <p>
                         <%= data.title %> <br>
                             <% if (user.userType == 'admin') { %>
-                                <button class="edit" id="<%= data._id %>">Update</button>
+                                    <button class="edit" id="<%= data._id %>">Update</button>
+                                    <button class="delete" id="<%= data._id %>">Delete</button>
                                 <% } %>
                     </p>
                 </div>
@@ -319,6 +320,10 @@
     }
     $('.edit').click((e) => {
         location = '/app-admin/edit-test/' + e.target.id
+    })
+
+    $('.delete').click((e) => {
+        location = '/app-admin/delete-test/' + e.target.id
     })
 </script>
 
