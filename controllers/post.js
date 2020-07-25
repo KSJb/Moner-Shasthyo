@@ -40,8 +40,7 @@ const getTime = () => {
         meridian = 'PM'
     }
     const offset = d.getTimezoneOffset()/60
-    console.log(offset)
-    let h = ((d.getHours() - offset + 24) % 12 || 12).toString()
+    let h = ((d.getHours() + 30) % 12 || 12).toString()
     let m = d.getMinutes().toString()
     if (m.length < 2) {
         m = '0' + m
