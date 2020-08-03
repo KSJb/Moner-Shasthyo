@@ -26,8 +26,10 @@ module.exports.passwordResetMail = async (email, type) => {
   <br>
   Seems like you just forgot your password.
   <br>
-  Click on the link to reset your password.<br>
-  <a href="http://bad-blogger.herokuapp.com/admin/reset_password?email=${email}&usertype=${type}"><b>Reset Page<b></a>
+  Click 
+  <a href="http://bad-blogger.herokuapp.com/admin/reset_password?email=${email}&usertype=${type}">here</a>
+  to reset your password.<br>
+  
    <br> 
    Nice day!`;
   let mailOptions = {
