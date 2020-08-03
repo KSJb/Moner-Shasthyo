@@ -273,7 +273,9 @@ module.exports.post_forgot_password = async(req, res) => {
             msg: 'Email not found'
         })
     } else {
-        sendResetLink(email, userType)
+        // sendResetLink(email, userType)
+        const { passwordResetMail } = require('../config/sendMail.js')
+        passwordResetMail(email, userType)
         return res.send({
             status: true,
             msg: 'A link has been sent to the email you provided.'
@@ -286,7 +288,7 @@ function sendResetLink(email, type) {
         service: "Gmail",
         auth: {
             user: "safwan.du16@gmail.com",
-            pass: "home-761049"
+            pass: "Home-761049"
         }
     });
     var rand, mailOptions, host, link;

@@ -52,7 +52,6 @@ const getTime = () => {
 }
 
 module.exports.loadHomepage = async(req, res) => {
-    console.log(getTime())
     const materials = await material.find().sort({ _id: -1 }).limit(3)
     const tests = await testModel.find().sort({ _id: -1 }).limit(3)
     const resources = await Post.find().sort({ _id: -1 }).limit(3)
@@ -952,6 +951,14 @@ module.exports.get_user = async(req, res) => {
             user: true
         })
     }
+}
+
+module.exports.Feedback = async (req, res) => {
+    const { clientFeedback } = require('../config/sendMail.js')
+    clientFeedback(req.body)
+    res.send({
+        status: true
+    })
 }
 
 // http://bad-blogger.herokuapp.com/users/blogs?device=android

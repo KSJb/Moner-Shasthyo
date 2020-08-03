@@ -3,6 +3,10 @@ const router = express.Router();
 const controller = require('../controllers/post');
 
 router.get('/', controller.loadHomepage)
+router.get('/about',  (req, res) => {
+  res.render('aboutUs')
+})
+router.post('/feedback', controller.Feedback)
 
 router.get('/create', controller.create_blog);
 router.get('/blogs', controller.get_all_posts);
