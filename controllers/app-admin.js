@@ -2,6 +2,7 @@ const { eUser } = require('../models/eUser.js')
 const { gUser } = require('../models/gUser.js')
 const testModel = require('../models/test.js')
 const material = require('../models/material.js')
+const { resourceSearch } = require('./post.js')
 
 module.exports.getUsers = async(req, res) => {
     const data = await eUser.find({ isVerified: false })
@@ -280,4 +281,38 @@ module.exports.createMaterial = async(req, res) => {
 exports.deleteTest = async (req, res) => {
     await testModel.findByIdAndDelete(req.params.id)
     res.redirect('/app-admin/all-tests')
+}
+
+const { hpArticles } = require('../models/homepageArticles.js')
+const { updateOne } = require('../models/material.js')
+
+exports.getHPArticle = async (req, res) => {
+    const art = await hpArticles.findOne({_id: '5f301b712323cd2983111b09' })
+    res.render('adminHPArticles', {
+        art
+    })
+}
+
+exports.hpArticles = async (req, res) => {
+    let {
+        materials,
+        resources,
+        tests
+    } = req.body
+
+    materials = JSON.parse(materials)
+    resources = JSON.parse(resources)
+    tests = JSON.parse(tests)
+    
+    await hpArticles.updateOne({ _id: '5f301b712323cd2983111b09' }, {
+        $set: {
+            materials: materials,
+            resources: resources,
+            tests: tests
+        }
+    })
+
+    res.send({
+        status: true
+    })
 }

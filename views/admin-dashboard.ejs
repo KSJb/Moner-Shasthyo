@@ -20,6 +20,7 @@
                     <p id="add-mat">Add Materials</p>
                     <p id="add-res">Add Resources</p>
                     <p id="add-q">Add Questionnire</p>
+                    <p id="add-hpa">Edit-Homepage</p>
                 </div>
             </div>
             <div class="contents">
@@ -73,6 +74,9 @@
     })
     $('#add-res').click((e) => {
         location = '/users/create'
+    })
+    $('#add-hpa').click((e) => {
+        location = '/app-admin/hpArticles'
     })
     $('button#approve').click((e) => {
         location = '/app-admin/approve-user/' + e.target.name

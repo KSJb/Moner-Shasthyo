@@ -51,10 +51,18 @@ const getTime = () => {
     return h+':'+m+' ' +meridian
 }
 
+const { hpArticles } = require('../models/homepageArticles.js')
 module.exports.loadHomepage = async(req, res) => {
-    const materials = await material.find().sort({ _id: -1 }).limit(3)
-    const tests = await testModel.find().sort({ _id: -1 }).limit(3)
-    const resources = await Post.find().sort({ _id: -1 }).limit(3)
+    const art = await hpArticles.findOne({ _id: '5f301b712323cd2983111b09' })
+    let materials = [], resources = [], tests = await testModel.find()
+    for (let i=0; i<3; i++) {
+        const mat = await material.findOne({ title: art.materials[i] })
+        const res = await Post.findOne({ title: art.resources[i] })
+        // const test = await testModel.findOne({ title: art.tests[i] })
+
+        materials.push(mat)
+        resources.push(res)
+    }
 
     res.render('Homepage', {
         user: req.user,
@@ -538,6 +546,7 @@ exports.postUpdateMaterial = async(req, res) => {
         id,
         title,
         body,
+        category,
         prompts,
         thumbnail
     } = req.body
@@ -550,6 +559,7 @@ exports.postUpdateMaterial = async(req, res) => {
             prompts: prompts,
             body: body,
             thumbnail: thumbnail,
+            category: category,
             tags: tags,
             activities: activities
         }

@@ -1,0 +1,66 @@
+.pageWrapper .header {
+  font-size: 25px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.pageWrapper .header p {
+  text-align: center;
+}
+
+.pageWrapper .contentWrapper {
+  width: 80%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.pageWrapper .contentWrapper .columns {
+  margin-top: 50px;
+  width: 25%;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+  .pageWrapper .contentWrapper .columns {
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+  }
+}
+
+.pageWrapper .contentWrapper .columns .header p {
+  text-align: center;
+}
+
+.pageWrapper .contentWrapper .columns .inputs input {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.pageWrapper .last-row {
+  margin-top: 50px;
+}
+
+.pageWrapper .last-row p {
+  text-align: center;
+}
+/*# sourceMappingURL=hpArticles.css.map */

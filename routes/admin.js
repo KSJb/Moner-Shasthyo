@@ -29,4 +29,8 @@ router.get('/create-material', adminAccess, (req, res) => {
 router.post('/material/new', adminAccess, controller.createMaterial)
 module.exports = router;
 
+// Homepage articles
+router.get('/hpArticles', adminAccess, controller.getHPArticle)
+router.post('/hpArticles', adminAccess, controller.hpArticles)
+
 // http://bad-blogger.herokuapp.com/admin/reset_password

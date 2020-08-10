@@ -1,0 +1,53 @@
+.pageWrapper{
+  .header {
+    font-size: 25px;
+    width: 100%;
+    margin-top: 50px;
+    p {
+      text-align: center;
+    }
+  }
+  .contentWrapper {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
+
+    .columns {
+      margin-top: 50px;
+      width: 25%;
+      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      @media (max-width: 900px) {
+        width: 90%;
+        margin: auto;
+        margin-top: 20px;
+      }
+      .header {
+        p {
+          text-align: center;
+        }
+      }
+      .inputs {
+        input {
+          width: 100%;
+          margin-top: 15px;
+          padding: 10px;
+          border: 1px solid #aaa;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+
+  .last-row {
+    margin-top: 50px;
+    p {
+      text-align: center;
+    }
+  }
+}

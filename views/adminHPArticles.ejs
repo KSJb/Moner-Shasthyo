@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage Articles - Admin</title>
+  <link rel="stylesheet" href="/css/hpArticles.css">
+</head>
+<body>
+    <div class="pageWrapper">
+      <div class="header">
+        <p>Homepage Articles</p>
+      </div>
+      <div class="contentWrapper">
+        <div class="columns">
+          <div class="header">
+            <p>Materials</p>
+          </div>
+          <div class="inputs mat-input">
+            <% for (let i=0; i<3; i++) { %>
+                <input type="text" value="<%= art.materials[i] %>">
+              <% } %>
+          </div> 
+        </div>
+
+        <div class="columns">
+          <div class="header">
+            <p>Resources</p>
+          </div>
+          <div class="inputs res-input">
+            <% for (let i=0; i<3; i++) { %>
+              <input type="text" value="<%= art.resources[i] %>">
+            <% } %>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="header">
+            <p>Tests</p>
+          </div>
+          <div class="inputs test-input">
+            <% for (let i=0; i<3; i++) { %>
+              <input type="text" value="<%= art.tests[i] %>">
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <div class="last-row">
+        <p><button class="btn btn-info">Save Changes</button></p>
+      </div>
+    </div>
+</body>
+
+<script>
+  $('.btn-info').click(e => {
+    let error = false
+    const matInputs = $('.mat-input input')
+    const resInputs = $('.res-input input')
+    const testInput = $('.test-input input')
+
+    const materials = [ ]
+    const resources = [ ]
+    const tests = [ ]
+
+    for (let i=0; i< 3; i++) {
+      const mat = $(matInputs[i]).val().trim()
+      const res = $(resInputs[i]).val().trim()
+      const test =$( testInput[i]).val().trim()
+
+    if (mat && res && test) {
+      materials.push(mat)
+      resources.push(res)
+      tests.push(test)
+    } else {
+      error = true
+    }
+    }
+
+    // console.log(materials, resources, tests)
+    if (error) {
+        alert('Enter all the fields')
+    } else {
+        const  data = {
+        materials: JSON.stringify(materials),
+        resources: JSON.stringify(resources),
+        tests: JSON.stringify(tests)
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '/app-admin/hpArticles',
+        data,
+        success: data => {
+          console.log(data)
+          location = '/app-admin/hpArticles'
+        }
+      })
+    }
+
+  })
+</script>
+
+</html>
