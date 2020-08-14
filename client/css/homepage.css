@@ -44,6 +44,15 @@
   }
 }
 
+.top-texts {
+  background-color: #eee;
+  padding: 15px 0;
+  border-radius: 20px;
+  opacity: 0.7;
+  width: 50%;
+  margin: auto;
+}
+
 .about {
   width: 50%;
   margin: auto;
