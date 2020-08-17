@@ -48,6 +48,7 @@ router.get('/profile/get-stress/:id', controller.getStressRecords)
 // Material
 router.get('/materials', controller.allMaterials)
 router.get('/single-material/:id', controller.singleMaterial)
+// router.get('/single-material/android/:id', controller)
 router.get('/update-material/:id', controller.getUpdateMaterial)
 router.post('/update-material', controller.postUpdateMaterial)
 router.get('/add/material', controller.addMaterialToProfile)

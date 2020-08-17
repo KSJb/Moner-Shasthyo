@@ -493,8 +493,25 @@ exports.singleMaterial = async(req, res) => {
     const { device } = req.query
     if (device == 'android') {
         const data = await material.findOne({ _id: req.params.id })
+        const {
+            title,
+            thumbnail,
+            body,
+            activities
+        } = data
+        const bodyHTML = `
+        <style>
+            img {
+                width: 100%;
+            }
+        </style>
+        <div style="width: 70%; margin: auto; margin-top: 30px;"><img src="${thumbnail}"></div>
+        <p style="text-align: center; font-size: 25px; margin-top: 15px; font-weight: bolder;"><strong>${title}</strong></p>
+        <p class="main-body">${body}</p>`
+
         res.send({
-            data
+            bodyHTML,
+            activities
         })
     }
     if (!req.user) {
