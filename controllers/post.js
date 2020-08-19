@@ -992,3 +992,9 @@ module.exports.Feedback = async (req, res) => {
 // http://bad-blogger.herokuapp.com/users/view/:id?device=android
 // http://bad-blogger.herokuapp.com/admin/register/general
 // http://bad-blogger.herokuapp.com/admin/register/expert
+
+/*
+1. Delete element from object array by value of its property
+2. Grouping an array of objects intop separate arrays on the basis of a particular property
+3. Dynamic search: Changing the content space with every keystroke in an input bar 
+*/

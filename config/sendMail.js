@@ -54,7 +54,7 @@ module.exports.clientFeedback = async (obj) => {
   Message: ${msg}`;
   let mailOptions = {
     from: 'manager@trin-innovation.com',
-    to: 'zaidfarzan@aol.com ',
+    to: 'safwan.du16@gmail.com ', //zaidfarzan@aol.com
     subject: 'Moner Shastho - Client feedback',
     html: mailBody,
   };

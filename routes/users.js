@@ -6,6 +6,9 @@ router.get('/', controller.loadHomepage)
 router.get('/about',  (req, res) => {
   res.render('aboutUs')
 })
+router.get('/feedback', (req, res) => {
+  res.render('contactUs')
+})
 router.post('/feedback', controller.Feedback)
 
 router.get('/create', controller.create_blog);

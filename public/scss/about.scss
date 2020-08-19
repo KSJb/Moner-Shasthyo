@@ -58,62 +58,65 @@
         }
       }
     }
+  }
+}
 
-    .contact-header {
-      margin-top: 50px;
-      font-size: 30px;
-      text-align: center;
+.contact-header {
+  margin-top: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+.contact {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin: auto;
+  margin-top: 30px;
+  @media (max-width: 900px) {
+    width: 90%;
+    flex-direction: column;
+  }
+  .static {
+    margin-top: 30px;
+    width: 45%;
+    @media (max-width: 900px) {
+      width: 95%;
+      margin: auto;
     }
-    .contact {
-      margin-top: 30px;
+    .field {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+    .value {
+      font-size: 15px;
+      color: gray;
+    }
+  }
+  .feeds {
+    width: 45%;
+    @media (max-width: 900px) {
+      width: 95%;
+      margin: auto;
+    }
+    .name-email {
       display: flex;
       justify-content: space-between;
       @media (max-width: 900px) {
         flex-direction: column;
       }
-      .static {
-        margin-top: 30px;
-        width: 45%;
+      input {
+        padding: 5px;
+        border: 1px solid #ddd;
         @media (max-width: 900px) {
-          width: 95%;
-          margin: auto;
-        }
-        .field {
           margin-top: 10px;
-          font-size: 18px;
-        }
-        .value {
-          font-size: 15px;
-          color: gray;
         }
       }
-      .feeds {
-        width: 45%;
-        @media (max-width: 900px) {
-          width: 95%;
-          margin: auto;
-        }
-        .name-email {
-          display: flex;
-          justify-content: space-between;
-          @media (max-width: 900px) {
-            flex-direction: column;
-          }
-          input {
-            padding: 5px;
-            border: 1px solid #ddd;
-            @media (max-width: 900px) {
-              margin-top: 10px;
-            }
-          }
-        }
-        textarea {
-          width: 100%;
-          margin-top: 10px;
-          border: 1px solid #ddd;
-          padding: 10px;
-        }
-      }
+    }
+    textarea {
+      width: 100%;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      padding: 10px;
     }
   }
 }

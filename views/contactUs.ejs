@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/about.css">
+
+  <title>Contact Us - Moner Shastho</title>
+</head>
+<body>
+  <p class="contact-header">Keep in touch!</p>
+  <div class="contact" id="contact">
+    <div class="static">
+      <div class="field">Email</div>
+      <div class="value">info@trin-innovation.com</div>
+
+      <div class="field">Phone</div>
+      <div class="value">+8801552-525252</div>
+
+      <div class="field">Address</div>
+      <div class="value">Rupayan Trade Center, 2nd Floor, Banglamotor, Dhaka-1215, Bangladesh
+      </div>
+
+    </div>
+    <div class="feeds">
+      <div class="alert alert-info" id="alert" style="display: none;"></div>
+      <div class="name-email">
+        <input type="text" placeholder="Name" id="name">
+        <input type="text" placeholder="Email" id="email">
+      </div>
+      <div class="texts">
+        <textarea  id="msg" cols="30" rows="10" placeholder="Your message"></textarea>
+      </div>
+      <button class="btn btn-secondary">Submit</button>
+    </div>
+  </div>
+  </div>
+</body>
+
+<script>
+  $('.btn').click(e => {
+    const name = $('#name').val()
+    const email = $('#email').val()
+    const msg = $('#msg').val()
+    const alert = $('#alert')
+    if (!name || !email || !msg) {
+      alert.show()
+      alert.html('Fill up all the fields')
+    } else {
+      alert.show()
+      alert.html('Feed back received. Thanks!')
+      const data = {
+        name,
+        email,
+        msg
+      }
+      console.log(data)
+      $.ajax({
+        url: '/users/feedback',
+        type: 'POST',
+        data,
+        success: data => {
+          setTimeout(() => {
+            location = '/users/feedback'
+          }, 3000);
+        }
+      })
+    }
+  })
+</script>
+
+</html>
