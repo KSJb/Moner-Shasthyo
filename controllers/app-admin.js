@@ -31,11 +31,14 @@ module.exports.createTest = async(req, res) => {
         thumbnail,
         ageRange,
         category,
-        about
+        about,
+        maxScore,
+        minScore
     } = req.body
 
     const questionSet = JSON.parse(req.body.questionSet)
-        // console.log(questionSet)
+    const stages = JSON.parse(req.body.stages)
+        // console.log(stages)
 
     const newTest = new testModel({
         title,
@@ -43,6 +46,9 @@ module.exports.createTest = async(req, res) => {
         ageRange,
         category,
         about,
+        maxScore,
+        minScore,
+        stages,
         questionSet
     })
     console.log(newTest)
@@ -200,11 +206,13 @@ exports.postEditTest = async(req, res) => {
         thumbnail,
         ageRange,
         category,
-        about
+        about,
+        maxScore,
+        minScore
     } = req.body
 
     const questionSet = JSON.parse(req.body.questionSet)
-    console.log(questionSet)
+    const stages = JSON.parse(req.body.stages)
 
     await testModel.findOneAndUpdate({ _id: id }, {
         $set: {
@@ -214,6 +222,9 @@ exports.postEditTest = async(req, res) => {
             ageRange: ageRange,
             category: category,
             about: about,
+            maxScore: maxScore,
+            minScore: minScore,
+            stages: stages,
             questionSet: questionSet
         }
     })

@@ -6,6 +6,12 @@ const test = mongoose.Schema({
     ageRange: String,
     category: String,
     about: String,
+    maxScore: String,
+    minScore: String,
+    stages: [{
+        name: String,
+        score: String
+    }],
     questionSet: [{
         question: String,
         scale: {

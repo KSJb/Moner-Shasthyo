@@ -191,7 +191,8 @@
                             <img src="https://i.pinimg.com/originals/19/46/09/194609cf8b314908f7274d5b220d76ba.gif" alt="">
                         </div>
                         <div class="score">
-                            <p class="msg">The level of your stress is</p>
+                            <p>The status of your mental health is <strong id="health-status" style="color: lightseagreen; font-size: 20px;"></strong></p>
+                            <p class="msg">Your score is </p>
                             <p class="number"></p>
                         </div>
                     </div>
@@ -268,6 +269,7 @@
                         if (data.status) {
                             console.log('posted')
                             $('#result-modal').modal('show')
+                            $('#health-status').html(result.stage)
                             $('.number').html(result.score)
                             $('.compute-btn p').html('Computed')
                         } else {
@@ -313,11 +315,22 @@
             }
 
         }
+        const stage = getStage(data.stages, achievedScore)
+        console.log(stage)
         return ({
             status: false,
-            score: achievedScore
+            score: achievedScore,
+            stage
         })
     }
+
+    const getStage = (stages, score) => {
+        for (let i=0; i<stages.length; i++) {
+            if (score >= parseInt(stages[i].score))
+                return stages[i].name
+        }
+    }
+
     $('.edit').click((e) => {
         location = '/app-admin/edit-test/' + e.target.id
     })

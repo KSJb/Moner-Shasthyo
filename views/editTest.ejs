@@ -56,6 +56,30 @@
                                     <textarea placeholder="Brief description about the test" id="about" rows="7"><%= data.about %></textarea>
                                 </div>
 
+                                <div class="flx-prnt">
+                                    <div class="flx-chld">
+                                        <input type="text" id="maxScore" class="form-control" placeholder="Maximum score" value="<%= data.maxScore %>" />
+                                    </div>
+                                    <div class="flx-chld">
+                                        <input type="text" id="minScore" class="form-control" placeholder="Minimum score" value="<%= data.minScore %>" />
+                                    </div>
+                                </div>
+
+                                <div id="stage-id">
+                                    <% for (let i=0; i<data.stages.length; i++) { %>
+                                        <div class="flx-prnt" style="width: 80%;">
+                                            <div class="flx-chld">
+                                                <input type="text" class="form-control stageName" placeholder="Name of the stage" value="<%= data.stages[i].name %>" />
+                                            </div>
+                                            <div class="flx-chld">
+                                                <input type="text" class="form-control stageScore"  value="<%= data.stages[i].score %>" placeholder="Threshold score" />
+                                            </div>
+                                            <div class="flx-chld"><button class="btn btn-danger delete-stage">X</button></div>
+                                            </div>
+                                        <% } %>
+                                </div>
+                                <button class="btn btn-info" id="add-stage">Add</button>
+
                                 <h5 class="Ques_heading">Questions</h5>
 
                                 <div class="allQuestionsWrapper">
@@ -136,6 +160,24 @@
 </body>
 
 <script>
+        $('#add-stage').click(e => {
+        e.preventDefault()
+        const node = `<div class="flx-prnt" style="width: 80%;">
+                                        <div class="flx-chld">
+                                            <input type="text" class="form-control stageName" placeholder="Name of the stage" />
+                                        </div>
+                                        <div class="flx-chld">
+                                            <input type="text" class="form-control stageScore" placeholder="Threshold score" />
+                                        </div>
+                                        <div class="flx-chld"><button class="btn btn-danger delete-stage">X</button></div>
+                                        </div>`
+        $('#stage-id').append(node)
+    })
+
+    $('body').on('click', '.delete-stage', e => {
+        $(e.target.parentElement.parentElement).remove()
+    })
+
     function go() {
         location = '/admin/test/new';
     }
@@ -332,6 +374,21 @@
         const ageRange = $('#ageRangeInput').val()
         const category = $('#category').val()
         const about = $('#about').val()
+        const maxScore = $('#maxScore').val()
+        const minScore = $('#minScore').val()
+
+        const stageNArray = $('.stageName')
+        const stageSArray = $('.stageScore')
+        const stages = []
+        for (let i=0; i<stageNArray.length; i++) {
+            const name = $(stageNArray[i]).val()
+            const score = $(stageSArray[i]).val()
+            stages.push({
+                name,
+                score
+            })
+        }
+        console.log(stages)
         if (check(title)) {
             showAlert('Enter the name test');
         } else if (check(thumbnail)) {
@@ -410,6 +467,9 @@
                 ageRange,
                 category,
                 about,
+                maxScore,
+                minScore,
+                stages: JSON.stringify(stages),
                 questionSet: JSON.stringify(Questions),
             };
 
