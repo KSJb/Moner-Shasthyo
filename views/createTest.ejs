@@ -93,8 +93,8 @@
                                                         <input type="text" class="form-control qScale" id="questionScale" placeholder="Scale (By Default 1)" />
                                                     </div>
                                                     <div class="flx-chld inp_btn">
-                                                        <button class="btn btn-dark deleteBtn QuestionDelete"> <i class="fa fa-trash"></i> </button>
-                                                        <button class="btn btn-dark deleteBtn QuestionClone"> <i class="fa fa-clone"></i> </button>
+                                                        <button class="btn btn-dark deleteBtn QuestionDelete"> Delete </button>
+                                                        <button class="btn btn-dark deleteBtn QuestionClone"> Clone </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -307,17 +307,19 @@
         }
     });
     $(document).on('click', '.QuestionDelete', (e) => {
+        console.log('delete')
         e.preventDefault()
-        let fld = e.target;
-        while (true) {
-            let val = $(fld)[0].className;
-            if (val.includes('eachQuestions')) break;
-            fld = fld.parentElement;
-        }
-        const numOfChildren = fld.parentElement.children.length;
-        if (numOfChildren > 1) {
-            $(fld).remove();
-        }
+        // let fld = e.target;
+        // while (true) {
+        //     let val = $(fld)[0].className;
+        //     if (val.includes('eachQuestions')) break;
+        //     fld = fld.parentElement;
+        // }
+        // const numOfChildren = fld.parentElement.children.length;
+        // if (numOfChildren > 1) {
+        //     $(fld).remove();
+        // }
+        $(e.target.parentElement.parentElement.parentElement.parentElement).remove()
     });
 </script>
 

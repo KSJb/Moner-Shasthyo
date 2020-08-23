@@ -191,7 +191,8 @@
                             <img src="https://i.pinimg.com/originals/19/46/09/194609cf8b314908f7274d5b220d76ba.gif" alt="">
                         </div>
                         <div class="score">
-                            <p>The status of your mental health is <strong id="health-status" style="color: lightseagreen; font-size: 20px;"></strong></p>
+                            <p>The status of your mental health is</p>
+                            <p><strong id="health-status" style="color: lightseagreen; font-size: 20px;"></strong></p>
                             <p class="msg">Your score is </p>
                             <p class="number"></p>
                         </div>
@@ -325,9 +326,15 @@
     }
 
     const getStage = (stages, score) => {
+        console.log(score)
+        let low = 0, high
         for (let i=0; i<stages.length; i++) {
-            if (score >= parseInt(stages[i].score))
+            high = parseInt(stages[i].score)
+            if (score >= low && score <= high){
                 return stages[i].name
+            } else {
+                low = high+1
+            }
         }
     }
 
