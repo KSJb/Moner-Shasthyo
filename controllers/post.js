@@ -273,6 +273,7 @@ module.exports.getUpdateProfile = async(req, res) => {
 }
 
 module.exports.postUpdateProfile = async(req, res) => {
+    console.log(req.body)
     if (req.user) {
         await gUser.findOneAndUpdate({ _id: req.user._id }, {
             $set: {
@@ -284,8 +285,8 @@ module.exports.postUpdateProfile = async(req, res) => {
                 livingArea: req.body.livingArea,
                 residenceType: req.body.residenceType,
                 familyType: req.body.familyType,
-                education: req.body.education,
-                occupation: req.body.education,
+                educations: req.body.educations,
+                occupation: req.body.occupation,
                 monthlyIncome: req.body.monthlyIncome
             }
         })
@@ -313,8 +314,8 @@ module.exports.postUpdateProfileAndroid = async(req, res) => {
             livingArea: req.body.livingArea,
             residenceType: req.body.residenceType,
             familyType: req.body.familyType,
-            education: req.body.education,
-            occupation: req.body.education,
+            educations: req.body.educations,
+            occupation: req.body.occupation,
             monthlyIncome: req.body.monthlyIncome,
             familyIllness: req.body.familyIllness,
             complaint: req.body.complaint,
