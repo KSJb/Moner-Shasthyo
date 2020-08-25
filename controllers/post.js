@@ -62,6 +62,7 @@ module.exports.loadHomepage = async(req, res) => {
 
         materials.push(mat)
         resources.push(res)
+        // tests.push(test)
     }
 
     res.render('Homepage', {
