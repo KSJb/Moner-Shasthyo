@@ -828,12 +828,29 @@ module.exports.view_post = async(req, res) => {
     const id = req.params.id;
     const posts = await Post.findOne({ _id: id })
     const relatedPosts = await Post.find().sort({ _id: -1 }).limit(4)
+    
     if (device == 'android') {
+        const data = await Post.findOne({ _id: req.params.id })
+        const {
+            title,
+            thumbnail,
+            body,
+        } = data
+        const bodyHTML = `
+        <style>
+            img {
+                width: 100%;
+            }
+        </style>
+        <div style="width: 70%; margin: auto; margin-top: 30px;"><img src="${thumbnail}"></div>
+        <p style="text-align: center; font-size: 25px; margin-top: 15px; font-weight: bolder;"><strong>${title}</strong></p>
+        <p class="main-body">${body}</p>`
+
         res.send({
-            data: posts,
-            user: req.user
+            bodyHTML,
         })
     }
+
     let previlege = 'false'
     if (req.user && req.user.userType == 'admin') {
         previlege = 'true'
