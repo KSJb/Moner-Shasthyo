@@ -104,11 +104,11 @@ html, body {
 
 .pageWrapper .contentWrapper .top-nav .row .categories a {
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 15px;
   color: #444;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 5px;
+  border-radius: 20px;
   white-space: nowrap;
 }
 
